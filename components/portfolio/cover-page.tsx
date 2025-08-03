@@ -1,34 +1,33 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { AnimatedElement } from "@/components/ui/animated-element"
-import { ArrowRight, MapPin, Calendar, User, Mail } from "lucide-react"
-import { useLanguage } from "@/contexts/language-context"
-import { mockPortfolioData } from "@/lib/mock-data"
-import type { PortfolioData } from "@/lib/types"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { AnimatedElement } from "@/components/ui/animated-element";
+import { ArrowRight, MapPin, Calendar, User, Mail } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
+import { mockPortfolioData } from "@/lib/mock-data";
+import type { PortfolioData } from "@/lib/types";
 
 interface CoverPageProps {
-  data?: PortfolioData
-  onNavigate?: (page: string) => void
+  data?: PortfolioData;
+  onNavigate?: (page: string) => void;
 }
 
 export function CoverPage({ data, onNavigate }: CoverPageProps) {
-  const { language } = useLanguage()
-  const portfolioData = data || mockPortfolioData
+  const portfolioData = data || mockPortfolioData;
 
   const handleEmailClick = () => {
-    const email = portfolioData.personalInfo?.email || "contact@example.com"
-    window.location.href = `mailto:${email}`
-  }
+    const email = portfolioData.personalInfo?.email || "contact@example.com";
+    window.location.href = `mailto:${email}`;
+  };
 
   const handleNavigate = (page: string) => {
     // 페이지 이동 시 맨 위로 스크롤
-    window.scrollTo({ top: 0, behavior: "smooth" })
-    onNavigate?.(page)
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    onNavigate?.(page);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#6495ED]/20 via-[#7B68EE]/20 to-[#9370DB]/20 dark:from-[#4169E1]/30 dark:via-[#6A5ACD]/30 dark:to-[#8A2BE2]/30 relative overflow-hidden">
@@ -47,12 +46,17 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
       <div className="relative z-10 flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* 프로필 섹션 */}
-          <AnimatedElement animation="scaleIn" delay={0} duration={200} className="space-y-6">
+          <AnimatedElement
+            animation="scaleIn"
+            delay={0}
+            duration={200}
+            className="space-y-6"
+          >
             <div className="relative inline-block">
               <Avatar className="w-32 h-32 sm:w-40 sm:h-40 mx-auto ring-4 ring-white/50 shadow-2xl">
                 <AvatarImage src="/avatar.png" alt="Profile" />
                 <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-[#6495ED] to-[#7B68EE] text-white">
-                  {portfolioData.personalInfo?.name?.charAt(0) || "U"}
+                  {portfolioData.personalInfo?.name?.charAt(0) || "L"}
                 </AvatarFallback>
               </Avatar>
               <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg"></div>
@@ -66,7 +70,8 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
                 {portfolioData.personalInfo?.title || "풀스택 개발자"}
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                {portfolioData.personalInfo?.bio || "혁신적인 웹 솔루션을 만드는 개발자입니다."}
+                {portfolioData.personalInfo?.bio ||
+                  "혁신적인 웹 솔루션을 만드는 개발자입니다."}
               </p>
             </div>
           </AnimatedElement>
@@ -114,5 +119,5 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
