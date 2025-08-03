@@ -1,0 +1,547 @@
+"use client"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import {
+  Calendar,
+  Users,
+  Code,
+  Target,
+  TrendingUp,
+  CheckCircle,
+  Copy,
+  FileText,
+  Braces,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react"
+import { useState, useEffect } from "react"
+import type { Project } from "@/lib/types"
+
+interface ProjectDetailModalProps {
+  project: Project | null
+  isOpen: boolean
+  onClose: () => void
+}
+
+export function ProjectDetailModal({ project, isOpen, onClose }: ProjectDetailModalProps) {
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const [activeTabIndex, setActiveTabIndex] = useState(0)
+
+  // Reset tab index when project changes
+  useEffect(() => {
+    setActiveTabIndex(0)
+  }, [project])
+
+  if (!project) return null
+
+  const copyToClipboard = async (code: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(code)
+      setCopiedIndex(index)
+      setTimeout(() => setCopiedIndex(null), 2000)
+    } catch (err) {
+      console.error("Failed to copy code:", err)
+    }
+  }
+
+  const getLanguageColor = (language: string) => {
+    const colors: Record<string, string> = {
+      javascript: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
+      typescript: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+      react: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200",
+      html: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
+      css: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
+      scss: "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200",
+      json: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+      sql: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200",
+      python: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
+    }
+    return colors[language.toLowerCase()] || "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+  }
+
+  const navigateTab = (direction: "prev" | "next") => {
+    if (!project.codeSnippets) return
+
+    if (direction === "prev") {
+      setActiveTabIndex((prev) => (prev > 0 ? prev - 1 : project.codeSnippets!.length - 1))
+    } else {
+      setActiveTabIndex((prev) => (prev < project.codeSnippets!.length - 1 ? prev + 1 : 0))
+    }
+  }
+
+  return (
+    <TooltipProvider>
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className="max-w-5xl w-[95vw] h-[95vh] overflow-hidden flex flex-col p-0 gap-0 z-[100]">
+          {/* Fixed Header */}
+          <DialogHeader className="flex-shrink-0 border-b p-4 sm:p-6 bg-background relative">
+            {/* Header Content with proper spacing for close button */}
+            <div className="pr-10 sm:pr-12">
+              <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 pr-2">
+                {project.title}
+              </DialogTitle>
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-4 text-sm text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-1">
+                  <Calendar className="h-4 w-4 flex-shrink-0" />
+                  <span className="truncate">{project.period}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Users className="h-4 w-4 flex-shrink-0" />
+                  <span>FE {project.frontendDevelopers}명</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Code className="h-4 w-4 flex-shrink-0" />
+                  <span className="truncate">{project.role}</span>
+                </div>
+              </div>
+            </div>
+          </DialogHeader>
+
+          {/* Scrollable Content */}
+          <div className="flex-1 overflow-y-auto overscroll-contain">
+            <div className="space-y-4 sm:space-y-6 p-4 sm:p-6">
+              {/* 프로젝트 배경 */}
+              <Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                    <Target className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
+                    <span>프로젝트 배경</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {project.background}
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* 프로젝트 개요 */}
+              <Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                    <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                    <span>프로젝트 개요</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {project.detailedDescription?.summary}
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* 기술 선택 배경 */}
+              {project.technologyReasoning && project.technologyReasoning.length > 0 && (
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                      <Code className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600 flex-shrink-0" />
+                      <span>기술 선택 배경</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-4">
+                      {project.technologyReasoning.map((reasoning, index) => (
+                        <div key={index} className="border-l-4 border-purple-200 pl-4">
+                          <h4 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white mb-2">
+                            {reasoning.category}
+                          </h4>
+                          <div className="flex flex-wrap gap-2 mb-3">
+                            {reasoning.technologies.map((tech, techIndex) => (
+                              <Badge
+                                key={techIndex}
+                                variant="secondary"
+                                className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 text-xs"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                            {reasoning.reasoning}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* 프로젝트 내용 */}
+              {project.detailedDescription?.implementation && (
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                      <Code className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600 flex-shrink-0" />
+                      <span>프로젝트 내용</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="prose prose-sm max-w-none">
+                      <div className="whitespace-pre-wrap text-sm text-gray-800 dark:text-gray-200 leading-relaxed font-sans bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-md overflow-x-auto max-h-64 overflow-y-auto">
+                        {project.detailedDescription.implementation}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* 핵심 코드 스니펫 - 모바일 최적화 및 오버플로우 수정 + 툴팁 추가 */}
+              {project.codeSnippets && project.codeSnippets.length > 0 && (
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                      <Braces className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-600 flex-shrink-0" />
+                      <span>핵심 코드 스니펫</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    {/* 데스크톱 탭 리스트 */}
+                    <div className="hidden sm:block">
+                      <Tabs
+                        value={activeTabIndex.toString()}
+                        onValueChange={(value) => setActiveTabIndex(Number.parseInt(value))}
+                        className="w-full"
+                      >
+                        {/* 스크롤 가능한 탭 리스트 */}
+                        <div className="relative mb-4">
+                          <div className="overflow-x-auto scrollbar-hide">
+                            <TabsList className="inline-flex h-auto p-1 bg-muted/50 min-w-full w-max">
+                              {project.codeSnippets.map((snippet, index) => {
+                                const displayText = snippet.filename || snippet.title
+                                return (
+                                  <TabsTrigger
+                                    key={index}
+                                    value={index.toString()}
+                                    className="flex items-center gap-2 px-3 py-2 text-sm data-[state=active]:bg-background data-[state=active]:shadow-sm whitespace-nowrap flex-shrink-0"
+                                  >
+                                    <FileText className="h-3 w-3 flex-shrink-0" />
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <span className="truncate max-w-[120px]">{displayText}</span>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        <p className="max-w-xs break-words">{displayText}</p>
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TabsTrigger>
+                                )
+                              })}
+                            </TabsList>
+                          </div>
+                        </div>
+
+                        {project.codeSnippets.map((snippet, index) => (
+                          <TabsContent key={index} value={index.toString()} className="mt-0">
+                            <div className="space-y-3">
+                              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                <div className="flex items-center gap-3 min-w-0">
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <h4 className="font-semibold text-base sm:text-lg text-gray-900 dark:text-white truncate">
+                                        {snippet.title}
+                                      </h4>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      <p className="max-w-xs break-words">{snippet.title}</p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                  <Badge
+                                    variant="secondary"
+                                    className={`${getLanguageColor(snippet.language)} flex-shrink-0`}
+                                  >
+                                    {snippet.language.toUpperCase()}
+                                  </Badge>
+                                </div>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => copyToClipboard(snippet.code, index)}
+                                  className="flex items-center gap-2 self-start sm:self-auto flex-shrink-0"
+                                >
+                                  <Copy className="h-4 w-4" />
+                                  <span>{copiedIndex === index ? "복사됨!" : "복사"}</span>
+                                </Button>
+                              </div>
+
+                              {snippet.description && (
+                                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                  {snippet.description}
+                                </p>
+                              )}
+
+                              <div className="relative">
+                                <div className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-3 sm:p-4 rounded-lg border max-h-80 overflow-y-auto">
+                                  <pre className="text-xs sm:text-sm leading-relaxed overflow-x-auto">
+                                    <code className={`language-${snippet.language}`}>{snippet.code}</code>
+                                  </pre>
+                                </div>
+                                {snippet.filename && (
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <div className="absolute top-2 right-2 bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-mono max-w-[150px] truncate">
+                                        {snippet.filename}
+                                      </div>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      <p className="max-w-xs break-words">{snippet.filename}</p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                )}
+                              </div>
+                            </div>
+                          </TabsContent>
+                        ))}
+                      </Tabs>
+                    </div>
+
+                    {/* 모바일 탭 네비게이션 - 오버플로우 수정 + 툴팁 추가 */}
+                    <div className="block sm:hidden">
+                      <div className="flex items-center justify-between bg-muted/50 rounded-lg p-2 mb-4">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => navigateTab("prev")}
+                          className="h-8 w-8 p-0 flex-shrink-0"
+                          disabled={!project.codeSnippets || project.codeSnippets.length <= 1}
+                        >
+                          <ChevronLeft className="h-4 w-4" />
+                        </Button>
+
+                        <div className="flex items-center gap-2 flex-1 justify-center min-w-0 px-2">
+                          <FileText className="h-4 w-4 text-indigo-600 flex-shrink-0" />
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <span className="text-sm font-medium truncate">
+                                {project.codeSnippets[activeTabIndex]?.filename ||
+                                  project.codeSnippets[activeTabIndex]?.title}
+                              </span>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="max-w-xs break-words">
+                                {project.codeSnippets[activeTabIndex]?.filename ||
+                                  project.codeSnippets[activeTabIndex]?.title}
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                          <span className="text-xs text-muted-foreground flex-shrink-0">
+                            ({activeTabIndex + 1}/{project.codeSnippets.length})
+                          </span>
+                        </div>
+
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => navigateTab("next")}
+                          className="h-8 w-8 p-0 flex-shrink-0"
+                          disabled={!project.codeSnippets || project.codeSnippets.length <= 1}
+                        >
+                          <ChevronRight className="h-4 w-4" />
+                        </Button>
+                      </div>
+
+                      {/* Mobile Code Content */}
+                      {project.codeSnippets[activeTabIndex] && (
+                        <div className="space-y-3">
+                          <div className="flex flex-col gap-3">
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="flex items-center gap-2 min-w-0 flex-1">
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <h4 className="font-semibold text-base text-gray-900 dark:text-white truncate">
+                                      {project.codeSnippets[activeTabIndex].title}
+                                    </h4>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p className="max-w-xs break-words">{project.codeSnippets[activeTabIndex].title}</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                                <Badge
+                                  variant="secondary"
+                                  className={`${getLanguageColor(
+                                    project.codeSnippets[activeTabIndex].language,
+                                  )} flex-shrink-0 text-xs`}
+                                >
+                                  {project.codeSnippets[activeTabIndex].language.toUpperCase()}
+                                </Badge>
+                              </div>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() =>
+                                  copyToClipboard(project.codeSnippets?.[activeTabIndex]?.code ?? "", activeTabIndex)
+                                }
+                                className="flex items-center gap-1 flex-shrink-0 h-8 px-2"
+                              >
+                                <Copy className="h-3 w-3" />
+                                <span className="text-xs">{copiedIndex === activeTabIndex ? "✓" : "복사"}</span>
+                              </Button>
+                            </div>
+
+                            {project.codeSnippets[activeTabIndex].description && (
+                              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                {project.codeSnippets[activeTabIndex].description}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="relative">
+                            <div className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-3 rounded-lg border max-h-64 overflow-y-auto">
+                              <pre className="text-xs leading-relaxed overflow-x-auto">
+                                <code className={`language-${project.codeSnippets[activeTabIndex].language}`}>
+                                  {project.codeSnippets[activeTabIndex].code}
+                                </code>
+                              </pre>
+                            </div>
+                            {project.codeSnippets[activeTabIndex].filename && (
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div className="absolute top-2 right-2 bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-mono max-w-[120px] truncate">
+                                    {project.codeSnippets[activeTabIndex].filename}
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="max-w-xs break-words">
+                                    {project.codeSnippets[activeTabIndex].filename}
+                                  </p>
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* 프로젝트 결과 */}
+              {project.detailedDescription?.results && (
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                      <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                      <span>프로젝트 결과</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {project.detailedDescription.results}
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* 기술 스택 및 키워드 - 모바일에서 세로 배치 */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base sm:text-lg">사용 기술</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies?.map((tech, index) => (
+                        <Badge
+                          key={index}
+                          variant="secondary"
+                          className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-xs sm:text-sm"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base sm:text-lg">핵심 키워드</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="flex flex-wrap gap-2">
+                      {project.keywords?.map((keyword, index) => (
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="border-green-200 text-green-700 dark:border-green-700 dark:text-green-300 text-xs sm:text-sm"
+                        >
+                          {keyword}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* 주요 성과 */}
+              {project.achievements && project.achievements.length > 0 && (
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                      <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600 flex-shrink-0" />
+                      <span>주요 성과</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <ul className="space-y-3">
+                      {project.achievements.map((achievement, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                          <span className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                            {achievement}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* 단계별 성과 */}
+              {project.projectSpecificOutcomes && project.projectSpecificOutcomes.length > 0 && (
+                <Card>
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                      <Target className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-600 flex-shrink-0" />
+                      <span>단계별 성과</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-4 sm:space-y-6">
+                      {project.projectSpecificOutcomes.map((outcome, index) => (
+                        <div key={index}>
+                          <h4 className="font-semibold text-base sm:text-lg text-gray-900 dark:text-white mb-3">
+                            {outcome.phase}
+                          </h4>
+                          <ul className="space-y-2 ml-4">
+                            {outcome.outcomes.map((item, itemIndex) => (
+                              <li key={itemIndex} className="flex items-start gap-3">
+                                <div className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0 mt-2"></div>
+                                <span className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                  {item}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                          {index < (project.projectSpecificOutcomes?.length ?? 0) - 1 && <Separator className="mt-4" />}
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Bottom padding for mobile */}
+              <div className="h-4 sm:h-0" />
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </TooltipProvider>
+  )
+}

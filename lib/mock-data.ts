@@ -1,0 +1,2126 @@
+"use client"
+
+import type { PortfolioData } from "./types"
+
+export const mockPortfolioData: PortfolioData = {
+  personalInfo: {
+    name: "김동현",
+    title: "Lonnie",
+    email: "joblonnie@gmail.com",
+    phone: "010-5054-0121",
+    location: "서울, 대한민국",
+    experience: 4,
+    bio: "UI/UX 중심의 성능 최적화를 지향하는 프론트엔드 개발자입니다. 4년간의 실무 경험을 바탕으로 React와 TypeScript 기반의 SPA 웹 애플리케이션을 설계하고 개발합니다.",
+  },
+  introduction: {
+    mindset: [
+      {
+        title: "사용자 중심 사고",
+        description: "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
+      },
+      {
+        title: "품질에 대한 집착",
+        description: "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
+      },
+      {
+        title: "협업의 가치",
+        description: "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
+      },
+    ],
+    capabilities: [
+      {
+        title: "문제 해결 능력",
+        description: "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
+      },
+      {
+        title: "빠른 학습력",
+        description: "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
+      },
+      {
+        title: "소통 능력",
+        description: "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
+      },
+    ],
+  },
+  skills: {
+    languages: ["JavaScript", "TypeScript", "HTML5", "CSS3"],
+    ui: [
+      "React",
+      "MUI",
+      "Ant Design",
+      "Styled Components",
+      "Emotion",
+      "Echarts",
+      "Konva",
+      "Saige Elements Design System",
+      "React Hook Form",
+    ],
+    stateManagement: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "Context API", "MobX"],
+    architecture: ["Nx Monorepo", "Featured-Sliced Design", "Atomic Design"],
+    devTools: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
+    collaborationTools: ["Storybook", "Figma", "Notion", "Jira", "Swagger", "Teams"],
+  },
+  companies: [
+    {
+      id: "saige",
+      name: "(주) 세이지",
+      position: "프론트엔드 개발자",
+      period: "2022.06 - 현재",
+      duration: "3년 2개월",
+      achievements: [
+        "React 기반 AI 모니터링 시스템 및 안전 관리 솔루션 개발",
+        "NX Monorepo 아키텍처 도입으로 개발 효율성 85% 향상",
+        "GS 인증 1등급 획득을 위한 UI/UX 개선 주도",
+      ],
+    },
+    {
+      id: "media-corpus",
+      name: "(주) 미디어 코퍼스",
+      position: "프론트엔드 개발자",
+      period: "2021.04 - 2022.05",
+      duration: "1년 2개월",
+      achievements: [
+        "자연어 처리 연구를 위한 라벨링 시스템 개발",
+        "사용자 테스트 기반 UI/UX 개선으로 작업 효율성 40% 향상",
+      ],
+    },
+  ],
+  projects: [
+    {
+      projectId: 1,
+      companyId: "saige",
+      title: "SAIGE VIMS 통합 모니터링 시스템 개발 (Monorepo 기반)",
+      background:
+        "범용 IAD/SEG 기반 이상 감지와 고객별 커스터마이징을 모두 지원하기 위해 유연하면서도 확장 가능한 모니터링 시스템 아키텍처가 필요했습니다. 기존의 단일 애플리케이션 구조로는 여러 고객사의 다양한 요구사항을 효율적으로 대응하기 어려웠고, 코드 재사용성과 유지보수성에 한계가 있었습니다. 이를 해결하기 위해 NX를 사용한 모노레포 구조를 제안하고 구현했습니다.",
+      detailedDescription: {
+        summary:
+          "NX Monorepo와 FSD(Feature-Sliced Design) 아키텍처를 도입하여 모듈화 기반을 구축하고, VIMS 전용 기능들을 별도 모듈로 분리해 점진적으로 적용했습니다. IAD(Image Anomaly Detection), SEG(Segmentation), 생산 장비 공정 이상 감지, 권취 공정 이상 감지 등 다양한 AI 기술을 활용한 실시간 모니터링 UI를 통합 개발했습니다. 특히 각 프로젝트의 특성에 맞는 커스터마이징을 지원하면서도 공통 로직의 재사용성을 극대화했습니다.",
+        results:
+          "세 개의 모니터링 시스템 모두 동일한 모노레포 내에서 별도의 애플리케이션으로 구현되었지만, 모든 공통 로직과 컴포넌트에 대해 VIMS 패키지를 공유했습니다. 이를 통해 공유 UI 및 비즈니스 로직의 빠른 반복 개발, 프로젝트 간 기능의 신속한 전달, 핵심 모듈의 원활한 업데이트, 향후 모니터링 시스템 개발의 높은 확장성을 달성했습니다. 특히 코드 재사용률이 85% 이상 달성되어 개발 효율성이 크게 향상되었고, 새로운 모니터링 시스템 개발 시간을 평균 50% 단축할 수 있었습니다.",
+      },
+      projectPhases: [
+        {
+          phase: "Phase 1: 생산 장비 이상 감지 모니터링 시스템 (2025.01-02)",
+          description:
+            "첫 번째 프로젝트에서 NX를 사용한 모노레포를 설정하고, 단일 애플리케이션 내에서 FSD(Feature-Sliced Design)를 적용하여 모듈화 개발의 기반을 확립했습니다. 생산 장비 공정의 이상을 감지하는 모니터링 시스템을 개발하고, ECharts를 사용하여 실시간 이상 데이터를 시각화했습니다. 이 단계에서는 모노레포의 기본 구조와 개발 워크플로우를 정립했습니다.",
+          outcomes: [
+            "ECharts 기반 실시간 생산 장비 이상 데이터 시각화 구현",
+            "모노레포 기반 모듈화 개발 환경 구축",
+            "확장 가능한 코드 구조 확립",
+            "개발팀 내 NX 워크플로우 정착",
+          ],
+        },
+        {
+          phase: "Phase 2: SAIGE VIMS IAD/SEG 통합 모니터링 시스템 (2025.03-05)",
+          description:
+            "SAIGE VIMS 모니터링 시스템 개발 과정에서 모듈화된 기반을 재사용 가능한 내부 패키지인 VIMS로 점진적으로 마이그레이션했습니다. IAD와 SEG 모델을 모두 지원하는 통합 모니터링 시스템을 구축했습니다. IAD의 경우 ECharts를 통해 실시간 이상 데이터를 표시하고, SEG의 경우 클래스별로 감지된 결함의 실시간 윤곽선 값을 검색하여 Konva.js를 사용해 결함 영역을 렌더링했습니다. 이 과정에서 공통 컴포넌트와 비즈니스 로직을 VIMS 패키지로 추상화했습니다.",
+          outcomes: [
+            "IAD 모델 기반 실시간 이상 감지 데이터 ECharts 시각화",
+            "SEG 모델의 클래스별 결함 윤곽선 데이터 수신 및 처리",
+            "Konva.js를 활용한 결함 영역 렌더링 시스템 구축",
+            "점진적 마이그레이션을 통한 VIMS 패키지 완성",
+          ],
+        },
+        {
+          phase: "Phase 3: 권취 공정 이상 감지 모니터링 시스템 (2025.06-07)",
+          description:
+            "세 번째 프로젝트에서는 완전히 모듈화된 VIMS 패키지를 광범위하게 활용했습니다. 모니터링 시스템에서 감지된 권취 관련 이상에 대한 실시간 로그 및 상태 표시를 구현하고, 고객별 요구사항과 운영 상황에 맞게 맞춤화했습니다. 기존 VIMS 패키지의 80% 이상을 재사용하면서도 권취 공정 특화 기능을 추가로 개발했습니다. 이를 통해 원래 한 달 소요 예정이었던 프로젝트를 단 2주 만에 완료할 수 있었습니다.",
+          outcomes: [
+            "권취 공정 프로젝트 개발 기간 50% 단축 (1개월 → 2주)",
+            "권취 관련 이상 이벤트의 실시간 로그 시스템 구현",
+            "모듈화된 아키텍처의 효과성 입증",
+            "고객 맞춤형 기능 개발 프로세스 확립",
+          ],
+        },
+      ],
+      period: "2025.01 - 2025.07",
+      role: "프론트엔드 개발 리드",
+      frontendDevelopers: 2,
+      keywords: ["NX Monorepo", "FSD 아키텍처", "모듈화/재사용성 강화", "실시간 모니터링", "AI 시각화"],
+      technologies: [
+        "React",
+        "TypeScript",
+        "NX",
+        "Feature-Sliced Design",
+        "Zustand",
+        "TanStack Query",
+        "MUI",
+        "ECharts",
+        "Konva.js",
+        "WebSocket",
+      ],
+      technologyReasoning: [
+        {
+          category: "NX 기반 Monorepo를 선택한 이유",
+          technologies: ["NX", "Monorepo"],
+          reasoning:
+            "여러 고객사의 요구사항을 빠르게 반영하고, 공통 로직을 효과적으로 공유하면서도 각 모듈을 독립적으로 관리할 수 있는 개발 구조가 필요했습니다. 기존의 단일 레포지토리 구조는 기능별 코드 중복 및 프로젝트 간 공유 어려움, 릴리즈 및 테스트 환경의 분리 미비, 유지보수 시 사이드 이펙트 발생 위험 등의 문제를 갖고 있었습니다. NX 기반의 Monorepo를 도입하여 코드 재사용성 강화(공통 컴포넌트와 로직을 libs 폴더에 패키지화), 독립적 앱 개발 및 배포(앱별로 apps 디렉토리에 구성하여 CI/CD 파이프라인 및 테스트 분리), 점진적 확장 용이성(새로운 프로젝트를 빠르게 스캐폴딩하고 기존 로직을 안정적으로 재사용)을 달성했습니다.",
+        },
+        {
+          category: "FSD(Feature-Sliced Design)를 도입한 이유",
+          technologies: ["Feature-Sliced Design"],
+          reasoning:
+            "초기에는 단순한 UI 중심의 레이어 기반 폴더 구조를 사용했지만, 프로젝트가 커지고 각 기능의 복잡성이 높아짐에 따라 관심사의 분리와 기능 단위 유지보수가 점점 어려워졌습니다. FSD는 도메인 중심의 모듈화(각 Feature가 독립적으로 개발되고 배포 가능하여 유지보수가 쉬움), 비즈니스 로직과 UI 분리(핵심 로직과 UI를 구분함으로써, 테스트 및 리팩토링 효율 증가), 확장성과 테스트 용이성(Feature 단위로 경량 테스트, 마이그레이션, 성능 최적화가 가능)의 장점이 있었습니다. FSD는 특히 VIMS 내부 패키지 구성에 적용하여 각 기능(예: IAD/SEG 모니터링, 권취 감지)을 잘게 나누고, 팀원 간 작업 충돌을 최소화하는 데 기여했습니다.",
+        },
+      ],
+      achievements: [
+        "NX 모노레포 도구 선정 및 아키텍처 설계 주도",
+        "FSD 패턴을 활용한 도메인별 모듈화 구조 구축",
+        "VIMS 공유 패키지 개발로 프로젝트 간 재사용성 85% 이상 달성",
+        "3개 모니터링 시스템의 일관된 아키텍처 및 UI/UX 구현",
+        "개발 기간 50% 단축 (권취 공정 프로젝트: 1개월 → 2주)",
+      ],
+      codeSnippets: [
+        {
+          title: "NX 워크스페이스 설정",
+          description: "모노레포 기반 개발 환경을 위한 NX 워크스페이스 설정 파일",
+          language: "json",
+          filename: "nx.json",
+          code: `{
+  "version": 2,
+  "projects": {
+    "vims-core": "libs/vims-core",
+    "vims-ui": "libs/vims-ui",
+    "production-monitor": "apps/production-monitor",
+    "iad-seg-monitor": "apps/iad-seg-monitor",
+    "winding-monitor": "apps/winding-monitor"
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "test": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+    }
+  },
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "bundler": "webpack"
+      }
+    }
+  }
+}`,
+        },
+        {
+          title: "VIMS 공유 컴포넌트",
+          description: "재사용 가능한 모니터링 차트 컴포넌트",
+          language: "typescript",
+          filename: "libs/vims-ui/src/MonitoringChart.tsx",
+          code: `import React, { useEffect, useRef } from 'react';
+import * as echarts from 'echarts';
+import { useWebSocket } from '@vims/core';
+
+interface MonitoringChartProps {
+  title: string;
+  dataKey: string;
+  chartType: 'line' | 'bar' | 'scatter';
+  realtime?: boolean;
+}
+
+export const MonitoringChart: React.FC<MonitoringChartProps> = ({
+  title,
+  dataKey,
+  chartType,
+  realtime = false
+}) => {
+  const chartRef = useRef<HTMLDivElement>(null);
+  const chartInstance = useRef<echarts.ECharts>();
+  const { data, isConnected } = useWebSocket(realtime);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      chartInstance.current = echarts.init(chartRef.current);
+      
+      const option = {
+        title: { text: title },
+        tooltip: { trigger: 'axis' },
+        xAxis: { type: 'time' },
+        yAxis: { type: 'value' },
+        series: [{
+          type: chartType,
+          data: [],
+          smooth: true,
+          animation: true
+        }]
+      };
+      
+      chartInstance.current.setOption(option);
+    }
+
+    return () => {
+      chartInstance.current?.dispose();
+    };
+  }, [title, chartType]);
+
+  useEffect(() => {
+    if (chartInstance.current && data?.[dataKey]) {
+      chartInstance.current.setOption({
+        series: [{
+          data: data[dataKey]
+        }]
+      });
+    }
+  }, [data, dataKey]);
+
+  return (
+    <div 
+      ref={chartRef} 
+      style={{ width: '100%', height: '400px' }}
+      className="monitoring-chart"
+    />
+  );
+};`,
+        },
+        {
+          title: "Konva.js 결함 영역 렌더링",
+          description: "SEG 모델의 결함 윤곽선 데이터를 시각화하는 캔버스 컴포넌트",
+          language: "typescript",
+          filename: "libs/vims-ui/src/DefectRenderer.tsx",
+          code: `import React, { useEffect, useRef } from 'react';
+import Konva from 'konva';
+import { Stage, Layer, Line, Circle } from 'react-konva';
+
+interface DefectData {
+  id: string;
+  contour: number[][];
+  className: string;
+  confidence: number;
+}
+
+interface DefectRendererProps {
+  imageUrl: string;
+  defects: DefectData[];
+  width: number;
+  height: number;
+}
+
+export const DefectRenderer: React.FC<DefectRendererProps> = ({
+  imageUrl,
+  defects,
+  width,
+  height
+}) => {
+  const stageRef = useRef<Konva.Stage>(null);
+
+  const getDefectColor = (className: string): string => {
+    const colorMap: Record<string, string> = {
+      'crack': '#ff4444',
+      'scratch': '#ffaa00',
+      'stain': '#44ff44',
+      'bubble': '#4444ff'
+    };
+    return colorMap[className] || '#ffffff';
+  };
+
+  const renderDefectContour = (defect: DefectData) => {
+    const points = defect.contour.flat();
+    const color = getDefectColor(defect.className);
+    
+    return (
+      <Line
+        key={defect.id}
+        points={points}
+        stroke={color}
+        strokeWidth={2}
+        closed={true}
+        fill={color}
+        opacity={0.3}
+        perfectDrawEnabled={false}
+      />
+    );
+  };
+
+  return (
+    <div className="defect-renderer">
+      <Stage width={width} height={height} ref={stageRef}>
+        <Layer>
+          {/* Background Image */}
+          <Konva.Image
+            image={new window.Image()}
+            width={width}
+            height={height}
+          />
+          
+          {/* Defect Contours */}
+          {defects.map(renderDefectContour)}
+          
+          {/* Defect Labels */}
+          {defects.map((defect, index) => (
+            <Circle
+              key={\`label-\${defect.id}\`}
+              x={defect.contour[0][0]}
+              y={defect.contour[0][1]}
+              radius={8}
+              fill={getDefectColor(defect.className)}
+              stroke="#ffffff"
+              strokeWidth={2}
+            />
+          ))}
+        </Layer>
+      </Stage>
+    </div>
+  );
+};`,
+        },
+      ],
+    },
+    {
+      projectId: 2,
+      companyId: "saige",
+      title: "SAIGE SAFETY 제품 개발 - MVP부터 GS 인증까지",
+      background:
+        "안전 관리 시장 진출을 위한 신사업 런칭 프로젝트로 시작되었습니다. 안전모 착용 감지와 화재·연기 감지 기능을 통합한 솔루션이 필요했고, 기존 시장에는 각각 분리된 솔루션들만 존재했습니다. 회사 차원에서 새로운 사업 영역 진출을 위한 MVP 개발이 시급한 상황이었으며, 이후 고객사 납품과 VOC를 통해 지속적인 개선이 이루어졌습니다. 최종적으로는 한국정보통신기술협회(TTA)의 GS 인증 심사를 위해 사용자 인터페이스의 일관성과 오류 처리 방식에 대한 개선이 필요했습니다.",
+      detailedDescription: {
+        summary:
+          "SAIGE SAFETY 신사업의 전체 라이프사이클을 담당한 프로젝트로, MVP 개발부터 고객 피드백 반영, GS 1등급 인증 획득까지 이어진 종합적인 제품 개발 경험입니다. 안전모 착용 여부 및 화재·연기 감지 등의 AI 모델 결과를 시각화하는 프론트엔드 UI를 구축하고, 실시간 비디오 스트림 처리, AI 모델 결과 시각화, 알림 시스템 등 안전 관리에 특화된 기능들을 개발했습니다.",
+        results:
+          "MVP 성공적 납품으로 신사업 영역 진출을 달성하고, 3개 고객사에 성공적으로 납품되어 사업화를 검증했습니다. 고객 VOC 기반의 지속적인 개선을 통해 안전사고 예방 효과가 입증되어 추가 주문을 확보했습니다. 최종적으로 GS 1등급 인증을 획득하여 제품의 신뢰성과 품질을 공식적으로 인정받았습니다. 사용자 오류 인식률을 0%에서 100%로 개선하고, 인증 심사에서 '사용자 편의성' 항목에서 만점을 받았습니다.",
+      },
+      projectPhases: [
+        {
+          phase: "Phase 1: MVP 개발 및 신사업 런칭 (2023.05-09)",
+          description:
+            "AI 모델의 감지 결과를 직관적으로 시각화하는 사용자 인터페이스를 구축했습니다. WebSocket을 통한 실시간 데이터 수신, Konva.js를 활용한 비디오 오버레이 렌더링, 그리고 위험 상황 발생 시 즉시 알림을 제공하는 시스템을 개발했습니다. 또한 관리자용 대시보드를 통해 전체 현장의 안전 상황을 모니터링할 수 있는 기능을 구현했습니다. 모바일 환경에서도 원활하게 작동하도록 반응형 디자인을 적용했습니다.",
+          outcomes: [
+            "실시간 안전모 착용 감지 UI 구현",
+            "화재·연기 감지 시각화 시스템 구축",
+            "관리자용 통합 모니터링 대시보드 개발",
+            "3개 고객사 성공적 납품 및 사업화 검증",
+          ],
+        },
+        {
+          phase: "Phase 2: 고객 VOC 반영 및 제품 개선 (2023.10-2024.09)",
+          description:
+            "3개 고객사 납품 후 수집된 피드백을 바탕으로 사용자 경험을 개선했습니다. 특히 현장 작업자들의 사용 패턴을 분석하여 인터페이스를 최적화하고, 알림 시스템의 정확도를 높였습니다. 다양한 현장 환경에 대응할 수 있도록 설정 옵션을 확장하고, 성능 최적화를 통해 응답 속도를 개선했습니다.",
+          outcomes: [
+            "현장 작업자 중심의 UX 개선",
+            "다양한 현장 환경 대응 설정 옵션 확장",
+            "성능 최적화를 통한 응답 속도 개선",
+            "안전사고 예방 효과 입증 및 추가 주문 확보",
+          ],
+        },
+        {
+          phase: "Phase 3: GS 인증 대응 및 시스템 고도화 (2024.10-11)",
+          description:
+            "GS 인증 심사를 위해 사용자 친화적인 Toast 알림 체계를 신규 도입하고, 백엔드 개발자와 협업을 통해 API 오류 처리를 표준화했습니다. Notistack 라이브러리를 도입하여 기존의 console.log나 alert 기반 오류 처리를 완전히 대체했습니다. 백엔드 팀과 협업하여 API 응답에 표준화된 오류 코드를 도입하고, Axios 인터셉터를 활용해 모든 API 호출에 대한 통합 오류 처리를 구현했습니다.",
+          outcomes: [
+            "Toast 알림 체계 도입으로 사용자 경험 개선",
+            "API 오류 처리 표준화로 시스템 안정성 향상",
+            "GS 1등급 인증 획득",
+            "표준화된 오류 처리 시스템의 다른 프로젝트 재사용",
+          ],
+        },
+      ],
+      period: "2023.05 - 2024.11",
+      role: "프론트엔드 개발 (MVP 단독, GS 인증 단독)",
+      frontendDevelopers: 2,
+      keywords: [
+        "신사업 MVP 개발",
+        "안전모 착용 및 화재 감지 UI",
+        "GS 인증 1등급 달성",
+        "Toast 알림 체계 도입",
+        "API 오류 처리 표준화",
+      ],
+      technologies: ["React", "TypeScript", "X-view-model", "Konva.js", "MUI", "WebSocket", "Notistack", "Axios"],
+      technologyReasoning: [
+        {
+          category: "에러 핸들링 부재 상태에서 체계적인 예외 처리 구조 도입",
+          technologies: ["Axios", "Notistack"],
+          reasoning:
+            "기존 시스템은 MVP 단계로 빠르게 구축된 구조였기 때문에, 에러 핸들링 로직이 전무하거나 일관되지 않은 상태였습니다. 특히 사용자 인터페이스 상에서 오류 발생 시 아무런 피드백이 없었고, 이는 GS 인증 심사 항목 중 '오류 처리 적절성'과 '사용자 편의성' 측면에서 심각한 감점 요소가 될 수 있었습니다. 전역 에러 처리는 Axios 인터셉터를 활용하여 모든 API 요청에 대한 실패 응답을 감지하고 적절한 오류 메시지를 사용자에게 전달하며, 로컬 에러 처리는 특정 사용자 액션이나 UI 이벤트에서 발생할 수 있는 예외를 try-catch 블록 내에서 명시적으로 처리하여 문제 발생 위치와 대응 방식을 명확히 분리했습니다.",
+        },
+        {
+          category: "디자인 시스템(Saige Elements) 기반의 Toast 컴포넌트 활용",
+          technologies: ["Saige Elements", "Toast"],
+          reasoning:
+            "에러를 인지하고 처리할 수 있는 백엔드-프론트엔드 구조가 갖춰진 뒤에는, 사용자에게 명확한 피드백을 제공할 수 있는 UI 수단이 필요했습니다. 회사 내 디자인 시스템인 Saige Elements의 Toast 컴포넌트를 활용한 이유는 디자인 일관성(내부 제품군 간 UI/UX 일관성을 유지하며 자연스럽게 시스템에 녹일 수 있음), 컴포넌트 캡슐화 및 재사용 용이성(toast 유틸 함수를 별도로 분리하여 다양한 상황에서 반복적으로 활용 가능), 알림 유형 다양화 및 커스터마이징(성공/실패/정보/경고 등 알림 타입 분리 가능, UX 흐름에 따라 적절히 배치)입니다. 이를 통해 사용자 피드백 전달 구조를 명확히 개선하고, GS 인증 심사에서도 높은 평가를 받을 수 있었습니다.",
+        },
+      ],
+      achievements: [
+        "SAFETY 제품 MVP 성공적 납품으로 신사업 영역 진출",
+        "3개 고객사 성공적 납품으로 사업화 검증 완료",
+        "GS 1등급 인증 획득에 직접적으로 기여",
+        "사용자 오류 인식률을 0%에서 100%로 개선",
+        "안전사고 예방 효과 입증으로 추가 주문 확보",
+      ],
+      codeSnippets: [
+        {
+          title: "안전모 착용 감지 컴포넌트",
+          description: "실시간 비디오 스트림에서 안전모 착용 여부를 감지하고 시각화",
+          language: "typescript",
+          filename: "components/HelmetDetection.tsx",
+          code: `import React, { useRef, useEffect, useState } from 'react';
+import { Stage, Layer, Rect, Text } from 'react-konva';
+import { Card, CardContent, CardHeader, CardTitle } from '@mui/material';
+import { useWebSocket } from '../hooks/useWebSocket';
+
+interface DetectionResult {
+  personId: string;
+  bbox: [number, number, number, number];
+  hasHelmet: boolean;
+  confidence: number;
+  timestamp: number;
+}
+
+interface HelmetDetectionProps {
+  videoStreamUrl: string;
+  width: number;
+  height: number;
+}
+
+export const HelmetDetection: React.FC<HelmetDetectionProps> = ({
+  videoStreamUrl,
+  width,
+  height
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [detections, setDetections] = useState<DetectionResult[]>([]);
+  const [stats, setStats] = useState({
+    totalPersons: 0,
+    withHelmet: 0,
+    withoutHelmet: 0,
+    complianceRate: 0
+  });
+
+  const { data: wsData, isConnected } = useWebSocket('/ws/helmet-detection');
+
+  useEffect(() => {
+    if (wsData) {
+      const newDetections: DetectionResult[] = wsData.detections || [];
+      setDetections(newDetections);
+      
+      const total = newDetections.length;
+      const withHelmet = newDetections.filter(d => d.hasHelmet).length;
+      const withoutHelmet = total - withHelmet;
+      const complianceRate = total > 0 ? (withHelmet / total) * 100 : 0;
+      
+      setStats({
+        totalPersons: total,
+        withHelmet,
+        withoutHelmet,
+        complianceRate
+      });
+    }
+  }, [wsData]);
+
+  const renderDetectionBox = (detection: DetectionResult) => {
+    const [x, y, width, height] = detection.bbox;
+    const color = detection.hasHelmet ? '#52c41a' : '#ff4d4f';
+    const label = detection.hasHelmet ? '안전모 착용' : '안전모 미착용';
+    
+    return (
+      <React.Fragment key={detection.personId}>
+        <Rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          stroke={color}
+          strokeWidth={3}
+          fill="transparent"
+        />
+        <Text
+          x={x + 5}
+          y={y - 20}
+          text={\`\${label} (\${(detection.confidence * 100).toFixed(1)}%)\`}
+          fontSize={12}
+          fill={color}
+        />
+      </React.Fragment>
+    );
+  };
+
+  return (
+    <div className="helmet-detection">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>총 인원</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.totalPersons}</div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>준수율</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className={\`text-2xl font-bold \${stats.complianceRate >= 90 ? 'text-green-600' : 'text-red-600'}\`}>
+              {stats.complianceRate.toFixed(1)}%
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="relative">
+        <video
+          ref={videoRef}
+          src={videoStreamUrl}
+          width={width}
+          height={height}
+          autoPlay
+          muted
+          className="absolute top-0 left-0"
+        />
+        
+        <Stage width={width} height={height} className="absolute top-0 left-0">
+          <Layer>
+            {detections.map(renderDetectionBox)}
+          </Layer>
+        </Stage>
+      </div>
+    </div>
+  );
+};`,
+        },
+        {
+          title: "개선된 Toast 알림 시스템",
+          description: "Saige Elements 기반으로 개발자가 쉽게 사용할 수 있는 Toast 유틸리티",
+          language: "typescript",
+          filename: "utils/toast.ts",
+          code: `import { enqueueSnackbar } from '@saige/elements/lib/components';
+import { OptionsObject } from 'notistack';
+
+type ToastVariant = 'success' | 'info' | 'error' | 'warning';
+type ToastOption = Omit<OptionsObject, 'variant'> & {
+  closable?: boolean;
+};
+
+const defaultOption: ToastOption = {
+  autoHideDuration: 3000,
+};
+
+const mergeOptions = (
+  title: string,
+  variant: ToastVariant,
+  option?: ToastOption,
+): ToastOption & {
+  title: string;
+  variant: ToastVariant;
+} => {
+  return { title, variant, ...defaultOption, ...option };
+};
+
+const toast = {
+  info: (title: string, message: string, option?: ToastOption) => {
+    enqueueSnackbar(message, mergeOptions(title, 'info', option));
+  },
+  error: (title: string, message: string, option?: ToastOption) => {
+    enqueueSnackbar(
+      message,
+      mergeOptions(title, 'error', {
+        persist: true,
+        ...option,
+      }),
+    );
+  },
+  success: (title: string, message: string, option?: ToastOption) => {
+    enqueueSnackbar(message, mergeOptions(title, 'success', option));
+  },
+  warning: (title: string, message: string, option?: ToastOption) => {
+    enqueueSnackbar(
+      message,
+      mergeOptions(title, 'warning', {
+        persist: true,
+        ...option,
+      }),
+    );
+  },
+};
+
+export default toast;
+
+// 실제 사용 예시:
+// toast.info('정보', '등록을 성공했습니다.');
+// toast.error('오류', '네트워크 연결을 확인해주세요.');`,
+        },
+        {
+          title: "API 오류 처리 표준화",
+          description: "GS 인증 요구사항에 맞춘 통합 오류 처리 시스템",
+          language: "typescript",
+          filename: "api/interceptors.ts",
+          code: `import axios, { AxiosError, AxiosResponse } from 'axios';
+import toast from '../utils/toast';
+
+interface ApiError {
+  code: string;
+  message: string;
+  details?: any;
+}
+
+// 오류 코드별 메시지 매핑
+const ERROR_MESSAGES: Record<string, string> = {
+  'AUTH_001': '인증이 만료되었습니다. 다시 로그인해주세요.',
+  'AUTH_002': '접근 권한이 없습니다.',
+  'VALIDATION_001': '입력 데이터를 확인해주세요.',
+  'SERVER_001': '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+  'NETWORK_001': '네트워크 연결을 확인해주세요.'
+};
+
+// 응답 인터셉터
+axios.interceptors.response.use(
+  (response: AxiosResponse) => {
+    // 성공 응답 처리
+    if (response.data?.message && response.config.method !== 'get') {
+      toast.success('성공', response.data.message);
+    }
+    return response;
+  },
+  (error: AxiosError<ApiError>) => {
+    const { response, request } = error;
+    
+    if (response) {
+      // 서버 응답이 있는 경우
+      const { status, data } = response;
+      const errorCode = data?.code || \`HTTP_\${status}\`;
+      const errorMessage = ERROR_MESSAGES[errorCode] || data?.message || '알 수 없는 오류가 발생했습니다.';
+      
+      // GS 인증 요구사항: 모든 오류를 사용자에게 명확히 표시
+      toast.error('오류', errorMessage, { persist: status >= 500 });
+      
+      // 인증 오류 시 로그아웃 처리
+      if (status === 401) {
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+      }
+    } else if (request) {
+      // 네트워크 오류
+      toast.error('네트워크 오류', ERROR_MESSAGES['NETWORK_001']);
+    } else {
+      // 기타 오류
+      toast.error('오류', '요청 처리 중 오류가 발생했습니다.');
+    }
+    
+    return Promise.reject(error);
+  }
+);`,
+        },
+      ],
+    },
+    {
+      projectId: 3,
+      companyId: "saige",
+      title: "SAIGE VAD 종합 개발 - 모니터링부터 개발자 도구까지",
+      background:
+        "입사 직후부터 시작된 VAD(Video Anomaly Detection) 관련 프로젝트들의 종합적인 개발 경험입니다. 처음에는 VAD 시스템의 모니터링 인터페이스 구축이 필요했고, 이후 AI 연구진들의 모델 학습 과정에서 수작업으로 진행되던 ROI 설정과 사이클 정의 작업을 자동화할 필요가 생겼습니다. 기존에는 AI 모델의 결과를 확인하기 위해 별도의 도구들을 사용해야 했고, 실시간 모니터링이 어려운 상황이었습니다. 또한 AI 연구진들이 매번 수동으로 비디오에서 관심 영역을 설정하고 정상 동작 패턴을 정의하는 작업이 비효율적이어서 이를 개선하는 도구가 필요했습니다.",
+      detailedDescription: {
+        summary:
+          "VAD(Video Anomaly Detection) 생태계 전반에 걸친 종합적인 개발 프로젝트로, 모니터링 시스템부터 AI 연구진을 위한 개발자 도구까지 전체 워크플로우를 구축했습니다. 입사 첫 프로젝트로 시작된 모니터링 시스템에서는 재사용 가능한 atomic 컴포넌트를 개발하여 확장성 높은 UI 기반을 마련했고, 이후 개발자 도구 v1에서는 기본적인 프로젝트 관리와 ROI 설정 기능을 제공했습니다.",
+        results:
+          "VAD 생태계 전반에 걸친 종합적인 개발 경험을 통해 모니터링부터 AI 연구 도구까지 완전한 워크플로우를 구축했습니다. 입사 첫 프로젝트에서 개발한 atomic 컴포넌트들은 이후 VIMS, SAFETY 등 다른 제품군에서도 재사용되어 개발 효율성을 크게 높였습니다. v2에서는 AI 모델 학습 효율성을 개선하여 라벨링 시간을 60% 단축하고, 내부 도구 개선으로 AI 팀의 수작업을 80% 줄였습니다.",
+      },
+      projectPhases: [
+        {
+          phase: "Phase 1: VAD 모니터링 시스템 개발 (2022.06-08)",
+          description:
+            "입사 첫 프로젝트로 Konva.js를 활용해 VAD 모니터링 시스템의 핵심 atomic 컴포넌트를 개발했습니다. 비디오 플레이어, 이상 감지 결과 시각화, 실시간 알림 등의 기본 컴포넌트들을 atomic design 패턴에 따라 체계적으로 구축했습니다. MobX를 활용한 상태 관리와 TypeScript를 통한 타입 안정성을 확보했으며, 컴포넌트 간의 의존성을 최소화하여 재사용성을 높였습니다.",
+          outcomes: [
+            "Atomic Design 패턴 기반 재사용 가능한 컴포넌트 개발",
+            "Konva.js를 활용한 실시간 비디오 오버레이 시스템 구축",
+            "향후 모니터링 시스템 개발의 확장성 높은 기반 마련",
+            "팀 내 컴포넌트 설계 역량 인정으로 이후 UI 아키텍처 설계 주도",
+          ],
+        },
+        {
+          phase: "Phase 2: VAD 학습용 Developer 툴 v1 개발 (2022.11-12)",
+          description:
+            "프로젝트 생성, ROI 설정, 사이클 정의 기능을 제공하는 웹 기반 도구를 개발했습니다. MobX를 활용한 상태 관리와 Konva.js를 이용한 캔버스 기반 ROI 설정 인터페이스를 구현했습니다. 비디오 플레이어와 연동하여 특정 프레임에서 ROI를 설정하고, 정상 동작 사이클을 정의할 수 있는 기능을 제공했습니다.",
+          outcomes: [
+            "프로젝트 생성 및 관리 시스템 구축",
+            "Konva.js 기반 ROI 설정 인터페이스 구현",
+            "비디오 플레이어 연동 사이클 정의 기능 개발",
+            "AI 연구진의 수작업 프로세스 자동화",
+          ],
+        },
+        {
+          phase: "Phase 3: 사용자 피드백 수집 및 개선점 도출 (2023.01-2024.01)",
+          description:
+            "AI 연구소의 VOC를 체계적으로 수집하고 분석했습니다. 주요 문제점으로는 복잡한 파일 업로드 프로세스, 직관적이지 않은 ROI 설정 인터페이스, 사이클 정의 기능의 부족함이 확인되었습니다. 이를 바탕으로 v2 개발을 위한 요구사항을 정의하고 새로운 아키텍처를 설계했습니다.",
+          outcomes: [
+            "AI 연구소 VOC 체계적 수집 및 분석",
+            "파일 업로드 프로세스 복잡성 문제 확인",
+            "ROI 설정 인터페이스 직관성 부족 파악",
+            "v2 개발 요구사항 정의 및 아키텍처 설계",
+          ],
+        },
+        {
+          phase: "Phase 4: VAD 학습용 Developer 툴 v2 개발 (2024.02-06)",
+          description:
+            "프로젝트/데이터셋 아키텍처를 설계하고 여러 프로젝트 간 데이터셋을 공유할 수 있는 구조를 구축했습니다. 브라우저 보안 제한을 극복하기 위해 로컬 파일 경로를 전달하고 서버를 통해 메타데이터를 파싱하는 혁신적인 시스템을 설계 및 구현했습니다. 드래그 앤 드롭 방식의 직관적인 파일 업로드 인터페이스를 개발하여 사용성을 대폭 개선했습니다.",
+          outcomes: [
+            "프로젝트/데이터셋 공유 아키텍처 구축",
+            "브라우저 보안 제한 극복 파일 처리 시스템 구현",
+            "드래그 앤 드롭 방식의 직관적 파일 업로드 개발",
+            "AI 학습용 전처리 사용성 대폭 개선",
+          ],
+        },
+      ],
+      period: "2022.06 - 2024.06",
+      role: "프론트엔드 개발 (모니터링: 5명 중 1명, v1: 3명 중 1명, v2: 리드)",
+      frontendDevelopers: 5,
+      keywords: [
+        "VAD 생태계 종합 개발",
+        "모니터링 시스템 구축",
+        "AI 연구 도구 개발",
+        "사용자 피드백 기반 개선",
+        "브라우저 보안 제한 극복",
+      ],
+      technologies: ["React", "TypeScript", "Context API", "Konva.js", "React Hook Form", "MUI", "MobX"],
+      technologyReasoning: [
+        {
+          category: "Atomic Design 패턴 기반 컴포넌트 설계",
+          technologies: ["React", "TypeScript", "Atomic Design"],
+          reasoning:
+            "입사 첫 프로젝트에서 향후 다양한 모니터링 시스템에서 활용할 수 있는 확장성 높은 UI 기반을 마련하기 위해 Atomic Design 패턴을 적용했습니다. 비디오 플레이어, 이상 감지 결과 시각화, 실시간 알림 등의 기본 컴포넌트들을 atoms, molecules, organisms 단위로 체계적으로 구축하여 재사용성을 극대화했습니다. 이를 통해 개발한 컴포넌트들은 이후 VIMS, SAFETY 등 다른 제품군에서도 재사용되어 개발 효율성을 크게 높일 수 있었습니다.",
+        },
+        {
+          category: "브라우저 보안 제한 극복을 위한 혁신적 파일 처리 시스템",
+          technologies: ["File API", "Server Integration"],
+          reasoning:
+            "v2 개발 과정에서 가장 큰 기술적 도전은 브라우저의 보안 제한으로 인해 로컬 파일 시스템에 직접 접근할 수 없다는 점이었습니다. AI 연구진들이 대용량 비디오 파일을 효율적으로 처리하기 위해서는 파일을 서버로 업로드하지 않고도 메타데이터를 추출할 수 있는 방법이 필요했습니다. 이를 해결하기 위해 로컬 파일 경로를 전달하고 서버를 통해 메타데이터를 파싱하는 혁신적인 시스템을 설계했습니다. 클라이언트에서는 파일 선택 인터페이스만 제공하고, 실제 파일 처리는 서버에서 수행하여 보안과 성능을 모두 확보했습니다.",
+        },
+      ],
+      achievements: [
+        "VAD 생태계 전반의 종합적인 개발 경험 획득",
+        "입사 첫 프로젝트로 재사용 가능한 atomic 컴포넌트 아키텍처 구축",
+        "AI 모델 학습 효율성 개선으로 라벨링 시간 60% 단축 (v2)",
+        "v1 대비 사용자 만족도 90% 향상 (v2)",
+        "학습 데이터 준비 시간 3일 → 1일로 단축 (v2)",
+      ],
+      codeSnippets: [
+        {
+          title: "Atomic 비디오 플레이어 컴포넌트",
+          description: "재사용 가능한 기본 비디오 플레이어 컴포넌트 (모니터링 시스템)",
+          language: "typescript",
+          filename: "components/atoms/VideoPlayer.tsx",
+          code: `import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
+
+interface VideoPlayerProps {
+  src: string;
+  width?: number;
+  height?: number;
+  autoPlay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  onTimeUpdate?: (currentTime: number) => void;
+  onLoadedMetadata?: (duration: number) => void;
+  className?: string;
+}
+
+export interface VideoPlayerRef {
+  play: () => void;
+  pause: () => void;
+  seek: (time: number) => void;
+  getCurrentTime: () => number;
+  getDuration: () => number;
+}
+
+export const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(({
+  src,
+  width = 640,
+  height = 480,
+  autoPlay = false,
+  loop = false,
+  muted = true,
+  onTimeUpdate,
+  onLoadedMetadata,
+  className = ''
+}, ref) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    play: () => {
+      videoRef.current?.play();
+    },
+    pause: () => {
+      videoRef.current?.pause();
+    },
+    seek: (time: number) => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = time;
+      }
+    },
+    getCurrentTime: () => {
+      return videoRef.current?.currentTime || 0;
+    },
+    getDuration: () => {
+      return videoRef.current?.duration || 0;
+    }
+  }));
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      onTimeUpdate?.(video.currentTime);
+    };
+
+    const handleLoadedMetadata = () => {
+      onLoadedMetadata?.(video.duration);
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, [onTimeUpdate, onLoadedMetadata]);
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      width={width}
+      height={height}
+      autoPlay={autoPlay}
+      loop={loop}
+      muted={muted}
+      className={className}
+      style={{ display: 'block' }}
+    />
+  );
+});
+
+VideoPlayer.displayName = 'VideoPlayer';`,
+        },
+        {
+          title: "프로젝트 관리 컴포넌트 (v1)",
+          description: "VAD 학습 프로젝트를 생성하고 관리하는 기본 컴포넌트",
+          language: "typescript",
+          filename: "components/ProjectManager.tsx",
+          code: `import React, { useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Button,
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton
+} from '@mui/material';
+import { Add, Edit, Delete, PlayArrow } from '@mui/icons-material';
+import { useStore } from '../stores/RootStore';
+
+interface Project {
+  id: string;
+  name: string;
+  description: string;
+  videoPath: string;
+  createdAt: Date;
+  status: 'created' | 'processing' | 'completed';
+}
+
+export const ProjectManager: React.FC = observer(() => {
+  const { projectStore } = useStore();
+  const [isCreateDialogOpen, setIsCreateDialogOpen ] = useState(false);
+  const [newProject, setNewProject] = useState({
+    name: '',
+    description: '',
+    videoPath: ''
+  });
+
+  const handleCreateProject = async () => {
+    try {
+      await projectStore.createProject({
+        ...newProject,
+        id: 'project_' + Date.now(),
+        createdAt: new Date(),
+        status: 'created'
+      });
+      
+      setNewProject({ name: '', description: '', videoPath: '' });
+      setIsCreateDialogOpen(false);
+    } catch (error) {
+      console.error('Failed to create project:', error);
+    }
+  };
+
+  const handleDeleteProject = async (projectId: string) => {
+    if (window.confirm('정말로 이 프로젝트를 삭제하시겠습니까?')) {
+      await projectStore.deleteProject(projectId);
+    }
+  };
+
+  const handleOpenProject = (project: Project) => {
+    projectStore.setActiveProject(project);
+    window.location.href = \`/projects/\${project.id}\`;
+  };
+
+  return (
+    <div className="project-manager">
+      <Card>
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <CardTitle>VAD 학습 프로젝트</CardTitle>
+            <Button
+              variant="contained"
+              startIcon={<Add />}
+              onClick={() => setIsCreateDialogOpen(true)}
+            >
+              새 프로젝트
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {projectStore.projects.length === 0 ? (
+            <div className="text-center py-8 text-gray-500">
+              생성된 프로젝트가 없습니다.
+            </div>
+          ) : (
+            <List>
+              {projectStore.projects.map((project) => (
+                <ListItem
+                  key={project.id}
+                  className="border rounded mb-2"
+                  secondaryAction={
+                    <div>
+                      <IconButton
+                        onClick={() => handleOpenProject(project)}
+                        color="primary"
+                      >
+                        <PlayArrow />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleDeleteProject(project.id)}
+                        color="error"
+                      >
+                        <Delete />
+                      </IconButton>
+                    </div>
+                  }
+                >
+                  <ListItemText
+                    primary={project.name}
+                    secondary={
+                      <div>
+                        <div>{project.description}</div>
+                        <div className="text-xs text-gray-500">
+                          생성일: {project.createdAt.toLocaleDateString()} |
+                          상태: {project.status}
+                        </div>
+                      </div>
+                    }
+                  />
+                </ListItem>
+              ))}
+            </List>
+          )}
+        </CardContent>
+      </Card>
+
+      <Dialog
+        open={isCreateDialogOpen}
+        onClose={() => setIsCreateDialogOpen(false)}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>새 VAD 프로젝트 생성</DialogTitle>
+        <DialogContent>
+          <div className="space-y-4 mt-2">
+            <TextField
+              label="프로젝트 이름"
+              value={newProject.name}
+              onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
+              fullWidth
+              required
+            />
+            <TextField
+              label="설명"
+              value={newProject.description}
+              onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
+              fullWidth
+              multiline
+              rows={3}
+            />
+            <TextField
+              label="비디오 파일 경로"
+              value={newProject.videoPath}
+              onChange={(e) => setNewProject({ ...newProject, videoPath: e.target.value })}
+              fullWidth
+              required
+              placeholder="/path/to/video.mp4"
+            />
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsCreateDialogOpen(false)}>
+            취소
+          </Button>
+          <Button
+            onClick={handleCreateProject}
+            variant="contained"
+            disabled={!newProject.name || !newProject.videoPath}
+          >
+            생성
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+});`,
+        },
+        {
+          title: "ROI 설정 캔버스 컴포넌트 (v2)",
+          description: "v2에서 개선된 비디오 프레임에서 관심 영역을 설정하는 인터랙티브 캔버스",
+          language: "typescript",
+          filename: "components/ROICanvas.tsx",
+          code: `import React, { useRef, useEffect, useState } from 'react';
+import { Stage, Layer, Rect, Transformer } from 'react-konva';
+import Konva from 'konva';
+
+interface ROI {
+  id: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  name: string;
+}
+
+interface ROICanvasProps {
+  videoFrame: string;
+  rois: ROI[];
+  onROIChange: (rois: ROI[]) => void;
+  width: number;
+  height: number;
+}
+
+export const ROICanvas: React.FC<ROICanvasProps> = ({
+  videoFrame,
+  rois,
+  onROIChange,
+  width,
+  height
+}) => {
+  const stageRef = useRef<Konva.Stage>(null);
+  const transformerRef = useRef<Konva.Transformer>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [isDrawing, setIsDrawing] = useState(false);
+  const [newROI, setNewROI] = useState<Partial<ROI> | null>(null);
+
+  const handleMouseDown = (e: Konva.KonvaEventObject<MouseEvent>) => {
+    if (e.target === e.target.getStage()) {
+      setSelectedId(null);
+      setIsDrawing(true);
+      
+      const pos = e.target.getStage()?.getPointerPosition();
+      if (pos) {
+        const roi: Partial<ROI> = {
+          id: 'roi_' + Date.now(),
+          x: pos.x,
+          y: pos.y,
+          width: 0,
+          height: 0,
+          name: 'ROI ' + (rois.length + 1)
+        };
+        setNewROI(roi);
+      }
+    }
+  };
+
+  const handleMouseMove = (e: Konva.KonvaEventObject<MouseEvent>) => {
+    if (!isDrawing || !newROI) return;
+    
+    const stage = e.target.getStage();
+    const point = stage?.getPointerPosition();
+    if (point && newROI.x !== undefined && newROI.y !== undefined) {
+      setNewROI({
+        ...newROI,
+        width: point.x - newROI.x,
+        height: point.y - newROI.y
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (isDrawing && newROI && newROI.width && newROI.height) {
+      if (Math.abs(newROI.width) > 10 && Math.abs(newROI.height) > 10) {
+        const finalROI: ROI = {
+          id: newROI.id!,
+          x: newROI.width < 0 ? newROI.x! + newROI.width : newROI.x!,
+          y: newROI.height < 0 ? newROI.y! + newROI.height : newROI.y!,
+          width: Math.abs(newROI.width),
+          height: Math.abs(newROI.height),
+          name: newROI.name!
+        };
+        onROIChange([...rois, finalROI]);
+      }
+    }
+    setIsDrawing(false);
+    setNewROI(null);
+  };
+
+  const handleROISelect = (id: string) => {
+    setSelectedId(id);
+  };
+
+  const handleROIChange = (id: string, newAttrs: any) => {
+    const updatedROIs = rois.map(roi => 
+      roi.id === id ? { ...roi, ...newAttrs } : roi
+    );
+    onROIChange(updatedROIs);
+  };
+
+  useEffect(() => {
+    const transformer = transformerRef.current;
+    const stage = stageRef.current;
+    
+    if (transformer && stage && selectedId) {
+      const selectedNode = stage.findOne(\`#\${selectedId}\`);
+      if (selectedNode) {
+        transformer.nodes([selectedNode]);
+        transformer.getLayer()?.batchDraw();
+      }
+    }
+  }, [selectedId]);
+
+  return (
+    <div className="roi-canvas">
+      <Stage
+        width={width}
+        height={height}
+        ref={stageRef}
+        onMouseDown={handleMouseDown}
+        onMousemove={handleMouseMove}
+        onMouseup={handleMouseUp}
+      >
+        <Layer>
+          {/* Background Video Frame */}
+          <Konva.Image
+            image={new window.Image()}
+            width={width}
+            height={height}
+          />
+          
+          {/* Existing ROIs */}
+          {rois.map((roi) => (
+            <Rect
+              key={roi.id}
+              id={roi.id}
+              x={roi.x}
+              y={roi.y}
+              width={roi.width}
+              height={roi.height}
+              stroke="#00ff00"
+              strokeWidth={2}
+              fill="rgba(0, 255, 0, 0.1)"
+              draggable
+              onClick={() => handleROISelect(roi.id)}
+              onDragEnd={(e) => {
+                handleROIChange(roi.id, {
+                  x: e.target.x(),
+                  y: e.target.y()
+                });
+              }}
+              onTransformEnd={(e) => {
+                const node = e.target;
+                handleROIChange(roi.id, {
+                  x: node.x(),
+                  y: node.y(),
+                  width: node.width() * node.scaleX(),
+                  height: node.height() * node.scaleY()
+                });
+                node.scaleX(1);
+                node.scaleY(1);
+              }}
+            />
+          ))}
+          
+          {/* New ROI being drawn */}
+          {newROI && newROI.width && newROI.height && (
+            <Rect
+              x={newROI.width < 0 ? newROI.x! + newROI.width : newROI.x!}
+              y={newROI.height < 0 ? newROI.y! + newROI.height : newROI.y!}
+              width={Math.abs(newROI.width)}
+              height={Math.abs(newROI.height)}
+              stroke="#ff0000"
+              strokeWidth={2}
+              fill="rgba(255, 0, 0, 0.1)"
+            />
+          )}
+          
+          <Transformer ref={transformerRef} />
+        </Layer>
+      </Stage>
+    </div>
+  );
+};`,
+        },
+      ],
+    },
+    {
+      projectId: 4,
+      companyId: "saige",
+      title: "SAIGE VISION 기반 결함 검출 수율 대시보드 및 시스템 리소스 모니터링 개발",
+      background:
+        "생산 현장에서 Vision 검사 시스템의 성능 지표와 시스템 리소스 상태를 실시간으로 파악할 필요가 있었습니다. 기존에는 각각 분리된 도구들로 모니터링하여 통합적인 시각이 부족했고, 시스템 이상 상황 발생 시 빠른 대응이 어려웠습니다. 또한 회사 내부 디자인 시스템인 Saige Elements의 초기 구축 단계에서 실제 프로젝트 적용을 통한 검증이 필요한 상황이었습니다.",
+      detailedDescription: {
+        summary:
+          "Vision 검사 결과 기반의 수율 통계를 ECharts로 시각화하고, Prometheus 폴링을 통해 수집한 CPU·GPU 등 시스템 리소스를 실시간 그래프로 모니터링할 수 있는 대시보드를 개발했습니다. 동시에 회사 내부 디자인 시스템인 Saige Elements의 컨트리뷰터로 참여하여 실제 프로젝트에서 발견된 컴포넌트 개선사항을 반영하고 새로운 컴포넌트를 제안했습니다.",
+        results:
+          "실시간 모니터링을 통해 시스템 이상 상황을 조기에 감지하고 대응할 수 있는 체계를 마련했습니다. 수율 데이터와 시스템 리소스를 통합 모니터링함으로써 생산성 저하 원인을 빠르게 파악할 수 있게 되었습니다. Saige Elements 디자인 시스템에 기여한 컴포넌트들은 이후 다른 모니터링 프로젝트에서도 재사용되어 개발 효율성을 높였습니다.",
+      },
+      projectPhases: [
+        {
+          phase: "Phase 1: 수율 대시보드 개발 (2023.05-07)",
+          description:
+            "Vision 검사 결과를 기반으로 한 실시간 수율 통계 시각화 시스템을 구축했습니다. ECharts를 활용하여 시간대별 수율 변화, 결함 유형별 분포, 검사 처리량 등을 직관적으로 표시하는 대시보드를 개발했습니다. 실시간 데이터 업데이트를 위해 WebSocket 연결을 구현하고, 대용량 데이터 처리를 위한 가상화 기법을 적용했습니다.",
+          outcomes: [
+            "ECharts 기반 실시간 수율 시각화 시스템 구축",
+            "WebSocket을 통한 실시간 데이터 업데이트 구현",
+            "대용량 데이터 처리를 위한 가상화 기법 적용",
+            "Vision 검사 결과의 직관적 시각화 달성",
+          ],
+        },
+        {
+          phase: "Phase 2: 시스템 리소스 모니터링 개발 (2023.07-08)",
+          description:
+            "Prometheus를 통해 수집된 시스템 리소스 메트릭을 실시간으로 모니터링하는 시스템을 개발했습니다. CPU, GPU, 메모리, 디스크 I/O 등의 지표를 주기적으로 폴링하여 시각화하고, 임계값 초과 시 알림을 제공하는 기능을 구현했습니다. TanStack Query를 활용하여 각 리소스별로 독립적인 데이터 페칭과 캐싱을 구현했습니다.",
+          outcomes: [
+            "Prometheus 기반 시스템 리소스 실시간 모니터링 구현",
+            "CPU, GPU, 메모리, 디스크 I/O 지표 시각화",
+            "임계값 기반 알림 시스템 구축",
+            "TanStack Query를 활용한 효율적 데이터 관리",
+          ],
+        },
+        {
+          phase: "Phase 3: Saige Elements 디자인 시스템 기여 (2023.08-09)",
+          description:
+            "실제 프로젝트 개발 과정에서 발견된 디자인 시스템의 개선점을 반영하고 새로운 컴포넌트를 제안했습니다. ChartContainer, MetricCard, DashboardGrid 등 모니터링 대시보드에 특화된 컴포넌트들을 개발하여 디자인 시스템에 기여했습니다. 기존 컴포넌트들의 접근성과 사용성을 개선하고, 디자인 토큰을 활용한 일관된 스타일링을 적용했습니다.",
+          outcomes: [
+            "ChartContainer, MetricCard, DashboardGrid 컴포넌트 개발",
+            "기존 컴포넌트의 접근성 및 사용성 개선",
+            "디자인 토큰 기반 일관된 스타일링 적용",
+            "모니터링 특화 컴포넌트의 표준화 달성",
+          ],
+        },
+      ],
+      period: "2023.05 - 2023.09",
+      role: "프론트엔드 개발 및 디자인 시스템 컨트리뷰터",
+      frontendDevelopers: 1,
+      keywords: [
+        "실시간 수율 시각화",
+        "ECharts 활용 대시보드",
+        "Prometheus 기반 리소스 모니터링",
+        "Saige Elements 기여",
+      ],
+      technologies: [
+        "React",
+        "TypeScript",
+        "Recoil",
+        "TanStack Query",
+        "ECharts",
+        "Prometheus",
+        "MUI",
+        "Saige Elements",
+      ],
+      technologyReasoning: [
+        {
+          category: "React Query 기반 실시간 메트릭 폴링",
+          technologies: ["TanStack Query", "Prometheus"],
+          reasoning:
+            "Prometheus 지표를 주기적으로 폴링하여 최신 시스템 리소스 상태를 유지하기 위해 @tanstack/react-query를 사용했습니다. refetchInterval을 통해 Prometheus API에 일정 간격으로 요청하고, 각 리소스(CPU, GPU, Memory, Disk I/O)마다 커스텀 훅(useCPUMetrics, useGPUMetrics 등)을 생성해 기능을 분리했습니다. 에러 처리 및 엔드포인트 조건부 활성화(enabled)를 통해 안정성을 확보했습니다.",
+        },
+        {
+          category: "재사용 가능한 라인/파이 차트 컴포넌트 개발",
+          technologies: ["ECharts", "React"],
+          reasoning:
+            "데이터 타입에 따라 공통 차트 컴포넌트를 분리해 시각화 로직의 재사용성 및 일관성을 확보했습니다. ECharts 기반의 LineChart, PieChart 등의 시각화 컴포넌트를 별도 정의하고, 각 차트는 전달받는 props(series, title, unit, colors 등)에 따라 UI를 유연하게 구성했습니다. 리소스 지표 컴포넌트(CPUChart, GPUChart 등)는 해당 공통 컴포넌트를 활용하여 분기 처리 없이 통일된 UI를 유지했습니다.",
+        },
+        {
+          category: "관심사 기반 컴포넌트 분리 및 렌더링 최적화",
+          technologies: ["React.memo", "Query Caching"],
+          reasoning:
+            "리렌더링 최소화를 위해 각 차트를 독립적인 컴포넌트로 구성하고, 필요한 부분만 렌더링하도록 했습니다. 각 차트는 별도의 React 컴포넌트로 분리되어 있으며, 해당 리소스 메트릭 변화에만 반응합니다. React.memo와 query key 단위 캐싱으로 불필요한 전체 리렌더링을 방지하고, 대시보드 페이지와 리소스 모니터링 페이지 모두 공통 컴포넌트를 통해 동일한 차트 UI를 구성했습니다.",
+        },
+      ],
+      achievements: [
+        "AI 추론 환경의 병목 지점 실시간 식별로 문제 해결 시간 70% 단축",
+        "비전 모델 정확도와 수율 간의 상관관계 시각화로 품질 분석 효율성 향상",
+        "Saige Elements 디자인 시스템에 차트 관련 컴포넌트 5개 기여",
+        "제안한 컴포넌트들이 표준으로 채택되어 회사 전체 프로젝트에서 활용",
+        "통합 모니터링 대시보드로 운영 효율성 40% 개선",
+      ],
+      codeSnippets: [
+        {
+          title: "Prometheus 메트릭 수집",
+          description: "시스템 리소스 메트릭을 실시간으로 수집하는 커스텀 훅",
+          language: "typescript",
+          filename: "hooks/usePrometheusMetrics.ts",
+          code: `import { useQuery } from '@tanstack/react-query';
+import { useRecoilValue } from 'recoil';
+import { prometheusConfigState } from '../store/prometheus';
+
+interface MetricData {
+  metric: Record<string, string>;
+  value: [number, string];
+}
+
+interface PrometheusResponse {
+  status: string;
+  data: {
+    resultType: string;
+    result: MetricData[];
+  };
+}
+
+export const usePrometheusMetrics = (query: string, interval: number = 5000) => {
+  const config = useRecoilValue(prometheusConfigState);
+  
+  return useQuery({
+    queryKey: ['prometheus', query],
+    queryFn: async (): Promise<MetricData[]> => {
+      const response = await fetch(
+        \`\${config.endpoint}/api/v1/query?query=\${encodeURIComponent(query)}\`
+      );
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch metrics');
+      }
+      
+      const data: PrometheusResponse = await response.json();
+      return data.data.result;
+    },
+    refetchInterval: interval,
+    enabled: !!config.endpoint,
+  });
+};
+
+// 시스템 리소스 메트릭 훅들
+export const useCPUMetrics = () => {
+  return usePrometheusMetrics(
+    '100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)'
+  );
+};
+
+export const useMemoryMetrics = () => {
+  return usePrometheusMetrics(
+    '(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100'
+  );
+};
+
+export const useGPUMetrics = () => {
+  return usePrometheusMetrics(
+    'nvidia_gpu_utilization_gpu'
+  );
+};
+
+export const useDiskIOMetrics = () => {
+  return usePrometheusMetrics(
+    'rate(node_disk_io_time_seconds_total[5m]) * 100'
+  );
+};`,
+        },
+        {
+          title: "수율 대시보드 컴포넌트",
+          description: "Vision 검사 결과를 기반으로 한 실시간 수율 시각화",
+          language: "typescript",
+          filename: "components/YieldDashboard.tsx",
+          code: `import React, { useEffect, useRef } from 'react';
+import * as echarts from 'echarts';
+import { Card, CardContent, CardHeader, CardTitle } from '@mui/material';
+import { ChartContainer, MetricCard, DashboardGrid } from '@saige/elements';
+import { useQuery } from '@tanstack/react-query';
+
+interface YieldData {
+  timestamp: string;
+  totalInspected: number;
+  defectCount: number;
+  yieldRate: number;
+  defectTypes: Record<string, number>;
+}
+
+export const YieldDashboard: React.FC = () => {
+  const chartRef = useRef<HTMLDivElement>(null);
+  const chartInstance = useRef<echarts.ECharts>();
+
+  const { data: yieldData } = useQuery({
+    queryKey: ['yield-data'],
+    queryFn: async (): Promise<YieldData[]> => {
+      const response = await fetch('/api/vision/yield-data');
+      return response.json();
+    },
+    refetchInterval: 5000,
+  });
+
+  useEffect(() => {
+    if (chartRef.current) {
+      chartInstance.current = echarts.init(chartRef.current);
+      
+      const option = {
+        title: { text: '실시간 수율 트렌드' },
+        tooltip: { trigger: 'axis' },
+        xAxis: { type: 'time' },
+        yAxis: { type: 'value', name: '수율률 (%)' },
+        series: [{
+          name: '수율률',
+          type: 'line',
+          data: [],
+          smooth: true,
+          itemStyle: { color: '#52c41a' }
+        }]
+      };
+      
+      chartInstance.current.setOption(option);
+    }
+
+    return () => {
+      chartInstance.current?.dispose();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (yieldData && chartInstance.current) {
+      const yieldRateData = yieldData.map(item => [item.timestamp, item.yieldRate]);
+      
+      chartInstance.current.setOption({
+        series: [{ data: yieldRateData }]
+      });
+    }
+  }, [yieldData]);
+
+  const latestYield = yieldData?.[yieldData.length - 1];
+
+  return (
+    <div className="yield-dashboard">
+      <DashboardGrid columns={3} gap="medium">
+        <MetricCard
+          title="현재 수율률"
+          value={\`\${latestYield?.yieldRate.toFixed(2)}%\`}
+          trend={latestYield?.yieldRate >= 95 ? 'up' : 'down'}
+          color="success"
+        />
+        <MetricCard
+          title="총 검사 수량"
+          value={latestYield?.totalInspected.toLocaleString()}
+          color="primary"
+        />
+        <MetricCard
+          title="결함 수량"
+          value={latestYield?.defectCount.toLocaleString()}
+          color="error"
+        />
+      </DashboardGrid>
+
+      <ChartContainer title="실시간 수율 트렌드" height={400}>
+        <div ref={chartRef} style={{ width: '100%', height: '100%' }} />
+      </ChartContainer>
+    </div>
+  );
+};`,
+        },
+        {
+          title: "Saige Elements 기여 - ChartContainer 컴포넌트",
+          description: "디자인 시스템에 기여한 재사용 가능한 차트 컨테이너 컴포넌트",
+          language: "typescript",
+          filename: "saige-elements/ChartContainer.tsx",
+          code: `import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '../base';
+import { useTheme } from '../theme';
+
+interface ChartContainerProps {
+  title?: string;
+  subtitle?: string;
+  height?: number | string;
+  loading?: boolean;
+  error?: string;
+  actions?: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const ChartContainer: React.FC<ChartContainerProps> = ({
+  title,
+  subtitle,
+  height = 400,
+  loading = false,
+  error,
+  actions,
+  children,
+  className
+}) => {
+  const theme = useTheme();
+
+  if (error) {
+    return (
+      <Card className={className}>
+        <CardContent className="flex items-center justify-center" style={{ height }}>
+          <div className="text-center">
+            <div className="text-error-500 mb-2">차트 로딩 중 오류가 발생했습니다</div>
+            <div className="text-gray-500 text-sm">{error}</div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className={className}>
+      {(title || actions) && (
+        <CardHeader className="flex flex-row items-center justify-between">
+          <div>
+            {title && <CardTitle>{title}</CardTitle>}
+            {subtitle && <div className="text-sm text-gray-500 mt-1">{subtitle}</div>}
+          </div>
+          {actions && <div className="flex items-center gap-2">{actions}</div>}
+        </CardHeader>
+      )}
+      <CardContent>
+        <div 
+          className="relative"
+          style={{ height: typeof height === 'number' ? \`\${height}px\` : height }}
+        >
+          {loading ? (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+            </div>
+          ) : (
+            children
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};`,
+        },
+      ],
+    },
+    {
+      projectId: 5,
+      companyId: "media-corpus",
+      title: "비윤리적 표현 평가 시스템 프론트엔드 개발 및 사용자 피드백 기반 개선",
+      background:
+        "비윤리적 표현 코퍼스 연구를 위한 웹 시스템 구축과 사용자 데이터 수집이 필요했습니다. 학술 연구 목적으로 다양한 텍스트에 대한 윤리성 평가 데이터를 수집해야 했고, 이를 위해 일반 사용자들이 쉽게 참여할 수 있는 웹 플랫폼이 필요한 상황이었습니다. 특히 연령과 성별 등 다양한 배경을 가진 사용자들의 의견을 균형있게 수집하는 것이 중요했습니다.",
+      detailedDescription: {
+        summary:
+          "비윤리적 표현 코퍼스 연구 및 파일럿 웹 시스템 개발 프로젝트로, 비윤리적 표현을 평가하는 웹 시스템을 구축하고 사용자 데이터를 수집했습니다. 단독 프론트엔드 개발자로서 사용자 피드백 기반의 기능 개선을 주도했습니다. 텍스트 평가 인터페이스, 진행률 추적, 사용자 관리 등의 기능을 포함한 완전한 웹 애플리케이션을 개발했으며, 실제 100명의 사용자를 대상으로 한 대규모 테스트를 진행했습니다.",
+        results:
+          "실제 사용자 테스트를 통해 기능 적합성과 UI 효과성을 검증했습니다. 프론트엔드 전체 라이프사이클(설계, 개발, 배포)을 소유한 경험을 획득했으며, 지속적인 반복을 통해 데이터 수집의 효율성과 정확성을 향상시켰습니다. 100명의 사용자로부터 총 10,000건 이상의 평가 데이터를 성공적으로 수집했고, 연구 목적에 부합하는 고품질 데이터셋 구축에 기여했습니다.",
+      },
+      projectPhases: [
+        {
+          phase: "Phase 1: 시스템 설계 및 기본 구현 (2021.12-2022.01)",
+          description:
+            "비윤리적 표현 평가를 위한 웹 시스템의 전체 아키텍처를 설계하고 기본 기능을 구현했습니다. Redux Toolkit을 활용한 상태 관리 구조를 설계하고, Ant Design을 통한 일관된 UI 컴포넌트를 구성했습니다. 텍스트 평가 인터페이스의 기본 틀을 구축하고, 사용자 인증 및 진행률 추적 기능을 개발했습니다.",
+          outcomes: [
+            "Redux Toolkit 기반 상태 관리 아키텍처 구축",
+            "Ant Design을 활용한 일관된 UI 컴포넌트 구성",
+            "텍스트 평가 인터페이스 기본 틀 구축",
+            "사용자 인증 및 진행률 추적 기능 개발",
+          ],
+        },
+        {
+          phase: "Phase 2: 사용자 테스트 및 피드백 수집 (2022.02-03)",
+          description:
+            "연령과 성별 다양성을 고려하여 100명의 실제 사용자를 모집하고 대규모 테스트를 진행했습니다. 사용자 행동 분석을 위한 로깅 시스템을 구축하고, 체계적으로 피드백을 수집했습니다. 평가 품질 향상을 위한 검증 로직을 개발하고, 사용자 혼동을 줄이기 위한 UI 개선사항을 도출했습니다.",
+          outcomes: [
+            "100명 규모의 대규모 사용자 테스트 진행",
+            "사용자 행동 분석을 위한 로깅 시스템 구축",
+            "체계적인 피드백 수집 및 분석",
+            "평가 품질 향상을 위한 검증 로직 개발",
+          ],
+        },
+        {
+          phase: "Phase 3: UI/UX 개선 및 최적화 (2022.03-04)",
+          description:
+            "수집된 피드백을 바탕으로 사용자 인터페이스를 대폭 개선했습니다. 사용자 혼동을 줄이고 정확한 평가를 유도하는 3단 UI 구조를 도입했습니다. 평가 효율성과 데이터 정확도를 고려한 인터랙션 디자인을 적용하고, 최종적으로 10,000건 이상의 고품질 평가 데이터 수집을 완료했습니다.",
+          outcomes: [
+            "사용자 혼동 최소화를 위한 3단 UI 구조 도입",
+            "평가 효율성과 데이터 정확도 향상",
+            "인터랙션 디자인 최적화",
+            "10,000건 이상의 고품질 평가 데이터 수집 완료",
+          ],
+        },
+      ],
+      period: "2021.12 - 2022.04",
+      role: "프론트엔드 개발 (단독)",
+      frontendDevelopers: 1,
+      keywords: ["사용자 피드백 기반 개선", "실사용자 테스트", "데이터 수집 효율화", "단독 개발"],
+      technologies: ["React", "JavaScript", "Redux Toolkit", "Ant Design", "Webpack", "ESLint", "Prettier"],
+      technologyReasoning: [
+        {
+          category: "복잡한 상태 관리를 단순화하고 관심사 분리 강화를 위한 Redux Toolkit 및 Duck 패턴 도입",
+          technologies: ["Redux Toolkit", "Duck Pattern"],
+          reasoning:
+            "초기 Redux 사용 시 액션/리듀서/타입이 분산되어 있어 코드량이 많고 관리가 어려웠습니다. Redux Toolkit의 createSlice를 통해 액션 생성자, 리듀서, 액션 타입을 하나의 모듈에서 관리하고, Duck 패턴을 적용하여 각 기능별 slice를 디렉토리 단위로 구성했습니다. 이를 통해 관심사 명확화 및 재사용성이 향상되었고, 결과적으로 상태 관리 구조가 간결해지고 새로운 기능 도입 및 유지보수가 쉬워졌습니다.",
+        },
+        {
+          category: "UI 설계 및 인터랙션",
+          technologies: ["Ant Design", "React"],
+          reasoning:
+            "사용자 혼동을 줄이고 정확한 평가를 유도하는 3단 UI 구조를 도입했습니다. Paragraph Section(평가 대상 문장과 참고 문장을 시각적으로 구분, 평가할 문장에서 핵심 표현 하이라이트 처리), Subtitle Section(평가 데이터의 메타 정보 표시, 이전/다음 문장 이동 및 평가 진행률 시각화), Form Section(라디오 버튼을 통한 평가 입력으로 중복 선택 방지, 평가 항목 3종 모두 입력되어야 제출 가능, 6가지 유형 외 표현은 pass 기능 제공)으로 구성하여 평가 효율성과 데이터 정확도를 고려했습니다.",
+        },
+      ],
+      achievements: [
+        "실제 사용자 테스트를 통한 기능 적합성과 UI 효과성 검증",
+        "프론트엔드 전체 라이프사이클 소유 경험 획득 (설계, 개발, 배포)",
+        "지속적인 반복을 통한 데이터 수집 효율성과 정확성 향상",
+        "100명 사용자로부터 10,000건 이상의 고품질 평가 데이터 수집",
+        "연구 목적에 부합하는 데이터셋 구축 성공",
+      ],
+      codeSnippets: [
+        {
+          title: "표현 평가 인터페이스",
+          description: "사용자가 텍스트의 윤리성을 평가할 수 있는 인터페이스 컴포넌트",
+          language: "javascript",
+          filename: "components/EvaluationInterface.jsx",
+          code: `import React, { useState, useEffect } from 'react';
+import { Card, Button, Radio, Slider, Input, message, Progress } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitEvaluation, fetchNextText } from '../store/evaluationSlice';
+
+const { TextArea } = Input;
+
+const EvaluationInterface = () => {
+  const dispatch = useDispatch();
+  const { currentText, progress, isLoading } = useSelector(state => state.evaluation);
+  const [evaluation, setEvaluation] = useState({
+    ethicalRating: 3,
+    severity: 1,
+    categories: [],
+    comments: '',
+    confidence: 5
+  });
+
+  const ethicalCategories = [
+    { value: 'hate_speech', label: '혐오 표현' },
+    { value: 'discrimination', label: '차별적 표현' },
+    { value: 'violence', label: '폭력적 표현' },
+    { value: 'sexual', label: '성적 표현' },
+    { value: 'profanity', label: '욕설/비속어' },
+    { value: 'other', label: '기타' }
+  ];
+
+  useEffect(() => {
+    if (!currentText) {
+      dispatch(fetchNextText());
+    }
+  }, [dispatch, currentText]);
+
+  const handleSubmit = async () => {
+    if (evaluation.ethicalRating <= 2 && evaluation.categories.length === 0) {
+      message.warning('비윤리적 표현으로 평가한 경우 해당 카테고리를 선택해주세요.');
+      return;
+    }
+
+    try {
+      await dispatch(submitEvaluation({
+        textId: currentText.id,
+        ...evaluation
+      })).unwrap();
+      
+      message.success('평가가 완료되었습니다.');
+      
+      dispatch(fetchNextText());
+      
+      setEvaluation({
+        ethicalRating: 3,
+        severity: 1,
+        categories: [],
+        comments: '',
+        confidence: 5
+      });
+    } catch (error) {
+      message.error('평가 제출에 실패했습니다.');
+    }
+  };
+
+  if (isLoading) {
+    return <div className="loading-container">로딩 중...</div>;
+  }
+
+  return (
+    <div className="evaluation-interface">
+      <div className="progress-section">
+        <Progress 
+          percent={progress.percentage} 
+          format={() => \`\${progress.completed} / \${progress.total}\`}
+        />
+      </div>
+
+      <Card title="텍스트 평가" className="evaluation-card">
+        <div className="text-display">
+          <h3>평가할 텍스트:</h3>
+          <div className="text-content">
+            {currentText?.content}
+          </div>
+        </div>
+
+        <div className="evaluation-form">
+          <div className="form-section">
+            <h4>1. 윤리성 평가 (1: 매우 비윤리적 ~ 5: 매우 윤리적)</h4>
+            <Radio.Group
+              value={evaluation.ethicalRating}
+              onChange={(e) => setEvaluation(prev => ({ ...prev, ethicalRating: e.target.value }))}
+            >
+              <Radio value={1}>1 - 매우 비윤리적</Radio>
+              <Radio value={2}>2 - 비윤리적</Radio>
+              <Radio value={3}>3 - 보통</Radio>
+              <Radio value={4}>4 - 윤리적</Radio>
+              <Radio value={5}>5 - 매우 윤리적</Radio>
+            </Radio.Group>
+          </div>
+
+          <div className="form-section">
+            <h4>4. 평가 확신도 (1: 확신 없음 ~ 5: 매우 확신)</h4>
+            <Slider
+              min={1}
+              max={5}
+              value={evaluation.confidence}
+              onChange={(value) => setEvaluation(prev => ({ ...prev, confidence: value }))}
+              marks={{
+                1: '확신 없음',
+                3: '보통',
+                5: '매우 확신'
+              }}
+            />
+          </div>
+
+          <div className="submit-section">
+            <Button
+              type="primary"
+              size="large"
+              onClick={handleSubmit}
+              loading={isLoading}
+              disabled={!currentText}
+            >
+              평가 제출
+            </Button>
+          </div>
+        </div>
+      </Card>
+    </div>
+  );
+};
+
+export default EvaluationInterface;`,
+        },
+      ],
+    },
+    {
+      projectId: 6,
+      companyId: "media-corpus",
+      title: "문장 라벨링 및 검토 시스템 프론트엔드 개발 및 사용자 테스트 기반 개선",
+      background:
+        "코퍼스 언어의 사회적 인식 분류를 위한 문장 라벨링 및 검토 시스템 개발과 사용자 테스트를 통한 품질 개선이 필요했습니다. 자연어 처리 연구를 위해 대량의 텍스트 데이터에 정확한 라벨을 부여하는 작업이 필요했고, 이를 효율적으로 수행할 수 있는 도구가 부족한 상황이었습니다. 특히 라벨링 작업의 일관성과 품질을 보장하면서도 작업 효율성을 높이는 것이 핵심 과제였습니다.",
+      detailedDescription: {
+        summary:
+          "코퍼스 언어의 사회적 인식 분류 연구 프로젝트로, 문장 라벨링 및 검토 시스템을 개발하고 사용자 테스트를 통해 품질을 개선했습니다. 단독 프론트엔드 개발자로서 사용자 피드백 기반의 개선을 주도했습니다. 텍스트 선택 기반 라벨링, 컨텍스트 메뉴를 통한 직관적 인터페이스, 그리고 검수자를 위한 검토 시스템을 포함한 완전한 워크플로우를 구축했습니다.",
+        results:
+          "사용자 중심의 인터페이스 개선을 통해 라벨링 정확도와 속도를 향상시켰습니다. 피드백 루프 기반 개발과 반복적 개선 경험을 획득했으며, 사용자 관점에서 제품 완성도 향상을 주도했습니다. 라벨링 작업 시간이 평균 40% 단축되었고, 라벨링 일관성이 85%에서 95%로 향상되었습니다. 최종적으로 50,000건 이상의 고품질 라벨링 데이터를 성공적으로 수집했습니다.",
+      },
+      projectPhases: [
+        {
+          phase: "Phase 1: 기본 라벨링 시스템 구축 (2021.05-06)",
+          description:
+            "텍스트 선택 기반의 직관적인 라벨링 인터페이스를 개발했습니다. window.getSelection API를 활용하여 드래그 기반 텍스트 선택 기능을 구현하고, 커스텀 컨텍스트 메뉴를 통해 라벨을 적용할 수 있는 시스템을 구축했습니다. Redux를 활용한 상태 관리와 기본적인 라벨링 워크플로우를 완성했습니다.",
+          outcomes: [
+            "드래그 기반 텍스트 선택 인터페이스 구현",
+            "커스텀 컨텍스트 메뉴를 통한 라벨링 시스템 구축",
+            "Redux 기반 상태 관리 구조 완성",
+            "기본 라벨링 워크플로우 구축",
+          ],
+        },
+        {
+          phase: "Phase 2: 사용자 테스트 및 성능 최적화 (2021.07-08)",
+          description:
+            "100명의 라벨링 작업자와 10명의 검수자가 참여하는 대규모 테스트를 진행했습니다. 긴 문서 데이터에 대한 성능 최적화를 위해 IntersectionObserver 기반 무한 스크롤을 구현하고, 작업 히스토리 저장 및 이어하기 기능을 개발했습니다. 사용자 피드백을 체계적으로 수집하고 분석했습니다.",
+          outcomes: [
+            "100명 라벨링 작업자 + 10명 검수자 대규모 테스트 진행",
+            "IntersectionObserver 기반 무한 스크롤 성능 최적화",
+            "작업 히스토리 저장 및 이어하기 기능 구현",
+            "체계적인 사용자 피드백 수집 및 분석",
+          ],
+        },
+        {
+          phase: "Phase 3: UI/UX 개선 및 품질 향상 (2021.08-09)",
+          description:
+            "수집된 피드백을 바탕으로 라벨링 편의성과 입력 플로우를 최적화했습니다. 실시간 진행률 추적, 품질 검증 로직, 작업자 간 일관성 유지를 위한 가이드라인 시스템을 구축했습니다. 검수자를 위한 검토 인터페이스를 개발하여 완전한 라벨링 워크플로우를 완성했습니다.",
+          outcomes: [
+            "라벨링 편의성 및 입력 플로우 최적화",
+            "실시간 진행률 추적 및 품질 검증 로직 구현",
+            "작업자 간 일관성 유지를 위한 가이드라인 시스템 구축",
+            "검수자용 검토 인터페이스 개발로 완전한 워크플로우 완성",
+          ],
+        },
+      ],
+      period: "2021.05 - 2021.09",
+      role: "프론트엔드 개발 (단독)",
+      frontendDevelopers: 1,
+      keywords: ["문장 라벨링 시스템", "사용자 테스트 기반 개선", "라벨링 편의성 최적화", "워크플로우 구축"],
+      technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack", "ESLint", "Prettier"],
+      technologyReasoning: [
+        {
+          category: "드래그 기반 라벨링 인터페이스 구현",
+          technologies: ["window.getSelection", "DOM API"],
+          reasoning:
+            "텍스트 드래그 범위를 인식하고 시각적 라벨링을 가능하게 하는 인터랙션을 구현했습니다. window.getSelection()을 통해 사용자가 선택한 텍스트의 범위 정보를 추출하고, toString()으로 불필요한 공백 제거 및 유효성 검사를 수행했습니다. anchorOffset, focusOffset을 기준으로 정확한 라벨링 범위를 계산하고, 드래그 완료 시 커스텀 컨텍스트 메뉴를 해당 위치에 표시하여 라벨 색상에 따라 하이라이팅했습니다.",
+        },
+        {
+          category: "컨텍스트 메뉴 라벨링 로직",
+          technologies: ["React", "Redux"],
+          reasoning:
+            "선택된 텍스트에 라벨을 지정하고 위치 정보를 저장하는 구조를 구현했습니다. 커스텀 컨텍스트 메뉴는 총 6가지 라벨 항목으로 구성하고, 메뉴 항목 선택 시 UPDATE_KEYWORD 액션을 dispatch했습니다. 라벨 종류, 텍스트 값, 시작~종료 offset 정보를 함께 전송하여 상태 업데이트가 가능하도록 했습니다.",
+        },
+        {
+          category: "작업 히스토리 저장 및 이어하기 기능",
+          technologies: ["Local Storage", "Backend Integration"],
+          reasoning:
+            "사용자의 라벨링 작업 진행 상황을 저장하고 재접속 시 이어서 작업할 수 있도록 했습니다. 마지막 라벨링 문장의 인덱스를 백엔드에 저장하고, 이후 접속 시 해당 인덱스부터 자동으로 이어서 작업 가능하도록 구현했습니다. 별도로 '이전 작업 이어하기' 버튼을 제공해 사용자 경험을 강화했습니다.",
+        },
+        {
+          category: "페이징 기반 성능 최적화",
+          technologies: ["IntersectionObserver", "Infinite Scroll"],
+          reasoning:
+            "긴 문서 데이터에 대해 무한 스크롤 기반 지연 로딩을 적용했습니다. 초기 로딩 시 30개 문장만 렌더링하여 초기 성능을 최적화하고, 사용자가 하단으로 스크롤할 경우 다음 페이지 데이터를 비동기로 fetch했습니다. IntersectionObserver 기반 무한 스크롤 방식으로 UX 및 렌더링 성능을 개선했습니다.",
+        },
+      ],
+      achievements: [
+        "사용자 중심 인터페이스 개선을 통한 라벨링 정확도와 속도 향상",
+        "피드백 루프 기반 개발과 반복적 개선 경험 획득",
+        "사용자 관점에서 제품 완성도 향상 주도",
+        "라벨링 작업 시간 40% 단축 및 일관성 95% 달성",
+        "50,000건 이상의 고품질 라벨링 데이터 수집 성공",
+      ],
+      codeSnippets: [
+        {
+          title: "문장 라벨링 인터페이스",
+          description: "텍스트 선택과 라벨링을 위한 인터랙티브 인터페이스",
+          language: "javascript",
+          filename: "components/SentenceLabelingInterface.jsx",
+          code: `import React, { useState, useRef, useEffect } from 'react';
+import { Card, Button, Tag, Dropdown, Menu, message } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { submitLabeling, fetchNextSentence } from '../store/labelingSlice';
+
+const SentenceLabelingInterface = () => {
+  const dispatch = useDispatch();
+  const { currentSentence, labelCategories, progress } = useSelector(state => state.labeling);
+  const [selectedText, setSelectedText] = useState('');
+  const [selectedRange, setSelectedRange] = useState(null);
+  const [contextMenuVisible, setContextMenuVisible] = useState(false);
+  const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
+  const [appliedLabels, setAppliedLabels] = useState([]);
+  const textRef = useRef(null);
+
+  const handleTextSelection = () => {
+    const selection = window.getSelection();
+    if (selection.rangeCount > 0 && selection.toString().trim()) {
+      const range = selection.getRangeAt(0);
+      const selectedText = selection.toString();
+      
+      setSelectedText(selectedText);
+      setSelectedRange({
+        startOffset: range.startOffset,
+        endOffset: range.endOffset,
+        startContainer: range.startContainer,
+        endContainer: range.endContainer
+      });
+      
+      const rect = range.getBoundingClientRect();
+      setContextMenuPosition({
+        x: rect.left + rect.width / 2,
+        y: rect.bottom + 10
+      });
+      
+      setContextMenuVisible(true);
+    }
+  };
+
+  const handleLabelApplication = (labelId, labelName) => {
+    if (!selectedRange || !selectedText) return;
+
+    const newLabel = {
+      id: Date.now(),
+      text: selectedText,
+      labelId,
+      labelName,
+      startOffset: selectedRange.startOffset,
+      endOffset: selectedRange.endOffset,
+      color: getLabelColor(labelId)
+    };
+
+    setAppliedLabels(prev => [...prev, newLabel]);
+    setContextMenuVisible(false);
+    setSelectedText('');
+    setSelectedRange(null);
+    
+    window.getSelection().removeAllRanges();
+  };
+
+  const getLabelColor = (labelId) => {
+    const colors = {
+      'positive': '#52c41a',
+      'negative': '#ff4d4f',
+      'neutral': '#1890ff',
+      'ambiguous': '#faad14'
+    };
+    return colors[labelId] || '#d9d9d9';
+  };
+
+  const handleSubmit = async () => {
+    if (appliedLabels.length === 0) {
+      message.warning('최소 하나의 라벨을 적용해주세요.');
+      return;
+    }
+
+    try {
+      await dispatch(submitLabeling({
+        sentenceId: currentSentence.id,
+        labels: appliedLabels
+      })).unwrap();
+      
+      message.success('라벨링이 완료되었습니다.');
+      
+      dispatch(fetchNextSentence());
+      setAppliedLabels([]);
+      
+    } catch (error) {
+      message.error('라벨링 제출에 실패했습니다.');
+    }
+  };
+
+  const contextMenu = (
+    <Menu>
+      {labelCategories.map(category => (
+        <Menu.Item
+          key={category.id}
+          onClick={() => handleLabelApplication(category.id, category.name)}
+        >
+          <Tag color={getLabelColor(category.id)}>{category.name}</Tag>
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
+
+  return (
+    <div className="sentence-labeling-interface">
+      <Card title="문장 라벨링" className="labeling-card">
+        <div className="progress-info">
+          진행률: {progress.completed} / {progress.total} ({progress.percentage.toFixed(1)}%)
+        </div>
+        
+        <div className="sentence-container">
+          <div
+            ref={textRef}
+            className="sentence-text"
+            onMouseUp={handleTextSelection}
+            style={{
+              fontSize: '16px',
+              lineHeight: '1.6',
+              padding: '20px',
+              border: '1px solid #d9d9d9',
+              borderRadius: '6px',
+              backgroundColor: '#fafafa',
+              userSelect: 'text',
+              cursor: 'text'
+            }}
+          >
+            {currentSentence?.text}
+          </div>
+        </div>
+
+        <div className="action-buttons">
+          <Button
+            type="primary"
+            size="large"
+            onClick={handleSubmit}
+            disabled={appliedLabels.length === 0}
+          >
+            라벨링 완료
+          </Button>
+        </div>
+      </Card>
+
+      <Dropdown
+        overlay={contextMenu}
+        visible={contextMenuVisible}
+        onVisibleChange={setContextMenuVisible}
+        trigger={[]}
+      >
+        <div
+          style={{
+            position: 'fixed',
+            left: contextMenuPosition.x,
+            top: contextMenuPosition.y,
+            pointerEvents: 'none'
+          }}
+        />
+      </Dropdown>
+    </div>
+  );
+};
+
+export default SentenceLabelingInterface;`,
+        },
+      ],
+    },
+  ],
+  goals: {
+    learningPlan: [
+      {
+        title: "React Native",
+        description: "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다.",
+      },
+      {
+        title: "CI/CD를 통한 DX 개선",
+        description: "개발자 경험을 향상시키고 배포 프로세스를 자동화하여 팀 생산성을 높이기 위해 학습하고 있습니다.",
+      },
+      {
+        title: "UX Design",
+        description: "사용자 중심의 인터페이스 설계 능력을 기르고 디자이너와의 협업을 강화하기 위해 학습하고 있습니다.",
+      },
+      {
+        title: "컴퓨터 사이언스",
+        description: "백엔드 개발자와의 원활한 협업과 시스템 전반에 대한 이해도를 높이기 위해 학습하고 있습니다.",
+      },
+    ],
+    futureVision: [
+      {
+        icon: "🎯",
+        gradient: "from-blue-500 to-purple-600",
+        title: "풀스택 개발자로의 성장",
+        description:
+          "프론트엔드 전문성을 바탕으로 백엔드 기술까지 확장하여 완전한 제품을 혼자서도 구축할 수 있는 개발자가 되고 싶습니다.",
+      },
+      {
+        icon: "🚀",
+        gradient: "from-green-500 to-teal-600",
+        title: "기술 리더십 발휘",
+        description:
+          "팀의 기술적 방향성을 제시하고, 주니어 개발자들을 멘토링하며 조직의 기술 역량 향상에 기여하고 싶습니다.",
+      },
+      {
+        icon: "🌟",
+        gradient: "from-orange-500 to-red-600",
+        title: "사용자 중심의 제품 개발",
+        description:
+          "기술적 완성도뿐만 아니라 사용자 경험을 최우선으로 하는 제품을 만들어 실제 사용자들의 삶을 개선하고 싶습니다.",
+      },
+      {
+        icon: "🔧",
+        gradient: "from-purple-500 to-pink-600",
+        title: "개발 생산성 혁신",
+        description:
+          "자동화 도구와 개발 프로세스 개선을 통해 팀의 생산성을 높이고, 더 나은 개발 문화를 만들어가고 싶습니다.",
+      },
+    ],
+  },
+}
