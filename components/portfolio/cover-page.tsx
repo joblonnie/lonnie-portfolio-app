@@ -110,7 +110,7 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
             <Button
               size="lg"
               onClick={() => handleNavigate("intro")}
-              className="bg-[#6495ED] hover:bg-[#5A7FDB] text-white px-12 py-4 text-xl font-medium shadow-lg hover:shadow-xl transform transition-all hover:scale-105"
+              className="bg-gradient-to-r from-[#6495ED] to-[#7B68EE] text-white px-12 py-4 text-xl font-medium shadow-lg hover:shadow-xl transform transition-all hover:scale-105"
             >
               둘러보기
               <ArrowRight className="ml-2 h-6 w-6" />
