@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import type { PortfolioData } from "./types"
+import type { PortfolioData } from "./types";
 
 export const mockPortfolioData: PortfolioData = {
   personalInfo: {
@@ -16,29 +16,35 @@ export const mockPortfolioData: PortfolioData = {
     mindset: [
       {
         title: "사용자 중심 사고",
-        description: "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
+        description:
+          "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
       },
       {
         title: "품질에 대한 집착",
-        description: "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
+        description:
+          "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
       },
       {
         title: "협업의 가치",
-        description: "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
+        description:
+          "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
       },
     ],
     capabilities: [
       {
         title: "문제 해결 능력",
-        description: "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
+        description:
+          "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
       },
       {
         title: "빠른 학습력",
-        description: "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
+        description:
+          "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
       },
       {
         title: "소통 능력",
-        description: "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
+        description:
+          "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
       },
     ],
   },
@@ -55,10 +61,24 @@ export const mockPortfolioData: PortfolioData = {
       "Saige Elements Design System",
       "React Hook Form",
     ],
-    stateManagement: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "Context API", "MobX"],
+    stateManagement: [
+      "Zustand",
+      "TanStack Query",
+      "Redux",
+      "Redux Toolkit",
+      "Context API",
+      "MobX",
+    ],
     architecture: ["Nx Monorepo", "Featured-Sliced Design", "Atomic Design"],
     devTools: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
-    collaborationTools: ["Storybook", "Figma", "Notion", "Jira", "Swagger", "Teams"],
+    collaborationTools: [
+      "Storybook",
+      "Figma",
+      "Notion",
+      "Jira",
+      "Swagger",
+      "Teams",
+    ],
   },
   companies: [
     {
@@ -90,11 +110,13 @@ export const mockPortfolioData: PortfolioData = {
       projectId: 1,
       companyId: "saige",
       title: "SAIGE VIMS 통합 모니터링 시스템 개발 (Monorepo 기반)",
-      image: "/placeholder.svg?height=400&width=800&text=SAIGE+VIMS+모니터링+시스템",
+      image:
+        "/placeholder.svg?height=400&width=800&text=SAIGE+VIMS+모니터링+시스템",
       background:
         "범용 IAD/SEG 기반 이상 감지와 고객별 커스터마이징을 모두 지원하기 위해 유연하면서도 확장 가능한 모니터링 시스템 아키텍처가 필요했습니다. 기존의 단일 애플리케이션 구조로는 여러 고객사의 다양한 요구사항을 효율적으로 대응하기 어려웠고, 코드 재사용성과 유지보수성에 한계가 있었습니다. 이를 해결하기 위해 NX를 사용한 모노레포 구조를 제안하고 구현했습니다.",
       detailedDescription: {
-        summary: "공통 패키지 기반의 모노레포 아키텍처로 코드 재사용성과 개발 속도를 크게 향상시킨 프로젝트",
+        summary:
+          "공통 패키지 기반의 모노레포 아키텍처로 코드 재사용성과 개발 속도를 크게 향상시킨 프로젝트",
         results:
           "세 개의 모니터링 시스템은 NX 기반 모노레포 아키텍처 내에서 각각 독립된 애플리케이션으로 구성되었으며, 공통된 UI 및 비즈니스 로직은 VIMS 패키지로 공유되었습니다. 이를 통해 도메인 단위의 FSD 패턴 기반 모듈화를 구현하고, 코드 재사용률 85% 이상을 달성하여 프로젝트 간 기능 전달과 유지보수가 용이해졌습니다. 그 결과, 일관된 UI/UX를 유지하면서도 신규 시스템 개발 기간을 평균 50% 이상 단축할 수 있었으며, 특히 권취 공정 프로젝트는 기존 1개월에서 2주로 개발 기간을 단축하는 성과를 이뤘습니다.",
       },
@@ -102,23 +124,22 @@ export const mockPortfolioData: PortfolioData = {
         {
           phase: "Phase 1: 생산 장비 이상 감지 모니터링 시스템 (2025.01-02)",
           description:
-            "첫 번째 프로젝트에서 NX를 사용한 모노레포를 설정하고, 단일 애플리케이션 내에서 FSD(Feature-Sliced Design)를 적용하여 모듈화 개발의 기반을 확립했습니다. 생산 장비 공정의 이상을 감지하는 모니터링 시스템을 개발하고, ECharts를 사용하여 실시간 이상 데이터를 시각화했습니다. 이 단계에서는 모노레포의 기본 구조와 개발 워크플로우를 정립했습니다.",
+            "첫 번째 프로젝트에서 NX를 사용한 모노레포를 설정하고, 단일 애플리케이션 내에서 FSD(Feature-Sliced Design)를 적용하여 모듈화 개발의 기반을 확립했습니다. 이 단계에서는 모노레포의 기본 구조와 개발 워크플로우를 정립했습니다.",
           outcomes: [
-            "ECharts 기반 실시간 생산 장비 이상 데이터 시각화 구현",
             "모노레포 기반 모듈화 개발 환경 구축",
             "확장 가능한 코드 구조 확립",
             "개발팀 내 NX 워크플로우 정착",
           ],
         },
         {
-          phase: "Phase 2: SAIGE VIMS IAD/SEG 통합 모니터링 시스템 (2025.03-05)",
+          phase:
+            "Phase 2: SAIGE VIMS IAD/SEG 통합 모니터링 시스템 (2025.03-05)",
           description:
             "SAIGE VIMS 모니터링 시스템 개발 과정에서 모듈화된 기반을 재사용 가능한 내부 패키지인 VIMS로 점진적으로 마이그레이션했습니다. IAD와 SEG 모델을 모두 지원하는 통합 모니터링 시스템을 구축했습니다. IAD의 경우 ECharts를 통해 실시간 이상 데이터를 표시하고, SEG의 경우 클래스별로 감지된 결함의 실시간 윤곽선 값을 검색하여 Konva.js를 사용해 결함 영역을 렌더링했습니다. 이 과정에서 공통 컴포넌트와 비즈니스 로직을 VIMS 패키지로 추상화했습니다.",
           outcomes: [
             "IAD 모델 기반 실시간 이상 감지 데이터 ECharts 시각화",
             "SEG 모델의 클래스별 결함 윤곽선 데이터 수신 및 처리",
             "Konva.js를 활용한 결함 영역 렌더링 시스템 구축",
-            "점진적 마이그레이션을 통한 VIMS 패키지 완성",
           ],
         },
         {
@@ -129,14 +150,19 @@ export const mockPortfolioData: PortfolioData = {
             "권취 공정 프로젝트 개발 기간 50% 단축 (1개월 → 2주)",
             "권취 관련 이상 이벤트의 실시간 로그 시스템 구현",
             "모듈화된 아키텍처의 효과성 입증",
-            "고객 맞춤형 기능 개발 프로세스 확립",
           ],
         },
       ],
       period: "2025.01 - 2025.07",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: ["NX Monorepo", "FSD 아키텍처", "모듈화/재사용성 강화", "실시간 모니터링", "AI 시각화"],
+      keywords: [
+        "NX Monorepo",
+        "FSD 아키텍처",
+        "모듈화/재사용성 강화",
+        "실시간 모니터링",
+        "AI 시각화",
+      ],
       technologies: [
         "React",
         "TypeScript",
@@ -222,20 +248,21 @@ export const mockPortfolioData: PortfolioData = {
       projectId: 2,
       companyId: "saige",
       title: "SAIGE SAFETY 제품 개발 - MVP부터 GS 인증까지",
-      image: "/placeholder.svg?height=400&width=800&text=SAIGE+SAFETY+안전+관리+시스템",
+      image:
+        "/placeholder.svg?height=400&width=800&text=SAIGE+SAFETY+안전+관리+시스템",
       background:
         "안전 관리 시장 진출을 위한 신사업 런칭 프로젝트로 시작되었습니다. 안전모 착용 감지와 화재·연기 감지 기능을 통합한 솔루션이 필요했고, 기존 시장에는 각각 분리된 솔루션들만 존재했습니다. 회사 차원에서 새로운 사업 영역 진출을 위한 MVP 개발이 시급한 상황이었으며, 이후 고객사 납품과 VOC를 통해 지속적인 개선이 이루어졌습니다. 최종적으로는 한국정보통신기술협회(TTA)의 GS 인증 심사를 위해 사용자 인터페이스의 일관성과 오류 처리 방식에 대한 개선이 필요했습니다.",
       detailedDescription: {
         summary:
           "AI 기반 안전 관리 시스템의 MVP부터 고객 피드백 반영, GS 1등급 인증까지 전 과정을 주도한 종합 제품 개발 프로젝트",
         results:
-          "MVP 성공적 납품으로 신사업 영역 진출을 달성하고, 3개 고객사에 성공적으로 납품되어 사업화를 검증했습니다. 고객 VOC 기반의 지속적인 개선을 통해 안전사고 예방 효과가 입증되어 추가 주문을 확보했습니다. 최종적으로 GS 1등급 인증을 획득하여 제품의 신뢰성과 품질을 공식적으로 인정받았습니다. 사용자 오류 인식률을 0%에서 100%로 개선하고, 인증 심사에서 '사용자 편의성' 항목에서 만점을 받았습니다.",
+          "MVP 성공적 납품으로 신사업 영역 진출을 달성하고, 3개 고객사에 성공적으로 납품되어 사업화를 검증했습니다. 고객 VOC 기반의 지속적인 개선을 통해 안전사고 예방 효과가 입증되어 추가 주문을 확보했습니다. 최종적으로 GS 1등급 인증을 획득하여 제품의 신뢰성과 품질을 공식적으로 인정받았습니다. 사용자 오류 인식률을 0%에서 100%로 개선하고, 인증 심사에서 '사용자 편의성' 항목에서 좋은 점수를 받았습니다.",
       },
       projectPhases: [
         {
           phase: "Phase 1: MVP 개발 및 신사업 런칭 (2023.05-09)",
           description:
-            "AI 모델의 감지 결과를 직관적으로 시각화하는 사용자 인터페이스를 구축했습니다. WebSocket을 통한 실시간 데이터 수신, Konva.js를 활용한 비디오 오버레이 렌더링, 그리고 위험 상황 발생 시 즉시 알림을 제공하는 시스템을 개발했습니다. 또한 관리자용 대시보드를 통해 전체 현장의 안전 상황을 모니터링할 수 있는 기능을 구현했습니다. 모바일 환경에서도 원활하게 작동하도록 반응형 디자인을 적용했습니다.",
+            "AI 모델의 감지 결과를 직관적으로 시각화하는 사용자 인터페이스를 구축했습니다. WebSocket을 통한 실시간 데이터 수신, Konva.js를 활용한 비디오 오버레이 렌더링, 그리고 위험 상황 발생 시 즉시 알림을 제공하는 시스템을 개발했습니다. 또한 관리자용 대시보드를 통해 전체 현장의 안전 상황을 모니터링할 수 있는 기능을 구현했습니다.",
           outcomes: [
             "실시간 안전모 착용 감지 UI 구현",
             "화재·연기 감지 시각화 시스템 구축",
@@ -275,7 +302,15 @@ export const mockPortfolioData: PortfolioData = {
         "Toast 알림 체계 도입",
         "API 오류 처리 표준화",
       ],
-      technologies: ["React", "TypeScript", "X-view-model", "Konva.js", "MUI", "WebSocket", "Axios"],
+      technologies: [
+        "React",
+        "TypeScript",
+        "X-view-model",
+        "Konva.js",
+        "MUI",
+        "WebSocket",
+        "Axios",
+      ],
       technologyReasoning: [
         {
           category: "에러 핸들링 부재 상태에서 체계적인 예외 처리 구조 도입",
@@ -293,7 +328,8 @@ export const mockPortfolioData: PortfolioData = {
       codeSnippets: [
         {
           title: "개선된 Toast 알림 시스템",
-          description: "Saige Elements 기반으로 개발자가 쉽게 사용할 수 있는 Toast 유틸리티",
+          description:
+            "Saige Elements 기반으로 개발자가 쉽게 사용할 수 있는 Toast 유틸리티",
           language: "typescript",
           filename: "utils/toast.ts",
           code: `import { enqueueSnackbar } from '@saige/elements/lib/components';
@@ -357,8 +393,10 @@ export default toast;
     {
       projectId: 4,
       companyId: "saige",
-      title: "SAIGE VISION 기반 결함 검출 수율 대시보드 및 시스템 리소스 모니터링 개발",
-      image: "/placeholder.svg?height=400&width=800&text=SAIGE+VISION+수율+대시보드",
+      title:
+        "SAIGE VISION 기반 결함 검출 수율 대시보드 및 시스템 리소스 모니터링 개발",
+      image:
+        "/placeholder.svg?height=400&width=800&text=SAIGE+VISION+수율+대시보드",
       background:
         "생산 현장에서 Vision 검사 시스템의 성능 지표와 시스템 리소스 상태를 실시간으로 파악할 필요가 있었습니다. 기존에는 각각 분리된 도구들로 모니터링하여 통합적인 시각이 부족했고, 시스템 이상 상황 발생 시 빠른 대응이 어려웠습니다. 또한 회사 내부 디자인 시스템인 Saige Elements의 초기 구축 단계에서 실제 프로젝트 적용을 통한 검증이 필요한 상황이었습니다.",
       detailedDescription: {
@@ -372,7 +410,10 @@ export default toast;
           phase: "Phase 1: 수율 대시보드 개발 (2023.05-07)",
           description:
             "Vision 검사 결과를 기반으로 한 실시간 수율 통계 시각화 시스템을 구축했습니다. ECharts를 활용하여 시간대별 수율 변화, 결함 유형별 분포, 검사 처리량 등을 직관적으로 표시하는 대시보드를 개발했습니다.",
-          outcomes: ["ECharts 기반 실시간 수율 시각화 시스템 구축", "Vision 검사 결과의 직관적 시각화 달성"],
+          outcomes: [
+            "ECharts 기반 실시간 수율 시각화 시스템 구축",
+            "Vision 검사 결과의 직관적 시각화 달성",
+          ],
         },
         {
           phase: "Phase 2: 시스템 리소스 모니터링 개발 (2023.07-08)",
@@ -388,12 +429,29 @@ export default toast;
       period: "2023.05 - 2023.09",
       role: "프론트엔드 개발",
       frontendDevelopers: 1,
-      keywords: ["수율 시각화", "ECharts 활용 대시보드", "Prometheus 기반 리소스 모니터링"],
-      technologies: ["React", "TypeScript", "TanStack Query", "ECharts", "Prometheus", "MUI", "Saige Elements"],
+      keywords: [
+        "수율 시각화",
+        "ECharts 활용 대시보드",
+        "Prometheus 기반 리소스 모니터링",
+      ],
+      technologies: [
+        "React",
+        "TypeScript",
+        "TanStack Query",
+        "ECharts",
+        "Prometheus",
+        "MUI",
+        "Saige Elements",
+      ],
       technologyReasoning: [
         {
           category: "실시간 데이터 동기화 및 최적화된 재사용 UI 컴포넌트 설계",
-          technologies: ["TanStack Query", "Prometheus", "ECharts", "React.memo"],
+          technologies: [
+            "TanStack Query",
+            "Prometheus",
+            "ECharts",
+            "React.memo",
+          ],
           reasoning:
             "Prometheus 지표를 @tanstack/react-query의 refetchInterval을 활용해 주기적으로 폴링하여 최신 시스템 리소스를 실시간으로 동기화합니다. 각 리소스별(CPU, GPU, Memory 등) 커스텀 훅을 만들어 관심사를 분리했고, ECharts 기반의 공통 라인 및 파이 차트 컴포넌트를 정의해 시각화 로직의 재사용성과 UI 일관성을 확보했습니다. React.memo와 React Query의 캐싱 기능으로 불필요한 리렌더링을 방지하며, 리소스 메트릭 변화가 있을 때만 해당 컴포넌트가 업데이트되도록 하여 성능을 최적화했습니다.",
         },
@@ -401,7 +459,8 @@ export default toast;
       codeSnippets: [
         {
           title: "Prometheus 쿼리 유틸리티",
-          description: "OS별 시스템 리소스 메트릭을 수집하는 Prometheus 쿼리 정의",
+          description:
+            "OS별 시스템 리소스 메트릭을 수집하는 Prometheus 쿼리 정의",
           language: "typescript",
           filename: "utils/prometheus-queries.ts",
           code: `import { PCType } from '@/types'
@@ -586,8 +645,10 @@ export const useRangeMetrics = (instance: string, os: OS) => {
     {
       projectId: 5,
       companyId: "media-corpus",
-      title: "비윤리적 표현 평가 시스템 프론트엔드 개발 및 사용자 피드백 기반 개선",
-      image: "/placeholder.svg?height=400&width=800&text=비윤리적+표현+평가+시스템",
+      title:
+        "비윤리적 표현 평가 시스템 프론트엔드 개발 및 사용자 피드백 기반 개선",
+      image:
+        "/placeholder.svg?height=400&width=800&text=비윤리적+표현+평가+시스템",
       background:
         "비윤리적 표현 코퍼스 연구를 위한 웹 시스템 구축과 사용자 데이터 수집이 필요했습니다. 학술 연구 목적으로 다양한 텍스트에 대한 윤리성 평가 데이터를 수집해야 했고, 이를 위해 일반 사용자들이 쉽게 참여할 수 있는 웹 플랫폼이 필요한 상황이었습니다. 특히 연령과 성별 등 다양한 배경을 가진 사용자들의 의견을 균형있게 수집하는 것이 중요했습니다.",
       detailedDescription: {
@@ -634,12 +695,27 @@ export const useRangeMetrics = (instance: string, os: OS) => {
       period: "2021.12 - 2022.04",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: ["사용자 피드백 기반 개선", "실사용자 테스트", "데이터 수집 효율화", "단독 개발"],
-      technologies: ["React", "JavaScript", "Redux Toolkit", "Ant Design", "Webpack"],
+      keywords: [
+        "사용자 피드백 기반 개선",
+        "실사용자 테스트",
+        "데이터 수집 효율화",
+        "단독 개발",
+      ],
+      technologies: [
+        "React",
+        "JavaScript",
+        "Redux Toolkit",
+        "Ant Design",
+        "Webpack",
+      ],
       technologyReasoning: [
         {
           category: "Feature-based 모듈 아키텍처 도입",
-          technologies: ["Feature-based Architecture", "Redux Toolkit", "Duck Pattern"],
+          technologies: [
+            "Feature-based Architecture",
+            "Redux Toolkit",
+            "Duck Pattern",
+          ],
           reasoning:
             "각 기능을 독립적인 모듈로 구성하여 코드의 응집도를 높이고 결합도를 낮췄습니다. 각 feature 폴더 내에 관련된 컴포넌트, 상태 관리, 비동기 로직을 함께 배치하여 개발 효율성과 유지보수성을 향상시켰습니다. Redux Toolkit의 createSlice를 통해 액션 생성자, 리듀서, 액션 타입을 하나의 모듈에서 관리하고, Duck 패턴을 적용하여 각 기능별 slice를 디렉토리 단위로 구성했습니다.",
         },
@@ -653,7 +729,8 @@ export const useRangeMetrics = (instance: string, os: OS) => {
       codeSnippets: [
         {
           title: "Feature-based 모듈 구조",
-          description: "각 기능별로 독립적인 모듈을 구성하여 유지보수성과 확장성을 높인 폴더 구조",
+          description:
+            "각 기능별로 독립적인 모듈을 구성하여 유지보수성과 확장성을 높인 폴더 구조",
           language: "text",
           filename: "프로젝트 구조",
           code: `src/
@@ -704,9 +781,11 @@ export const useRangeMetrics = (instance: string, os: OS) => {
         },
         {
           title: "표현 평가 인터페이스",
-          description: "사용자가 텍스트의 윤리성을 평가할 수 있는 인터페이스 컴포넌트",
+          description:
+            "사용자가 텍스트의 윤리성을 평가할 수 있는 인터페이스 컴포넌트",
           language: "javascript",
-          filename: "features/evaluation-system/components/EvaluationInterface.jsx",
+          filename:
+            "features/evaluation-system/components/EvaluationInterface.jsx",
           code: `import React, { useState, useEffect } from 'react';
 import { Card, Button, Radio, Slider, Input, message, Progress } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
@@ -955,7 +1034,8 @@ export default evaluationSlice.reducer;`,
     {
       projectId: 6,
       companyId: "media-corpus",
-      title: "문장 라벨링 및 검토 시스템 프론트엔드 개발 및 사용자 테스트 기반 개선",
+      title:
+        "문장 라벨링 및 검토 시스템 프론트엔드 개발 및 사용자 테스트 기반 개선",
       image: "/placeholder.svg?height=400&width=800&text=문장+라벨링+시스템",
       background:
         "코퍼스 언어의 사회적 인식 분류를 위한 문장 라벨링 및 검토 시스템 개발과 사용자 테스트를 통한 품질 개선이 필요했습니다. 자연어 처리 연구를 위해 대량의 텍스트 데이터에 정확한 라벨을 부여하는 작업이 필요했고, 이를 효율적으로 수행할 수 있는 도구가 부족한 상황이었습니다. 특히 라벨링 작업의 일관성과 품질을 보장하면서도 작업 효율성을 높이는 것이 핵심 과제였습니다.",
@@ -1003,7 +1083,12 @@ export default evaluationSlice.reducer;`,
       period: "2021.05 - 2021.09",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: ["문장 라벨링 시스템", "사용자 테스트 기반 개선", "라벨링 편의성 최적화", "워크플로우 구축"],
+      keywords: [
+        "문장 라벨링 시스템",
+        "사용자 테스트 기반 개선",
+        "라벨링 편의성 최적화",
+        "워크플로우 구축",
+      ],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       technologyReasoning: [
         {
@@ -1174,7 +1259,8 @@ const menu = () => (
         },
         {
           title: "키워드 태그 렌더링 및 삭제 기능",
-          description: "라벨링된 키워드를 태그로 표시하고 삭제할 수 있는 UI 구현",
+          description:
+            "라벨링된 키워드를 태그로 표시하고 삭제할 수 있는 UI 구현",
           language: "javascript",
           filename: "components/CurrentWorkContent.jsx",
           code: `const resetKeyword = (record, deleteWord) => {
@@ -1236,11 +1322,13 @@ render: (text, record, _index) => {
     learningPlan: [
       {
         title: "React Native",
-        description: "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다.",
+        description:
+          "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다.",
       },
       {
         title: "컴퓨터 사이언스",
-        description: "백엔드 개발자와의 원활한 협업과 시스템 전반에 대한 이해도를 높이기 위해 학습하고 있습니다.",
+        description:
+          "백엔드 개발자와의 원활한 협업과 시스템 전반에 대한 이해도를 높이기 위해 학습하고 있습니다.",
       },
     ],
     futureVision: [
@@ -1285,4 +1373,4 @@ render: (text, record, _index) => {
         "코드를 작성하는 것을 넘어, 사용자의 문제를 해결하고 더 나은 경험을 제공하는 제품을 만들어 사회에 긍정적인 영향을 미치고 싶습니다. 지속적인 학습과 성장을 통해 기술과 비즈니스를 모두 이해하는 개발자가 되는 것이 저의 목표입니다.",
     },
   },
-}
+};
