@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import type { PortfolioData } from "./types";
+import type { PortfolioData } from "./types"
 
 export const mockPortfolioData: PortfolioData = {
   personalInfo: {
@@ -16,35 +16,29 @@ export const mockPortfolioData: PortfolioData = {
     mindset: [
       {
         title: "사용자 중심 사고",
-        description:
-          "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
+        description: "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
       },
       {
         title: "품질에 대한 집착",
-        description:
-          "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
+        description: "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
       },
       {
         title: "협업의 가치",
-        description:
-          "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
+        description: "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
       },
     ],
     capabilities: [
       {
         title: "문제 해결 능력",
-        description:
-          "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
+        description: "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
       },
       {
         title: "빠른 학습력",
-        description:
-          "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
+        description: "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
       },
       {
         title: "소통 능력",
-        description:
-          "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
+        description: "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
       },
     ],
   },
@@ -61,24 +55,10 @@ export const mockPortfolioData: PortfolioData = {
       "Saige Elements Design System",
       "React Hook Form",
     ],
-    stateManagement: [
-      "Zustand",
-      "TanStack Query",
-      "Redux",
-      "Redux Toolkit",
-      "Context API",
-      "MobX",
-    ],
+    stateManagement: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "Context API", "MobX"],
     architecture: ["Nx Monorepo", "Featured-Sliced Design", "Atomic Design"],
     devTools: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
-    collaborationTools: [
-      "Storybook",
-      "Figma",
-      "Notion",
-      "Jira",
-      "Swagger",
-      "Teams",
-    ],
+    collaborationTools: ["Storybook", "Figma", "Notion", "Jira", "Swagger", "Teams"],
   },
   companies: [
     {
@@ -110,11 +90,11 @@ export const mockPortfolioData: PortfolioData = {
       projectId: 1,
       companyId: "saige",
       title: "SAIGE VIMS 통합 모니터링 시스템 개발 (Monorepo 기반)",
+      image: "/placeholder.svg?height=400&width=800&text=SAIGE+VIMS+모니터링+시스템",
       background:
         "범용 IAD/SEG 기반 이상 감지와 고객별 커스터마이징을 모두 지원하기 위해 유연하면서도 확장 가능한 모니터링 시스템 아키텍처가 필요했습니다. 기존의 단일 애플리케이션 구조로는 여러 고객사의 다양한 요구사항을 효율적으로 대응하기 어려웠고, 코드 재사용성과 유지보수성에 한계가 있었습니다. 이를 해결하기 위해 NX를 사용한 모노레포 구조를 제안하고 구현했습니다.",
       detailedDescription: {
-        summary:
-          "공통 패키지 기반의 모노레포 아키텍처로 코드 재사용성과 개발 속도를 크게 향상시킨 프로젝트",
+        summary: "공통 패키지 기반의 모노레포 아키텍처로 코드 재사용성과 개발 속도를 크게 향상시킨 프로젝트",
         results:
           "세 개의 모니터링 시스템은 NX 기반 모노레포 아키텍처 내에서 각각 독립된 애플리케이션으로 구성되었으며, 공통된 UI 및 비즈니스 로직은 VIMS 패키지로 공유되었습니다. 이를 통해 도메인 단위의 FSD 패턴 기반 모듈화를 구현하고, 코드 재사용률 85% 이상을 달성하여 프로젝트 간 기능 전달과 유지보수가 용이해졌습니다. 그 결과, 일관된 UI/UX를 유지하면서도 신규 시스템 개발 기간을 평균 50% 이상 단축할 수 있었으며, 특히 권취 공정 프로젝트는 기존 1개월에서 2주로 개발 기간을 단축하는 성과를 이뤘습니다.",
       },
@@ -131,8 +111,7 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          phase:
-            "Phase 2: SAIGE VIMS IAD/SEG 통합 모니터링 시스템 (2025.03-05)",
+          phase: "Phase 2: SAIGE VIMS IAD/SEG 통합 모니터링 시스템 (2025.03-05)",
           description:
             "SAIGE VIMS 모니터링 시스템 개발 과정에서 모듈화된 기반을 재사용 가능한 내부 패키지인 VIMS로 점진적으로 마이그레이션했습니다. IAD와 SEG 모델을 모두 지원하는 통합 모니터링 시스템을 구축했습니다. IAD의 경우 ECharts를 통해 실시간 이상 데이터를 표시하고, SEG의 경우 클래스별로 감지된 결함의 실시간 윤곽선 값을 검색하여 Konva.js를 사용해 결함 영역을 렌더링했습니다. 이 과정에서 공통 컴포넌트와 비즈니스 로직을 VIMS 패키지로 추상화했습니다.",
           outcomes: [
@@ -157,13 +136,7 @@ export const mockPortfolioData: PortfolioData = {
       period: "2025.01 - 2025.07",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: [
-        "NX Monorepo",
-        "FSD 아키텍처",
-        "모듈화/재사용성 강화",
-        "실시간 모니터링",
-        "AI 시각화",
-      ],
+      keywords: ["NX Monorepo", "FSD 아키텍처", "모듈화/재사용성 강화", "실시간 모니터링", "AI 시각화"],
       technologies: [
         "React",
         "TypeScript",
@@ -249,6 +222,7 @@ export const mockPortfolioData: PortfolioData = {
       projectId: 2,
       companyId: "saige",
       title: "SAIGE SAFETY 제품 개발 - MVP부터 GS 인증까지",
+      image: "/placeholder.svg?height=400&width=800&text=SAIGE+SAFETY+안전+관리+시스템",
       background:
         "안전 관리 시장 진출을 위한 신사업 런칭 프로젝트로 시작되었습니다. 안전모 착용 감지와 화재·연기 감지 기능을 통합한 솔루션이 필요했고, 기존 시장에는 각각 분리된 솔루션들만 존재했습니다. 회사 차원에서 새로운 사업 영역 진출을 위한 MVP 개발이 시급한 상황이었으며, 이후 고객사 납품과 VOC를 통해 지속적인 개선이 이루어졌습니다. 최종적으로는 한국정보통신기술협회(TTA)의 GS 인증 심사를 위해 사용자 인터페이스의 일관성과 오류 처리 방식에 대한 개선이 필요했습니다.",
       detailedDescription: {
@@ -301,15 +275,7 @@ export const mockPortfolioData: PortfolioData = {
         "Toast 알림 체계 도입",
         "API 오류 처리 표준화",
       ],
-      technologies: [
-        "React",
-        "TypeScript",
-        "X-view-model",
-        "Konva.js",
-        "MUI",
-        "WebSocket",
-        "Axios",
-      ],
+      technologies: ["React", "TypeScript", "X-view-model", "Konva.js", "MUI", "WebSocket", "Axios"],
       technologyReasoning: [
         {
           category: "에러 핸들링 부재 상태에서 체계적인 예외 처리 구조 도입",
@@ -327,8 +293,7 @@ export const mockPortfolioData: PortfolioData = {
       codeSnippets: [
         {
           title: "개선된 Toast 알림 시스템",
-          description:
-            "Saige Elements 기반으로 개발자가 쉽게 사용할 수 있는 Toast 유틸리티",
+          description: "Saige Elements 기반으로 개발자가 쉽게 사용할 수 있는 Toast 유틸리티",
           language: "typescript",
           filename: "utils/toast.ts",
           code: `import { enqueueSnackbar } from '@saige/elements/lib/components';
@@ -389,198 +354,11 @@ export default toast;
         },
       ],
     },
-    //     {
-    //       projectId: 3,
-    //       companyId: "saige",
-    //       title: "SAIGE VAD 종합 개발 - 모니터링부터 개발자 도구까지",
-    //       background:
-    //         "입사 직후부터 시작된 VAD(Video Anomaly Detection) 관련 프로젝트들의 종합적인 개발 경험입니다. 처음에는 VAD 시스템의 모니터링 인터페이스 구축이 필요했고, 이후 AI 연구진들의 모델 학습 과정에서 수작업으로 진행되던 ROI 설정과 사이클 정의 작업을 자동화할 필요가 생겼습니다. 기존에는 AI 모델의 결과를 확인하기 위해 별도의 도구들을 사용해야 했고, 실시간 모니터링이 어려운 상황이었습니다. 또한 AI 연구진들이 매번 수동으로 비디오에서 관심 영역을 설정하고 정상 동작 패턴을 정의하는 작업이 비효율적이어서 이를 개선하는 도구가 필요했습니다.",
-    //       detailedDescription: {
-    //         summary:
-    //           "VAD 생태계 전반을 아우르는 워크플로우를 구축하고, 재사용 가능한 UI 컴포넌트와 내부 도구 개발을 통해 AI 팀의 작업 효율을 최대 80% 향상시킨 프로젝트",
-    //         results:
-    //           "VAD 생태계 전반에 걸친 종합적인 개발 경험을 통해 모니터링부터 AI 연구 도구까지 완전한 워크플로우를 구축했습니다. 입사 첫 프로젝트에서 개발한 atomic 컴포넌트들은 이후 VIMS, SAFETY 등 다른 제품군에서도 재사용되어 개발 효율성을 크게 높였습니다. v2에서는 AI 모델 학습 효율성을 개선하여 라벨링 시간을 60% 단축하고, 내부 도구 개선으로 AI 팀의 수작업을 80% 줄였습니다.",
-    //       },
-    //       projectPhases: [
-    //         {
-    //           phase: "Phase 1: VAD 모니터링 시스템 개발 (2022.06-08)",
-    //           description:
-    //             "입사 첫 프로젝트로 Konva.js를 활용해 VAD 모니터링 시스템의 핵심 atomic 컴포넌트를 개발했습니다. 비디오 플레이어, 이상 감지 결과 시각화, 실시간 알림 등의 기본 컴포넌트들을 atomic design 패턴에 따라 체계적으로 구축했습니다. MobX를 활용한 상태 관리와 TypeScript를 통한 타입 안정성을 확보했으며, 컴포넌트 간의 의존성을 최소화하여 재사용성을 높였습니다.",
-    //           outcomes: [
-    //             "Atomic Design 패턴 기반 재사용 가능한 컴포넌트 개발",
-    //             "Konva.js를 활용한 실시간 비디오 오버레이 시스템 구축",
-    //             "향후 모니터링 시스템 개발의 확장성 높은 기반 마련",
-    //             "팀 내 컴포넌트 설계 역량 인정으로 이후 UI 아키텍처 설계 주도",
-    //           ],
-    //         },
-    //         {
-    //           phase: "Phase 2: VAD 학습용 Developer 툴 v1 개발 (2022.11-12)",
-    //           description:
-    //             "프로젝트 생성, ROI 설정, 사이클 정의 기능을 제공하는 웹 기반 도구를 개발했습니다. MobX를 활용한 상태 관리와 Konva.js를 이용한 캔버스 기반 ROI 설정 인터페이스를 구현했습니다. 비디오 플레이어와 연동하여 특정 프레임에서 ROI를 설정하고, 정상 동작 사이클을 정의할 수 있는 기능을 제공했습니다.",
-    //           outcomes: [
-    //             "프로젝트 생성 및 관리 시스템 구축",
-    //             "Konva.js 기반 ROI 설정 인터페이스 구현",
-    //             "비디오 플레이어 연동 사이클 정의 기능 개발",
-    //             "AI 연구진의 수작업 프로세스 자동화",
-    //           ],
-    //         },
-    //         {
-    //           phase: "Phase 3: 사용자 피드백 수집 및 개선점 도출 (2023.01-2024.01)",
-    //           description:
-    //             "AI 연구소의 VOC를 체계적으로 수집하고 분석했습니다. 주요 문제점으로는 복잡한 파일 업로드 프로세스, 직관적이지 않은 ROI 설정 인터페이스, 사이클 정의 기능의 부족함이 확인되었습니다. 이를 바탕으로 v2 개발을 위한 요구사항을 정의하고 새로운 아키텍처를 설계했습니다.",
-    //           outcomes: [
-    //             "AI 연구소 VOC 체계적 수집 및 분석",
-    //             "파일 업로드 프로세스 복잡성 문제 확인",
-    //             "ROI 설정 인터페이스 직관성 부족 파악",
-    //             "v2 개발 요구사항 정의 및 아키텍처 설계",
-    //           ],
-    //         },
-    //         {
-    //           phase: "Phase 4: VAD 학습용 Developer 툴 v2 개발 (2024.02-06)",
-    //           description:
-    //             "프로젝트/데이터셋 아키텍처를 설계하고 여러 프로젝트 간 데이터셋을 공유할 수 있는 구조를 구축했습니다. 브라우저 보안 제한을 극복하기 위해 로컬 파일 경로를 전달하고 서버를 통해 메타데이터를 파싱하는 혁신적인 시스템을 설계 및 구현했습니다. 드래그 앤 드롭 방식의 직관적인 파일 업로드 인터페이스를 개발하여 사용성을 대폭 개선했습니다.",
-    //           outcomes: [
-    //             "프로젝트/데이터셋 공유 아키텍처 구축",
-    //             "브라우저 보안 제한 극복 파일 처리 시스템 구현",
-    //             "드래그 앤 드롭 방식의 직관적 파일 업로드 개발",
-    //             "AI 학습용 전처리 사용성 대폭 개선",
-    //           ],
-    //         },
-    //       ],
-    //       period: "2022.06 - 2024.06",
-    //       role: "프론트엔드 개발",
-    //       frontendDevelopers: 1,
-    //       keywords: [
-    //         "VAD 생태계 종합 개발",
-    //         "모니터링 시스템 구축",
-    //         "AI 연구 도구 개발",
-    //         "사용자 피드백 기반 개선",
-    //         "브라우저 보안 제한 극복",
-    //       ],
-    //       technologies: [
-    //         "React",
-    //         "TypeScript",
-    //         "Context API",
-    //         "Konva.js",
-    //         "React Hook Form",
-    //         "MUI",
-    //         "MobX",
-    //       ],
-    //       technologyReasoning: [
-    //         {
-    //           category: "Atomic Design 패턴 기반 컴포넌트 설계",
-    //           technologies: ["React", "TypeScript", "Atomic Design"],
-    //           reasoning:
-    //             "입사 첫 프로젝트에서 향후 다양한 모니터링 시스템에서 활용할 수 있는 확장성 높은 UI 기반을 마련하기 위해 Atomic Design 패턴을 적용했습니다. 비디오 플레이어, 폴리곤, 사각형 등의 기본 컴포넌트들을 구축하여 재사용성을 극대화했습니다.",
-    //         },
-    //       ],
-    //       codeSnippets: [
-    //         {
-    //           title: "Atomic 비디오 플레이어 컴포넌트",
-    //           description:
-    //             "재사용 가능한 기본 비디오 플레이어 컴포넌트 (모니터링 시스템)",
-    //           language: "typescript",
-    //           filename: "components/atoms/VideoPlayer.tsx",
-    //           code: `import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
-
-    // interface VideoPlayerProps {
-    //   src: string;
-    //   width?: number;
-    //   height?: number;
-    //   autoPlay?: boolean;
-    //   loop?: boolean;
-    //   muted?: boolean;
-    //   onTimeUpdate?: (currentTime: number) => void;
-    //   onLoadedMetadata?: (duration: number) => void;
-    //   className?: string;
-    // }
-
-    // export interface VideoPlayerRef {
-    //   play: () => void;
-    //   pause: () => void;
-    //   seek: (time: number) => void;
-    //   getCurrentTime: () => number;
-    //   getDuration: () => number;
-    // }
-
-    // export const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(({
-    //   src,
-    //   width = 640,
-    //   height = 480,
-    //   autoPlay = false,
-    //   loop = false,
-    //   muted = true,
-    //   onTimeUpdate,
-    //   onLoadedMetadata,
-    //   className = ''
-    // }, ref) => {
-    //   const videoRef = useRef<HTMLVideoElement>(null);
-
-    //   useImperativeHandle(ref, () => ({
-    //     play: () => {
-    //       videoRef.current?.play();
-    //     },
-    //     pause: () => {
-    //       videoRef.current?.pause();
-    //     },
-    //     seek: (time: number) => {
-    //       if (videoRef.current) {
-    //         videoRef.current.currentTime = time;
-    //       }
-    //     },
-    //     getCurrentTime: () => {
-    //       return videoRef.current?.currentTime || 0;
-    //     },
-    //     getDuration: () => {
-    //       return videoRef.current?.duration || 0;
-    //     }
-    //   }));
-
-    //   useEffect(() => {
-    //     const video = videoRef.current;
-    //     if (!video) return;
-
-    //     const handleTimeUpdate = () => {
-    //       onTimeUpdate?.(video.currentTime);
-    //     };
-
-    //     const handleLoadedMetadata = () => {
-    //       onLoadedMetadata?.(video.duration);
-    //     };
-
-    //     video.addEventListener('timeupdate', handleTimeUpdate);
-    //     video.addEventListener('loadedmetadata', handleLoadedMetadata);
-
-    //     return () => {
-    //       video.removeEventListener('timeupdate', handleTimeUpdate);
-    //       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-    //     };
-    //   }, [onTimeUpdate, onLoadedMetadata]);
-
-    //   return (
-    //     <video
-    //       ref={videoRef}
-    //       src={src}
-    //       width={width}
-    //       height={height}
-    //       autoPlay={autoPlay}
-    //       loop={loop}
-    //       muted={muted}
-    //       className={className}
-    //       style={{ display: 'block' }}
-    //     />
-    //   );
-    // });
-
-    // VideoPlayer.displayName = 'VideoPlayer';`,
-    //         },
-    //       ],
-    //     },
     {
       projectId: 4,
       companyId: "saige",
-      title:
-        "SAIGE VISION 기반 결함 검출 수율 대시보드 및 시스템 리소스 모니터링 개발",
+      title: "SAIGE VISION 기반 결함 검출 수율 대시보드 및 시스템 리소스 모니터링 개발",
+      image: "/placeholder.svg?height=400&width=800&text=SAIGE+VISION+수율+대시보드",
       background:
         "생산 현장에서 Vision 검사 시스템의 성능 지표와 시스템 리소스 상태를 실시간으로 파악할 필요가 있었습니다. 기존에는 각각 분리된 도구들로 모니터링하여 통합적인 시각이 부족했고, 시스템 이상 상황 발생 시 빠른 대응이 어려웠습니다. 또한 회사 내부 디자인 시스템인 Saige Elements의 초기 구축 단계에서 실제 프로젝트 적용을 통한 검증이 필요한 상황이었습니다.",
       detailedDescription: {
@@ -594,10 +372,7 @@ export default toast;
           phase: "Phase 1: 수율 대시보드 개발 (2023.05-07)",
           description:
             "Vision 검사 결과를 기반으로 한 실시간 수율 통계 시각화 시스템을 구축했습니다. ECharts를 활용하여 시간대별 수율 변화, 결함 유형별 분포, 검사 처리량 등을 직관적으로 표시하는 대시보드를 개발했습니다.",
-          outcomes: [
-            "ECharts 기반 실시간 수율 시각화 시스템 구축",
-            "Vision 검사 결과의 직관적 시각화 달성",
-          ],
+          outcomes: ["ECharts 기반 실시간 수율 시각화 시스템 구축", "Vision 검사 결과의 직관적 시각화 달성"],
         },
         {
           phase: "Phase 2: 시스템 리소스 모니터링 개발 (2023.07-08)",
@@ -613,42 +388,122 @@ export default toast;
       period: "2023.05 - 2023.09",
       role: "프론트엔드 개발",
       frontendDevelopers: 1,
-      keywords: [
-        "수율 시각화",
-        "ECharts 활용 대시보드",
-        "Prometheus 기반 리소스 모니터링",
-      ],
-      technologies: [
-        "React",
-        "TypeScript",
-        "TanStack Query",
-        "ECharts",
-        "Prometheus",
-        "MUI",
-        "Saige Elements",
-      ],
+      keywords: ["수율 시각화", "ECharts 활용 대시보드", "Prometheus 기반 리소스 모니터링"],
+      technologies: ["React", "TypeScript", "TanStack Query", "ECharts", "Prometheus", "MUI", "Saige Elements"],
       technologyReasoning: [
         {
           category: "실시간 데이터 동기화 및 최적화된 재사용 UI 컴포넌트 설계",
-          technologies: [
-            "TanStack Query",
-            "Prometheus",
-            "ECharts",
-            "React.memo",
-          ],
+          technologies: ["TanStack Query", "Prometheus", "ECharts", "React.memo"],
           reasoning:
             "Prometheus 지표를 @tanstack/react-query의 refetchInterval을 활용해 주기적으로 폴링하여 최신 시스템 리소스를 실시간으로 동기화합니다. 각 리소스별(CPU, GPU, Memory 등) 커스텀 훅을 만들어 관심사를 분리했고, ECharts 기반의 공통 라인 및 파이 차트 컴포넌트를 정의해 시각화 로직의 재사용성과 UI 일관성을 확보했습니다. React.memo와 React Query의 캐싱 기능으로 불필요한 리렌더링을 방지하며, 리소스 메트릭 변화가 있을 때만 해당 컴포넌트가 업데이트되도록 하여 성능을 최적화했습니다.",
         },
       ],
       codeSnippets: [
         {
-          title: "Prometheus 메트릭 수집",
+          title: "Prometheus 쿼리 유틸리티",
+          description: "OS별 시스템 리소스 메트릭을 수집하는 Prometheus 쿼리 정의",
+          language: "typescript",
+          filename: "utils/prometheus-queries.ts",
+          code: `import { PCType } from '@/types'
+import dayjs from 'dayjs'
+
+export const FIVE_MINUTES = 300
+export const ONE_DAY = 86400
+
+export const getNearestFiveMinutesTime = () => {
+  const now = dayjs()
+  const minutes = now.minute()
+  if (minutes % 10 === 0 || minutes % 10 === 5) {
+    return now.second(0)
+  } else if (minutes % 10 < 5) {
+    return now.minute(minutes - (minutes % 10)).second(0)
+  } else if (minutes % 10 < 10) {
+    return now.minute(minutes - (minutes % 10) + 5).second(0)
+  }
+}
+
+export type OS = 'Ubuntu' | 'Windows'
+
+export type InstantQueries = {
+  [key in OS]: {
+    cpuCores: string
+    cpuMemoryTotal: string
+    cpuMemoryUsage: string
+    cpuMemoryUsed: string
+    cpuUsage: string
+  }
+}
+
+export type RangeQueries = {
+  [key in OS]: {
+    networkInput: string
+    networkOutput: string
+    cpuUsage: string
+    diskUsage: string
+    cpuMemoryUsage: string
+  }
+}
+
+export const instantQueries = (instance: string, os: OS) => {
+  const DURATION = '1m'
+  const queries: InstantQueries = {
+    Ubuntu: {
+      cpuCores: \`count(node_cpu_seconds_total{mode="idle", instance ='\${instance}'}) without (cpu,mode)\`,
+      cpuMemoryTotal: \`(node_memory_MemTotal_bytes{instance='\${instance}'})\`,
+      cpuMemoryUsage: \`100 - ((node_memory_MemFree_bytes{instance='\${instance}'}+node_memory_Cached_bytes{instance='\${instance}'}+node_memory_Buffers_bytes{instance='\${instance}'}+node_memory_SReclaimable_bytes{instance='\${instance}'} ) / (node_memory_MemTotal_bytes{instance='\${instance}'} >0) * 100)\`,
+      cpuMemoryUsed: \`(node_memory_MemTotal_bytes{instance='\${instance}'} - (node_memory_MemFree_bytes{instance='\${instance}'} + node_memory_Cached_bytes{instance='\${instance}'} + node_memory_Buffers_bytes{instance='\${instance}'} + node_memory_SReclaimable_bytes{instance='\${instance}'})) >= 0 or (node_memory_MemTotal_bytes{instance='\${instance}'} - node_memory_MemFree_bytes{instance='\${instance}'})\`,
+      cpuUsage: \`clamp_min(100 - avg by (instance) (rate(node_cpu_seconds_total{mode='idle', instance = '\${instance}'}[\${DURATION}])) * 100, 0)\`,
+    },
+    Windows: {
+      cpuCores: \`windows_cs_logical_processors{instance='\${instance}'}\`,
+      cpuMemoryTotal: \`windows_cs_physical_memory_bytes{instance='\${instance}'}\`,
+      cpuMemoryUsage: \`clamp_min(100 - (windows_os_physical_memory_free_bytes{instance='\${instance}'} / windows_cs_physical_memory_bytes{instance='\${instance}'} * 100 ), 0)\`,
+      cpuMemoryUsed: \`clamp_min(windows_cs_physical_memory_bytes{instance='\${instance}'} - windows_os_physical_memory_free_bytes{instance='\${instance}'},0)\`,
+      cpuUsage: \`clamp_min(100 - avg by (instance) (rate(windows_cpu_time_total{mode='idle', instance = '\${instance}'}[\${DURATION}])) * 100,0)\`,
+    },
+  }
+  return queries[os]
+}
+
+export const rangeQueries = (instance: string, os: OS = 'Ubuntu') => {
+  const DURATION = '5m'
+  const common = {
+    gpuUsage: \`(avg by (instance, uuid) (nvidia_smi_utilization_gpu_ratio{instance='\${instance}'} * 100)) * on (instance, uuid) group_left(name, driver_version) nvidia_smi_gpu_info\`,
+    gpuMemoryUsage: \`(clamp_min(avg by (instance, uuid) (100 - (nvidia_smi_memory_free_bytes{instance='\${instance}'} / (nvidia_smi_memory_total_bytes{instance='\${instance}'} >0) *100 )),0))  * on (instance, uuid) group_left(name, driver_version) nvidia_smi_gpu_info\`,
+  }
+
+  const queries: RangeQueries = {
+    Ubuntu: {
+      networkInput: \`sum by(instance, device) (rate(node_network_receive_bytes_total{instance="\${instance}"}[\${DURATION}]))\`,
+      networkOutput: \`sum by(instance, device) (rate(node_network_transmit_bytes_total{instance='\${instance}'}[\${DURATION}]))\`,
+      cpuUsage: \`clamp_min(100 - avg by (instance) (rate(node_cpu_seconds_total{mode='idle', instance = '\${instance}'}[\${DURATION}])) * 100,0)\`,
+      diskUsage: \`100 - ((sum by (instance, device) (node_filesystem_avail_bytes{instance='\${instance}'} > 0) / sum by (instance, device) (node_filesystem_size_bytes{instance='\${instance}'}) > 0) * 100)\`,
+      cpuMemoryUsage: \`clamp_min(100 - ((node_memory_MemFree_bytes{instance='\${instance}'}+node_memory_Cached_bytes{instance='\${instance}'}+node_memory_Buffers_bytes{instance='\${instance}'}+node_memory_SReclaimable_bytes{instance='\${instance}'} ) / (node_memory_MemTotal_bytes{instance='\${instance}'} >0) * 100), 0)\`,
+    },
+    Windows: {
+      networkInput: \`sum by(instance, nic) (rate(windows_net_bytes_received_total{instance='\${instance}'}[\${DURATION}]))\`,
+      networkOutput: \`sum by(instance, nic) (rate(windows_net_bytes_sent_total{instance='\${instance}'}[\${DURATION}]))\`,
+      cpuUsage: \`100 - avg by (instance) (rate(windows_cpu_time_total{mode='idle', instance = '\${instance}'}[\${DURATION}])) * 100\`,
+      diskUsage: \`clamp_min(100 - ((sum by (instance, volume) (windows_logical_disk_free_bytes{instance='\${instance}', volume=~".:"} > 0) / sum by (instance, volume) (windows_logical_disk_size_bytes{instance='\${instance}', volume=~".:"}) > 0) * 100),0)\`,
+      cpuMemoryUsage: \`100 - (windows_os_physical_memory_free_bytes{instance='\${instance}'} / windows_cs_physical_memory_bytes{instance='\${instance}'} * 100 )\`,
+    },
+  }
+
+  return {
+    ...queries[os],
+    ...common,
+  }
+}`,
+        },
+        {
+          title: "Prometheus 메트릭 수집 훅",
           description: "시스템 리소스 메트릭을 실시간으로 수집하는 커스텀 훅",
           language: "typescript",
           filename: "hooks/usePrometheusMetrics.ts",
           code: `import { useQuery } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
 import { prometheusConfigState } from '../store/prometheus';
+import { instantQueries, rangeQueries, OS } from '../utils/prometheus-queries';
 
 interface MetricData {
   metric: Record<string, string>;
@@ -686,28 +541,44 @@ export const usePrometheusMetrics = (query: string, interval: number = 5000) => 
 };
 
 // 시스템 리소스 메트릭 훅들
-export const useCPUMetrics = () => {
-  return usePrometheusMetrics(
-    '100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)'
-  );
+export const useSystemMetrics = (instance: string, os: OS) => {
+  const queries = instantQueries(instance, os);
+  
+  const cpuCores = usePrometheusMetrics(queries.cpuCores);
+  const cpuMemoryTotal = usePrometheusMetrics(queries.cpuMemoryTotal);
+  const cpuMemoryUsage = usePrometheusMetrics(queries.cpuMemoryUsage);
+  const cpuMemoryUsed = usePrometheusMetrics(queries.cpuMemoryUsed);
+  const cpuUsage = usePrometheusMetrics(queries.cpuUsage);
+
+  return {
+    cpuCores,
+    cpuMemoryTotal,
+    cpuMemoryUsage,
+    cpuMemoryUsed,
+    cpuUsage,
+  };
 };
 
-export const useMemoryMetrics = () => {
-  return usePrometheusMetrics(
-    '(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100'
-  );
-};
+export const useRangeMetrics = (instance: string, os: OS) => {
+  const queries = rangeQueries(instance, os);
+  
+  const networkInput = usePrometheusMetrics(queries.networkInput);
+  const networkOutput = usePrometheusMetrics(queries.networkOutput);
+  const cpuUsage = usePrometheusMetrics(queries.cpuUsage);
+  const diskUsage = usePrometheusMetrics(queries.diskUsage);
+  const cpuMemoryUsage = usePrometheusMetrics(queries.cpuMemoryUsage);
+  const gpuUsage = usePrometheusMetrics(queries.gpuUsage);
+  const gpuMemoryUsage = usePrometheusMetrics(queries.gpuMemoryUsage);
 
-export const useGPUMetrics = () => {
-  return usePrometheusMetrics(
-    'nvidia_gpu_utilization_gpu'
-  );
-};
-
-export const useDiskIOMetrics = () => {
-  return usePrometheusMetrics(
-    'rate(node_disk_io_time_seconds_total[5m]) * 100'
-  );
+  return {
+    networkInput,
+    networkOutput,
+    cpuUsage,
+    diskUsage,
+    cpuMemoryUsage,
+    gpuUsage,
+    gpuMemoryUsage,
+  };
 };`,
         },
       ],
@@ -715,8 +586,8 @@ export const useDiskIOMetrics = () => {
     {
       projectId: 5,
       companyId: "media-corpus",
-      title:
-        "비윤리적 표현 평가 시스템 프론트엔드 개발 및 사용자 피드백 기반 개선",
+      title: "비윤리적 표현 평가 시스템 프론트엔드 개발 및 사용자 피드백 기반 개선",
+      image: "/placeholder.svg?height=400&width=800&text=비윤리적+표현+평가+시스템",
       background:
         "비윤리적 표현 코퍼스 연구를 위한 웹 시스템 구축과 사용자 데이터 수집이 필요했습니다. 학술 연구 목적으로 다양한 텍스트에 대한 윤리성 평가 데이터를 수집해야 했고, 이를 위해 일반 사용자들이 쉽게 참여할 수 있는 웹 플랫폼이 필요한 상황이었습니다. 특히 연령과 성별 등 다양한 배경을 가진 사용자들의 의견을 균형있게 수집하는 것이 중요했습니다.",
       detailedDescription: {
@@ -763,26 +634,14 @@ export const useDiskIOMetrics = () => {
       period: "2021.12 - 2022.04",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: [
-        "사용자 피드백 기반 개선",
-        "실사용자 테스트",
-        "데이터 수집 효율화",
-        "단독 개발",
-      ],
-      technologies: [
-        "React",
-        "JavaScript",
-        "Redux Toolkit",
-        "Ant Design",
-        "Webpack",
-      ],
+      keywords: ["사용자 피드백 기반 개선", "실사용자 테스트", "데이터 수집 효율화", "단독 개발"],
+      technologies: ["React", "JavaScript", "Redux Toolkit", "Ant Design", "Webpack"],
       technologyReasoning: [
         {
-          category:
-            "복잡한 상태 관리를 단순화하고 관심사 분리 강화를 위한 Redux Toolkit 및 Duck 패턴 도입",
-          technologies: ["Redux Toolkit", "Duck Pattern"],
+          category: "Feature-based 모듈 아키텍처 도입",
+          technologies: ["Feature-based Architecture", "Redux Toolkit", "Duck Pattern"],
           reasoning:
-            "초기 Redux 사용 시 액션/리듀서/타입이 분산되어 있어 코드량이 많고 관리가 어려웠습니다. Redux Toolkit의 createSlice를 통해 액션 생성자, 리듀서, 액션 타입을 하나의 모듈에서 관리하고, Duck 패턴을 적용하여 각 기능별 slice를 디렉토리 단위로 구성했습니다. 이를 통해 관심사 명확화 및 재사용성이 향상되었고, 결과적으로 상태 관리 구조가 간결해지고 새로운 기능 도입 및 유지보수가 쉬워졌습니다.",
+            "각 기능을 독립적인 모듈로 구성하여 코드의 응집도를 높이고 결합도를 낮췄습니다. 각 feature 폴더 내에 관련된 컴포넌트, 상태 관리, 비동기 로직을 함께 배치하여 개발 효율성과 유지보수성을 향상시켰습니다. Redux Toolkit의 createSlice를 통해 액션 생성자, 리듀서, 액션 타입을 하나의 모듈에서 관리하고, Duck 패턴을 적용하여 각 기능별 slice를 디렉토리 단위로 구성했습니다.",
         },
         {
           category: "UI 설계 및 인터랙션",
@@ -791,18 +650,67 @@ export const useDiskIOMetrics = () => {
             "사용자 혼동을 줄이고 정확한 평가를 유도하는 3단 UI 구조를 도입했습니다. Paragraph Section(평가 대상 문장과 참고 문장을 시각적으로 구분, 평가할 문장에서 핵심 표현 하이라이트 처리), Subtitle Section(평가 데이터의 메타 정보 표시, 이전/다음 문장 이동 및 평가 진행률 시각화), Form Section(라디오 버튼을 통한 평가 입력으로 중복 선택 방지, 평가 항목 3종 모두 입력되어야 제출 가능, 6가지 유형 외 표현은 pass 기능 제공)으로 구성하여 평가 효율성과 데이터 정확도를 고려했습니다.",
         },
       ],
-
       codeSnippets: [
         {
+          title: "Feature-based 모듈 구조",
+          description: "각 기능별로 독립적인 모듈을 구성하여 유지보수성과 확장성을 높인 폴더 구조",
+          language: "text",
+          filename: "프로젝트 구조",
+          code: `src/
+├── features/
+│   ├── current-work/           # 현재 작업 관리 기능
+│   │   ├── components/         # 컴포넌트들
+│   │   │   ├── WorkList.jsx
+│   │   │   ├── WorkItem.jsx
+│   │   │   └── WorkFilter.jsx
+│   │   ├── saga.js            # 비동기 로직 처리
+│   │   ├── slice.js           # Redux 상태 관리
+│   │   └── index.js           # 모듈 진입점
+│   │
+│   ├── sentence-labeling/      # 문장 라벨링 기능
+│   │   ├── components/
+│   │   │   ├── SentenceTable.jsx
+│   │   │   ├── LabelingMenu.jsx
+│   │   │   └── KeywordTag.jsx
+│   │   ├── saga.js
+│   │   ├── slice.js
+│   │   └── index.js
+│   │
+│   ├── user-feedback/          # 사용자 피드백 기능
+│   │   ├── components/
+│   │   │   ├── FeedbackForm.jsx
+│   │   │   └── FeedbackList.jsx
+│   │   ├── saga.js
+│   │   ├── slice.js
+│   │   └── index.js
+│   │
+│   └── evaluation-system/      # 평가 시스템 기능
+│       ├── components/
+│       │   ├── EvaluationPanel.jsx
+│       │   └── ResultChart.jsx
+│       ├── saga.js
+│       ├── slice.js
+│       └── index.js
+│
+├── shared/                     # 공통 컴포넌트 및 유틸
+│   ├── components/
+│   ├── utils/
+│   └── constants/
+│
+└── store/                      # Redux 스토어 설정
+    ├── rootSaga.js
+    ├── rootReducer.js
+    └── store.js`,
+        },
+        {
           title: "표현 평가 인터페이스",
-          description:
-            "사용자가 텍스트의 윤리성을 평가할 수 있는 인터페이스 컴포넌트",
+          description: "사용자가 텍스트의 윤리성을 평가할 수 있는 인터페이스 컴포넌트",
           language: "javascript",
-          filename: "components/EvaluationInterface.jsx",
+          filename: "features/evaluation-system/components/EvaluationInterface.jsx",
           code: `import React, { useState, useEffect } from 'react';
 import { Card, Button, Radio, Slider, Input, message, Progress } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { submitEvaluation, fetchNextText } from '../store/evaluationSlice';
+import { submitEvaluation, fetchNextText } from '../slice';
 
 const { TextArea } = Input;
 
@@ -823,7 +731,7 @@ const EvaluationInterface = () => {
     { value: 'violence', label: '폭력적 표현' },
     { value: 'sexual', label: '성적 표현' },
     { value: 'profanity', label: '욕설/비속어' },
-    { value: 'other', label: '기타' }
+    { value: 'other', label: '기타 비윤리적 표현' }
   ];
 
   useEffect(() => {
@@ -930,18 +838,130 @@ const EvaluationInterface = () => {
 
 export default EvaluationInterface;`,
         },
+        {
+          title: "Redux Toolkit Slice 구성",
+          description: "평가 시스템의 상태 관리를 위한 Redux Toolkit slice",
+          language: "javascript",
+          filename: "features/evaluation-system/slice.js",
+          code: `import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { evaluationAPI } from '../../../shared/api/evaluation';
+
+// 비동기 액션들
+export const fetchNextText = createAsyncThunk(
+  'evaluation/fetchNextText',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await evaluationAPI.getNextText();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const submitEvaluation = createAsyncThunk(
+  'evaluation/submitEvaluation',
+  async (evaluationData, { rejectWithValue }) => {
+    try {
+      const response = await evaluationAPI.submitEvaluation(evaluationData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const fetchProgress = createAsyncThunk(
+  'evaluation/fetchProgress',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await evaluationAPI.getProgress();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+const initialState = {
+  currentText: null,
+  progress: {
+    completed: 0,
+    total: 0,
+    percentage: 0
+  },
+  isLoading: false,
+  error: null,
+  submissionHistory: []
+};
+
+const evaluationSlice = createSlice({
+  name: 'evaluation',
+  initialState,
+  reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
+    resetEvaluation: (state) => {
+      state.currentText = null;
+      state.error = null;
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      // fetchNextText
+      .addCase(fetchNextText.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchNextText.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentText = action.payload;
+      })
+      .addCase(fetchNextText.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload?.message || '텍스트를 불러오는데 실패했습니다.';
+      })
+      
+      // submitEvaluation
+      .addCase(submitEvaluation.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(submitEvaluation.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.submissionHistory.push(action.payload);
+        // 진행률 업데이트
+        state.progress.completed += 1;
+        state.progress.percentage = Math.round((state.progress.completed / state.progress.total) * 100);
+      })
+      .addCase(submitEvaluation.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload?.message || '평가 제출에 실패했습니다.';
+      })
+      
+      // fetchProgress
+      .addCase(fetchProgress.fulfilled, (state, action) => {
+        state.progress = action.payload;
+      });
+  }
+});
+
+export const { clearError, resetEvaluation } = evaluationSlice.actions;
+export default evaluationSlice.reducer;`,
+        },
       ],
     },
     {
       projectId: 6,
       companyId: "media-corpus",
-      title:
-        "문장 라벨링 및 검토 시스템 프론트엔드 개발 및 사용자 테스트 기반 개선",
+      title: "문장 라벨링 및 검토 시스템 프론트엔드 개발 및 사용자 테스트 기반 개선",
+      image: "/placeholder.svg?height=400&width=800&text=문장+라벨링+시스템",
       background:
         "코퍼스 언어의 사회적 인식 분류를 위한 문장 라벨링 및 검토 시스템 개발과 사용자 테스트를 통한 품질 개선이 필요했습니다. 자연어 처리 연구를 위해 대량의 텍스트 데이터에 정확한 라벨을 부여하는 작업이 필요했고, 이를 효율적으로 수행할 수 있는 도구가 부족한 상황이었습니다. 특히 라벨링 작업의 일관성과 품질을 보장하면서도 작업 효율성을 높이는 것이 핵심 과제였습니다.",
       detailedDescription: {
         summary:
-          "문장 라벨링 시스템을 단독 개발하고 사용자 피드백을 반영해 인터페이스를 개선, 라벨링 정확도와 속도를 향상시켜 400,000건 이상의 고품질 데이터를 수집한 프로젝트",
+          "문장 라벨링 시스템을 단독 개발하고 사용자 피드백을 반영해 인터페이스를 개선, 라벨링 정확도와 속도를 향상시켜 50,000건 이상의 고품질 데이터를 수집한 프로젝트",
         results:
           "사용자 중심의 인터페이스 개선을 통해 라벨링 정확도와 속도를 향상시켰습니다. 피드백 루프 기반 개발과 반복적 개선 경험을 획득했으며, 사용자 관점에서 제품 완성도 향상을 주도했습니다. 라벨링 작업 시간이 평균 40% 단축되었고, 라벨링 일관성이 85%에서 95%로 향상되었습니다. 최종적으로 50,000건 이상의 고품질 라벨링 데이터를 성공적으로 수집했습니다.",
       },
@@ -983,12 +1003,7 @@ export default EvaluationInterface;`,
       period: "2021.05 - 2021.09",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: [
-        "문장 라벨링 시스템",
-        "사용자 테스트 기반 개선",
-        "라벨링 편의성 최적화",
-        "워크플로우 구축",
-      ],
+      keywords: ["문장 라벨링 시스템", "사용자 테스트 기반 개선", "라벨링 편의성 최적화", "워크플로우 구축"],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       technologyReasoning: [
         {
@@ -1016,177 +1031,203 @@ export default EvaluationInterface;`,
             "긴 문서 데이터에 대해 무한 스크롤 기반 지연 로딩을 적용했습니다. 초기 로딩 시 30개 문장만 렌더링하여 초기 성능을 최적화하고, 사용자가 하단으로 스크롤할 경우 다음 페이지 데이터를 비동기로 fetch했습니다. IntersectionObserver 기반 무한 스크롤 방식으로 UX 및 렌더링 성능을 개선했습니다.",
         },
       ],
-
       codeSnippets: [
         {
-          title: "문장 라벨링 인터페이스",
-          description: "텍스트 선택과 라벨링을 위한 인터랙티브 인터페이스",
+          title: "키워드 라벨링 핵심 로직",
+          description: "텍스트 선택 및 키워드 저장 프로세스를 구현한 실제 코드",
           language: "javascript",
-          filename: "components/SentenceLabelingInterface.jsx",
-          code: `import React, { useState, useRef, useEffect } from 'react';
-import { Card, Button, Tag, Dropdown, Menu, message } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { submitLabeling, fetchNextSentence } from '../store/labelingSlice';
+          filename: "components/CurrentWorkContent.jsx",
+          code: `const saveKeyword = (record, forbidden) => {
+  // Select Keywords Part
+  const sel = window.getSelection();
+  if (!sel) {
+    console.log('Nothing is selected.');
+    return;
+  }
 
-const SentenceLabelingInterface = () => {
-  const dispatch = useDispatch();
-  const { currentSentence, labelCategories, progress } = useSelector(state => state.labeling);
-  const [selectedText, setSelectedText] = useState('');
-  const [selectedRange, setSelectedRange] = useState(null);
-  const [contextMenuVisible, setContextMenuVisible] = useState(false);
-  const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
-  const [appliedLabels, setAppliedLabels] = useState([]);
-  const textRef = useRef(null);
-
-  const handleTextSelection = () => {
-    const selection = window.getSelection();
-    if (selection.rangeCount > 0 && selection.toString().trim()) {
-      const range = selection.getRangeAt(0);
-      const selectedText = selection.toString();
-      
-      setSelectedText(selectedText);
-      setSelectedRange({
-        startOffset: range.startOffset,
-        endOffset: range.endOffset,
-        startContainer: range.startContainer,
-        endContainer: range.endContainer
-      });
-      
-      const rect = range.getBoundingClientRect();
-      setContextMenuPosition({
-        x: rect.left + rect.width / 2,
-        y: rect.bottom + 10
-      });
-      
-      setContextMenuVisible(true);
-    }
+  const { anchorOffset, focusOffset } = sel;
+  const start = anchorOffset > focusOffset ? focusOffset : anchorOffset;
+  const end = anchorOffset < focusOffset ? focusOffset : anchorOffset;
+  const selected = {
+    start,
+    end,
+    forbidden,
+    keyword: sel.toString().trim(),
   };
 
-  const handleLabelApplication = (labelId, labelName) => {
-    if (!selectedRange || !selectedText) return;
-
-    const newLabel = {
-      id: Date.now(),
-      text: selectedText,
-      labelId,
-      labelName,
-      startOffset: selectedRange.startOffset,
-      endOffset: selectedRange.endOffset,
-      color: getLabelColor(labelId)
-    };
-
-    setAppliedLabels(prev => [...prev, newLabel]);
-    setContextMenuVisible(false);
-    setSelectedText('');
-    setSelectedRange(null);
-    
-    window.getSelection().removeAllRanges();
+  // Update Keywords Part
+  const { file, keywords } = record;
+  const params = {
+    fileId: file.id,
+    sentenceId: record.id,
+    keywords: _.concat(keywords, selected),
   };
+  
+  sel.removeAllRanges();
 
-  const getLabelColor = (labelId) => {
-    const colors = {
-      'positive': '#52c41a',
-      'negative': '#ff4d4f',
-      'neutral': '#1890ff',
-      'ambiguous': '#faad14'
-    };
-    return colors[labelId] || '#d9d9d9';
-  };
+  if (_.isEmpty(selected.keyword)) {
+    message.error({
+      content: '선택된 키워드가 없습니다.',
+      duration: '1',
+      className: 'check-keyword',
+      style: {
+        marginTop: '5vh',
+      },
+    });
+    return;
+  }
 
-  const handleSubmit = async () => {
-    if (appliedLabels.length === 0) {
-      message.warning('최소 하나의 라벨을 적용해주세요.');
-      return;
-    }
-
-    try {
-      await dispatch(submitLabeling({
-        sentenceId: currentSentence.id,
-        labels: appliedLabels
-      })).unwrap();
-      
-      message.success('라벨링이 완료되었습니다.');
-      
-      dispatch(fetchNextSentence());
-      setAppliedLabels([]);
-      
-    } catch (error) {
-      message.error('라벨링 제출에 실패했습니다.');
-    }
-  };
-
-  const contextMenu = (
-    <Menu>
-      {labelCategories.map(category => (
-        <Menu.Item
-          key={category.id}
-          onClick={() => handleLabelApplication(category.id, category.name)}
-        >
-          <Tag color={getLabelColor(category.id)}>{category.name}</Tag>
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
-
-  return (
-    <div className="sentence-labeling-interface">
-      <Card title="문장 라벨링" className="labeling-card">
-        <div className="progress-info">
-          진행률: {progress.completed} / {progress.total} ({progress.percentage.toFixed(1)}%)
-        </div>
-        
-        <div className="sentence-container">
-          <div
-            ref={textRef}
-            className="sentence-text"
-            onMouseUp={handleTextSelection}
-            style={{
-              fontSize: '16px',
-              lineHeight: '1.6',
-              padding: '20px',
-              border: '1px solid #d9d9d9',
-              borderRadius: '6px',
-              backgroundColor: '#fafafa',
-              userSelect: 'text',
-              cursor: 'text'
-            }}
-          >
-            {currentSentence?.text}
-          </div>
-        </div>
-
-        <div className="action-buttons">
-          <Button
-            type="primary"
-            size="large"
-            onClick={handleSubmit}
-            disabled={appliedLabels.length === 0}
-          >
-            라벨링 완료
-          </Button>
-        </div>
-      </Card>
-
-      <Dropdown
-        overlay={contextMenu}
-        visible={contextMenuVisible}
-        onVisibleChange={setContextMenuVisible}
-        trigger={[]}
-      >
-        <div
-          style={{
-            position: 'fixed',
-            left: contextMenuPosition.x,
-            top: contextMenuPosition.y,
-            pointerEvents: 'none'
-          }}
-        />
-      </Dropdown>
-    </div>
-  );
+  dispatch(updateKeyword(params));
+};`,
+        },
+        {
+          title: "라벨링 카테고리 메뉴 구성",
+          description: "6가지 카테고리별 색상 및 아이콘 매핑과 메뉴 시스템",
+          language: "javascript",
+          filename: "components/CurrentWorkContent.jsx",
+          code: `const forbiddenMap = {
+  hate: {
+    color: '#BCAAA4',
+    text: '혐오 표현',
+  },
+  sexual: {
+    color: '#EF9A9A',
+    text: '성적 표현',
+  },
+  swear: {
+    color: '#FFCC80',
+    text: '욕설 표현',
+  },
+  discrimination: {
+    color: '#A5D6A7',
+    text: '차별적 표현',
+  },
+  unethical: {
+    color: '#90CAF9',
+    text: '기타 비윤리적 표현',
+  },
+  privacy: {
+    color: '#B39DDB',
+    text: '개인 정보',
+  },
 };
 
-export default SentenceLabelingInterface;`,
+const menu = () => (
+  <Menu>
+    <Menu.Item key="hate">
+      <Button
+        className="label-btn"
+        icon={<GoThumbsdown className="hate" />}
+        type="link"
+        onClick={_.partial(saveKeyword, record, 'hate')}
+      >
+        <span>혐오 표현</span>
+      </Button>
+    </Menu.Item>
+    <Menu.Item key="sexual">
+      <Button
+        className="label-btn"
+        icon={<BsExclamationOctagon className="sexual" />}
+        type="link"
+        onClick={_.partial(saveKeyword, record, 'sexual')}
+      >
+        <span>성적 표현</span>
+      </Button>
+    </Menu.Item>
+    {/* 다른 카테고리들... */}
+  </Menu>
+);`,
+        },
+        {
+          title: "Redux 상태 관리 및 데이터 페칭",
+          description: "페이지네이션과 데이터 페칭 로직을 포함한 상태 관리",
+          language: "javascript",
+          filename: "components/CurrentWorkContent.jsx",
+          code: `useEffect(() => {
+  if (_.isEmpty(me.level)) {
+    return;
+  }
+  
+  const currentWorkPage = parseInt(page, 10) || 1;
+  const currentWorkPageSize = parseInt(pageSize, 10) || 10;
+  const params = {
+    matchUrl: match.url,
+    skip: (currentWorkPage - 1) * currentWorkPageSize,
+    limit: currentWorkPageSize,
+  };
+
+  if (match.url === CURRENT_WORK_PATH) {
+    localStorage.setItem('CURRENT_WORK_PAGE', parseInt(page, 10) || 1);
+    localStorage.setItem(
+      'CURRENT_WORK_PAGESIZE',
+      parseInt(pageSize, 10) || 10,
+    );
+  } else {
+    const { location } = history;
+    if (location.state) {
+      params.fileId = location.state.fileId;
+    }
+  }
+
+  dispatch(getWorkingSentences(params));
+}, [match.url, history, page, pageSize, me, dispatch]);`,
+        },
+        {
+          title: "키워드 태그 렌더링 및 삭제 기능",
+          description: "라벨링된 키워드를 태그로 표시하고 삭제할 수 있는 UI 구현",
+          language: "javascript",
+          filename: "components/CurrentWorkContent.jsx",
+          code: `const resetKeyword = (record, deleteWord) => {
+  const { file, keywords } = record;
+  const keywordArr = _.map(keywords, keywordObj => {
+    const { keyword } = keywordObj;
+    if (keyword === deleteWord) {
+      return;
+    }
+    return keywordObj;
+  });
+  const resetArr = keywordArr.filter(Boolean);
+  const params = {
+    fileId: file.id,
+    sentenceId: record.id,
+    keywords: resetArr,
+  };
+  dispatch(updateKeyword(params));
+};
+
+// 키워드 렌더링
+render: (text, record, _index) => {
+  const keyword = _.get(text, '[0].keyword');
+  if (!_.isEmpty(keyword)) {
+    return (
+      <>
+        {_.map(text, (data, index) =>
+          data.keyword.length < 25 ? (
+            <Tag
+              color={forbiddenMap[data.forbidden].color}
+              closable
+              key={index}
+              onClose={_.partial(resetKeyword, record, data.keyword)}
+            >
+              {data.keyword}
+            </Tag>
+          ) : (
+            <Tag
+              className="keyword-display"
+              color={forbiddenMap[data.forbidden].color}
+              closable
+              key={index}
+              onClose={_.partial(resetKeyword, record, data.keyword)}
+            >
+              {data.keyword}
+            </Tag>
+          ),
+        )}
+      </>
+    );
+  }
+  return null;
+};`,
         },
       ],
     },
@@ -1195,13 +1236,11 @@ export default SentenceLabelingInterface;`,
     learningPlan: [
       {
         title: "React Native",
-        description:
-          "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다.",
+        description: "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다.",
       },
       {
         title: "컴퓨터 사이언스",
-        description:
-          "백엔드 개발자와의 원활한 협업과 시스템 전반에 대한 이해도를 높이기 위해 학습하고 있습니다.",
+        description: "백엔드 개발자와의 원활한 협업과 시스템 전반에 대한 이해도를 높이기 위해 학습하고 있습니다.",
       },
     ],
     futureVision: [
@@ -1246,4 +1285,4 @@ export default SentenceLabelingInterface;`,
         "코드를 작성하는 것을 넘어, 사용자의 문제를 해결하고 더 나은 경험을 제공하는 제품을 만들어 사회에 긍정적인 영향을 미치고 싶습니다. 지속적인 학습과 성장을 통해 기술과 비즈니스를 모두 이해하는 개발자가 되는 것이 저의 목표입니다.",
     },
   },
-};
+}
