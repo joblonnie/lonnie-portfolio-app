@@ -114,9 +114,9 @@ export const mockPortfolioData: PortfolioData = {
         "범용 IAD/SEG 기반 이상 감지와 고객별 커스터마이징을 모두 지원하기 위해 유연하면서도 확장 가능한 모니터링 시스템 아키텍처가 필요했습니다. 기존의 단일 애플리케이션 구조로는 여러 고객사의 다양한 요구사항을 효율적으로 대응하기 어려웠고, 코드 재사용성과 유지보수성에 한계가 있었습니다. 이를 해결하기 위해 NX를 사용한 모노레포 구조를 제안하고 구현했습니다.",
       detailedDescription: {
         summary:
-          "NX Monorepo와 FSD(Feature-Sliced Design) 아키텍처를 도입하여 모듈화 기반을 구축하고, VIMS 전용 기능들을 별도 모듈로 분리해 점진적으로 적용했습니다. IAD(Image Anomaly Detection), SEG(Segmentation), 생산 장비 공정 이상 감지, 권취 공정 이상 감지 등 다양한 AI 기술을 활용한 실시간 모니터링 UI를 통합 개발했습니다. 특히 각 프로젝트의 특성에 맞는 커스터마이징을 지원하면서도 공통 로직의 재사용성을 극대화했습니다.",
+          "공통 패키지 기반의 모노레포 아키텍처로 코드 재사용성과 개발 속도를 크게 향상시켜, 신규 시스템 개발 기간을 평균 50% 단축",
         results:
-          "세 개의 모니터링 시스템 모두 동일한 모노레포 내에서 별도의 애플리케이션으로 구현되었지만, 모든 공통 로직과 컴포넌트에 대해 VIMS 패키지를 공유했습니다. 이를 통해 공유 UI 및 비즈니스 로직의 빠른 반복 개발, 프로젝트 간 기능의 신속한 전달, 핵심 모듈의 원활한 업데이트, 향후 모니터링 시스템 개발의 높은 확장성을 달성했습니다. 특히 코드 재사용률이 85% 이상 달성되어 개발 효율성이 크게 향상되었고, 새로운 모니터링 시스템 개발 시간을 평균 50% 단축할 수 있었습니다.",
+          "세 개의 모니터링 시스템은 NX 기반 모노레포 아키텍처 내에서 각각 독립된 애플리케이션으로 구성되었으며, 공통된 UI 및 비즈니스 로직은 VIMS 패키지로 공유되었습니다. 이를 통해 도메인 단위의 FSD 패턴 기반 모듈화를 구현하고, 코드 재사용률 85% 이상을 달성하여 프로젝트 간 기능 전달과 유지보수가 용이해졌습니다. 그 결과, 일관된 UI/UX를 유지하면서도 신규 시스템 개발 기간을 평균 50% 이상 단축할 수 있었으며, 특히 권취 공정 프로젝트는 기존 1개월에서 2주로 개발 기간을 단축하는 성과를 이뤘습니다.",
       },
       projectPhases: [
         {
@@ -155,7 +155,7 @@ export const mockPortfolioData: PortfolioData = {
         },
       ],
       period: "2025.01 - 2025.07",
-      role: "프론트엔드 개발 리드",
+      role: "프론트엔드 개발",
       frontendDevelopers: 2,
       keywords: [
         "NX Monorepo",
@@ -189,13 +189,6 @@ export const mockPortfolioData: PortfolioData = {
           reasoning:
             "초기에는 단순한 UI 중심의 레이어 기반 폴더 구조를 사용했지만, 프로젝트가 커지고 각 기능의 복잡성이 높아짐에 따라 관심사의 분리와 기능 단위 유지보수가 점점 어려워졌습니다. FSD는 도메인 중심의 모듈화(각 Feature가 독립적으로 개발되고 배포 가능하여 유지보수가 쉬움), 비즈니스 로직과 UI 분리(핵심 로직과 UI를 구분함으로써, 테스트 및 리팩토링 효율 증가), 확장성과 테스트 용이성(Feature 단위로 경량 테스트, 마이그레이션, 성능 최적화가 가능)의 장점이 있었습니다. FSD는 특히 VIMS 내부 패키지 구성에 적용하여 각 기능(예: IAD/SEG 모니터링, 권취 감지)을 잘게 나누고, 팀원 간 작업 충돌을 최소화하는 데 기여했습니다.",
         },
-      ],
-      achievements: [
-        "NX 모노레포 도구 선정 및 아키텍처 설계 주도",
-        "FSD 패턴을 활용한 도메인별 모듈화 구조 구축",
-        "VIMS 공유 패키지 개발로 프로젝트 간 재사용성 85% 이상 달성",
-        "3개 모니터링 시스템의 일관된 아키텍처 및 UI/UX 구현",
-        "개발 기간 50% 단축 (권취 공정 프로젝트: 1개월 → 2주)",
       ],
       codeSnippets: [
         {
@@ -422,7 +415,7 @@ export const DefectRenderer: React.FC<DefectRendererProps> = ({
         "안전 관리 시장 진출을 위한 신사업 런칭 프로젝트로 시작되었습니다. 안전모 착용 감지와 화재·연기 감지 기능을 통합한 솔루션이 필요했고, 기존 시장에는 각각 분리된 솔루션들만 존재했습니다. 회사 차원에서 새로운 사업 영역 진출을 위한 MVP 개발이 시급한 상황이었으며, 이후 고객사 납품과 VOC를 통해 지속적인 개선이 이루어졌습니다. 최종적으로는 한국정보통신기술협회(TTA)의 GS 인증 심사를 위해 사용자 인터페이스의 일관성과 오류 처리 방식에 대한 개선이 필요했습니다.",
       detailedDescription: {
         summary:
-          "SAIGE SAFETY 신사업의 전체 라이프사이클을 담당한 프로젝트로, MVP 개발부터 고객 피드백 반영, GS 1등급 인증 획득까지 이어진 종합적인 제품 개발 경험입니다. 안전모 착용 여부 및 화재·연기 감지 등의 AI 모델 결과를 시각화하는 프론트엔드 UI를 구축하고, 실시간 비디오 스트림 처리, AI 모델 결과 시각화, 알림 시스템 등 안전 관리에 특화된 기능들을 개발했습니다.",
+          "AI 기반 안전 관리 시스템의 MVP부터 고객 피드백 반영, GS 1등급 인증까지 전 과정을 주도한 종합 제품 개발 프로젝트",
         results:
           "MVP 성공적 납품으로 신사업 영역 진출을 달성하고, 3개 고객사에 성공적으로 납품되어 사업화를 검증했습니다. 고객 VOC 기반의 지속적인 개선을 통해 안전사고 예방 효과가 입증되어 추가 주문을 확보했습니다. 최종적으로 GS 1등급 인증을 획득하여 제품의 신뢰성과 품질을 공식적으로 인정받았습니다. 사용자 오류 인식률을 0%에서 100%로 개선하고, 인증 심사에서 '사용자 편의성' 항목에서 만점을 받았습니다.",
       },
@@ -450,19 +443,18 @@ export const DefectRenderer: React.FC<DefectRendererProps> = ({
           ],
         },
         {
-          phase: "Phase 3: GS 인증 대응 및 시스템 고도화 (2024.10-11)",
+          phase: "Phase 3: GS 인증 대응 및 시스템 고도화 (2024.10–11)",
           description:
-            "GS 인증 심사를 위해 사용자 친화적인 Toast 알림 체계를 신규 도입하고, 백엔드 개발자와 협업을 통해 API 오류 처리를 표준화했습니다. Notistack 라이브러리를 도입하여 기존의 console.log나 alert 기반 오류 처리를 완전히 대체했습니다. 백엔드 팀과 협업하여 API 응답에 표준화된 오류 코드를 도입하고, Axios 인터셉터를 활용해 모든 API 호출에 대한 통합 오류 처리를 구현했습니다.",
+            "GS 인증 심사를 대비해 사용자 친화적인 Toast 알림 체계를 구축하고, 백엔드 개발자와 협업하여 API 오류 처리를 표준화했습니다. 사내 디자인 시스템인 saige-elements에 내장된 Toast 컴포넌트를 활용해 기존의 console.log 기반 처리 방식을 개선했으며, 이를 쉽게 사용할 수 있도록 래퍼 유틸을 정의하고 전역 오류 핸들링에 적용했습니다. 또한, API 응답 포맷에 표준화된 오류 코드를 도입하고 Axios 인터셉터를 통해 모든 API 요청에 대한 일관된 오류 처리를 구현했습니다.",
           outcomes: [
             "Toast 알림 체계 도입으로 사용자 경험 개선",
             "API 오류 처리 표준화로 시스템 안정성 향상",
             "GS 1등급 인증 획득",
-            "표준화된 오류 처리 시스템의 다른 프로젝트 재사용",
           ],
         },
       ],
       period: "2023.05 - 2024.11",
-      role: "프론트엔드 개발 (MVP 단독, GS 인증 단독)",
+      role: "프론트엔드 개발",
       frontendDevelopers: 2,
       keywords: [
         "신사업 MVP 개발",
@@ -478,7 +470,6 @@ export const DefectRenderer: React.FC<DefectRendererProps> = ({
         "Konva.js",
         "MUI",
         "WebSocket",
-        "Notistack",
         "Axios",
       ],
       technologyReasoning: [
@@ -495,146 +486,7 @@ export const DefectRenderer: React.FC<DefectRendererProps> = ({
             "에러를 인지하고 처리할 수 있는 백엔드-프론트엔드 구조가 갖춰진 뒤에는, 사용자에게 명확한 피드백을 제공할 수 있는 UI 수단이 필요했습니다. 회사 내 디자인 시스템인 Saige Elements의 Toast 컴포넌트를 활용한 이유는 디자인 일관성(내부 제품군 간 UI/UX 일관성을 유지하며 자연스럽게 시스템에 녹일 수 있음), 컴포넌트 캡슐화 및 재사용 용이성(toast 유틸 함수를 별도로 분리하여 다양한 상황에서 반복적으로 활용 가능), 알림 유형 다양화 및 커스터마이징(성공/실패/정보/경고 등 알림 타입 분리 가능, UX 흐름에 따라 적절히 배치)입니다. 이를 통해 사용자 피드백 전달 구조를 명확히 개선하고, GS 인증 심사에서도 높은 평가를 받을 수 있었습니다.",
         },
       ],
-      achievements: [
-        "SAFETY 제품 MVP 성공적 납품으로 신사업 영역 진출",
-        "3개 고객사 성공적 납품으로 사업화 검증 완료",
-        "GS 1등급 인증 획득에 직접적으로 기여",
-        "사용자 오류 인식률을 0%에서 100%로 개선",
-        "안전사고 예방 효과 입증으로 추가 주문 확보",
-      ],
       codeSnippets: [
-        {
-          title: "안전모 착용 감지 컴포넌트",
-          description:
-            "실시간 비디오 스트림에서 안전모 착용 여부를 감지하고 시각화",
-          language: "typescript",
-          filename: "components/HelmetDetection.tsx",
-          code: `import React, { useRef, useEffect, useState } from 'react';
-import { Stage, Layer, Rect, Text } from 'react-konva';
-import { Card, CardContent, CardHeader, CardTitle } from '@mui/material';
-import { useWebSocket } from '../hooks/useWebSocket';
-
-interface DetectionResult {
-  personId: string;
-  bbox: [number, number, number, number];
-  hasHelmet: boolean;
-  confidence: number;
-  timestamp: number;
-}
-
-interface HelmetDetectionProps {
-  videoStreamUrl: string;
-  width: number;
-  height: number;
-}
-
-export const HelmetDetection: React.FC<HelmetDetectionProps> = ({
-  videoStreamUrl,
-  width,
-  height
-}) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [detections, setDetections] = useState<DetectionResult[]>([]);
-  const [stats, setStats] = useState({
-    totalPersons: 0,
-    withHelmet: 0,
-    withoutHelmet: 0,
-    complianceRate: 0
-  });
-
-  const { data: wsData, isConnected } = useWebSocket('/ws/helmet-detection');
-
-  useEffect(() => {
-    if (wsData) {
-      const newDetections: DetectionResult[] = wsData.detections || [];
-      setDetections(newDetections);
-      
-      const total = newDetections.length;
-      const withHelmet = newDetections.filter(d => d.hasHelmet).length;
-      const withoutHelmet = total - withHelmet;
-      const complianceRate = total > 0 ? (withHelmet / total) * 100 : 0;
-      
-      setStats({
-        totalPersons: total,
-        withHelmet,
-        withoutHelmet,
-        complianceRate
-      });
-    }
-  }, [wsData]);
-
-  const renderDetectionBox = (detection: DetectionResult) => {
-    const [x, y, width, height] = detection.bbox;
-    const color = detection.hasHelmet ? '#52c41a' : '#ff4d4f';
-    const label = detection.hasHelmet ? '안전모 착용' : '안전모 미착용';
-    
-    return (
-      <React.Fragment key={detection.personId}>
-        <Rect
-          x={x}
-          y={y}
-          width={width}
-          height={height}
-          stroke={color}
-          strokeWidth={3}
-          fill="transparent"
-        />
-        <Text
-          x={x + 5}
-          y={y - 20}
-          text={\`\${label} (\${(detection.confidence * 100).toFixed(1)}%)\`}
-          fontSize={12}
-          fill={color}
-        />
-      </React.Fragment>
-    );
-  };
-
-  return (
-    <div className="helmet-detection">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>총 인원</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.totalPersons}</div>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader>
-            <CardTitle>준수율</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className={\`text-2xl font-bold \${stats.complianceRate >= 90 ? 'text-green-600' : 'text-red-600'}\`}>
-              {stats.complianceRate.toFixed(1)}%
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="relative">
-        <video
-          ref={videoRef}
-          src={videoStreamUrl}
-          width={width}
-          height={height}
-          autoPlay
-          muted
-          className="absolute top-0 left-0"
-        />
-        
-        <Stage width={width} height={height} className="absolute top-0 left-0">
-          <Layer>
-            {detections.map(renderDetectionBox)}
-          </Layer>
-        </Stage>
-      </div>
-    </div>
-  );
-};`,
-        },
         {
           title: "개선된 Toast 알림 시스템",
           description:
@@ -768,7 +620,7 @@ axios.interceptors.response.use(
         "입사 직후부터 시작된 VAD(Video Anomaly Detection) 관련 프로젝트들의 종합적인 개발 경험입니다. 처음에는 VAD 시스템의 모니터링 인터페이스 구축이 필요했고, 이후 AI 연구진들의 모델 학습 과정에서 수작업으로 진행되던 ROI 설정과 사이클 정의 작업을 자동화할 필요가 생겼습니다. 기존에는 AI 모델의 결과를 확인하기 위해 별도의 도구들을 사용해야 했고, 실시간 모니터링이 어려운 상황이었습니다. 또한 AI 연구진들이 매번 수동으로 비디오에서 관심 영역을 설정하고 정상 동작 패턴을 정의하는 작업이 비효율적이어서 이를 개선하는 도구가 필요했습니다.",
       detailedDescription: {
         summary:
-          "VAD(Video Anomaly Detection) 생태계 전반에 걸친 종합적인 개발 프로젝트로, 모니터링 시스템부터 AI 연구진을 위한 개발자 도구까지 전체 워크플로우를 구축했습니다. 입사 첫 프로젝트로 시작된 모니터링 시스템에서는 재사용 가능한 atomic 컴포넌트를 개발하여 확장성 높은 UI 기반을 마련했고, 이후 개발자 도구 v1에서는 기본적인 프로젝트 관리와 ROI 설정 기능을 제공했습니다.",
+          "VAD 생태계 전반을 아우르는 워크플로우를 구축하고, 재사용 가능한 UI 컴포넌트와 내부 도구 개발을 통해 AI 팀의 작업 효율을 최대 80% 향상시킨 프로젝트",
         results:
           "VAD 생태계 전반에 걸친 종합적인 개발 경험을 통해 모니터링부터 AI 연구 도구까지 완전한 워크플로우를 구축했습니다. 입사 첫 프로젝트에서 개발한 atomic 컴포넌트들은 이후 VIMS, SAFETY 등 다른 제품군에서도 재사용되어 개발 효율성을 크게 높였습니다. v2에서는 AI 모델 학습 효율성을 개선하여 라벨링 시간을 60% 단축하고, 내부 도구 개선으로 AI 팀의 수작업을 80% 줄였습니다.",
       },
@@ -819,8 +671,8 @@ axios.interceptors.response.use(
         },
       ],
       period: "2022.06 - 2024.06",
-      role: "프론트엔드 개발 (모니터링: 5명 중 1명, v1: 3명 중 1명, v2: 리드)",
-      frontendDevelopers: 5,
+      role: "프론트엔드 개발",
+      frontendDevelopers: 1,
       keywords: [
         "VAD 생태계 종합 개발",
         "모니터링 시스템 구축",
@@ -850,13 +702,6 @@ axios.interceptors.response.use(
           reasoning:
             "v2 개발 과정에서 가장 큰 기술적 도전은 브라우저의 보안 제한으로 인해 로컬 파일 시스템에 직접 접근할 수 없다는 점이었습니다. AI 연구진들이 대용량 비디오 파일을 효율적으로 처리하기 위해서는 파일을 서버로 업로드하지 않고도 메타데이터를 추출할 수 있는 방법이 필요했습니다. 이를 해결하기 위해 로컬 파일 경로를 전달하고 서버를 통해 메타데이터를 파싱하는 혁신적인 시스템을 설계했습니다. 클라이언트에서는 파일 선택 인터페이스만 제공하고, 실제 파일 처리는 서버에서 수행하여 보안과 성능을 모두 확보했습니다.",
         },
-      ],
-      achievements: [
-        "VAD 생태계 전반의 종합적인 개발 경험 획득",
-        "입사 첫 프로젝트로 재사용 가능한 atomic 컴포넌트 아키텍처 구축",
-        "AI 모델 학습 효율성 개선으로 라벨링 시간 60% 단축 (v2)",
-        "v1 대비 사용자 만족도 90% 향상 (v2)",
-        "학습 데이터 준비 시간 3일 → 1일로 단축 (v2)",
       ],
       codeSnippets: [
         {
@@ -1341,7 +1186,7 @@ export const ROICanvas: React.FC<ROICanvasProps> = ({
         "생산 현장에서 Vision 검사 시스템의 성능 지표와 시스템 리소스 상태를 실시간으로 파악할 필요가 있었습니다. 기존에는 각각 분리된 도구들로 모니터링하여 통합적인 시각이 부족했고, 시스템 이상 상황 발생 시 빠른 대응이 어려웠습니다. 또한 회사 내부 디자인 시스템인 Saige Elements의 초기 구축 단계에서 실제 프로젝트 적용을 통한 검증이 필요한 상황이었습니다.",
       detailedDescription: {
         summary:
-          "Vision 검사 결과 기반의 수율 통계를 ECharts로 시각화하고, Prometheus 폴링을 통해 수집한 CPU·GPU 등 시스템 리소스를 실시간 그래프로 모니터링할 수 있는 대시보드를 개발했습니다. 동시에 회사 내부 디자인 시스템인 Saige Elements의 컨트리뷰터로 참여하여 실제 프로젝트에서 발견된 컴포넌트 개선사항을 반영하고 새로운 컴포넌트를 제안했습니다.",
+          "수율 및 시스템 리소스를 실시간으로 통합 시각화하는 대시보드를 개발하고, 사내 디자인 시스템(Saige Elements)에 기여하여 컴포넌트 재사용성과 개발 효율을 높인 프로젝트",
         results:
           "실시간 모니터링을 통해 시스템 이상 상황을 조기에 감지하고 대응할 수 있는 체계를 마련했습니다. 수율 데이터와 시스템 리소스를 통합 모니터링함으로써 생산성 저하 원인을 빠르게 파악할 수 있게 되었습니다. Saige Elements 디자인 시스템에 기여한 컴포넌트들은 이후 다른 모니터링 프로젝트에서도 재사용되어 개발 효율성을 높였습니다.",
       },
@@ -1349,50 +1194,34 @@ export const ROICanvas: React.FC<ROICanvasProps> = ({
         {
           phase: "Phase 1: 수율 대시보드 개발 (2023.05-07)",
           description:
-            "Vision 검사 결과를 기반으로 한 실시간 수율 통계 시각화 시스템을 구축했습니다. ECharts를 활용하여 시간대별 수율 변화, 결함 유형별 분포, 검사 처리량 등을 직관적으로 표시하는 대시보드를 개발했습니다. 실시간 데이터 업데이트를 위해 WebSocket 연결을 구현하고, 대용량 데이터 처리를 위한 가상화 기법을 적용했습니다.",
+            "Vision 검사 결과를 기반으로 한 실시간 수율 통계 시각화 시스템을 구축했습니다. ECharts를 활용하여 시간대별 수율 변화, 결함 유형별 분포, 검사 처리량 등을 직관적으로 표시하는 대시보드를 개발했습니다.",
           outcomes: [
             "ECharts 기반 실시간 수율 시각화 시스템 구축",
-            "WebSocket을 통한 실시간 데이터 업데이트 구현",
-            "대용량 데이터 처리를 위한 가상화 기법 적용",
             "Vision 검사 결과의 직관적 시각화 달성",
           ],
         },
         {
           phase: "Phase 2: 시스템 리소스 모니터링 개발 (2023.07-08)",
           description:
-            "Prometheus를 통해 수집된 시스템 리소스 메트릭을 실시간으로 모니터링하는 시스템을 개발했습니다. CPU, GPU, 메모리, 디스크 I/O 등의 지표를 주기적으로 폴링하여 시각화하고, 임계값 초과 시 알림을 제공하는 기능을 구현했습니다. TanStack Query를 활용하여 각 리소스별로 독립적인 데이터 페칭과 캐싱을 구현했습니다.",
+            "Prometheus를 통해 수집된 시스템 리소스 메트릭을 실시간으로 모니터링하는 시스템을 개발했습니다. CPU, GPU, 메모리, 디스크 I/O 등의 지표를 주기적으로 폴링하여 시각화 했습니다. TanStack Query를 활용하여 각 리소스별로 독립적인 데이터 페칭과 캐싱을 구현했습니다.",
           outcomes: [
             "Prometheus 기반 시스템 리소스 실시간 모니터링 구현",
             "CPU, GPU, 메모리, 디스크 I/O 지표 시각화",
-            "임계값 기반 알림 시스템 구축",
             "TanStack Query를 활용한 효율적 데이터 관리",
-          ],
-        },
-        {
-          phase: "Phase 3: Saige Elements 디자인 시스템 기여 (2023.08-09)",
-          description:
-            "실제 프로젝트 개발 과정에서 발견된 디자인 시스템의 개선점을 반영하고 새로운 컴포넌트를 제안했습니다. ChartContainer, MetricCard, DashboardGrid 등 모니터링 대시보드에 특화된 컴포넌트들을 개발하여 디자인 시스템에 기여했습니다. 기존 컴포넌트들의 접근성과 사용성을 개선하고, 디자인 토큰을 활용한 일관된 스타일링을 적용했습니다.",
-          outcomes: [
-            "ChartContainer, MetricCard, DashboardGrid 컴포넌트 개발",
-            "기존 컴포넌트의 접근성 및 사용성 개선",
-            "디자인 토큰 기반 일관된 스타일링 적용",
-            "모니터링 특화 컴포넌트의 표준화 달성",
           ],
         },
       ],
       period: "2023.05 - 2023.09",
-      role: "프론트엔드 개발 및 디자인 시스템 컨트리뷰터",
+      role: "프론트엔드 개발",
       frontendDevelopers: 1,
       keywords: [
-        "실시간 수율 시각화",
+        "수율 시각화",
         "ECharts 활용 대시보드",
         "Prometheus 기반 리소스 모니터링",
-        "Saige Elements 기여",
       ],
       technologies: [
         "React",
         "TypeScript",
-        "Recoil",
         "TanStack Query",
         "ECharts",
         "Prometheus",
@@ -1401,30 +1230,16 @@ export const ROICanvas: React.FC<ROICanvasProps> = ({
       ],
       technologyReasoning: [
         {
-          category: "React Query 기반 실시간 메트릭 폴링",
-          technologies: ["TanStack Query", "Prometheus"],
+          category: "실시간 데이터 동기화 및 최적화된 재사용 UI 컴포넌트 설계",
+          technologies: [
+            "TanStack Query",
+            "Prometheus",
+            "ECharts",
+            "React.memo",
+          ],
           reasoning:
-            "Prometheus 지표를 주기적으로 폴링하여 최신 시스템 리소스 상태를 유지하기 위해 @tanstack/react-query를 사용했습니다. refetchInterval을 통해 Prometheus API에 일정 간격으로 요청하고, 각 리소스(CPU, GPU, Memory, Disk I/O)마다 커스텀 훅(useCPUMetrics, useGPUMetrics 등)을 생성해 기능을 분리했습니다. 에러 처리 및 엔드포인트 조건부 활성화(enabled)를 통해 안정성을 확보했습니다.",
+            "Prometheus 지표를 @tanstack/react-query의 refetchInterval을 활용해 주기적으로 폴링하여 최신 시스템 리소스를 실시간으로 동기화합니다. 각 리소스별(CPU, GPU, Memory 등) 커스텀 훅을 만들어 관심사를 분리했고, ECharts 기반의 공통 라인 및 파이 차트 컴포넌트를 정의해 시각화 로직의 재사용성과 UI 일관성을 확보했습니다. React.memo와 React Query의 캐싱 기능으로 불필요한 리렌더링을 방지하며, 리소스 메트릭 변화가 있을 때만 해당 컴포넌트가 업데이트되도록 하여 성능을 최적화했습니다.",
         },
-        {
-          category: "재사용 가능한 라인/파이 차트 컴포넌트 개발",
-          technologies: ["ECharts", "React"],
-          reasoning:
-            "데이터 타입에 따라 공통 차트 컴포넌트를 분리해 시각화 로직의 재사용성 및 일관성을 확보했습니다. ECharts 기반의 LineChart, PieChart 등의 시각화 컴포넌트를 별도 정의하고, 각 차트는 전달받는 props(series, title, unit, colors 등)에 따라 UI를 유연하게 구성했습니다. 리소스 지표 컴포넌트(CPUChart, GPUChart 등)는 해당 공통 컴포넌트를 활용하여 분기 처리 없이 통일된 UI를 유지했습니다.",
-        },
-        {
-          category: "관심사 기반 컴포넌트 분리 및 렌더링 최적화",
-          technologies: ["React.memo", "Query Caching"],
-          reasoning:
-            "리렌더링 최소화를 위해 각 차트를 독립적인 컴포넌트로 구성하고, 필요한 부분만 렌더링하도록 했습니다. 각 차트는 별도의 React 컴포넌트로 분리되어 있으며, 해당 리소스 메트릭 변화에만 반응합니다. React.memo와 query key 단위 캐싱으로 불필요한 전체 리렌더링을 방지하고, 대시보드 페이지와 리소스 모니터링 페이지 모두 공통 컴포넌트를 통해 동일한 차트 UI를 구성했습니다.",
-        },
-      ],
-      achievements: [
-        "AI 추론 환경의 병목 지점 실시간 식별로 문제 해결 시간 70% 단축",
-        "비전 모델 정확도와 수율 간의 상관관계 시각화로 품질 분석 효율성 향상",
-        "Saige Elements 디자인 시스템에 차트 관련 컴포넌트 5개 기여",
-        "제안한 컴포넌트들이 표준으로 채택되어 회사 전체 프로젝트에서 활용",
-        "통합 모니터링 대시보드로 운영 효율성 40% 개선",
       ],
       codeSnippets: [
         {
@@ -1496,179 +1311,6 @@ export const useDiskIOMetrics = () => {
   );
 };`,
         },
-        {
-          title: "수율 대시보드 컴포넌트",
-          description: "Vision 검사 결과를 기반으로 한 실시간 수율 시각화",
-          language: "typescript",
-          filename: "components/YieldDashboard.tsx",
-          code: `import React, { useEffect, useRef } from 'react';
-import * as echarts from 'echarts';
-import { Card, CardContent, CardHeader, CardTitle } from '@mui/material';
-import { ChartContainer, MetricCard, DashboardGrid } from '@saige/elements';
-import { useQuery } from '@tanstack/react-query';
-
-interface YieldData {
-  timestamp: string;
-  totalInspected: number;
-  defectCount: number;
-  yieldRate: number;
-  defectTypes: Record<string, number>;
-}
-
-export const YieldDashboard: React.FC = () => {
-  const chartRef = useRef<HTMLDivElement>(null);
-  const chartInstance = useRef<echarts.ECharts>();
-
-  const { data: yieldData } = useQuery({
-    queryKey: ['yield-data'],
-    queryFn: async (): Promise<YieldData[]> => {
-      const response = await fetch('/api/vision/yield-data');
-      return response.json();
-    },
-    refetchInterval: 5000,
-  });
-
-  useEffect(() => {
-    if (chartRef.current) {
-      chartInstance.current = echarts.init(chartRef.current);
-      
-      const option = {
-        title: { text: '실시간 수율 트렌드' },
-        tooltip: { trigger: 'axis' },
-        xAxis: { type: 'time' },
-        yAxis: { type: 'value', name: '수율률 (%)' },
-        series: [{
-          name: '수율률',
-          type: 'line',
-          data: [],
-          smooth: true,
-          itemStyle: { color: '#52c41a' }
-        }]
-      };
-      
-      chartInstance.current.setOption(option);
-    }
-
-    return () => {
-      chartInstance.current?.dispose();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (yieldData && chartInstance.current) {
-      const yieldRateData = yieldData.map(item => [item.timestamp, item.yieldRate]);
-      
-      chartInstance.current.setOption({
-        series: [{ data: yieldRateData }]
-      });
-    }
-  }, [yieldData]);
-
-  const latestYield = yieldData?.[yieldData.length - 1];
-
-  return (
-    <div className="yield-dashboard">
-      <DashboardGrid columns={3} gap="medium">
-        <MetricCard
-          title="현재 수율률"
-          value={\`\${latestYield?.yieldRate.toFixed(2)}%\`}
-          trend={latestYield?.yieldRate >= 95 ? 'up' : 'down'}
-          color="success"
-        />
-        <MetricCard
-          title="총 검사 수량"
-          value={latestYield?.totalInspected.toLocaleString()}
-          color="primary"
-        />
-        <MetricCard
-          title="결함 수량"
-          value={latestYield?.defectCount.toLocaleString()}
-          color="error"
-        />
-      </DashboardGrid>
-
-      <ChartContainer title="실시간 수율 트렌드" height={400}>
-        <div ref={chartRef} style={{ width: '100%', height: '100%' }} />
-      </ChartContainer>
-    </div>
-  );
-};`,
-        },
-        {
-          title: "Saige Elements 기여 - ChartContainer 컴포넌트",
-          description:
-            "디자인 시스템에 기여한 재사용 가능한 차트 컨테이너 컴포넌트",
-          language: "typescript",
-          filename: "saige-elements/ChartContainer.tsx",
-          code: `import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../base';
-import { useTheme } from '../theme';
-
-interface ChartContainerProps {
-  title?: string;
-  subtitle?: string;
-  height?: number | string;
-  loading?: boolean;
-  error?: string;
-  actions?: React.ReactNode;
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const ChartContainer: React.FC<ChartContainerProps> = ({
-  title,
-  subtitle,
-  height = 400,
-  loading = false,
-  error,
-  actions,
-  children,
-  className
-}) => {
-  const theme = useTheme();
-
-  if (error) {
-    return (
-      <Card className={className}>
-        <CardContent className="flex items-center justify-center" style={{ height }}>
-          <div className="text-center">
-            <div className="text-error-500 mb-2">차트 로딩 중 오류가 발생했습니다</div>
-            <div className="text-gray-500 text-sm">{error}</div>
-          </div>
-        </CardContent>
-      </Card>
-    );
-  }
-
-  return (
-    <Card className={className}>
-      {(title || actions) && (
-        <CardHeader className="flex flex-row items-center justify-between">
-          <div>
-            {title && <CardTitle>{title}</CardTitle>}
-            {subtitle && <div className="text-sm text-gray-500 mt-1">{subtitle}</div>}
-          </div>
-          {actions && <div className="flex items-center gap-2">{actions}</div>}
-        </CardHeader>
-      )}
-      <CardContent>
-        <div 
-          className="relative"
-          style={{ height: typeof height === 'number' ? \`\${height}px\` : height }}
-        >
-          {loading ? (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
-            </div>
-          ) : (
-            children
-          )}
-        </div>
-      </CardContent>
-    </Card>
-  );
-};`,
-        },
       ],
     },
     {
@@ -1680,7 +1322,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
         "비윤리적 표현 코퍼스 연구를 위한 웹 시스템 구축과 사용자 데이터 수집이 필요했습니다. 학술 연구 목적으로 다양한 텍스트에 대한 윤리성 평가 데이터를 수집해야 했고, 이를 위해 일반 사용자들이 쉽게 참여할 수 있는 웹 플랫폼이 필요한 상황이었습니다. 특히 연령과 성별 등 다양한 배경을 가진 사용자들의 의견을 균형있게 수집하는 것이 중요했습니다.",
       detailedDescription: {
         summary:
-          "비윤리적 표현 코퍼스 연구 및 파일럿 웹 시스템 개발 프로젝트로, 비윤리적 표현을 평가하는 웹 시스템을 구축하고 사용자 데이터를 수집했습니다. 단독 프론트엔드 개발자로서 사용자 피드백 기반의 기능 개선을 주도했습니다. 텍스트 평가 인터페이스, 진행률 추적, 사용자 관리 등의 기능을 포함한 완전한 웹 애플리케이션을 개발했으며, 실제 100명의 사용자를 대상으로 한 대규모 테스트를 진행했습니다.",
+          "비윤리적 표현 평가 시스템의 프론트엔드를 단독 개발하고, 100명 사용자 테스트를 통해 100,000건 이상의 데이터를 수집한 연구 기반 프로젝트",
         results:
           "실제 사용자 테스트를 통해 기능 적합성과 UI 효과성을 검증했습니다. 프론트엔드 전체 라이프사이클(설계, 개발, 배포)을 소유한 경험을 획득했으며, 지속적인 반복을 통해 데이터 수집의 효율성과 정확성을 향상시켰습니다. 100명의 사용자로부터 총 10,000건 이상의 평가 데이터를 성공적으로 수집했고, 연구 목적에 부합하는 고품질 데이터셋 구축에 기여했습니다.",
       },
@@ -1699,7 +1341,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
         {
           phase: "Phase 2: 사용자 테스트 및 피드백 수집 (2022.02-03)",
           description:
-            "연령과 성별 다양성을 고려하여 100명의 실제 사용자를 모집하고 대규모 테스트를 진행했습니다. 사용자 행동 분석을 위한 로깅 시스템을 구축하고, 체계적으로 피드백을 수집했습니다. 평가 품질 향상을 위한 검증 로직을 개발하고, 사용자 혼동을 줄이기 위한 UI 개선사항을 도출했습니다.",
+            "연령과 성별 다양성을 고려하여 100명의 실제 사용자를 모집하고 테스트를 진행했습니다. 사용자 행동 분석을 위한 로깅 시스템을 구축하고, 체계적으로 피드백을 수집했습니다. 평가 품질 향상을 위한 검증 로직을 개발하고, 사용자 혼동을 줄이기 위한 UI 개선사항을 도출했습니다.",
           outcomes: [
             "100명 규모의 대규모 사용자 테스트 진행",
             "사용자 행동 분석을 위한 로깅 시스템 구축",
@@ -1715,7 +1357,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
             "사용자 혼동 최소화를 위한 3단 UI 구조 도입",
             "평가 효율성과 데이터 정확도 향상",
             "인터랙션 디자인 최적화",
-            "10,000건 이상의 고품질 평가 데이터 수집 완료",
+            "100,000건 이상의 고품질 평가 데이터 수집 완료",
           ],
         },
       ],
@@ -1734,8 +1376,6 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
         "Redux Toolkit",
         "Ant Design",
         "Webpack",
-        "ESLint",
-        "Prettier",
       ],
       technologyReasoning: [
         {
@@ -1752,13 +1392,7 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({
             "사용자 혼동을 줄이고 정확한 평가를 유도하는 3단 UI 구조를 도입했습니다. Paragraph Section(평가 대상 문장과 참고 문장을 시각적으로 구분, 평가할 문장에서 핵심 표현 하이라이트 처리), Subtitle Section(평가 데이터의 메타 정보 표시, 이전/다음 문장 이동 및 평가 진행률 시각화), Form Section(라디오 버튼을 통한 평가 입력으로 중복 선택 방지, 평가 항목 3종 모두 입력되어야 제출 가능, 6가지 유형 외 표현은 pass 기능 제공)으로 구성하여 평가 효율성과 데이터 정확도를 고려했습니다.",
         },
       ],
-      achievements: [
-        "실제 사용자 테스트를 통한 기능 적합성과 UI 효과성 검증",
-        "프론트엔드 전체 라이프사이클 소유 경험 획득 (설계, 개발, 배포)",
-        "지속적인 반복을 통한 데이터 수집 효율성과 정확성 향상",
-        "100명 사용자로부터 10,000건 이상의 고품질 평가 데이터 수집",
-        "연구 목적에 부합하는 데이터셋 구축 성공",
-      ],
+
       codeSnippets: [
         {
           title: "표현 평가 인터페이스",
@@ -1908,7 +1542,7 @@ export default EvaluationInterface;`,
         "코퍼스 언어의 사회적 인식 분류를 위한 문장 라벨링 및 검토 시스템 개발과 사용자 테스트를 통한 품질 개선이 필요했습니다. 자연어 처리 연구를 위해 대량의 텍스트 데이터에 정확한 라벨을 부여하는 작업이 필요했고, 이를 효율적으로 수행할 수 있는 도구가 부족한 상황이었습니다. 특히 라벨링 작업의 일관성과 품질을 보장하면서도 작업 효율성을 높이는 것이 핵심 과제였습니다.",
       detailedDescription: {
         summary:
-          "코퍼스 언어의 사회적 인식 분류 연구 프로젝트로, 문장 라벨링 및 검토 시스템을 개발하고 사용자 테스트를 통해 품질을 개선했습니다. 단독 프론트엔드 개발자로서 사용자 피드백 기반의 개선을 주도했습니다. 텍스트 선택 기반 라벨링, 컨텍스트 메뉴를 통한 직관적 인터페이스, 그리고 검수자를 위한 검토 시스템을 포함한 완전한 워크플로우를 구축했습니다.",
+          "문장 라벨링 시스템을 단독 개발하고 사용자 피드백을 반영해 인터페이스를 개선, 라벨링 정확도와 속도를 향상시켜 100,000건 이상의 고품질 데이터를 수집한 프로젝트",
         results:
           "사용자 중심의 인터페이스 개선을 통해 라벨링 정확도와 속도를 향상시켰습니다. 피드백 루프 기반 개발과 반복적 개선 경험을 획득했으며, 사용자 관점에서 제품 완성도 향상을 주도했습니다. 라벨링 작업 시간이 평균 40% 단축되었고, 라벨링 일관성이 85%에서 95%로 향상되었습니다. 최종적으로 50,000건 이상의 고품질 라벨링 데이터를 성공적으로 수집했습니다.",
       },
@@ -1956,15 +1590,7 @@ export default EvaluationInterface;`,
         "라벨링 편의성 최적화",
         "워크플로우 구축",
       ],
-      technologies: [
-        "React",
-        "JavaScript",
-        "Redux",
-        "Ant Design",
-        "Webpack",
-        "ESLint",
-        "Prettier",
-      ],
+      technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       technologyReasoning: [
         {
           category: "드래그 기반 라벨링 인터페이스 구현",
@@ -1991,13 +1617,7 @@ export default EvaluationInterface;`,
             "긴 문서 데이터에 대해 무한 스크롤 기반 지연 로딩을 적용했습니다. 초기 로딩 시 30개 문장만 렌더링하여 초기 성능을 최적화하고, 사용자가 하단으로 스크롤할 경우 다음 페이지 데이터를 비동기로 fetch했습니다. IntersectionObserver 기반 무한 스크롤 방식으로 UX 및 렌더링 성능을 개선했습니다.",
         },
       ],
-      achievements: [
-        "사용자 중심 인터페이스 개선을 통한 라벨링 정확도와 속도 향상",
-        "피드백 루프 기반 개발과 반복적 개선 경험 획득",
-        "사용자 관점에서 제품 완성도 향상 주도",
-        "라벨링 작업 시간 40% 단축 및 일관성 95% 달성",
-        "50,000건 이상의 고품질 라벨링 데이터 수집 성공",
-      ],
+
       codeSnippets: [
         {
           title: "문장 라벨링 인터페이스",
