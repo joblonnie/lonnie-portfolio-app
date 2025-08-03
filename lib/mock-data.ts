@@ -645,7 +645,7 @@ export const useRangeMetrics = (instance: string, os: OS) => {
       title:
         "비윤리적 표현 평가 시스템 프론트엔드 개발 및 사용자 피드백 기반 개선",
       image:
-        "/placeholder.svg?height=400&width=800&text=비윤리적+표현+평가+시스템",
+        "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
       background:
         "비윤리적 표현 코퍼스 연구를 위한 웹 시스템 구축과 사용자 데이터 수집이 필요했습니다. 학술 연구 목적으로 다양한 텍스트에 대한 윤리성 평가 데이터를 수집해야 했고, 이를 위해 일반 사용자들이 쉽게 참여할 수 있는 웹 플랫폼이 필요한 상황이었습니다. 특히 연령과 성별 등 다양한 배경을 가진 사용자들의 의견을 균형있게 수집하는 것이 중요했습니다.",
       detailedDescription: {
@@ -1033,7 +1033,7 @@ export default evaluationSlice.reducer;`,
       companyId: "media-corpus",
       title:
         "문장 라벨링 및 검토 시스템 프론트엔드 개발 및 사용자 테스트 기반 개선",
-      image: "/placeholder.svg?height=400&width=800&text=문장+라벨링+시스템",
+      image: "/media-logo-1.png?text=문장+라벨링+시스템",
       background:
         "코퍼스 언어의 사회적 인식 분류를 위한 문장 라벨링 및 검토 시스템 개발과 사용자 테스트를 통한 품질 개선이 필요했습니다. 자연어 처리 연구를 위해 대량의 텍스트 데이터에 정확한 라벨을 부여하는 작업이 필요했고, 이를 효율적으로 수행할 수 있는 도구가 부족한 상황이었습니다. 특히 라벨링 작업의 일관성과 품질을 보장하면서도 작업 효율성을 높이는 것이 핵심 과제였습니다.",
       detailedDescription: {
