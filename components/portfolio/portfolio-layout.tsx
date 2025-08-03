@@ -21,6 +21,7 @@ export function PortfolioLayout() {
   const renderPage = () => {
     switch (currentPage) {
       case "cover":
+      case "home": // "home"도 cover 페이지로 처리
         return <CoverPage onNavigate={handlePageChange} />
       case "intro":
         return <IntroductionPage onNavigate={handlePageChange} />
@@ -34,7 +35,7 @@ export function PortfolioLayout() {
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Only show sidebar when not on cover page */}
-      {currentPage !== "cover" && (
+      {currentPage !== "cover" && currentPage !== "home" && (
         <Sidebar
           currentPage={currentPage}
           onPageChange={handlePageChange}
@@ -44,12 +45,14 @@ export function PortfolioLayout() {
       )}
 
       {/* 메인 콘텐츠 */}
-      <main className={`flex-1 transition-all duration-300 ${currentPage !== "cover" ? "lg:ml-64" : ""}`}>
+      <main
+        className={`flex-1 transition-all duration-300 ${currentPage !== "cover" && currentPage !== "home" ? "lg:ml-64" : ""}`}
+      >
         {renderPage()}
       </main>
 
       {/* 모바일 오버레이 - backdrop z-index를 사이드바보다 낮게 설정 */}
-      {currentPage !== "cover" && sidebarOpen && (
+      {currentPage !== "cover" && currentPage !== "home" && sidebarOpen && (
         <div className="fixed inset-0 bg-black/50 z-[40] lg:hidden" onClick={() => setSidebarOpen(false)} />
       )}
     </div>
