@@ -243,168 +243,6 @@ export const mockPortfolioData: PortfolioData = {
             "- ... (nx.json, package.json 등)",
           ].join("\n"),
         },
-        {
-          title: "VIMS 공유 컴포넌트",
-          description: "재사용 가능한 모니터링 차트 컴포넌트",
-          language: "typescript",
-          filename: "libs/vims-ui/src/MonitoringChart.tsx",
-          code: `import React, { useEffect, useRef } from 'react';
-import * as echarts from 'echarts';
-import { useWebSocket } from '@vims/core';
-
-interface MonitoringChartProps {
-  title: string;
-  dataKey: string;
-  chartType: 'line' | 'bar' | 'scatter';
-  realtime?: boolean;
-}
-
-export const MonitoringChart: React.FC<MonitoringChartProps> = ({
-  title,
-  dataKey,
-  chartType,
-  realtime = false
-}) => {
-  const chartRef = useRef<HTMLDivElement>(null);
-  const chartInstance = useRef<echarts.ECharts>();
-  const { data, isConnected } = useWebSocket(realtime);
-
-  useEffect(() => {
-    if (chartRef.current) {
-      chartInstance.current = echarts.init(chartRef.current);
-      
-      const option = {
-        title: { text: title },
-        tooltip: { trigger: 'axis' },
-        xAxis: { type: 'time' },
-        yAxis: { type: 'value' },
-        series: [{
-          type: chartType,
-          data: [],
-          smooth: true,
-          animation: true
-        }]
-      };
-      
-      chartInstance.current.setOption(option);
-    }
-
-    return () => {
-      chartInstance.current?.dispose();
-    };
-  }, [title, chartType]);
-
-  useEffect(() => {
-    if (chartInstance.current && data?.[dataKey]) {
-      chartInstance.current.setOption({
-        series: [{
-          data: data[dataKey]
-        }]
-      });
-    }
-  }, [data, dataKey]);
-
-  return (
-    <div 
-      ref={chartRef} 
-      style={{ width: '100%', height: '400px' }}
-      className="monitoring-chart"
-    />
-  );
-};`,
-        },
-        {
-          title: "Konva.js 결함 영역 렌더링",
-          description:
-            "SEG 모델의 결함 윤곽선 데이터를 시각화하는 캔버스 컴포넌트",
-          language: "typescript",
-          filename: "libs/vims-ui/src/DefectRenderer.tsx",
-          code: `import React, { useEffect, useRef } from 'react';
-import Konva from 'konva';
-import { Stage, Layer, Line, Circle } from 'react-konva';
-
-interface DefectData {
-  id: string;
-  contour: number[][];
-  className: string;
-  confidence: number;
-}
-
-interface DefectRendererProps {
-  imageUrl: string;
-  defects: DefectData[];
-  width: number;
-  height: number;
-}
-
-export const DefectRenderer: React.FC<DefectRendererProps> = ({
-  imageUrl,
-  defects,
-  width,
-  height
-}) => {
-  const stageRef = useRef<Konva.Stage>(null);
-
-  const getDefectColor = (className: string): string => {
-    const colorMap: Record<string, string> = {
-      'crack': '#ff4444',
-      'scratch': '#ffaa00',
-      'stain': '#44ff44',
-      'bubble': '#4444ff'
-    };
-    return colorMap[className] || '#ffffff';
-  };
-
-  const renderDefectContour = (defect: DefectData) => {
-    const points = defect.contour.flat();
-    const color = getDefectColor(defect.className);
-    
-    return (
-      <Line
-        key={defect.id}
-        points={points}
-        stroke={color}
-        strokeWidth={2}
-        closed={true}
-        fill={color}
-        opacity={0.3}
-        perfectDrawEnabled={false}
-      />
-    );
-  };
-
-  return (
-    <div className="defect-renderer">
-      <Stage width={width} height={height} ref={stageRef}>
-        <Layer>
-          {/* Background Image */}
-          <Konva.Image
-            image={new window.Image()}
-            width={width}
-            height={height}
-          />
-          
-          {/* Defect Contours */}
-          {defects.map(renderDefectContour)}
-          
-          {/* Defect Labels */}
-          {defects.map((defect, index) => (
-            <Circle
-              key={\`label-\${defect.id}\`}
-              x={defect.contour[0][0]}
-              y={defect.contour[0][1]}
-              radius={8}
-              fill={getDefectColor(defect.className)}
-              stroke="#ffffff"
-              strokeWidth={2}
-            />
-          ))}
-        </Layer>
-      </Stage>
-    </div>
-  );
-};`,
-        },
       ],
     },
     {
@@ -549,634 +387,195 @@ export default toast;
 // toast.info('정보', '등록을 성공했습니다.');
 // toast.error('오류', '네트워크 연결을 확인해주세요.');`,
         },
-        {
-          title: "API 오류 처리 표준화",
-          description: "GS 인증 요구사항에 맞춘 통합 오류 처리 시스템",
-          language: "typescript",
-          filename: "api/interceptors.ts",
-          code: `import axios, { AxiosError, AxiosResponse } from 'axios';
-import toast from '../utils/toast';
-
-interface ApiError {
-  code: string;
-  message: string;
-  details?: any;
-}
-
-// 오류 코드별 메시지 매핑
-const ERROR_MESSAGES: Record<string, string> = {
-  'AUTH_001': '인증이 만료되었습니다. 다시 로그인해주세요.',
-  'AUTH_002': '접근 권한이 없습니다.',
-  'VALIDATION_001': '입력 데이터를 확인해주세요.',
-  'SERVER_001': '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
-  'NETWORK_001': '네트워크 연결을 확인해주세요.'
-};
-
-// 응답 인터셉터
-axios.interceptors.response.use(
-  (response: AxiosResponse) => {
-    // 성공 응답 처리
-    if (response.data?.message && response.config.method !== 'get') {
-      toast.success('성공', response.data.message);
-    }
-    return response;
-  },
-  (error: AxiosError<ApiError>) => {
-    const { response, request } = error;
-    
-    if (response) {
-      // 서버 응답이 있는 경우
-      const { status, data } = response;
-      const errorCode = data?.code || \`HTTP_\${status}\`;
-      const errorMessage = ERROR_MESSAGES[errorCode] || data?.message || '알 수 없는 오류가 발생했습니다.';
-      
-      // GS 인증 요구사항: 모든 오류를 사용자에게 명확히 표시
-      toast.error('오류', errorMessage, { persist: status >= 500 });
-      
-      // 인증 오류 시 로그아웃 처리
-      if (status === 401) {
-        localStorage.removeItem('token');
-        window.location.href = '/login';
-      }
-    } else if (request) {
-      // 네트워크 오류
-      toast.error('네트워크 오류', ERROR_MESSAGES['NETWORK_001']);
-    } else {
-      // 기타 오류
-      toast.error('오류', '요청 처리 중 오류가 발생했습니다.');
-    }
-    
-    return Promise.reject(error);
-  }
-);`,
-        },
       ],
     },
-    {
-      projectId: 3,
-      companyId: "saige",
-      title: "SAIGE VAD 종합 개발 - 모니터링부터 개발자 도구까지",
-      background:
-        "입사 직후부터 시작된 VAD(Video Anomaly Detection) 관련 프로젝트들의 종합적인 개발 경험입니다. 처음에는 VAD 시스템의 모니터링 인터페이스 구축이 필요했고, 이후 AI 연구진들의 모델 학습 과정에서 수작업으로 진행되던 ROI 설정과 사이클 정의 작업을 자동화할 필요가 생겼습니다. 기존에는 AI 모델의 결과를 확인하기 위해 별도의 도구들을 사용해야 했고, 실시간 모니터링이 어려운 상황이었습니다. 또한 AI 연구진들이 매번 수동으로 비디오에서 관심 영역을 설정하고 정상 동작 패턴을 정의하는 작업이 비효율적이어서 이를 개선하는 도구가 필요했습니다.",
-      detailedDescription: {
-        summary:
-          "VAD 생태계 전반을 아우르는 워크플로우를 구축하고, 재사용 가능한 UI 컴포넌트와 내부 도구 개발을 통해 AI 팀의 작업 효율을 최대 80% 향상시킨 프로젝트",
-        results:
-          "VAD 생태계 전반에 걸친 종합적인 개발 경험을 통해 모니터링부터 AI 연구 도구까지 완전한 워크플로우를 구축했습니다. 입사 첫 프로젝트에서 개발한 atomic 컴포넌트들은 이후 VIMS, SAFETY 등 다른 제품군에서도 재사용되어 개발 효율성을 크게 높였습니다. v2에서는 AI 모델 학습 효율성을 개선하여 라벨링 시간을 60% 단축하고, 내부 도구 개선으로 AI 팀의 수작업을 80% 줄였습니다.",
-      },
-      projectPhases: [
-        {
-          phase: "Phase 1: VAD 모니터링 시스템 개발 (2022.06-08)",
-          description:
-            "입사 첫 프로젝트로 Konva.js를 활용해 VAD 모니터링 시스템의 핵심 atomic 컴포넌트를 개발했습니다. 비디오 플레이어, 이상 감지 결과 시각화, 실시간 알림 등의 기본 컴포넌트들을 atomic design 패턴에 따라 체계적으로 구축했습니다. MobX를 활용한 상태 관리와 TypeScript를 통한 타입 안정성을 확보했으며, 컴포넌트 간의 의존성을 최소화하여 재사용성을 높였습니다.",
-          outcomes: [
-            "Atomic Design 패턴 기반 재사용 가능한 컴포넌트 개발",
-            "Konva.js를 활용한 실시간 비디오 오버레이 시스템 구축",
-            "향후 모니터링 시스템 개발의 확장성 높은 기반 마련",
-            "팀 내 컴포넌트 설계 역량 인정으로 이후 UI 아키텍처 설계 주도",
-          ],
-        },
-        {
-          phase: "Phase 2: VAD 학습용 Developer 툴 v1 개발 (2022.11-12)",
-          description:
-            "프로젝트 생성, ROI 설정, 사이클 정의 기능을 제공하는 웹 기반 도구를 개발했습니다. MobX를 활용한 상태 관리와 Konva.js를 이용한 캔버스 기반 ROI 설정 인터페이스를 구현했습니다. 비디오 플레이어와 연동하여 특정 프레임에서 ROI를 설정하고, 정상 동작 사이클을 정의할 수 있는 기능을 제공했습니다.",
-          outcomes: [
-            "프로젝트 생성 및 관리 시스템 구축",
-            "Konva.js 기반 ROI 설정 인터페이스 구현",
-            "비디오 플레이어 연동 사이클 정의 기능 개발",
-            "AI 연구진의 수작업 프로세스 자동화",
-          ],
-        },
-        {
-          phase: "Phase 3: 사용자 피드백 수집 및 개선점 도출 (2023.01-2024.01)",
-          description:
-            "AI 연구소의 VOC를 체계적으로 수집하고 분석했습니다. 주요 문제점으로는 복잡한 파일 업로드 프로세스, 직관적이지 않은 ROI 설정 인터페이스, 사이클 정의 기능의 부족함이 확인되었습니다. 이를 바탕으로 v2 개발을 위한 요구사항을 정의하고 새로운 아키텍처를 설계했습니다.",
-          outcomes: [
-            "AI 연구소 VOC 체계적 수집 및 분석",
-            "파일 업로드 프로세스 복잡성 문제 확인",
-            "ROI 설정 인터페이스 직관성 부족 파악",
-            "v2 개발 요구사항 정의 및 아키텍처 설계",
-          ],
-        },
-        {
-          phase: "Phase 4: VAD 학습용 Developer 툴 v2 개발 (2024.02-06)",
-          description:
-            "프로젝트/데이터셋 아키텍처를 설계하고 여러 프로젝트 간 데이터셋을 공유할 수 있는 구조를 구축했습니다. 브라우저 보안 제한을 극복하기 위해 로컬 파일 경로를 전달하고 서버를 통해 메타데이터를 파싱하는 혁신적인 시스템을 설계 및 구현했습니다. 드래그 앤 드롭 방식의 직관적인 파일 업로드 인터페이스를 개발하여 사용성을 대폭 개선했습니다.",
-          outcomes: [
-            "프로젝트/데이터셋 공유 아키텍처 구축",
-            "브라우저 보안 제한 극복 파일 처리 시스템 구현",
-            "드래그 앤 드롭 방식의 직관적 파일 업로드 개발",
-            "AI 학습용 전처리 사용성 대폭 개선",
-          ],
-        },
-      ],
-      period: "2022.06 - 2024.06",
-      role: "프론트엔드 개발",
-      frontendDevelopers: 1,
-      keywords: [
-        "VAD 생태계 종합 개발",
-        "모니터링 시스템 구축",
-        "AI 연구 도구 개발",
-        "사용자 피드백 기반 개선",
-        "브라우저 보안 제한 극복",
-      ],
-      technologies: [
-        "React",
-        "TypeScript",
-        "Context API",
-        "Konva.js",
-        "React Hook Form",
-        "MUI",
-        "MobX",
-      ],
-      technologyReasoning: [
-        {
-          category: "Atomic Design 패턴 기반 컴포넌트 설계",
-          technologies: ["React", "TypeScript", "Atomic Design"],
-          reasoning:
-            "입사 첫 프로젝트에서 향후 다양한 모니터링 시스템에서 활용할 수 있는 확장성 높은 UI 기반을 마련하기 위해 Atomic Design 패턴을 적용했습니다. 비디오 플레이어, 이상 감지 결과 시각화, 실시간 알림 등의 기본 컴포넌트들을 atoms, molecules, organisms 단위로 체계적으로 구축하여 재사용성을 극대화했습니다. 이를 통해 개발한 컴포넌트들은 이후 VIMS, SAFETY 등 다른 제품군에서도 재사용되어 개발 효율성을 크게 높일 수 있었습니다.",
-        },
-        {
-          category: "브라우저 보안 제한 극복을 위한 혁신적 파일 처리 시스템",
-          technologies: ["File API", "Server Integration"],
-          reasoning:
-            "v2 개발 과정에서 가장 큰 기술적 도전은 브라우저의 보안 제한으로 인해 로컬 파일 시스템에 직접 접근할 수 없다는 점이었습니다. AI 연구진들이 대용량 비디오 파일을 효율적으로 처리하기 위해서는 파일을 서버로 업로드하지 않고도 메타데이터를 추출할 수 있는 방법이 필요했습니다. 이를 해결하기 위해 로컬 파일 경로를 전달하고 서버를 통해 메타데이터를 파싱하는 혁신적인 시스템을 설계했습니다. 클라이언트에서는 파일 선택 인터페이스만 제공하고, 실제 파일 처리는 서버에서 수행하여 보안과 성능을 모두 확보했습니다.",
-        },
-      ],
-      codeSnippets: [
-        {
-          title: "Atomic 비디오 플레이어 컴포넌트",
-          description:
-            "재사용 가능한 기본 비디오 플레이어 컴포넌트 (모니터링 시스템)",
-          language: "typescript",
-          filename: "components/atoms/VideoPlayer.tsx",
-          code: `import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
+    //     {
+    //       projectId: 3,
+    //       companyId: "saige",
+    //       title: "SAIGE VAD 종합 개발 - 모니터링부터 개발자 도구까지",
+    //       background:
+    //         "입사 직후부터 시작된 VAD(Video Anomaly Detection) 관련 프로젝트들의 종합적인 개발 경험입니다. 처음에는 VAD 시스템의 모니터링 인터페이스 구축이 필요했고, 이후 AI 연구진들의 모델 학습 과정에서 수작업으로 진행되던 ROI 설정과 사이클 정의 작업을 자동화할 필요가 생겼습니다. 기존에는 AI 모델의 결과를 확인하기 위해 별도의 도구들을 사용해야 했고, 실시간 모니터링이 어려운 상황이었습니다. 또한 AI 연구진들이 매번 수동으로 비디오에서 관심 영역을 설정하고 정상 동작 패턴을 정의하는 작업이 비효율적이어서 이를 개선하는 도구가 필요했습니다.",
+    //       detailedDescription: {
+    //         summary:
+    //           "VAD 생태계 전반을 아우르는 워크플로우를 구축하고, 재사용 가능한 UI 컴포넌트와 내부 도구 개발을 통해 AI 팀의 작업 효율을 최대 80% 향상시킨 프로젝트",
+    //         results:
+    //           "VAD 생태계 전반에 걸친 종합적인 개발 경험을 통해 모니터링부터 AI 연구 도구까지 완전한 워크플로우를 구축했습니다. 입사 첫 프로젝트에서 개발한 atomic 컴포넌트들은 이후 VIMS, SAFETY 등 다른 제품군에서도 재사용되어 개발 효율성을 크게 높였습니다. v2에서는 AI 모델 학습 효율성을 개선하여 라벨링 시간을 60% 단축하고, 내부 도구 개선으로 AI 팀의 수작업을 80% 줄였습니다.",
+    //       },
+    //       projectPhases: [
+    //         {
+    //           phase: "Phase 1: VAD 모니터링 시스템 개발 (2022.06-08)",
+    //           description:
+    //             "입사 첫 프로젝트로 Konva.js를 활용해 VAD 모니터링 시스템의 핵심 atomic 컴포넌트를 개발했습니다. 비디오 플레이어, 이상 감지 결과 시각화, 실시간 알림 등의 기본 컴포넌트들을 atomic design 패턴에 따라 체계적으로 구축했습니다. MobX를 활용한 상태 관리와 TypeScript를 통한 타입 안정성을 확보했으며, 컴포넌트 간의 의존성을 최소화하여 재사용성을 높였습니다.",
+    //           outcomes: [
+    //             "Atomic Design 패턴 기반 재사용 가능한 컴포넌트 개발",
+    //             "Konva.js를 활용한 실시간 비디오 오버레이 시스템 구축",
+    //             "향후 모니터링 시스템 개발의 확장성 높은 기반 마련",
+    //             "팀 내 컴포넌트 설계 역량 인정으로 이후 UI 아키텍처 설계 주도",
+    //           ],
+    //         },
+    //         {
+    //           phase: "Phase 2: VAD 학습용 Developer 툴 v1 개발 (2022.11-12)",
+    //           description:
+    //             "프로젝트 생성, ROI 설정, 사이클 정의 기능을 제공하는 웹 기반 도구를 개발했습니다. MobX를 활용한 상태 관리와 Konva.js를 이용한 캔버스 기반 ROI 설정 인터페이스를 구현했습니다. 비디오 플레이어와 연동하여 특정 프레임에서 ROI를 설정하고, 정상 동작 사이클을 정의할 수 있는 기능을 제공했습니다.",
+    //           outcomes: [
+    //             "프로젝트 생성 및 관리 시스템 구축",
+    //             "Konva.js 기반 ROI 설정 인터페이스 구현",
+    //             "비디오 플레이어 연동 사이클 정의 기능 개발",
+    //             "AI 연구진의 수작업 프로세스 자동화",
+    //           ],
+    //         },
+    //         {
+    //           phase: "Phase 3: 사용자 피드백 수집 및 개선점 도출 (2023.01-2024.01)",
+    //           description:
+    //             "AI 연구소의 VOC를 체계적으로 수집하고 분석했습니다. 주요 문제점으로는 복잡한 파일 업로드 프로세스, 직관적이지 않은 ROI 설정 인터페이스, 사이클 정의 기능의 부족함이 확인되었습니다. 이를 바탕으로 v2 개발을 위한 요구사항을 정의하고 새로운 아키텍처를 설계했습니다.",
+    //           outcomes: [
+    //             "AI 연구소 VOC 체계적 수집 및 분석",
+    //             "파일 업로드 프로세스 복잡성 문제 확인",
+    //             "ROI 설정 인터페이스 직관성 부족 파악",
+    //             "v2 개발 요구사항 정의 및 아키텍처 설계",
+    //           ],
+    //         },
+    //         {
+    //           phase: "Phase 4: VAD 학습용 Developer 툴 v2 개발 (2024.02-06)",
+    //           description:
+    //             "프로젝트/데이터셋 아키텍처를 설계하고 여러 프로젝트 간 데이터셋을 공유할 수 있는 구조를 구축했습니다. 브라우저 보안 제한을 극복하기 위해 로컬 파일 경로를 전달하고 서버를 통해 메타데이터를 파싱하는 혁신적인 시스템을 설계 및 구현했습니다. 드래그 앤 드롭 방식의 직관적인 파일 업로드 인터페이스를 개발하여 사용성을 대폭 개선했습니다.",
+    //           outcomes: [
+    //             "프로젝트/데이터셋 공유 아키텍처 구축",
+    //             "브라우저 보안 제한 극복 파일 처리 시스템 구현",
+    //             "드래그 앤 드롭 방식의 직관적 파일 업로드 개발",
+    //             "AI 학습용 전처리 사용성 대폭 개선",
+    //           ],
+    //         },
+    //       ],
+    //       period: "2022.06 - 2024.06",
+    //       role: "프론트엔드 개발",
+    //       frontendDevelopers: 1,
+    //       keywords: [
+    //         "VAD 생태계 종합 개발",
+    //         "모니터링 시스템 구축",
+    //         "AI 연구 도구 개발",
+    //         "사용자 피드백 기반 개선",
+    //         "브라우저 보안 제한 극복",
+    //       ],
+    //       technologies: [
+    //         "React",
+    //         "TypeScript",
+    //         "Context API",
+    //         "Konva.js",
+    //         "React Hook Form",
+    //         "MUI",
+    //         "MobX",
+    //       ],
+    //       technologyReasoning: [
+    //         {
+    //           category: "Atomic Design 패턴 기반 컴포넌트 설계",
+    //           technologies: ["React", "TypeScript", "Atomic Design"],
+    //           reasoning:
+    //             "입사 첫 프로젝트에서 향후 다양한 모니터링 시스템에서 활용할 수 있는 확장성 높은 UI 기반을 마련하기 위해 Atomic Design 패턴을 적용했습니다. 비디오 플레이어, 폴리곤, 사각형 등의 기본 컴포넌트들을 구축하여 재사용성을 극대화했습니다.",
+    //         },
+    //       ],
+    //       codeSnippets: [
+    //         {
+    //           title: "Atomic 비디오 플레이어 컴포넌트",
+    //           description:
+    //             "재사용 가능한 기본 비디오 플레이어 컴포넌트 (모니터링 시스템)",
+    //           language: "typescript",
+    //           filename: "components/atoms/VideoPlayer.tsx",
+    //           code: `import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
 
-interface VideoPlayerProps {
-  src: string;
-  width?: number;
-  height?: number;
-  autoPlay?: boolean;
-  loop?: boolean;
-  muted?: boolean;
-  onTimeUpdate?: (currentTime: number) => void;
-  onLoadedMetadata?: (duration: number) => void;
-  className?: string;
-}
+    // interface VideoPlayerProps {
+    //   src: string;
+    //   width?: number;
+    //   height?: number;
+    //   autoPlay?: boolean;
+    //   loop?: boolean;
+    //   muted?: boolean;
+    //   onTimeUpdate?: (currentTime: number) => void;
+    //   onLoadedMetadata?: (duration: number) => void;
+    //   className?: string;
+    // }
 
-export interface VideoPlayerRef {
-  play: () => void;
-  pause: () => void;
-  seek: (time: number) => void;
-  getCurrentTime: () => number;
-  getDuration: () => number;
-}
+    // export interface VideoPlayerRef {
+    //   play: () => void;
+    //   pause: () => void;
+    //   seek: (time: number) => void;
+    //   getCurrentTime: () => number;
+    //   getDuration: () => number;
+    // }
 
-export const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(({
-  src,
-  width = 640,
-  height = 480,
-  autoPlay = false,
-  loop = false,
-  muted = true,
-  onTimeUpdate,
-  onLoadedMetadata,
-  className = ''
-}, ref) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+    // export const VideoPlayer = forwardRef<VideoPlayerRef, VideoPlayerProps>(({
+    //   src,
+    //   width = 640,
+    //   height = 480,
+    //   autoPlay = false,
+    //   loop = false,
+    //   muted = true,
+    //   onTimeUpdate,
+    //   onLoadedMetadata,
+    //   className = ''
+    // }, ref) => {
+    //   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useImperativeHandle(ref, () => ({
-    play: () => {
-      videoRef.current?.play();
-    },
-    pause: () => {
-      videoRef.current?.pause();
-    },
-    seek: (time: number) => {
-      if (videoRef.current) {
-        videoRef.current.currentTime = time;
-      }
-    },
-    getCurrentTime: () => {
-      return videoRef.current?.currentTime || 0;
-    },
-    getDuration: () => {
-      return videoRef.current?.duration || 0;
-    }
-  }));
+    //   useImperativeHandle(ref, () => ({
+    //     play: () => {
+    //       videoRef.current?.play();
+    //     },
+    //     pause: () => {
+    //       videoRef.current?.pause();
+    //     },
+    //     seek: (time: number) => {
+    //       if (videoRef.current) {
+    //         videoRef.current.currentTime = time;
+    //       }
+    //     },
+    //     getCurrentTime: () => {
+    //       return videoRef.current?.currentTime || 0;
+    //     },
+    //     getDuration: () => {
+    //       return videoRef.current?.duration || 0;
+    //     }
+    //   }));
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    //   useEffect(() => {
+    //     const video = videoRef.current;
+    //     if (!video) return;
 
-    const handleTimeUpdate = () => {
-      onTimeUpdate?.(video.currentTime);
-    };
+    //     const handleTimeUpdate = () => {
+    //       onTimeUpdate?.(video.currentTime);
+    //     };
 
-    const handleLoadedMetadata = () => {
-      onLoadedMetadata?.(video.duration);
-    };
+    //     const handleLoadedMetadata = () => {
+    //       onLoadedMetadata?.(video.duration);
+    //     };
 
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    //     video.addEventListener('timeupdate', handleTimeUpdate);
+    //     video.addEventListener('loadedmetadata', handleLoadedMetadata);
 
-    return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-    };
-  }, [onTimeUpdate, onLoadedMetadata]);
+    //     return () => {
+    //       video.removeEventListener('timeupdate', handleTimeUpdate);
+    //       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    //     };
+    //   }, [onTimeUpdate, onLoadedMetadata]);
 
-  return (
-    <video
-      ref={videoRef}
-      src={src}
-      width={width}
-      height={height}
-      autoPlay={autoPlay}
-      loop={loop}
-      muted={muted}
-      className={className}
-      style={{ display: 'block' }}
-    />
-  );
-});
+    //   return (
+    //     <video
+    //       ref={videoRef}
+    //       src={src}
+    //       width={width}
+    //       height={height}
+    //       autoPlay={autoPlay}
+    //       loop={loop}
+    //       muted={muted}
+    //       className={className}
+    //       style={{ display: 'block' }}
+    //     />
+    //   );
+    // });
 
-VideoPlayer.displayName = 'VideoPlayer';`,
-        },
-        {
-          title: "프로젝트 관리 컴포넌트 (v1)",
-          description: "VAD 학습 프로젝트를 생성하고 관리하는 기본 컴포넌트",
-          language: "typescript",
-          filename: "components/ProjectManager.tsx",
-          code: `import React, { useState } from 'react';
-import { observer } from 'mobx-react-lite';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Button,
-  TextField,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  List,
-  ListItem,
-  ListItemText,
-  IconButton
-} from '@mui/material';
-import { Add, Edit, Delete, PlayArrow } from '@mui/icons-material';
-import { useStore } from '../stores/RootStore';
-
-interface Project {
-  id: string;
-  name: string;
-  description: string;
-  videoPath: string;
-  createdAt: Date;
-  status: 'created' | 'processing' | 'completed';
-}
-
-export const ProjectManager: React.FC = observer(() => {
-  const { projectStore } = useStore();
-  const [isCreateDialogOpen, setIsCreateDialogOpen ] = useState(false);
-  const [newProject, setNewProject] = useState({
-    name: '',
-    description: '',
-    videoPath: ''
-  });
-
-  const handleCreateProject = async () => {
-    try {
-      await projectStore.createProject({
-        ...newProject,
-        id: 'project_' + Date.now(),
-        createdAt: new Date(),
-        status: 'created'
-      });
-      
-      setNewProject({ name: '', description: '', videoPath: '' });
-      setIsCreateDialogOpen(false);
-    } catch (error) {
-      console.error('Failed to create project:', error);
-    }
-  };
-
-  const handleDeleteProject = async (projectId: string) => {
-    if (window.confirm('정말로 이 프로젝트를 삭제하시겠습니까?')) {
-      await projectStore.deleteProject(projectId);
-    }
-  };
-
-  const handleOpenProject = (project: Project) => {
-    projectStore.setActiveProject(project);
-    window.location.href = \`/projects/\${project.id}\`;
-  };
-
-  return (
-    <div className="project-manager">
-      <Card>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <CardTitle>VAD 학습 프로젝트</CardTitle>
-            <Button
-              variant="contained"
-              startIcon={<Add />}
-              onClick={() => setIsCreateDialogOpen(true)}
-            >
-              새 프로젝트
-            </Button>
-          </div>
-        </CardHeader>
-        <CardContent>
-          {projectStore.projects.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
-              생성된 프로젝트가 없습니다.
-            </div>
-          ) : (
-            <List>
-              {projectStore.projects.map((project) => (
-                <ListItem
-                  key={project.id}
-                  className="border rounded mb-2"
-                  secondaryAction={
-                    <div>
-                      <IconButton
-                        onClick={() => handleOpenProject(project)}
-                        color="primary"
-                      >
-                        <PlayArrow />
-                      </IconButton>
-                      <IconButton
-                        onClick={() => handleDeleteProject(project.id)}
-                        color="error"
-                      >
-                        <Delete />
-                      </IconButton>
-                    </div>
-                  }
-                >
-                  <ListItemText
-                    primary={project.name}
-                    secondary={
-                      <div>
-                        <div>{project.description}</div>
-                        <div className="text-xs text-gray-500">
-                          생성일: {project.createdAt.toLocaleDateString()} |
-                          상태: {project.status}
-                        </div>
-                      </div>
-                    }
-                  />
-                </ListItem>
-              ))}
-            </List>
-          )}
-        </CardContent>
-      </Card>
-
-      <Dialog
-        open={isCreateDialogOpen}
-        onClose={() => setIsCreateDialogOpen(false)}
-        maxWidth="sm"
-        fullWidth
-      >
-        <DialogTitle>새 VAD 프로젝트 생성</DialogTitle>
-        <DialogContent>
-          <div className="space-y-4 mt-2">
-            <TextField
-              label="프로젝트 이름"
-              value={newProject.name}
-              onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
-              fullWidth
-              required
-            />
-            <TextField
-              label="설명"
-              value={newProject.description}
-              onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-              fullWidth
-              multiline
-              rows={3}
-            />
-            <TextField
-              label="비디오 파일 경로"
-              value={newProject.videoPath}
-              onChange={(e) => setNewProject({ ...newProject, videoPath: e.target.value })}
-              fullWidth
-              required
-              placeholder="/path/to/video.mp4"
-            />
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsCreateDialogOpen(false)}>
-            취소
-          </Button>
-          <Button
-            onClick={handleCreateProject}
-            variant="contained"
-            disabled={!newProject.name || !newProject.videoPath}
-          >
-            생성
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
-});`,
-        },
-        {
-          title: "ROI 설정 캔버스 컴포넌트 (v2)",
-          description:
-            "v2에서 개선된 비디오 프레임에서 관심 영역을 설정하는 인터랙티브 캔버스",
-          language: "typescript",
-          filename: "components/ROICanvas.tsx",
-          code: `import React, { useRef, useEffect, useState } from 'react';
-import { Stage, Layer, Rect, Transformer } from 'react-konva';
-import Konva from 'konva';
-
-interface ROI {
-  id: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  name: string;
-}
-
-interface ROICanvasProps {
-  videoFrame: string;
-  rois: ROI[];
-  onROIChange: (rois: ROI[]) => void;
-  width: number;
-  height: number;
-}
-
-export const ROICanvas: React.FC<ROICanvasProps> = ({
-  videoFrame,
-  rois,
-  onROIChange,
-  width,
-  height
-}) => {
-  const stageRef = useRef<Konva.Stage>(null);
-  const transformerRef = useRef<Konva.Transformer>(null);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [newROI, setNewROI] = useState<Partial<ROI> | null>(null);
-
-  const handleMouseDown = (e: Konva.KonvaEventObject<MouseEvent>) => {
-    if (e.target === e.target.getStage()) {
-      setSelectedId(null);
-      setIsDrawing(true);
-      
-      const pos = e.target.getStage()?.getPointerPosition();
-      if (pos) {
-        const roi: Partial<ROI> = {
-          id: 'roi_' + Date.now(),
-          x: pos.x,
-          y: pos.y,
-          width: 0,
-          height: 0,
-          name: 'ROI ' + (rois.length + 1)
-        };
-        setNewROI(roi);
-      }
-    }
-  };
-
-  const handleMouseMove = (e: Konva.KonvaEventObject<MouseEvent>) => {
-    if (!isDrawing || !newROI) return;
-    
-    const stage = e.target.getStage();
-    const point = stage?.getPointerPosition();
-    if (point && newROI.x !== undefined && newROI.y !== undefined) {
-      setNewROI({
-        ...newROI,
-        width: point.x - newROI.x,
-        height: point.y - newROI.y
-      });
-    }
-  };
-
-  const handleMouseUp = () => {
-    if (isDrawing && newROI && newROI.width && newROI.height) {
-      if (Math.abs(newROI.width) > 10 && Math.abs(newROI.height) > 10) {
-        const finalROI: ROI = {
-          id: newROI.id!,
-          x: newROI.width < 0 ? newROI.x! + newROI.width : newROI.x!,
-          y: newROI.height < 0 ? newROI.y! + newROI.height : newROI.y!,
-          width: Math.abs(newROI.width),
-          height: Math.abs(newROI.height),
-          name: newROI.name!
-        };
-        onROIChange([...rois, finalROI]);
-      }
-    }
-    setIsDrawing(false);
-    setNewROI(null);
-  };
-
-  const handleROISelect = (id: string) => {
-    setSelectedId(id);
-  };
-
-  const handleROIChange = (id: string, newAttrs: any) => {
-    const updatedROIs = rois.map(roi => 
-      roi.id === id ? { ...roi, ...newAttrs } : roi
-    );
-    onROIChange(updatedROIs);
-  };
-
-  useEffect(() => {
-    const transformer = transformerRef.current;
-    const stage = stageRef.current;
-    
-    if (transformer && stage && selectedId) {
-      const selectedNode = stage.findOne(\`#\${selectedId}\`);
-      if (selectedNode) {
-        transformer.nodes([selectedNode]);
-        transformer.getLayer()?.batchDraw();
-      }
-    }
-  }, [selectedId]);
-
-  return (
-    <div className="roi-canvas">
-      <Stage
-        width={width}
-        height={height}
-        ref={stageRef}
-        onMouseDown={handleMouseDown}
-        onMousemove={handleMouseMove}
-        onMouseup={handleMouseUp}
-      >
-        <Layer>
-          {/* Background Video Frame */}
-          <Konva.Image
-            image={new window.Image()}
-            width={width}
-            height={height}
-          />
-          
-          {/* Existing ROIs */}
-          {rois.map((roi) => (
-            <Rect
-              key={roi.id}
-              id={roi.id}
-              x={roi.x}
-              y={roi.y}
-              width={roi.width}
-              height={roi.height}
-              stroke="#00ff00"
-              strokeWidth={2}
-              fill="rgba(0, 255, 0, 0.1)"
-              draggable
-              onClick={() => handleROISelect(roi.id)}
-              onDragEnd={(e) => {
-                handleROIChange(roi.id, {
-                  x: e.target.x(),
-                  y: e.target.y()
-                });
-              }}
-              onTransformEnd={(e) => {
-                const node = e.target;
-                handleROIChange(roi.id, {
-                  x: node.x(),
-                  y: node.y(),
-                  width: node.width() * node.scaleX(),
-                  height: node.height() * node.scaleY()
-                });
-                node.scaleX(1);
-                node.scaleY(1);
-              }}
-            />
-          ))}
-          
-          {/* New ROI being drawn */}
-          {newROI && newROI.width && newROI.height && (
-            <Rect
-              x={newROI.width < 0 ? newROI.x! + newROI.width : newROI.x!}
-              y={newROI.height < 0 ? newROI.y! + newROI.height : newROI.y!}
-              width={Math.abs(newROI.width)}
-              height={Math.abs(newROI.height)}
-              stroke="#ff0000"
-              strokeWidth={2}
-              fill="rgba(255, 0, 0, 0.1)"
-            />
-          )}
-          
-          <Transformer ref={transformerRef} />
-        </Layer>
-      </Stage>
-    </div>
-  );
-};`,
-        },
-      ],
-    },
+    // VideoPlayer.displayName = 'VideoPlayer';`,
+    //         },
+    //       ],
+    //     },
     {
       projectId: 4,
       companyId: "saige",
@@ -1322,13 +721,13 @@ export const useDiskIOMetrics = () => {
         "비윤리적 표현 코퍼스 연구를 위한 웹 시스템 구축과 사용자 데이터 수집이 필요했습니다. 학술 연구 목적으로 다양한 텍스트에 대한 윤리성 평가 데이터를 수집해야 했고, 이를 위해 일반 사용자들이 쉽게 참여할 수 있는 웹 플랫폼이 필요한 상황이었습니다. 특히 연령과 성별 등 다양한 배경을 가진 사용자들의 의견을 균형있게 수집하는 것이 중요했습니다.",
       detailedDescription: {
         summary:
-          "비윤리적 표현 평가 시스템의 프론트엔드를 단독 개발하고, 100명 사용자 테스트를 통해 100,000건 이상의 데이터를 수집한 연구 기반 프로젝트",
+          "비윤리적 표현 평가 시스템의 프론트엔드를 단독 개발하고, 100명 사용자 테스트를 통해 150,000건 이상의 데이터를 수집한 연구 기반 프로젝트",
         results:
-          "실제 사용자 테스트를 통해 기능 적합성과 UI 효과성을 검증했습니다. 프론트엔드 전체 라이프사이클(설계, 개발, 배포)을 소유한 경험을 획득했으며, 지속적인 반복을 통해 데이터 수집의 효율성과 정확성을 향상시켰습니다. 100명의 사용자로부터 총 10,000건 이상의 평가 데이터를 성공적으로 수집했고, 연구 목적에 부합하는 고품질 데이터셋 구축에 기여했습니다.",
+          "실제 사용자 테스트를 통해 기능 적합성과 UI 효과성을 검증했습니다. 프론트엔드 전체 라이프사이클(설계, 개발, 배포)을 소유한 경험을 획득했으며, 지속적인 반복을 통해 데이터 수집의 효율성과 정확성을 향상시켰습니다. 100명의 사용자로부터 총 150,000건 이상의 평가 데이터를 성공적으로 수집했고, 연구 목적에 부합하는 고품질 데이터셋 구축에 기여했습니다.",
       },
       projectPhases: [
         {
-          phase: "Phase 1: 시스템 설계 및 기본 구현 (2021.12-2022.01)",
+          phase: "Phase 1: 시스템 설계 및 기본 구현 (2021.12–2022.01)",
           description:
             "비윤리적 표현 평가를 위한 웹 시스템의 전체 아키텍처를 설계하고 기본 기능을 구현했습니다. Redux Toolkit을 활용한 상태 관리 구조를 설계하고, Ant Design을 통한 일관된 UI 컴포넌트를 구성했습니다. 텍스트 평가 인터페이스의 기본 틀을 구축하고, 사용자 인증 및 진행률 추적 기능을 개발했습니다.",
           outcomes: [
@@ -1339,25 +738,25 @@ export const useDiskIOMetrics = () => {
           ],
         },
         {
-          phase: "Phase 2: 사용자 테스트 및 피드백 수집 (2022.02-03)",
+          phase: "Phase 2: 사용자 피드백 수집 및 개선 사항 도출 (2022.02–03)",
           description:
-            "연령과 성별 다양성을 고려하여 100명의 실제 사용자를 모집하고 테스트를 진행했습니다. 사용자 행동 분석을 위한 로깅 시스템을 구축하고, 체계적으로 피드백을 수집했습니다. 평가 품질 향상을 위한 검증 로직을 개발하고, 사용자 혼동을 줄이기 위한 UI 개선사항을 도출했습니다.",
+            "서비스 운영 중 실시간으로 접수되는 VOC(Voice of Customer)를 수집하고 주요 개선사항을 도출했습니다. 피드백 기반으로 사용자의 혼동을 유발하는 요소를 파악하고, 평가 정확도를 저해하는 UI/UX 문제를 정리했습니다. 특히 사용자 인터랙션에서의 불편 요소를 중심으로 개선 방향을 설정했습니다.",
           outcomes: [
-            "100명 규모의 대규모 사용자 테스트 진행",
-            "사용자 행동 분석을 위한 로깅 시스템 구축",
-            "체계적인 피드백 수집 및 분석",
-            "평가 품질 향상을 위한 검증 로직 개발",
+            "실시간 VOC 기반 사용자 피드백 수집",
+            "사용자 혼동 유발 UI 요소 파악",
+            "정확한 평가 유도를 위한 개선사항 도출",
+            "UI/UX 문제 분석을 통한 개선 방향 설정",
           ],
         },
         {
-          phase: "Phase 3: UI/UX 개선 및 최적화 (2022.03-04)",
+          phase: "Phase 3: UI/UX 개선 및 최적화 (2022.03–04)",
           description:
-            "수집된 피드백을 바탕으로 사용자 인터페이스를 대폭 개선했습니다. 사용자 혼동을 줄이고 정확한 평가를 유도하는 3단 UI 구조를 도입했습니다. 평가 효율성과 데이터 정확도를 고려한 인터랙션 디자인을 적용하고, 최종적으로 10,000건 이상의 고품질 평가 데이터 수집을 완료했습니다.",
+            "실제 사용자 피드백을 바탕으로 사용자 인터페이스를 대폭 개선했습니다. 평가 흐름에 맞춘 3단 UI 구조를 도입하여 평가 과정을 명확히 하고, 인터랙션 디자인을 개선해 평가 효율성과 정확도를 동시에 향상시켰습니다. 최종적으로 150,000건 이상의 고품질 평가 데이터를 수집했습니다.",
           outcomes: [
             "사용자 혼동 최소화를 위한 3단 UI 구조 도입",
             "평가 효율성과 데이터 정확도 향상",
             "인터랙션 디자인 최적화",
-            "100,000건 이상의 고품질 평가 데이터 수집 완료",
+            "150,000건 이상의 고품질 평가 데이터 수집 완료",
           ],
         },
       ],
@@ -1542,7 +941,7 @@ export default EvaluationInterface;`,
         "코퍼스 언어의 사회적 인식 분류를 위한 문장 라벨링 및 검토 시스템 개발과 사용자 테스트를 통한 품질 개선이 필요했습니다. 자연어 처리 연구를 위해 대량의 텍스트 데이터에 정확한 라벨을 부여하는 작업이 필요했고, 이를 효율적으로 수행할 수 있는 도구가 부족한 상황이었습니다. 특히 라벨링 작업의 일관성과 품질을 보장하면서도 작업 효율성을 높이는 것이 핵심 과제였습니다.",
       detailedDescription: {
         summary:
-          "문장 라벨링 시스템을 단독 개발하고 사용자 피드백을 반영해 인터페이스를 개선, 라벨링 정확도와 속도를 향상시켜 100,000건 이상의 고품질 데이터를 수집한 프로젝트",
+          "문장 라벨링 시스템을 단독 개발하고 사용자 피드백을 반영해 인터페이스를 개선, 라벨링 정확도와 속도를 향상시켜 400,000건 이상의 고품질 데이터를 수집한 프로젝트",
         results:
           "사용자 중심의 인터페이스 개선을 통해 라벨링 정확도와 속도를 향상시켰습니다. 피드백 루프 기반 개발과 반복적 개선 경험을 획득했으며, 사용자 관점에서 제품 완성도 향상을 주도했습니다. 라벨링 작업 시간이 평균 40% 단축되었고, 라벨링 일관성이 85%에서 95%로 향상되었습니다. 최종적으로 50,000건 이상의 고품질 라벨링 데이터를 성공적으로 수집했습니다.",
       },
