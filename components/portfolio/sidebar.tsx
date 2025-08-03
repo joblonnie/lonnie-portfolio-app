@@ -1,17 +1,31 @@
-"use client"
-import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { Separator } from "@/components/ui/separator"
-import { Menu, X, User, Target, Home, Github, Linkedin, Globe } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { mockPortfolioData } from "@/lib/mock-data"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
+"use client";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Separator } from "@/components/ui/separator";
+import {
+  Menu,
+  X,
+  User,
+  Target,
+  Home,
+  Github,
+  Linkedin,
+  Globe,
+} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { mockPortfolioData } from "@/lib/mock-data";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 interface SidebarProps {
-  currentPage: string
-  onPageChange: (page: string) => void
-  isOpen: boolean
-  onToggle: () => void
+  currentPage: string;
+  onPageChange: (page: string) => void;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
 const externalLinks = [
@@ -30,20 +44,30 @@ const externalLinks = [
     url: "https://aosjehdgus.tistory.com/",
     icon: <Globe className="h-5 w-5" />,
   },
-]
+];
 
-export function Sidebar({ currentPage, onPageChange, isOpen, onToggle }: SidebarProps) {
-  const portfolioData = mockPortfolioData
+export function Sidebar({
+  currentPage,
+  onPageChange,
+  isOpen,
+  onToggle,
+}: SidebarProps) {
+  const portfolioData = mockPortfolioData;
 
   const menuItems = [
     { id: "intro", label: "소개", icon: User },
     { id: "goals", label: "목표", icon: Target },
-  ]
+  ];
 
   return (
     <>
       {/* 모바일 배경 오버레이 */}
-      {isOpen && <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={onToggle} />}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={onToggle}
+        />
+      )}
 
       {/* 모바일 메뉴 버튼 */}
       <Button
@@ -63,14 +87,13 @@ export function Sidebar({ currentPage, onPageChange, isOpen, onToggle }: Sidebar
       >
         <div className="flex flex-col h-full p-4">
           {/* 프로필 */}
-          <div className="relative mx-auto">
-            <Avatar className="w-20 h-20 ring-2 ring-white/50 shadow-md">
-              <AvatarImage src="/avatar.png" alt="Profile" />
+          <div className="relative mx-auto p-8">
+            <Avatar className="w-40 h-40 ring-2 ring-white/50 shadow-md">
+              <AvatarImage src="/profile.png" alt="Profile" />
               <AvatarFallback className="text-lg bg-gradient-to-br from-[#6495ED] to-[#7B68EE] text-white">
                 {portfolioData.personalInfo?.name?.charAt(0) || "L"}
               </AvatarFallback>
             </Avatar>
-            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow" />
           </div>
 
           {/* 이름 및 직함 */}
@@ -95,7 +118,11 @@ export function Sidebar({ currentPage, onPageChange, isOpen, onToggle }: Sidebar
                       asChild
                       className="w-5 h-5 p-0 rounded-full bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
                     >
-                      <a href={link.url} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {link.icon}
                       </a>
                     </Button>
@@ -123,7 +150,7 @@ export function Sidebar({ currentPage, onPageChange, isOpen, onToggle }: Sidebar
                       : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`}
                   onClick={() => {
-                    onPageChange("home")
+                    onPageChange("home");
                   }}
                 >
                   <Home className="h-4 w-4" />
@@ -133,7 +160,7 @@ export function Sidebar({ currentPage, onPageChange, isOpen, onToggle }: Sidebar
 
               {/* 기존 메뉴들 */}
               {menuItems.map(({ id, label, icon: Icon }) => {
-                const isActive = currentPage === id
+                const isActive = currentPage === id;
                 return (
                   <li key={id}>
                     <Button
@@ -149,7 +176,7 @@ export function Sidebar({ currentPage, onPageChange, isOpen, onToggle }: Sidebar
                       {label}
                     </Button>
                   </li>
-                )
+                );
               })}
             </ul>
           </nav>
@@ -164,5 +191,5 @@ export function Sidebar({ currentPage, onPageChange, isOpen, onToggle }: Sidebar
         </div>
       </aside>
     </>
-  )
+  );
 }

@@ -54,12 +54,11 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
           >
             <div className="relative inline-block">
               <Avatar className="w-32 h-32 sm:w-40 sm:h-40 mx-auto ring-4 ring-white/50 shadow-2xl">
-                <AvatarImage src="/avatar.png" alt="Profile" />
+                <AvatarImage src="/profile.png" alt="Profile" />
                 <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-[#6495ED] to-[#7B68EE] text-white">
                   {portfolioData.personalInfo?.name?.charAt(0) || "L"}
                 </AvatarFallback>
               </Avatar>
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg"></div>
             </div>
 
             <div className="space-y-4">
