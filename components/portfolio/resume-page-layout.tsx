@@ -35,10 +35,6 @@ export function ResumePageLayout() {
   const portfolioData = mockPortfolioData;
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
 
-  const handleDownloadPDF = () => {
-    window.print();
-  };
-
   const handleProjectClick = (projectId: number) => {
     setExpandedProject(expandedProject === projectId ? null : projectId);
   };
@@ -80,17 +76,16 @@ export function ResumePageLayout() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 p-8">
+    <div
+      id="resume-page-content"
+      className="min-h-screen bg-background p-8 print:p-4"
+    >
       {/* 상단 컨트롤 */}
-      <div className="absolute top-4 right-4 z-50 flex gap-2">
-        <Button onClick={handleDownloadPDF} size="sm" variant="outline">
-          <Download className="h-4 w-4 mr-2" />
-          PDF 다운로드
-        </Button>
+      <div className="absolute top-4 right-4 z-50 flex gap-2 print:hidden">
         <ThemeToggle />
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-4xl mx-auto space-y-8 print:space-y-4 print:max-w-none">
         {/* 헤더 */}
         <section className="text-center space-y-6 py-8 border-b-2 border-gray-200 dark:border-gray-700">
           <Avatar className="w-32 h-32 sm:w-40 sm:h-40 mx-auto ring-4 ring-white/50 shadow-2xl">
@@ -134,7 +129,7 @@ export function ResumePageLayout() {
                       variant="outline"
                       size="sm"
                       asChild
-                      className="w-12 h-12 p-0 rounded-full bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
+                      className="w-12 h-12 p-0 rounded-full bg-transparent hover:bg-secondary"
                     >
                       <a
                         href={link.url}
@@ -179,7 +174,7 @@ export function ResumePageLayout() {
             </div>
           </div>
 
-          <Card className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <Card className="bg-secondary dark:bg-secondary border border-border dark:border-border">
             <CardContent className="p-6">
               <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>
@@ -232,7 +227,7 @@ export function ResumePageLayout() {
             <FolderOpen className="h-6 w-6 text-mocha-500" />
             포트폴리오
           </h2>
-          <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <Card className="bg-card dark:bg-card border border-border dark:border-border">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -260,16 +255,16 @@ export function ResumePageLayout() {
         </section>
 
         {/* 경력 */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-            <Briefcase className="h-6 w-6 text-mocha-500" />
+        <section className="space-y-4 avoid-break">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3 print:text-xl">
+            <Briefcase className="h-6 w-6 text-mocha-500 print:h-5 print:w-5" />
             경력
           </h2>
-          <div className="space-y-6">
+          <div className="space-y-6 print:space-y-3">
             {portfolioData.companies.map((company, index) => (
               <Card
                 key={index}
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+                className="bg-card border avoid-break project-card"
               >
                 <CardContent className="p-6">
                   <div className="flex justify-between items-start mb-4">
@@ -304,19 +299,19 @@ export function ResumePageLayout() {
 
                   {/* 담당 프로젝트 */}
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 print:text-base">
                       담당 프로젝트
                     </h4>
-                    <div className="space-y-3">
+                    <div className="space-y-3 print:space-y-2">
                       {getProjectsByCompany(company.id).map((project) => (
-                        <div key={project.projectId}>
+                        <div key={project.projectId} className="avoid-break">
                           <Card
-                            className="bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-all duration-300 cursor-pointer border-0"
+                            className="bg-secondary hover:shadow-md transition-all duration-300 cursor-pointer border-0 print:cursor-default avoid-break"
                             onClick={() =>
                               handleProjectClick(project.projectId)
                             }
                           >
-                            <CardContent className="p-4">
+                            <CardContent className="p-4 print:p-3">
                               <div className="flex justify-between items-start mb-2">
                                 <div className="flex-1">
                                   <h5 className="text-base font-semibold text-gray-900 dark:text-white hover:text-mocha-500 transition-colors">
@@ -442,7 +437,7 @@ export function ResumePageLayout() {
             <GraduationCap className="h-6 w-6 text-mocha-500" />
             학력
           </h2>
-          <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <Card className="bg-card border">
             <CardContent className="p-6">
               <div className="flex justify-between items-start">
                 <div>
@@ -471,7 +466,7 @@ export function ResumePageLayout() {
             기술 스택
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+            <Card className="bg-card border">
               <CardHeader>
                 <CardTitle className="text-lg">프론트엔드</CardTitle>
               </CardHeader>
@@ -493,7 +488,7 @@ export function ResumePageLayout() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+            <Card className="bg-card border">
               <CardHeader>
                 <CardTitle className="text-lg">도구 & 협업</CardTitle>
               </CardHeader>

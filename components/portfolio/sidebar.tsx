@@ -73,7 +73,7 @@ export function Sidebar({
       <Button
         variant="outline"
         size="icon"
-        className="fixed top-4 left-4 z-[60] lg:hidden bg-white dark:bg-gray-800 shadow"
+        className="fixed top-4 left-4 z-[60] lg:hidden bg-card shadow"
         onClick={onToggle}
       >
         {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -81,7 +81,7 @@ export function Sidebar({
 
       {/* 사이드바 */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 z-50 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-card border-r border-border z-50 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -116,7 +116,7 @@ export function Sidebar({
                       variant="outline"
                       size="sm"
                       asChild
-                      className="w-5 h-5 p-0 rounded-full bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
+                      className="w-5 h-5 p-0 rounded-full bg-transparent hover:bg-secondary"
                     >
                       <a
                         href={link.url}
@@ -147,7 +147,7 @@ export function Sidebar({
                   className={`w-full justify-start gap-3 h-10 px-3 text-sm ${
                     currentPage === "home"
                       ? "bg-gradient-to-r from-mocha-500 to-[#BBAA91] text-white shadow"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-secondary"
                   }`}
                   onClick={() => {
                     onPageChange("home");
@@ -168,7 +168,7 @@ export function Sidebar({
                       className={`w-full justify-start gap-3 h-10 px-3 text-sm ${
                         isActive
                           ? "bg-gradient-to-r from-mocha-500 to-[#BBAA91] text-white shadow"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-secondary"
                       }`}
                       onClick={() => onPageChange(id)}
                     >

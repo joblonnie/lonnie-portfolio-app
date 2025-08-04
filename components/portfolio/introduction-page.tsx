@@ -105,7 +105,7 @@ export function IntroductionPage({ onNavigate }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 relative">
+    <main className="min-h-screen bg-background py-8 px-4 sm:px-6 lg:px-8 relative">
       <article className="max-w-4xl mx-auto">
         {/* 개발 철학 */}
         <AnimatedElement
@@ -114,7 +114,7 @@ export function IntroductionPage({ onNavigate }: Props) {
           duration={200}
           className="mb-12"
         >
-          <Card className="bg-gradient-to-r from-mocha-50 to-cannoli-100 border-0">
+          <Card className="bg-card border-0">
             <CardContent className="p-8">
               <header className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 개발 철학
@@ -145,7 +145,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                 ].map(({ icon, gradient, quote, description }, index) => (
                   <div
                     key={index}
-                    className="flex flex-col text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm h-full"
+                    className="flex flex-col text-center p-6 bg-card dark:bg-card rounded-xl shadow-sm h-full"
                   >
                     <div
                       className={`w-16 h-16 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center mx-auto mb-4`}
@@ -174,7 +174,7 @@ export function IntroductionPage({ onNavigate }: Props) {
           duration={200}
           className="mb-12"
         >
-          <Card className="bg-white dark:bg-gray-800 shadow-lg border-0">
+          <Card className="bg-card shadow-lg border-0">
             <CardContent className="p-8">
               <header className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
                 <div className="w-8 h-8 bg-gradient-to-r from-mocha-500 to-[#BBAA91] rounded-lg flex items-center justify-center">
@@ -216,7 +216,7 @@ export function IntroductionPage({ onNavigate }: Props) {
             {companies.map((company, index) => (
               <Card
                 key={index}
-                className="bg-white dark:bg-gray-800 shadow-lg border-0"
+                className="bg-card dark:bg-card shadow-lg border-0"
               >
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
@@ -253,7 +253,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                         (project, projectIndex) => (
                           <Card
                             key={project.projectId}
-                            className="bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.02] border-0"
+                            className="bg-secondary dark:bg-secondary hover:shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.02] border-0"
                             onClick={() => handleProjectClick(project)}
                           >
                             <CardContent className="p-6">
@@ -331,7 +331,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                 delay={150 + index * 30}
                 duration={200}
               >
-                <Card className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-0 h-full">
+                <Card className="bg-card dark:bg-card shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-0 h-full">
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
                       <div
@@ -348,7 +348,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                         <Badge
                           key={skillIndex}
                           variant="secondary"
-                          className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-mocha-500/10 hover:text-mocha-500 transition-colors"
+                          className="bg-secondary dark:bg-secondary text-secondary-foreground dark:text-secondary-foreground hover:bg-mocha-500/10 hover:text-mocha-500 transition-colors"
                         >
                           {skill}
                         </Badge>

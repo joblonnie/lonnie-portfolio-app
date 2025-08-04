@@ -27,7 +27,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
   /* ───────────────────────────────────────────────────────────────────── */
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-mocha-500/10 via-[#BBAA91]/10 to-[#BBAA91]/10 dark:from-[#BBAA91]/20 dark:via-[#6A5ACD]/20 dark:to-[#A38C79]/20 p-4 sm:p-6 lg:p-8 relative">
+    <div className="min-h-screen bg-background p-4 sm:p-6 lg:p-8 relative">
       <div className="max-w-6xl mx-auto space-y-8 lg:space-y-12">
         {/* 헤더 */}
         <AnimatedElement
@@ -67,7 +67,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
                 delay={100 + i * 30}
                 duration={200}
               >
-                <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                <Card className="bg-card backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                   <CardHeader className="pb-4">
                     <CardTitle className="text-lg sm:text-xl">
                       {plan.title}
@@ -105,7 +105,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
                   delay={100 + index * 30}
                   duration={200}
                 >
-                  <div className="flex flex-col text-center p-6 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg h-full">
+                  <div className="flex flex-col text-center p-6 bg-card backdrop-blur-sm rounded-xl shadow-lg h-full">
                     <div
                       className={`w-16 h-16 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center mx-auto mb-4`}
                     >
@@ -138,7 +138,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
             미래 포부
           </h2>
 
-          <Card className="bg-gradient-to-r from-mocha-500/10 to-[#BBAA91]/10 border-0">
+          <Card className="bg-card border-0">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
@@ -190,7 +190,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
                   궁극적인 비전
                 </h3>
-                <div className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-6 text-center">
+                <div className="bg-card rounded-xl p-6 text-center">
                   <p className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "{data.goals.vision.quote}"
                   </p>

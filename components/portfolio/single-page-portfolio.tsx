@@ -190,40 +190,40 @@ export function SinglePagePortfolio() {
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-white dark:bg-gray-900 p-8">
+      <div className="min-h-screen bg-background p-8 print:p-4">
         {/* 상단 컨트롤 */}
-        <div className="absolute top-4 right-4 z-50">
+        <div className="absolute top-4 right-4 z-50 print:hidden">
           <ThemeToggle />
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-12">
+        <div className="max-w-6xl mx-auto space-y-12 print:space-y-6 print:max-w-none">
           {/* 커버 섹션 */}
-          <section className="text-center space-y-8 py-12 bg-gradient-to-br from-mocha-500/20 via-[#BBAA91]/20 to-[#BBAA91]/20 dark:from-[#BBAA91]/30 dark:via-[#6A5ACD]/30 dark:to-[#A38C79]/30 rounded-3xl relative overflow-hidden">
+          <section className="text-center space-y-8 py-12 bg-card rounded-3xl relative overflow-hidden avoid-break print:py-6 print:space-y-4">
             {/* 배경 장식 */}
             <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-mocha-500/30 to-[#BBAA91]/30 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-[#BBAA91]/30 to-[#BBAA91]/30 rounded-full blur-3xl"></div>
+              <div className="absolute -top-40 -right-40 w-80 h-80 bg-secondary rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary rounded-full blur-3xl"></div>
             </div>
 
             <div className="relative z-10 space-y-6">
               <div className="relative inline-block">
-                <Avatar className="w-32 h-32 sm:w-40 sm:h-40 mx-auto ring-4 ring-white/50 shadow-2xl">
+                <Avatar className="w-32 h-32 sm:w-40 sm:h-40 mx-auto ring-4 ring-white/50 shadow-2xl print:w-24 print:h-24 print:ring-2">
                   <AvatarImage src="/profile.png" alt="Profile" />
-                  <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-mocha-500 to-cannoli-500 text-white">
+                  <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-mocha-500 to-cannoli-500 text-white print:text-xl">
                     {portfolioData.personalInfo?.name?.charAt(0) || "L"}
                   </AvatarFallback>
                 </Avatar>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg print:w-6 print:h-6 print:border-2"></div>
               </div>
 
-              <div className="space-y-4">
-                <h1 className="text-5xl font-bold bg-gradient-to-r from-mocha-500 to-[#BBAA91] bg-clip-text text-transparent">
+              <div className="space-y-4 print:space-y-2">
+                <h1 className="text-5xl font-bold bg-gradient-to-r from-mocha-500 to-[#BBAA91] bg-clip-text text-transparent print:text-3xl print:text-gray-900">
                   {portfolioData.personalInfo?.name || "개발자"}
                 </h1>
-                <p className="text-2xl text-gray-700 dark:text-gray-300 font-medium">
+                <p className="text-2xl text-gray-700 dark:text-gray-300 font-medium print:text-lg">
                   {portfolioData.personalInfo?.title || "풀스택 개발자"}
                 </p>
-                <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed print:text-base">
                   {portfolioData.personalInfo?.bio ||
                     "혁신적인 웹 솔루션을 만드는 개발자입니다."}
                 </p>
@@ -231,7 +231,7 @@ export function SinglePagePortfolio() {
             </div>
 
             {/* 개인 정보 카드 */}
-            <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl max-w-2xl mx-auto relative z-10">
+            <Card className="bg-card/80 dark:bg-card/80 backdrop-blur-sm border-0 shadow-xl max-w-2xl mx-auto relative z-10">
               <CardContent className="p-6">
                 <div className="grid grid-cols-2 gap-4 text-sm mb-4">
                   <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
@@ -261,7 +261,7 @@ export function SinglePagePortfolio() {
                           variant="outline"
                           size="sm"
                           asChild
-                          className="w-10 h-10 p-0 rounded-full bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
+                          className="w-10 h-10 p-0 rounded-full bg-transparent hover:bg-secondary"
                         >
                           <a
                             href={link.url}
@@ -283,13 +283,13 @@ export function SinglePagePortfolio() {
           </section>
 
           {/* 개발 철학 */}
-          <section className="space-y-8">
-            <Card className="bg-gradient-to-r from-mocha-500/10 to-[#BBAA91]/10 border-0">
-              <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+          <section className="space-y-8 avoid-break print:space-y-4">
+            <Card className="bg-card border-0 avoid-break">
+              <CardContent className="p-8 print:p-4">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center print:text-xl print:mb-4">
                   개발 철학
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 print:grid-cols-1 print:gap-3">
                   {[
                     {
                       icon: "🧑‍💻",
@@ -315,14 +315,16 @@ export function SinglePagePortfolio() {
                   ].map(({ icon, gradient, quote, description }, index) => (
                     <div
                       key={index}
-                      className="flex flex-col text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm h-full"
+                      className="flex flex-col text-center p-6 bg-card rounded-xl shadow-sm h-full avoid-break print:p-4"
                     >
                       <div
-                        className={`w-16 h-16 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center mx-auto mb-4`}
+                        className={`w-16 h-16 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center mx-auto mb-4 print:w-12 print:h-12 print:mb-2`}
                       >
-                        <span className="text-white text-2xl">{icon}</span>
+                        <span className="text-white text-2xl print:text-lg">
+                          {icon}
+                        </span>
                       </div>
-                      <blockquote className="italic text-gray-800 dark:text-gray-200 mb-4 font-medium">
+                      <blockquote className="italic text-gray-800 dark:text-gray-200 mb-4 font-medium print:text-sm print:mb-2">
                         "{quote}"
                       </blockquote>
                       <p className="text-sm text-gray-600 dark:text-gray-400 flex-1 leading-relaxed">
@@ -337,7 +339,7 @@ export function SinglePagePortfolio() {
 
           {/* 학력 */}
           <section className="space-y-6">
-            <Card className="bg-white dark:bg-gray-800 shadow-lg border-0">
+            <Card className="bg-card shadow-lg border-0">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
                   <div className="w-8 h-8 bg-gradient-to-r from-mocha-500 to-[#BBAA91] rounded-lg flex items-center justify-center">
@@ -373,10 +375,7 @@ export function SinglePagePortfolio() {
             </h2>
             <div className="space-y-8">
               {portfolioData.companies.map((company, index) => (
-                <Card
-                  key={index}
-                  className="bg-white dark:bg-gray-800 shadow-lg border-0"
-                >
+                <Card key={index} className="bg-card shadow-lg border-0">
                   <CardContent className="p-8">
                     <div className="flex items-center gap-3 mb-6">
                       <Briefcase className="h-8 w-8 text-mocha-500" />
@@ -412,7 +411,7 @@ export function SinglePagePortfolio() {
                           (project, projectIndex) => (
                             <Card
                               key={project.projectId}
-                              className="bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-all duration-300 border-0"
+                              className="bg-secondary hover:shadow-md transition-all duration-300 border-0"
                             >
                               <CardContent className="p-6">
                                 <div className="flex justify-between items-start mb-3">
@@ -1135,7 +1134,7 @@ export function SinglePagePortfolio() {
                                                   .summary
                                               }
                                             </h4>
-                                            <div className="whitespace-pre-wrap text-sm text-gray-800 dark:text-gray-200 leading-relaxed font-sans bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-md overflow-x-auto">
+                                            <div className="whitespace-pre-wrap text-sm leading-relaxed font-sans bg-secondary p-3 sm:p-4 rounded-md overflow-x-auto">
                                               {
                                                 project.detailedDescription
                                                   .results
@@ -1168,7 +1167,7 @@ export function SinglePagePortfolio() {
               {skillCategories.map((category, index) => (
                 <Card
                   key={index}
-                  className="bg-white dark:bg-gray-800 shadow-lg border-0 hover:shadow-xl transition-shadow"
+                  className="bg-card shadow-lg border-0 hover:shadow-xl transition-shadow"
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
@@ -1185,7 +1184,7 @@ export function SinglePagePortfolio() {
                       {category.skills.map((skill, skillIndex) => (
                         <span
                           key={skillIndex}
-                          className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full"
+                          className="px-3 py-1 bg-secondary text-gray-700 dark:text-gray-300 text-sm rounded-full"
                         >
                           {skill}
                         </span>
@@ -1199,7 +1198,7 @@ export function SinglePagePortfolio() {
 
           {/* 미래 비전 */}
           <section className="space-y-8">
-            <Card className="bg-gradient-to-r from-mocha-500/10 to-[#BBAA91]/10 border-0">
+            <Card className="bg-card border-0">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                   미래 비전
@@ -1208,7 +1207,7 @@ export function SinglePagePortfolio() {
                   {portfolioData.goals.futureVision.map((vision, index) => (
                     <div
                       key={index}
-                      className="flex flex-col text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm h-full"
+                      className="flex flex-col text-center p-6 bg-card rounded-xl shadow-sm h-full"
                     >
                       <div
                         className={`w-16 h-16 bg-gradient-to-r ${vision.gradient} rounded-full flex items-center justify-center mx-auto mb-4`}
@@ -1231,7 +1230,7 @@ export function SinglePagePortfolio() {
           </section>
           {/* 미래 포부 */}
 
-          <Card className="bg-gradient-to-r from-mocha-500/10 to-[#BBAA91]/10 border-0">
+          <Card className="bg-card border-0">
             <CardContent className="p-8">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 미래 포부
@@ -1286,7 +1285,7 @@ export function SinglePagePortfolio() {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
                   궁극적인 비전
                 </h3>
-                <div className="bg-white/60 dark:bg-gray-800/60 rounded-xl p-6 text-center">
+                <div className="bg-card rounded-xl p-6 text-center">
                   <p className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed italic">
                     "{portfolioData.goals.vision.quote}"
                   </p>

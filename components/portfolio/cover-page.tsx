@@ -77,7 +77,7 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
 
           {/* 개인 정보 카드 */}
           <AnimatedElement animation="slideUp" delay={50} duration={200}>
-            <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-xl max-w-2xl mx-auto">
+            <Card className="bg-card/80 dark:bg-card/80 backdrop-blur-sm border-0 shadow-xl max-w-2xl mx-auto">
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
