@@ -90,7 +90,7 @@ export function Sidebar({
           <div className="relative mx-auto p-8">
             <Avatar className="w-40 h-40 ring-2 ring-white/50 shadow-md">
               <AvatarImage src="/profile.png" alt="Profile" />
-              <AvatarFallback className="text-lg bg-gradient-to-br from-[#6495ED] to-[#7B68EE] text-white">
+              <AvatarFallback className="text-lg bg-gradient-to-br from-mocha-500 to-[#BBAA91] text-white">
                 {portfolioData.personalInfo?.name?.charAt(0) || "L"}
               </AvatarFallback>
             </Avatar>
@@ -98,7 +98,7 @@ export function Sidebar({
 
           {/* 이름 및 직함 */}
           <div className="mt-3 text-center space-y-1">
-            <h1 className="text-base font-semibold bg-gradient-to-r from-[#6495ED] to-[#7B68EE] bg-clip-text text-transparent">
+            <h1 className="text-base font-semibold bg-gradient-to-r from-mocha-500 to-[#BBAA91] bg-clip-text text-transparent">
               {portfolioData.personalInfo?.name || "개발자"}
             </h1>
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -146,7 +146,7 @@ export function Sidebar({
                   variant={currentPage === "home" ? "default" : "ghost"}
                   className={`w-full justify-start gap-3 h-10 px-3 text-sm ${
                     currentPage === "home"
-                      ? "bg-gradient-to-r from-[#6495ED] to-[#7B68EE] text-white shadow"
+                      ? "bg-gradient-to-r from-mocha-500 to-[#BBAA91] text-white shadow"
                       : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                   }`}
                   onClick={() => {
@@ -167,7 +167,7 @@ export function Sidebar({
                       variant={isActive ? "default" : "ghost"}
                       className={`w-full justify-start gap-3 h-10 px-3 text-sm ${
                         isActive
-                          ? "bg-gradient-to-r from-[#6495ED] to-[#7B68EE] text-white shadow"
+                          ? "bg-gradient-to-r from-mocha-500 to-[#BBAA91] text-white shadow"
                           : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                       }`}
                       onClick={() => onPageChange(id)}

@@ -114,7 +114,7 @@ export function IntroductionPage({ onNavigate }: Props) {
           duration={200}
           className="mb-12"
         >
-          <Card className="bg-gradient-to-r from-[#6495ED]/10 to-[#7B68EE]/10 border-0">
+          <Card className="bg-gradient-to-r from-mocha-50 to-cannoli-100 border-0">
             <CardContent className="p-8">
               <header className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 개발 철학
@@ -177,7 +177,7 @@ export function IntroductionPage({ onNavigate }: Props) {
           <Card className="bg-white dark:bg-gray-800 shadow-lg border-0">
             <CardContent className="p-8">
               <header className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-[#6495ED] to-[#7B68EE] rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-r from-mocha-500 to-[#BBAA91] rounded-lg flex items-center justify-center">
                   <span className="text-white text-sm font-bold">🎓</span>
                 </div>
                 학력
@@ -220,14 +220,14 @@ export function IntroductionPage({ onNavigate }: Props) {
               >
                 <CardContent className="p-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <Briefcase className="h-8 w-8 text-[#6495ED]" />
+                    <Briefcase className="h-8 w-8 text-mocha-500" />
                     <div className="flex-1">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                         <div>
                           <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                             {company.position}
                           </h3>
-                          <p className="text-lg text-[#6495ED] font-medium">
+                          <p className="text-lg text-mocha-500 font-medium">
                             {company.name}
                           </p>
                         </div>
@@ -259,7 +259,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                             <CardContent className="p-6">
                               <div className="flex justify-between items-start mb-3">
                                 <div className="flex-1">
-                                  <h5 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-[#6495ED] transition-colors">
+                                  <h5 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-mocha-500 transition-colors">
                                     {project.title}
                                   </h5>
                                   <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-1">
@@ -293,7 +293,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                                     (keyword, keywordIndex) => (
                                       <span
                                         key={keywordIndex}
-                                        className="px-2 py-1 bg-[#6495ED]/10 text-[#6495ED] text-xs rounded-full"
+                                        className="px-2 py-1 bg-mocha-500/10 text-mocha-500 text-xs rounded-full"
                                       >
                                         {keyword}
                                       </span>
@@ -348,7 +348,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                         <Badge
                           key={skillIndex}
                           variant="secondary"
-                          className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-[#6495ED]/10 hover:text-[#6495ED] transition-colors"
+                          className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-mocha-500/10 hover:text-mocha-500 transition-colors"
                         >
                           {skill}
                         </Badge>
@@ -371,7 +371,7 @@ export function IntroductionPage({ onNavigate }: Props) {
           <div className="text-center">
             <Button
               onClick={navigateToGoals}
-              className="bg-gradient-to-r from-[#6495ED] to-[#7B68EE] hover:from-[#5A7FDB] hover:to-[#6A5ACD] text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="bg-gradient-to-r from-mocha-500 to-[#BBAA91] hover:from-mocha-400 hover:to-[#BBAA91] text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               size="lg"
             >
               목표 및 비전 보러가기
@@ -392,7 +392,7 @@ export function IntroductionPage({ onNavigate }: Props) {
       {showScrollTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-[#6495ED] hover:bg-[#5A7FDB] text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-mocha-500 hover:bg-mocha-400 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
           size="icon"
         >
           <ArrowUp className="h-5 w-5" />

@@ -144,7 +144,7 @@ export function ProjectDetailModal({
             <div className="space-y-4 sm:space-y-6 p-4 sm:p-6">
               {/* 프로젝트 대표 이미지 */}
               {project.image && (
-                <div className="w-full max-w-3xl px-12 py-16 mx-auto">
+                <div className="w-full max-w-3xl xl:max-w-2xl px-6 sm:px-12 lg:px-20 py-32 mx-auto">
                   <img
                     src={project.image}
                     alt={project.title}

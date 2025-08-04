@@ -169,7 +169,6 @@ export const mockPortfolioData: PortfolioData = {
         "Feature-Sliced Design",
         "Zustand",
         "TanStack Query",
-        "MUI",
         "ECharts",
         "Konva.js",
         "WebSocket",
@@ -190,56 +189,63 @@ export const mockPortfolioData: PortfolioData = {
       ],
       codeSnippets: [
         {
-          title: "프로젝트 구조",
-          description: "NX + FSD 기반 VIMS 프로젝트 폴더 구조 예시",
+          title: "NX + FSD 기반 모노레포 구조",
+          description:
+            "VIMS 모니터링 시스템의 모노레포 아키텍처와 Feature-Sliced Design 패턴 적용 구조",
           language: "text",
           filename: "프로젝트 구조",
-          code: [
-            "vims-workspace/",
-            "- apps/",
-            "  - vims/",
-            "    - camera-app/",
-            "      - src/",
-            "        - app/",
-            "          - layouts/",
-            "          - router/",
-            "          - appEntry.tsx",
-            "        - entities/",
-            "          - camera/",
-            "            - @x/",
-            "            - apis/",
-            "            - models/",
-            "        - features/",
-            "          - camera/",
-            "            - fetchCamera/",
-            "              - @x/",
-            "              - models/",
-            "              - ui/",
-            "              - widgets/",
-            "            - updateCamera/",
-            "              - @x/",
-            "              - models/",
-            "              - ui/",
-            "              - widgets/",
-            "        - pages/",
-            "        - shared/",
-            "          - i18n/",
-            "        - widgets/",
-            "- packages/",
-            "  - common/",
-            "    - apis/",
-            "    - const/",
-            "    - ui/",
-            "  - services/",
-            "    - shared/",
-            "    - vims/",
-            "      - entities/",
-            "      - features/",
-            "      - pages/",
-            "      - shared/",
-            "      - widgets/",
-            "- ... (nx.json, package.json 등)",
-          ].join("\n"),
+          code: `vims-workspace/
+├── apps/                           # 애플리케이션 레이어
+│   └── vims/                       # VIMS 모니터링 시스템들
+│       ├── camera-app/             # 카메라 모니터링 애플리케이션
+│       │   └── src/
+│       │       ├── app/            # 앱 설정 및 라우팅
+│       │       │   ├── layouts/    # 레이아웃 컴포넌트
+│       │       │   ├── router/     # 라우터 설정
+│       │       │   └── appEntry.tsx
+│       │       ├── entities/       # 도메인 엔티티 (FSD)
+│       │       │   └── camera/
+│       │       │       ├── @x/     # 외부 모듈 연동
+│       │       │       ├── apis/   # API 호출 로직
+│       │       │       └── models/ # 데이터 모델
+│       │       ├── features/       # 기능별 모듈 (FSD)
+│       │       │   └── camera/
+│       │       │       ├── fetchCamera/    # 카메라 데이터 조회
+│       │       │       │   ├── @x/         # 외부 의존성
+│       │       │       │   ├── models/     # 상태 관리
+│       │       │       │   ├── ui/         # UI 컴포넌트
+│       │       │       │   └── widgets/    # 복합 위젯
+│       │       │       └── updateCamera/   # 카메라 설정 업데이트
+│       │       │           ├── @x/
+│       │       │           ├── models/
+│       │       │           ├── ui/
+│       │       │           └── widgets/
+│       │       ├── pages/          # 페이지 컴포넌트 (FSD)
+│       │       ├── shared/         # 공통 유틸리티 (FSD)
+│       │       │   └── i18n/       # 국제화 설정
+│       │       └── widgets/        # 위젯 레이어 (FSD)
+│       │
+│       ├── iad-monitoring/         # IAD 모니터링 애플리케이션
+│       └── seg-monitoring/         # SEG 모니터링 애플리케이션
+│
+├── packages/                       # 공유 패키지 레이어
+│   ├── common/                     # 공통 라이브러리
+│   │   ├── apis/                   # 공통 API 유틸
+│   │   ├── const/                  # 상수 정의
+│   │   └── ui/                     # 공통 UI 컴포넌트
+│   │
+│   └── services/                   # 비즈니스 서비스
+│       ├── shared/                 # 공통 서비스
+│       └── vims/                   # VIMS 전용 패키지
+│           ├── entities/           # 도메인 엔티티
+│           ├── features/           # 재사용 가능한 기능들
+│           ├── pages/              # 공통 페이지 템플릿
+│           ├── shared/             # VIMS 공통 유틸
+│           └── widgets/            # VIMS 전용 위젯
+│
+├── nx.json                         # NX 워크스페이스 설정
+├── package.json                    # 루트 패키지 설정
+└── workspace.json                  # 워크스페이스 프로젝트 설정`,
         },
       ],
     },
@@ -271,20 +277,21 @@ export const mockPortfolioData: PortfolioData = {
         {
           phase: "Phase 2: 고객 VOC 반영 및 제품 개선 (2023.10-2024.09)",
           description:
-            "고객사 납품 후 수집된 피드백을 바탕으로 사용자 경험을 개선했습니다. 특히 현장 작업자들의 사용 패턴을 분석하여 인터페이스를 최적화하고, 알림 시스템의 정확도를 높였습니다. 다양한 현장 환경에 대응할 수 있도록 설정 옵션을 확장하고, 성능 최적화를 통해 응답 속도를 개선했습니다.",
+            "고객사 납품 후 수집된 피드백을 바탕으로 제품을 고도화했습니다. 통합 모니터링 대시보드를 개발하여 전체 현장 상황을 한눈에 파악할 수 있도록 했고, 알림 중요도에 따른 설정 페이지를 추가하여 현장별 특성에 맞는 맞춤형 알림 체계를 구축했습니다. 현장 작업자들의 사용 패턴을 분석하여 인터페이스를 최적화하고, 다양한 현장 환경에 대응할 수 있도록 설정 옵션을 확장했습니다.",
           outcomes: [
+            "통합 모니터링 대시보드 개발",
+            "알림 중요도별 설정 페이지 추가로 맞춤형 알림 체계 구축",
             "현장 작업자 중심의 UX 개선",
-            "다양한 현장 환경 대응 설정 옵션 확장",
-            "성능 최적화를 통한 응답 속도 개선",
             "안전사고 예방 효과 입증 및 추가 주문 확보",
           ],
         },
         {
           phase: "Phase 3: GS 인증 대응 및 시스템 고도화 (2024.10–11)",
           description:
-            "GS 인증 심사를 대비해 사용자 친화적인 Toast 알림 체계를 구축하고, 백엔드 개발자와 협업하여 API 오류 처리를 표준화했습니다. 사내 디자인 시스템인 saige-elements에 내장된 Toast 컴포넌트를 활용해 기존의 console.log 기반 처리 방식을 개선했으며, 이를 쉽게 사용할 수 있도록 래퍼 유틸을 정의하고 전역 오류 핸들링에 적용했습니다. 또한, API 응답 포맷에 표준화된 오류 코드를 도입하고 Axios 인터셉터를 통해 모든 API 요청에 대한 일관된 오류 처리를 구현했습니다.",
+            "GS 인증 심사를 대비해 기존의 기본적인 알림 시스템을 대폭 고도화했습니다. 사용자 인터페이스의 핵심 기능들에 대한 피드백을 강화하고, 백엔드 개발자와 협업하여 API 오류 처리를 표준화했습니다. 사내 디자인 시스템인 saige-elements의 Toast 컴포넌트를 활용해 기존의 단순 알림을 체계적이고 일관된 사용자 피드백 시스템으로 개선했으며, 이를 쉽게 사용할 수 있도록 래퍼 유틸을 정의하고 전역 오류 핸들링에 적용했습니다. 또한, API 응답 포맷에 표준화된 오류 코드를 도입하고 Axios 인터셉터를 통해 모든 API 요청에 대한 일관된 오류 처리를 구현했습니다.",
           outcomes: [
-            "Toast 알림 체계 도입으로 사용자 경험 개선",
+            "기존 알림 시스템 고도화로 사용자 피드백 품질 향상",
+            "핵심 사용자 액션에 대한 명확한 상태 알림 제공",
             "API 오류 처리 표준화로 시스템 안정성 향상",
             "GS 1등급 인증 획득",
           ],
@@ -297,39 +304,32 @@ export const mockPortfolioData: PortfolioData = {
         "신사업 MVP 개발",
         "안전모 착용 및 화재 감지 UI",
         "GS 인증 1등급 달성",
-        "Toast 알림 체계 도입",
+        "알림 시스템 고도화",
         "API 오류 처리 표준화",
       ],
-      technologies: [
-        "React",
-        "TypeScript",
-        "X-view-model",
-        "Konva.js",
-        "MUI",
-        "WebSocket",
-        "Axios",
-      ],
+      technologies: ["React", "TypeScript", "MUI", "WebSocket", "Axios"],
       technologyReasoning: [
         {
-          category: "에러 핸들링 부재 상태에서 체계적인 예외 처리 구조 도입",
-          technologies: ["Axios", "Notistack"],
+          category: "기존 알림 시스템 고도화 및 체계적인 예외 처리 구조 도입",
+          technologies: ["Axios"],
           reasoning:
-            "기존 시스템은 MVP 단계로 빠르게 구축된 구조였기 때문에, 에러 핸들링 로직이 전무하거나 일관되지 않은 상태였습니다. 특히 사용자 인터페이스 상에서 오류 발생 시 아무런 피드백이 없었고, 이는 GS 인증 심사 항목 중 '오류 처리 적절성'과 '사용자 편의성' 측면에서 심각한 감점 요소가 될 수 있었습니다. 전역 에러 처리는 Axios 인터셉터를 활용하여 모든 API 요청에 대한 실패 응답을 감지하고 적절한 오류 메시지를 사용자에게 전달하며, 로컬 에러 처리는 특정 사용자 액션이나 UI 이벤트에서 발생할 수 있는 예외를 try-catch 블록 내에서 명시적으로 처리하여 문제 발생 위치와 대응 방식을 명확히 분리했습니다.",
+            "기존 시스템은 MVP 단계로 빠르게 구축되어 기본적인 알림 기능은 있었지만, 사용자 피드백의 일관성과 품질이 부족한 상태였습니다. 특히 주요 사용자 인터페이스에서 성공/실패에 대한 명확한 피드백이 부족했고, 이는 GS 인증 심사 항목 중 '오류 처리 적절성'과 '사용자 편의성' 측면에서 개선이 필요했습니다. 전역 에러 처리는 Axios 인터셉터를 활용하여 모든 API 요청에 대한 실패 응답을 감지하고 적절한 오류 메시지를 사용자에게 전달하며, 로컬 에러 처리는 특정 사용자 액션이나 UI 이벤트에서 발생할 수 있는 예외를 try-catch 블록 내에서 명시적으로 처리하여 문제 발생 위치와 대응 방식을 명확히 분리했습니다.",
         },
         {
-          category: "디자인 시스템(Saige Elements) 기반의 Toast 컴포넌트 활용",
+          category:
+            "디자인 시스템(Saige Elements) 기반의 Toast 컴포넌트 고도화",
           technologies: ["Saige Elements", "Toast"],
           reasoning:
-            "에러를 인지하고 처리할 수 있는 백엔드-프론트엔드 구조가 갖춰진 뒤에는, 사용자에게 명확한 피드백을 제공할 수 있는 UI 수단이 필요했습니다. 회사 내 디자인 시스템인 Saige Elements의 Toast 컴포넌트를 활용한 이유는 디자인 일관성(내부 제품군 간 UI/UX 일관성을 유지하며 자연스럽게 시스템에 녹일 수 있음), 컴포넌트 캡슐화 및 재사용 용이성(toast 유틸 함수를 별도로 분리하여 다양한 상황에서 반복적으로 활용 가능), 알림 유형 다양화 및 커스터마이징(성공/실패/정보/경고 등 알림 타입 분리 가능, UX 흐름에 따라 적절히 배치)입니다. 이를 통해 사용자 피드백 전달 구조를 명확히 개선하고, GS 인증 심사에서도 높은 평가를 받을 수 있었습니다.",
+            "기존에는 간단한 알림 기능만 있었지만, GS 인증을 위해 사용자에게 더욱 명확하고 체계적인 피드백을 제공할 필요가 있었습니다. 특히 주요 사용자 인터페이스에서 사용자가 작업 결과를 명확히 인지할 수 있도록 개선이 필요했습니다. 회사 내 디자인 시스템인 Saige Elements의 Toast 컴포넌트를 활용한 이유는 디자인 일관성(내부 제품군 간 UI/UX 일관성을 유지하며 자연스럽게 시스템에 녹일 수 있음), 컴포넌트 캡슐화 및 재사용 용이성(toast 유틸 함수를 별도로 분리하여 다양한 상황에서 반복적으로 활용 가능), 알림 유형 다양화 및 커스터마이징(성공/실패/정보/경고 등 알림 타입 분리 가능, UX 흐름에 따라 적절히 배치)입니다. 이를 통해 기존의 단순한 알림을 체계적인 사용자 피드백 시스템으로 고도화하고, GS 인증 심사에서도 높은 평가를 받을 수 있었습니다.",
         },
       ],
       codeSnippets: [
         {
-          title: "개선된 Toast 알림 시스템",
+          title: "고도화된 Toast 알림 시스템",
           description:
-            "Saige Elements 기반으로 개발자가 쉽게 사용할 수 있는 Toast 유틸리티",
+            "Saige Elements 기반으로 기존 알림을 체계적으로 개선한 Toast 유틸리티",
           language: "typescript",
-          filename: "utils/toast.ts",
+          filename: "toast.ts",
           code: `import { enqueueSnackbar } from '@saige/elements/lib/components';
 import { OptionsObject } from 'notistack';
 
@@ -389,11 +389,11 @@ export default toast;
       ],
     },
     {
-      projectId: 4,
+      projectId: 3,
       companyId: "saige",
       title:
         "SAIGE VISION 기반 결함 검출 수율 대시보드 및 시스템 리소스 모니터링 개발",
-      image: "/vision-logo.svg?text=SAIGE+VISION+수율+대시보드",
+      image: "/vision-logo.svg",
       background:
         "생산 현장에서 Vision 검사 시스템의 성능 지표와 시스템 리소스 상태를 실시간으로 파악할 필요가 있었습니다. 기존에는 각각 분리된 도구들로 모니터링하여 통합적인 시각이 부족했고, 시스템 이상 상황 발생 시 빠른 대응이 어려웠습니다. 또한 회사 내부 디자인 시스템인 Saige Elements의 초기 구축 단계에서 실제 프로젝트 적용을 통한 검증이 필요한 상황이었습니다.",
       detailedDescription: {
@@ -437,7 +437,6 @@ export default toast;
         "TanStack Query",
         "ECharts",
         "Prometheus",
-        "MUI",
         "Saige Elements",
       ],
       technologyReasoning: [
@@ -455,192 +454,50 @@ export default toast;
       ],
       codeSnippets: [
         {
-          title: "Prometheus 쿼리 유틸리티",
+          title: "Prometheus 시스템 모니터링 쿼리",
           description:
             "OS별 시스템 리소스 메트릭을 수집하는 Prometheus 쿼리 정의",
           language: "typescript",
-          filename: "utils/prometheus-queries.ts",
-          code: `import { PCType } from '@/types'
-import dayjs from 'dayjs'
+          filename: "prometheus-queries.ts",
+          code: `export type OS = 'Ubuntu' | 'Windows'
 
-export const FIVE_MINUTES = 300
-export const ONE_DAY = 86400
-
-export const getNearestFiveMinutesTime = () => {
-  const now = dayjs()
-  const minutes = now.minute()
-  if (minutes % 10 === 0 || minutes % 10 === 5) {
-    return now.second(0)
-  } else if (minutes % 10 < 5) {
-    return now.minute(minutes - (minutes % 10)).second(0)
-  } else if (minutes % 10 < 10) {
-    return now.minute(minutes - (minutes % 10) + 5).second(0)
-  }
-}
-
-export type OS = 'Ubuntu' | 'Windows'
-
-export type InstantQueries = {
-  [key in OS]: {
-    cpuCores: string
-    cpuMemoryTotal: string
-    cpuMemoryUsage: string
-    cpuMemoryUsed: string
-    cpuUsage: string
-  }
-}
-
-export type RangeQueries = {
-  [key in OS]: {
-    networkInput: string
-    networkOutput: string
-    cpuUsage: string
-    diskUsage: string
-    cpuMemoryUsage: string
-  }
-}
-
-export const instantQueries = (instance: string, os: OS) => {
-  const DURATION = '1m'
-  const queries: InstantQueries = {
+// OS별 시스템 메트릭 쿼리 정의
+export const getSystemQueries = (instance: string, os: OS) => {
+  const queries = {
     Ubuntu: {
-      cpuCores: \`count(node_cpu_seconds_total{mode="idle", instance ='\${instance}'}) without (cpu,mode)\`,
-      cpuMemoryTotal: \`(node_memory_MemTotal_bytes{instance='\${instance}'})\`,
-      cpuMemoryUsage: \`100 - ((node_memory_MemFree_bytes{instance='\${instance}'}+node_memory_Cached_bytes{instance='\${instance}'}+node_memory_Buffers_bytes{instance='\${instance}'}+node_memory_SReclaimable_bytes{instance='\${instance}'} ) / (node_memory_MemTotal_bytes{instance='\${instance}'} >0) * 100)\`,
-      cpuMemoryUsed: \`(node_memory_MemTotal_bytes{instance='\${instance}'} - (node_memory_MemFree_bytes{instance='\${instance}'} + node_memory_Cached_bytes{instance='\${instance}'} + node_memory_Buffers_bytes{instance='\${instance}'} + node_memory_SReclaimable_bytes{instance='\${instance}'})) >= 0 or (node_memory_MemTotal_bytes{instance='\${instance}'} - node_memory_MemFree_bytes{instance='\${instance}'})\`,
-      cpuUsage: \`clamp_min(100 - avg by (instance) (rate(node_cpu_seconds_total{mode='idle', instance = '\${instance}'}[\${DURATION}])) * 100, 0)\`,
+      // CPU 사용률 (유휴 시간 기반 계산)
+      cpuUsage: \`100 - avg(rate(node_cpu_seconds_total{mode='idle', instance='\${instance}'}[5m])) * 100\`,
+      
+      // 메모리 사용률
+      memoryUsage: \`100 - ((node_memory_MemFree_bytes + node_memory_Cached_bytes) / node_memory_MemTotal_bytes * 100)\`,
+      
+      // 디스크 사용률
+      diskUsage: \`100 - (node_filesystem_avail_bytes / node_filesystem_size_bytes * 100)\`
     },
+    
     Windows: {
-      cpuCores: \`windows_cs_logical_processors{instance='\${instance}'}\`,
-      cpuMemoryTotal: \`windows_cs_physical_memory_bytes{instance='\${instance}'}\`,
-      cpuMemoryUsage: \`clamp_min(100 - (windows_os_physical_memory_free_bytes{instance='\${instance}'} / windows_cs_physical_memory_bytes{instance='\${instance}'} * 100 ), 0)\`,
-      cpuMemoryUsed: \`clamp_min(windows_cs_physical_memory_bytes{instance='\${instance}'} - windows_os_physical_memory_free_bytes{instance='\${instance}'},0)\`,
-      cpuUsage: \`clamp_min(100 - avg by (instance) (rate(windows_cpu_time_total{mode='idle', instance = '\${instance}'}[\${DURATION}])) * 100,0)\`,
-    },
+      // CPU 사용률
+      cpuUsage: \`100 - avg(rate(windows_cpu_time_total{mode='idle', instance='\${instance}'}[5m])) * 100\`,
+      
+      // 메모리 사용률
+      memoryUsage: \`100 - (windows_os_physical_memory_free_bytes / windows_cs_physical_memory_bytes * 100)\`,
+      
+      // 디스크 사용률
+      diskUsage: \`100 - (windows_logical_disk_free_bytes / windows_logical_disk_size_bytes * 100)\`
+    }
   }
+  
   return queries[os]
 }
 
-export const rangeQueries = (instance: string, os: OS = 'Ubuntu') => {
-  const DURATION = '5m'
-  const common = {
-    gpuUsage: \`(avg by (instance, uuid) (nvidia_smi_utilization_gpu_ratio{instance='\${instance}'} * 100)) * on (instance, uuid) group_left(name, driver_version) nvidia_smi_gpu_info\`,
-    gpuMemoryUsage: \`(clamp_min(avg by (instance, uuid) (100 - (nvidia_smi_memory_free_bytes{instance='\${instance}'} / (nvidia_smi_memory_total_bytes{instance='\${instance}'} >0) *100 )),0))  * on (instance, uuid) group_left(name, driver_version) nvidia_smi_gpu_info\`,
-  }
-
-  const queries: RangeQueries = {
-    Ubuntu: {
-      networkInput: \`sum by(instance, device) (rate(node_network_receive_bytes_total{instance="\${instance}"}[\${DURATION}]))\`,
-      networkOutput: \`sum by(instance, device) (rate(node_network_transmit_bytes_total{instance='\${instance}'}[\${DURATION}]))\`,
-      cpuUsage: \`clamp_min(100 - avg by (instance) (rate(node_cpu_seconds_total{mode='idle', instance = '\${instance}'}[\${DURATION}])) * 100,0)\`,
-      diskUsage: \`100 - ((sum by (instance, device) (node_filesystem_avail_bytes{instance='\${instance}'} > 0) / sum by (instance, device) (node_filesystem_size_bytes{instance='\${instance}'}) > 0) * 100)\`,
-      cpuMemoryUsage: \`clamp_min(100 - ((node_memory_MemFree_bytes{instance='\${instance}'}+node_memory_Cached_bytes{instance='\${instance}'}+node_memory_Buffers_bytes{instance='\${instance}'}+node_memory_SReclaimable_bytes{instance='\${instance}'} ) / (node_memory_MemTotal_bytes{instance='\${instance}'} >0) * 100), 0)\`,
-    },
-    Windows: {
-      networkInput: \`sum by(instance, nic) (rate(windows_net_bytes_received_total{instance='\${instance}'}[\${DURATION}]))\`,
-      networkOutput: \`sum by(instance, nic) (rate(windows_net_bytes_sent_total{instance='\${instance}'}[\${DURATION}]))\`,
-      cpuUsage: \`100 - avg by (instance) (rate(windows_cpu_time_total{mode='idle', instance = '\${instance}'}[\${DURATION}])) * 100\`,
-      diskUsage: \`clamp_min(100 - ((sum by (instance, volume) (windows_logical_disk_free_bytes{instance='\${instance}', volume=~".:"} > 0) / sum by (instance, volume) (windows_logical_disk_size_bytes{instance='\${instance}', volume=~".:"}) > 0) * 100),0)\`,
-      cpuMemoryUsage: \`100 - (windows_os_physical_memory_free_bytes{instance='\${instance}'} / windows_cs_physical_memory_bytes{instance='\${instance}'} * 100 )\`,
-    },
-  }
-
-  return {
-    ...queries[os],
-    ...common,
-  }
-}`,
-        },
-        {
-          title: "Prometheus 메트릭 수집 훅",
-          description: "시스템 리소스 메트릭을 실시간으로 수집하는 커스텀 훅",
-          language: "typescript",
-          filename: "hooks/usePrometheusMetrics.ts",
-          code: `import { useQuery } from '@tanstack/react-query';
-import { useRecoilValue } from 'recoil';
-import { prometheusConfigState } from '../store/prometheus';
-import { instantQueries, rangeQueries, OS } from '../utils/prometheus-queries';
-
-interface MetricData {
-  metric: Record<string, string>;
-  value: [number, string];
-}
-
-interface PrometheusResponse {
-  status: string;
-  data: {
-    resultType: string;
-    result: MetricData[];
-  };
-}
-
-export const usePrometheusMetrics = (query: string, interval: number = 5000) => {
-  const config = useRecoilValue(prometheusConfigState);
-  
-  return useQuery({
-    queryKey: ['prometheus', query],
-    queryFn: async (): Promise<MetricData[]> => {
-      const response = await fetch(
-        \`\${config.endpoint}/api/v1/query?query=\${encodeURIComponent(query)}\`
-      );
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch metrics');
-      }
-      
-      const data: PrometheusResponse = await response.json();
-      return data.data.result;
-    },
-    refetchInterval: interval,
-    enabled: !!config.endpoint,
-  });
-};
-
-// 시스템 리소스 메트릭 훅들
-export const useSystemMetrics = (instance: string, os: OS) => {
-  const queries = instantQueries(instance, os);
-  
-  const cpuCores = usePrometheusMetrics(queries.cpuCores);
-  const cpuMemoryTotal = usePrometheusMetrics(queries.cpuMemoryTotal);
-  const cpuMemoryUsage = usePrometheusMetrics(queries.cpuMemoryUsage);
-  const cpuMemoryUsed = usePrometheusMetrics(queries.cpuMemoryUsed);
-  const cpuUsage = usePrometheusMetrics(queries.cpuUsage);
-
-  return {
-    cpuCores,
-    cpuMemoryTotal,
-    cpuMemoryUsage,
-    cpuMemoryUsed,
-    cpuUsage,
-  };
-};
-
-export const useRangeMetrics = (instance: string, os: OS) => {
-  const queries = rangeQueries(instance, os);
-  
-  const networkInput = usePrometheusMetrics(queries.networkInput);
-  const networkOutput = usePrometheusMetrics(queries.networkOutput);
-  const cpuUsage = usePrometheusMetrics(queries.cpuUsage);
-  const diskUsage = usePrometheusMetrics(queries.diskUsage);
-  const cpuMemoryUsage = usePrometheusMetrics(queries.cpuMemoryUsage);
-  const gpuUsage = usePrometheusMetrics(queries.gpuUsage);
-  const gpuMemoryUsage = usePrometheusMetrics(queries.gpuMemoryUsage);
-
-  return {
-    networkInput,
-    networkOutput,
-    cpuUsage,
-    diskUsage,
-    cpuMemoryUsage,
-    gpuUsage,
-    gpuMemoryUsage,
-  };
-};`,
+// GPU 메트릭 (NVIDIA 전용)
+export const getGpuUsage = (instance: string) => 
+  \`nvidia_smi_utilization_gpu_ratio{instance='\${instance}'} * 100\``,
         },
       ],
     },
     {
-      projectId: 5,
+      projectId: 4,
       companyId: "media-corpus",
       title:
         "비윤리적 표현 평가 시스템 프론트엔드 개발 및 사용자 피드백 기반 개선",
@@ -735,33 +592,14 @@ export const useRangeMetrics = (instance: string, os: OS) => {
 │   ├── current-work/           # 현재 작업 관리 기능
 │   │   ├── components/         # 컴포넌트들
 │   │   │   ├── WorkList.jsx
-│   │   │   ├── WorkItem.jsx
-│   │   │   └── WorkFilter.jsx
+│   │   │   └── WorkItem.jsx
 │   │   ├── saga.js            # 비동기 로직 처리
 │   │   ├── slice.js           # Redux 상태 관리
 │   │   └── index.js           # 모듈 진입점
 │   │
-│   ├── sentence-labeling/      # 문장 라벨링 기능
-│   │   ├── components/
-│   │   │   ├── SentenceTable.jsx
-│   │   │   ├── LabelingMenu.jsx
-│   │   │   └── KeywordTag.jsx
-│   │   ├── saga.js
-│   │   ├── slice.js
-│   │   └── index.js
-│   │
-│   ├── user-feedback/          # 사용자 피드백 기능
-│   │   ├── components/
-│   │   │   ├── FeedbackForm.jsx
-│   │   │   └── FeedbackList.jsx
-│   │   ├── saga.js
-│   │   ├── slice.js
-│   │   └── index.js
-│   │
 │   └── evaluation-system/      # 평가 시스템 기능
 │       ├── components/
-│       │   ├── EvaluationPanel.jsx
-│       │   └── ResultChart.jsx
+│       │   └── EvaluationPanel.jsx
 │       ├── saga.js
 │       ├── slice.js
 │       └── index.js
@@ -776,260 +614,10 @@ export const useRangeMetrics = (instance: string, os: OS) => {
     ├── rootReducer.js
     └── store.js`,
         },
-        {
-          title: "표현 평가 인터페이스",
-          description:
-            "사용자가 텍스트의 윤리성을 평가할 수 있는 인터페이스 컴포넌트",
-          language: "javascript",
-          filename:
-            "features/evaluation-system/components/EvaluationInterface.jsx",
-          code: `import React, { useState, useEffect } from 'react';
-import { Card, Button, Radio, Slider, Input, message, Progress } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { submitEvaluation, fetchNextText } from '../slice';
-
-const { TextArea } = Input;
-
-const EvaluationInterface = () => {
-  const dispatch = useDispatch();
-  const { currentText, progress, isLoading } = useSelector(state => state.evaluation);
-  const [evaluation, setEvaluation] = useState({
-    ethicalRating: 3,
-    severity: 1,
-    categories: [],
-    comments: '',
-    confidence: 5
-  });
-
-  const ethicalCategories = [
-    { value: 'hate_speech', label: '혐오 표현' },
-    { value: 'discrimination', label: '차별적 표현' },
-    { value: 'violence', label: '폭력적 표현' },
-    { value: 'sexual', label: '성적 표현' },
-    { value: 'profanity', label: '욕설/비속어' },
-    { value: 'other', label: '기타 비윤리적 표현' }
-  ];
-
-  useEffect(() => {
-    if (!currentText) {
-      dispatch(fetchNextText());
-    }
-  }, [dispatch, currentText]);
-
-  const handleSubmit = async () => {
-    if (evaluation.ethicalRating <= 2 && evaluation.categories.length === 0) {
-      message.warning('비윤리적 표현으로 평가한 경우 해당 카테고리를 선택해주세요.');
-      return;
-    }
-
-    try {
-      await dispatch(submitEvaluation({
-        textId: currentText.id,
-        ...evaluation
-      })).unwrap();
-      
-      message.success('평가가 완료되었습니다.');
-      
-      dispatch(fetchNextText());
-      
-      setEvaluation({
-        ethicalRating: 3,
-        severity: 1,
-        categories: [],
-        comments: '',
-        confidence: 5
-      });
-    } catch (error) {
-      message.error('평가 제출에 실패했습니다.');
-    }
-  };
-
-  if (isLoading) {
-    return <div className="loading-container">로딩 중...</div>;
-  }
-
-  return (
-    <div className="evaluation-interface">
-      <div className="progress-section">
-        <Progress 
-          percent={progress.percentage} 
-          format={() => \`\${progress.completed} / \${progress.total}\`}
-        />
-      </div>
-
-      <Card title="텍스트 평가" className="evaluation-card">
-        <div className="text-display">
-          <h3>평가할 텍스트:</h3>
-          <div className="text-content">
-            {currentText?.content}
-          </div>
-        </div>
-
-        <div className="evaluation-form">
-          <div className="form-section">
-            <h4>1. 윤리성 평가 (1: 매우 비윤리적 ~ 5: 매우 윤리적)</h4>
-            <Radio.Group
-              value={evaluation.ethicalRating}
-              onChange={(e) => setEvaluation(prev => ({ ...prev, ethicalRating: e.target.value }))}
-            >
-              <Radio value={1}>1 - 매우 비윤리적</Radio>
-              <Radio value={2}>2 - 비윤리적</Radio>
-              <Radio value={3}>3 - 보통</Radio>
-              <Radio value={4}>4 - 윤리적</Radio>
-              <Radio value={5}>5 - 매우 윤리적</Radio>
-            </Radio.Group>
-          </div>
-
-          <div className="form-section">
-            <h4>4. 평가 확신도 (1: 확신 없음 ~ 5: 매우 확신)</h4>
-            <Slider
-              min={1}
-              max={5}
-              value={evaluation.confidence}
-              onChange={(value) => setEvaluation(prev => ({ ...prev, confidence: value }))}
-              marks={{
-                1: '확신 없음',
-                3: '보통',
-                5: '매우 확신'
-              }}
-            />
-          </div>
-
-          <div className="submit-section">
-            <Button
-              type="primary"
-              size="large"
-              onClick={handleSubmit}
-              loading={isLoading}
-              disabled={!currentText}
-            >
-              평가 제출
-            </Button>
-          </div>
-        </div>
-      </Card>
-    </div>
-  );
-};
-
-export default EvaluationInterface;`,
-        },
-        {
-          title: "Redux Toolkit Slice 구성",
-          description: "평가 시스템의 상태 관리를 위한 Redux Toolkit slice",
-          language: "javascript",
-          filename: "features/evaluation-system/slice.js",
-          code: `import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { evaluationAPI } from '../../../shared/api/evaluation';
-
-// 비동기 액션들
-export const fetchNextText = createAsyncThunk(
-  'evaluation/fetchNextText',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await evaluationAPI.getNextText();
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const submitEvaluation = createAsyncThunk(
-  'evaluation/submitEvaluation',
-  async (evaluationData, { rejectWithValue }) => {
-    try {
-      const response = await evaluationAPI.submitEvaluation(evaluationData);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const fetchProgress = createAsyncThunk(
-  'evaluation/fetchProgress',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await evaluationAPI.getProgress();
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-const initialState = {
-  currentText: null,
-  progress: {
-    completed: 0,
-    total: 0,
-    percentage: 0
-  },
-  isLoading: false,
-  error: null,
-  submissionHistory: []
-};
-
-const evaluationSlice = createSlice({
-  name: 'evaluation',
-  initialState,
-  reducers: {
-    clearError: (state) => {
-      state.error = null;
-    },
-    resetEvaluation: (state) => {
-      state.currentText = null;
-      state.error = null;
-    }
-  },
-  extraReducers: (builder) => {
-    builder
-      // fetchNextText
-      .addCase(fetchNextText.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchNextText.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.currentText = action.payload;
-      })
-      .addCase(fetchNextText.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload?.message || '텍스트를 불러오는데 실패했습니다.';
-      })
-      
-      // submitEvaluation
-      .addCase(submitEvaluation.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(submitEvaluation.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.submissionHistory.push(action.payload);
-        // 진행률 업데이트
-        state.progress.completed += 1;
-        state.progress.percentage = Math.round((state.progress.completed / state.progress.total) * 100);
-      })
-      .addCase(submitEvaluation.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload?.message || '평가 제출에 실패했습니다.';
-      })
-      
-      // fetchProgress
-      .addCase(fetchProgress.fulfilled, (state, action) => {
-        state.progress = action.payload;
-      });
-  }
-});
-
-export const { clearError, resetEvaluation } = evaluationSlice.actions;
-export default evaluationSlice.reducer;`,
-        },
       ],
     },
     {
-      projectId: 6,
+      projectId: 5,
       companyId: "media-corpus",
       title:
         "문장 라벨링 및 검토 시스템 프론트엔드 개발 및 사용자 테스트 기반 개선",
@@ -1038,9 +626,9 @@ export default evaluationSlice.reducer;`,
         "코퍼스 언어의 사회적 인식 분류를 위한 문장 라벨링 및 검토 시스템 개발과 사용자 테스트를 통한 품질 개선이 필요했습니다. 자연어 처리 연구를 위해 대량의 텍스트 데이터에 정확한 라벨을 부여하는 작업이 필요했고, 이를 효율적으로 수행할 수 있는 도구가 부족한 상황이었습니다. 특히 라벨링 작업의 일관성과 품질을 보장하면서도 작업 효율성을 높이는 것이 핵심 과제였습니다.",
       detailedDescription: {
         summary:
-          "문장 라벨링 시스템을 단독 개발하고 사용자 피드백을 반영해 인터페이스를 개선, 라벨링 정확도와 속도를 향상시켜 50,000건 이상의 고품질 데이터를 수집한 프로젝트",
+          "문장 라벨링 시스템을 단독 개발하고 사용자 피드백을 반영해 인터페이스를 개선, 라벨링 정확도와 속도를 향상시켜 400,000건 이상의 고품질 데이터를 수집한 프로젝트",
         results:
-          "사용자 중심의 인터페이스 개선을 통해 라벨링 정확도와 속도를 향상시켰습니다. 피드백 루프 기반 개발과 반복적 개선 경험을 획득했으며, 사용자 관점에서 제품 완성도 향상을 주도했습니다. 라벨링 작업 시간이 평균 40% 단축되었고, 라벨링 일관성이 85%에서 95%로 향상되었습니다. 최종적으로 50,000건 이상의 고품질 라벨링 데이터를 성공적으로 수집했습니다.",
+          "사용자 중심의 인터페이스 개선을 통해 라벨링 정확도와 속도를 향상시켰습니다. 피드백 루프 기반 개발과 반복적 개선 경험을 획득했으며, 사용자 관점에서 제품 완성도 향상을 주도했습니다. 라벨링 작업 시간이 평균 40% 단축되었고, 라벨링 일관성이 85%에서 95%로 향상되었습니다. 최종적으로 400,000건 이상의 고품질 라벨링 데이터를 성공적으로 수집했습니다.",
       },
       projectPhases: [
         {
@@ -1062,7 +650,6 @@ export default evaluationSlice.reducer;`,
             "100명 라벨링 작업자 + 10명 검수자 대규모 테스트 진행",
             "IntersectionObserver 기반 무한 스크롤 성능 최적화",
             "작업 히스토리 저장 및 이어하기 기능 구현",
-            "체계적인 사용자 피드백 수집 및 분석",
           ],
         },
         {
@@ -1072,7 +659,6 @@ export default evaluationSlice.reducer;`,
           outcomes: [
             "라벨링 편의성 및 입력 플로우 최적화",
             "실시간 진행률 추적 및 품질 검증 로직 구현",
-            "작업자 간 일관성 유지를 위한 가이드라인 시스템 구축",
             "검수자용 검토 인터페이스 개발로 완전한 워크플로우 완성",
           ],
         },
@@ -1090,27 +676,19 @@ export default evaluationSlice.reducer;`,
       technologyReasoning: [
         {
           category: "드래그 기반 라벨링 인터페이스 구현",
-          technologies: ["window.getSelection", "DOM API"],
+          technologies: ["window.getSelection", "DOM API", "React", "Redux"],
           reasoning:
-            "텍스트 드래그 범위를 인식하고 시각적 라벨링을 가능하게 하는 인터랙션을 구현했습니다. window.getSelection()을 통해 사용자가 선택한 텍스트의 범위 정보를 추출하고, toString()으로 불필요한 공백 제거 및 유효성 검사를 수행했습니다. anchorOffset, focusOffset을 기준으로 정확한 라벨링 범위를 계산하고, 드래그 완료 시 커스텀 컨텍스트 메뉴를 해당 위치에 표시하여 라벨 색상에 따라 하이라이팅했습니다.",
+            "텍스트 드래그 범위를 인식하고 시각적 라벨링을 가능하게 하는 인터랙션을 구현했습니다. window.getSelection()을 통해 사용자가 선택한 텍스트의 범위 정보를 추출하고, anchorOffset, focusOffset을 기준으로 정확한 라벨링 범위를 계산했습니다. 드래그 완료 시 커스텀 컨텍스트 메뉴를 해당 위치에 표시하여 6가지 라벨 항목으로 구성된 메뉴에서 선택할 수 있도록 했으며, 메뉴 항목 선택 시 Redux의 UPDATE_KEYWORD 액션을 dispatch하여 라벨 종류, 텍스트 값, 시작~종료 offset 정보를 함께 상태에 저장했습니다.",
         },
         {
-          category: "컨텍스트 메뉴 라벨링 로직",
-          technologies: ["React", "Redux"],
+          category: "성능 최적화 및 사용자 경험 개선",
+          technologies: [
+            "IntersectionObserver",
+            "Local Storage",
+            "Backend Integration",
+          ],
           reasoning:
-            "선택된 텍스트에 라벨을 지정하고 위치 정보를 저장하는 구조를 구현했습니다. 커스텀 컨텍스트 메뉴는 총 6가지 라벨 항목으로 구성하고, 메뉴 항목 선택 시 UPDATE_KEYWORD 액션을 dispatch했습니다. 라벨 종류, 텍스트 값, 시작~종료 offset 정보를 함께 전송하여 상태 업데이트가 가능하도록 했습니다.",
-        },
-        {
-          category: "작업 히스토리 저장 및 이어하기 기능",
-          technologies: ["Local Storage", "Backend Integration"],
-          reasoning:
-            "사용자의 라벨링 작업 진행 상황을 저장하고 재접속 시 이어서 작업할 수 있도록 했습니다. 마지막 라벨링 문장의 인덱스를 백엔드에 저장하고, 이후 접속 시 해당 인덱스부터 자동으로 이어서 작업 가능하도록 구현했습니다. 별도로 '이전 작업 이어하기' 버튼을 제공해 사용자 경험을 강화했습니다.",
-        },
-        {
-          category: "페이징 기반 성능 최적화",
-          technologies: ["IntersectionObserver", "Infinite Scroll"],
-          reasoning:
-            "긴 문서 데이터에 대해 무한 스크롤 기반 지연 로딩을 적용했습니다. 초기 로딩 시 30개 문장만 렌더링하여 초기 성능을 최적화하고, 사용자가 하단으로 스크롤할 경우 다음 페이지 데이터를 비동기로 fetch했습니다. IntersectionObserver 기반 무한 스크롤 방식으로 UX 및 렌더링 성능을 개선했습니다.",
+            "대량의 문서 데이터를 효율적으로 처리하기 위해 IntersectionObserver 기반 무한 스크롤을 구현하여 초기 30개 문장만 렌더링하고 스크롤 시 점진적으로 로딩했습니다. 사용자의 라벨링 작업 진행 상황을 Local Storage와 백엔드에 저장하여 재접속 시 마지막 작업 위치부터 이어서 할 수 있도록 했습니다. 이를 통해 긴 문서에서도 빠른 초기 로딩과 작업 연속성을 보장하여 라벨링 효율성을 크게 향상시켰습니다.",
         },
       ],
       codeSnippets: [
@@ -1118,7 +696,7 @@ export default evaluationSlice.reducer;`,
           title: "키워드 라벨링 핵심 로직",
           description: "텍스트 선택 및 키워드 저장 프로세스를 구현한 실제 코드",
           language: "javascript",
-          filename: "components/CurrentWorkContent.jsx",
+          filename: "CurrentWorkContent.jsx",
           code: `const saveKeyword = (record, forbidden) => {
   // Select Keywords Part
   const sel = window.getSelection();
@@ -1160,156 +738,6 @@ export default evaluationSlice.reducer;`,
   }
 
   dispatch(updateKeyword(params));
-};`,
-        },
-        {
-          title: "라벨링 카테고리 메뉴 구성",
-          description: "6가지 카테고리별 색상 및 아이콘 매핑과 메뉴 시스템",
-          language: "javascript",
-          filename: "components/CurrentWorkContent.jsx",
-          code: `const forbiddenMap = {
-  hate: {
-    color: '#BCAAA4',
-    text: '혐오 표현',
-  },
-  sexual: {
-    color: '#EF9A9A',
-    text: '성적 표현',
-  },
-  swear: {
-    color: '#FFCC80',
-    text: '욕설 표현',
-  },
-  discrimination: {
-    color: '#A5D6A7',
-    text: '차별적 표현',
-  },
-  unethical: {
-    color: '#90CAF9',
-    text: '기타 비윤리적 표현',
-  },
-  privacy: {
-    color: '#B39DDB',
-    text: '개인 정보',
-  },
-};
-
-const menu = () => (
-  <Menu>
-    <Menu.Item key="hate">
-      <Button
-        className="label-btn"
-        icon={<GoThumbsdown className="hate" />}
-        type="link"
-        onClick={_.partial(saveKeyword, record, 'hate')}
-      >
-        <span>혐오 표현</span>
-      </Button>
-    </Menu.Item>
-    <Menu.Item key="sexual">
-      <Button
-        className="label-btn"
-        icon={<BsExclamationOctagon className="sexual" />}
-        type="link"
-        onClick={_.partial(saveKeyword, record, 'sexual')}
-      >
-        <span>성적 표현</span>
-      </Button>
-    </Menu.Item>
-    {/* 다른 카테고리들... */}
-  </Menu>
-);`,
-        },
-        {
-          title: "Redux 상태 관리 및 데이터 페칭",
-          description: "페이지네이션과 데이터 페칭 로직을 포함한 상태 관리",
-          language: "javascript",
-          filename: "components/CurrentWorkContent.jsx",
-          code: `useEffect(() => {
-  if (_.isEmpty(me.level)) {
-    return;
-  }
-  
-  const currentWorkPage = parseInt(page, 10) || 1;
-  const currentWorkPageSize = parseInt(pageSize, 10) || 10;
-  const params = {
-    matchUrl: match.url,
-    skip: (currentWorkPage - 1) * currentWorkPageSize,
-    limit: currentWorkPageSize,
-  };
-
-  if (match.url === CURRENT_WORK_PATH) {
-    localStorage.setItem('CURRENT_WORK_PAGE', parseInt(page, 10) || 1);
-    localStorage.setItem(
-      'CURRENT_WORK_PAGESIZE',
-      parseInt(pageSize, 10) || 10,
-    );
-  } else {
-    const { location } = history;
-    if (location.state) {
-      params.fileId = location.state.fileId;
-    }
-  }
-
-  dispatch(getWorkingSentences(params));
-}, [match.url, history, page, pageSize, me, dispatch]);`,
-        },
-        {
-          title: "키워드 태그 렌더링 및 삭제 기능",
-          description:
-            "라벨링된 키워드를 태그로 표시하고 삭제할 수 있는 UI 구현",
-          language: "javascript",
-          filename: "components/CurrentWorkContent.jsx",
-          code: `const resetKeyword = (record, deleteWord) => {
-  const { file, keywords } = record;
-  const keywordArr = _.map(keywords, keywordObj => {
-    const { keyword } = keywordObj;
-    if (keyword === deleteWord) {
-      return;
-    }
-    return keywordObj;
-  });
-  const resetArr = keywordArr.filter(Boolean);
-  const params = {
-    fileId: file.id,
-    sentenceId: record.id,
-    keywords: resetArr,
-  };
-  dispatch(updateKeyword(params));
-};
-
-// 키워드 렌더링
-render: (text, record, _index) => {
-  const keyword = _.get(text, '[0].keyword');
-  if (!_.isEmpty(keyword)) {
-    return (
-      <>
-        {_.map(text, (data, index) =>
-          data.keyword.length < 25 ? (
-            <Tag
-              color={forbiddenMap[data.forbidden].color}
-              closable
-              key={index}
-              onClose={_.partial(resetKeyword, record, data.keyword)}
-            >
-              {data.keyword}
-            </Tag>
-          ) : (
-            <Tag
-              className="keyword-display"
-              color={forbiddenMap[data.forbidden].color}
-              closable
-              key={index}
-              onClose={_.partial(resetKeyword, record, data.keyword)}
-            >
-              {data.keyword}
-            </Tag>
-          ),
-        )}
-      </>
-    );
-  }
-  return null;
 };`,
         },
       ],

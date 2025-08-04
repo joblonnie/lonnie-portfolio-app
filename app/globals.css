@@ -11,8 +11,8 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%; /* Dark Gray */
-    --primary-foreground: 210 40% 98%; /* Off-white */
+    --primary: var(--mocha-500); /* 또는 20 30% 50% */
+    --primary-foreground: 210 40% 98%; /* 글자색은 유지 가능 */
     --secondary: 210 40% 96%; /* Light Gray */
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96%;
@@ -30,6 +30,33 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* Mocha Mousse 팔레트 (HSL)*/
+    --mocha-50: 20 30% 95%;
+    --mocha-100: 20 30% 90%;
+    --mocha-200: 20 30% 80%;
+    --mocha-300: 20 30% 70%;
+    --mocha-400: 20 30% 60%;
+    --mocha-500: 20 30% 50%;
+    --mocha-600: 20 30% 40%;
+    --mocha-700: 20 30% 30%;
+    --mocha-800: 20 30% 20%;
+    --mocha-900: 20 30% 10%;
+    --mocha-950: 20 30% 5%;
+
+    /* Cannoli Cream 팔레트 (HSL) */
+
+    --cannoli-50: 55 36% 98%;
+    --cannoli-100: 55 36% 95%;
+    --cannoli-200: 55 36% 90%;
+    --cannoli-300: 55 36% 85%;
+    --cannoli-400: 55 36% 80%;
+    --cannoli-500: 55 36% 75%;
+    --cannoli-600: 55 36% 65%;
+    --cannoli-700: 55 36% 55%;
+    --cannoli-800: 55 36% 45%;
+    --cannoli-900: 55 36% 35%;
+    --cannoli-950: 55 36% 25%;
 
     /* Cornflower Blue 팔레트 (HSL) */
     --cornflower-50: 220 100% 97%;

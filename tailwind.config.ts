@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: ["class"],
@@ -53,19 +53,34 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Cornflower Blue 팔레트를 CSS 변수로 정의
-        cornflower: {
-          50: "hsl(var(--cornflower-50))",
-          100: "hsl(var(--cornflower-100))",
-          200: "hsl(var(--cornflower-200))",
-          300: "hsl(var(--cornflower-300))",
-          400: "hsl(var(--cornflower-400))",
-          500: "hsl(var(--cornflower-500))", // #6495ED
-          600: "hsl(var(--cornflower-600))",
-          700: "hsl(var(--cornflower-700))",
-          800: "hsl(var(--cornflower-800))",
-          900: "hsl(var(--cornflower-900))",
-          950: "hsl(var(--cornflower-950))",
+        // Mocha 팔레트를 CSS 변수로 정의
+        mocha: {
+          50: "hsl(var(--mocha-50))",
+          100: "hsl(var(--mocha-100))",
+          200: "hsl(var(--mocha-200))",
+          300: "hsl(var(--mocha-300))",
+          400: "hsl(var(--mocha-400))",
+          500: "hsl(var(--mocha-500))", // #A47864
+          600: "hsl(var(--mocha-600))",
+          700: "hsl(var(--mocha-700))",
+          800: "hsl(var(--mocha-800))",
+          900: "hsl(var(--mocha-900))",
+          950: "hsl(var(--mocha-950))",
+        },
+
+        // Cannoli Cream 팔레트를 CSS 변수로 정의
+        cannoli: {
+          50: "hsl(var(--cannoli-50))",
+          100: "hsl(var(--cannoli-100))",
+          200: "hsl(var(--cannoli-200))",
+          300: "hsl(var(--cannoli-300))",
+          400: "hsl(var(--cannoli-400))",
+          500: "hsl(var(--cannoli-500))", // #F1F0E2
+          600: "hsl(var(--cannoli-600))",
+          700: "hsl(var(--cannoli-700))",
+          800: "hsl(var(--cannoli-800))",
+          900: "hsl(var(--cannoli-900))",
+          950: "hsl(var(--cannoli-950))",
         },
       },
       borderRadius: {
@@ -90,6 +105,6 @@ const config: Config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

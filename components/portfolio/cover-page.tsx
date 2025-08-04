@@ -30,11 +30,11 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#6495ED]/20 via-[#7B68EE]/20 to-[#9370DB]/20 dark:from-[#4169E1]/30 dark:via-[#6A5ACD]/30 dark:to-[#8A2BE2]/30 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-mocha-500/20 via-cannoli-500/20 to-[#BBAA91]/20 dark:from-[#BBAA91]/30 dark:via-mocha-500/30 dark:to-[#A38C79]/30 relative overflow-hidden">
       {/* 배경 장식 */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#6495ED]/30 to-[#7B68EE]/30 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-[#7B68EE]/30 to-[#9370DB]/30 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-mocha-500/30 to-cannoli-500/30 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-cannoli-500/30 to-[#BBAA91]/30 rounded-full blur-3xl"></div>
       </div>
 
       {/* 상단 컨트롤 */}
@@ -55,14 +55,14 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
             <div className="relative inline-block">
               <Avatar className="w-32 h-32 sm:w-40 sm:h-40 mx-auto ring-4 ring-white/50 shadow-2xl">
                 <AvatarImage src="/profile.png" alt="Profile" />
-                <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-[#6495ED] to-[#7B68EE] text-white">
+                <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-mocha-500 to-cannoli-500 text-white">
                   {portfolioData.personalInfo?.name?.charAt(0) || "L"}
                 </AvatarFallback>
               </Avatar>
             </div>
 
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#6495ED] to-[#7B68EE] bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-mocha-500 to-cannoli-500 bg-clip-text text-transparent">
                 {portfolioData.personalInfo?.name || "개발자"}
               </h1>
               <p className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 font-medium">
@@ -81,22 +81,22 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                    <MapPin className="h-4 w-4 text-[#6495ED]" />
+                    <MapPin className="h-4 w-4 text-mocha-500" />
                     {portfolioData.personalInfo?.location || "대한민국"}
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                    <Calendar className="h-4 w-4 text-[#6495ED]" />
+                    <Calendar className="h-4 w-4 text-mocha-500" />
                     4년차 개발자
                   </div>
                   <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                    <User className="h-4 w-4 text-[#6495ED]" />
+                    <User className="h-4 w-4 text-mocha-500" />
                     Available for work
                   </div>
                   <div
-                    className="flex items-center gap-2 text-gray-600 dark:text-gray-300 cursor-pointer hover:text-[#6495ED] transition-colors"
+                    className="flex items-center gap-2 text-gray-600 dark:text-gray-300 cursor-pointer hover:text-mocha-500 transition-colors"
                     onClick={handleEmailClick}
                   >
-                    <Mail className="h-4 w-4 text-[#6495ED]" />
+                    <Mail className="h-4 w-4 text-mocha-500" />
                     {portfolioData.personalInfo?.email || "contact@example.com"}
                   </div>
                 </div>
@@ -109,7 +109,7 @@ export function CoverPage({ data, onNavigate }: CoverPageProps) {
             <Button
               size="lg"
               onClick={() => handleNavigate("intro")}
-              className="bg-gradient-to-r from-[#6495ED] to-[#7B68EE] text-white px-12 py-4 text-xl font-medium shadow-lg hover:shadow-xl transform transition-all hover:scale-105"
+              className="bg-gradient-to-r from-mocha-500 to-mocha-300 text-white px-12 py-4 text-xl font-medium shadow-lg hover:shadow-xl transform transition-all hover:scale-105"
             >
               둘러보기
               <ArrowRight className="ml-2 h-6 w-6" />

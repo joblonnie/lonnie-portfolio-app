@@ -27,7 +27,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
   /* ───────────────────────────────────────────────────────────────────── */
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#6495ED]/10 via-[#7B68EE]/10 to-[#9370DB]/10 dark:from-[#4169E1]/20 dark:via-[#6A5ACD]/20 dark:to-[#8A2BE2]/20 p-4 sm:p-6 lg:p-8 relative">
+    <div className="min-h-screen bg-gradient-to-br from-mocha-500/10 via-[#BBAA91]/10 to-[#BBAA91]/10 dark:from-[#BBAA91]/20 dark:via-[#6A5ACD]/20 dark:to-[#A38C79]/20 p-4 sm:p-6 lg:p-8 relative">
       <div className="max-w-6xl mx-auto space-y-8 lg:space-y-12">
         {/* 헤더 */}
         <AnimatedElement
@@ -36,10 +36,10 @@ export function GoalsPage({ data }: GoalsPageProps) {
           duration={200}
           className="text-center space-y-4"
         >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#6495ED] to-[#7B68EE] rounded-full flex items-center justify-center text-white mx-auto">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-mocha-500 to-[#BBAA91] rounded-full flex items-center justify-center text-white mx-auto">
             <Target className="h-8 w-8 sm:h-10 sm:w-10" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#6495ED] to-[#7B68EE] bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-mocha-500 to-[#BBAA91] bg-clip-text text-transparent">
             목표 & 비전
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -55,7 +55,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
           className="space-y-6"
         >
           <h2 className="text-2xl font-bold text-center flex items-center justify-center gap-3 text-gray-900 dark:text-white">
-            <BookOpen className="h-6 w-6 text-[#6495ED]" />
+            <BookOpen className="h-6 w-6 text-mocha-500" />
             학습 계획
           </h2>
 
@@ -92,7 +92,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
           className="space-y-6"
         >
           <h2 className="text-2xl font-bold text-center flex items-center justify-center gap-3 text-gray-900 dark:text-white">
-            <Eye className="h-6 w-6 text-[#6495ED]" />
+            <Eye className="h-6 w-6 text-mocha-500" />
             미래 비전
           </h2>
 
@@ -134,17 +134,17 @@ export function GoalsPage({ data }: GoalsPageProps) {
           className="space-y-6"
         >
           <h2 className="text-2xl font-bold text-center flex items-center justify-center gap-3 text-gray-900 dark:text-white">
-            <Star className="h-6 w-6 text-[#6495ED]" />
+            <Star className="h-6 w-6 text-mocha-500" />
             미래 포부
           </h2>
 
-          <Card className="bg-gradient-to-r from-[#6495ED]/10 to-[#7B68EE]/10 border-0">
+          <Card className="bg-gradient-to-r from-mocha-500/10 to-[#BBAA91]/10 border-0">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-[#6495ED] rounded-full"></span>
+                      <span className="w-2 h-2 bg-mocha-500 rounded-full"></span>
                       단기 목표 (1-2년)
                     </h3>
                     <ul className="space-y-3 text-gray-700 dark:text-gray-300">
@@ -153,7 +153,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
                           key={goal.title + idx}
                           className="flex items-start gap-3"
                         >
-                          <div className="w-1.5 h-1.5 bg-[#6495ED] rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="w-1.5 h-1.5 bg-mocha-500 rounded-full mt-2 flex-shrink-0"></div>
                           <span className="leading-relaxed">
                             <strong>{goal.title}:</strong> {goal.description}
                           </span>
@@ -166,7 +166,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
                 <div className="space-y-6">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-[#7B68EE] rounded-full"></span>
+                      <span className="w-2 h-2 bg-[#BBAA91] rounded-full"></span>
                       장기 목표 (3-5년)
                     </h3>
                     <ul className="space-y-3 text-gray-700 dark:text-gray-300">
@@ -175,7 +175,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
                           key={goal.title + idx}
                           className="flex items-start gap-3"
                         >
-                          <div className="w-1.5 h-1.5 bg-[#7B68EE] rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="w-1.5 h-1.5 bg-[#BBAA91] rounded-full mt-2 flex-shrink-0"></div>
                           <span className="leading-relaxed">
                             <strong>{goal.title}:</strong> {goal.description}
                           </span>
@@ -209,7 +209,7 @@ export function GoalsPage({ data }: GoalsPageProps) {
         <Button
           onClick={scrollToTop}
           size="icon"
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-[#6495ED] hover:bg-[#567fd4] text-white shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110"
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-mocha-500 hover:bg-mocha-400 text-white shadow-lg hover:shadow-xl transition-transform duration-300 hover:scale-110"
         >
           <ArrowUp className="h-5 w-5" />
         </Button>
