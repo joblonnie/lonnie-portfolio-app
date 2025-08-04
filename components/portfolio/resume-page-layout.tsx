@@ -244,12 +244,12 @@ export function ResumePageLayout() {
                         URL:
                       </span>
                       <a
-                        href="https://v0-personal-portfolio-page-xi.vercel.app/"
+                        href="https://joblonnie-portfolio.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-mocha-500 hover:text-mocha-600 underline break-all"
                       >
-                        https://v0-personal-portfolio-page-xi.vercel.app/
+                        https://joblonnie-portfolio.vercel.app/
                       </a>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
@@ -257,12 +257,12 @@ export function ResumePageLayout() {
                         단일 페이지:
                       </span>
                       <a
-                        href="https://v0-personal-portfolio-page-xi.vercel.app/single-page"
+                        href="https://joblonnie-portfolio.vercel.app/single-page"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-mocha-500 hover:text-mocha-600 underline break-all"
                       >
-                        https://v0-personal-portfolio-page-xi.vercel.app/single-page
+                        https://joblonnie-portfolio.vercel.app/single-page
                       </a>
                     </div>
                   </div>
