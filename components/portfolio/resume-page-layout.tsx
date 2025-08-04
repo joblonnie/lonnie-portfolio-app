@@ -229,26 +229,44 @@ export function ResumePageLayout() {
           </h2>
           <Card className="bg-card dark:bg-card border border-border dark:border-border">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex-1">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                     온라인 포트폴리오
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
                     프로젝트 상세 내용, 기술 스택, 코드 스니펫 등을 확인하실 수
                     있습니다.
                   </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="font-medium text-gray-700 dark:text-gray-300">
+                        URL:
+                      </span>
+                      <a
+                        href="https://v0-personal-portfolio-page-xi.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-mocha-500 hover:text-mocha-600 underline break-all"
+                      >
+                        https://v0-personal-portfolio-page-xi.vercel.app/
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="font-medium text-gray-700 dark:text-gray-300">
+                        단일 페이지:
+                      </span>
+                      <a
+                        href="https://v0-personal-portfolio-page-xi.vercel.app/single-page"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-mocha-500 hover:text-mocha-600 underline break-all"
+                      >
+                        https://v0-personal-portfolio-page-xi.vercel.app/single-page
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <Button asChild variant="outline">
-                  <a
-                    href="https://v0-personal-portfolio-page-xi.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    포트폴리오 보기
-                  </a>
-                </Button>
               </div>
             </CardContent>
           </Card>
