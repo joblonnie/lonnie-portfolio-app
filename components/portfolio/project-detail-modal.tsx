@@ -50,11 +50,20 @@ export function ProjectDetailModal({
   useEffect(() => {
     if (isOpen && project) {
       setActiveTabIndex(0);
-      // Scroll to top of modal content
-      const modalContent = document.querySelector("[data-modal-content]");
-      if (modalContent) {
-        modalContent.scrollTop = 0;
-      }
+      // Scroll to top of modal content with timeout to ensure DOM is ready
+      setTimeout(() => {
+        const modalContent = document.querySelector("[data-modal-content]");
+        if (modalContent) {
+          modalContent.scrollTop = 0;
+        }
+        // Also try scrolling the dialog content itself
+        const dialogContent = document.querySelector(
+          "[role='dialog'] .overflow-y-auto"
+        );
+        if (dialogContent) {
+          dialogContent.scrollTop = 0;
+        }
+      }, 100);
     }
   }, [project, isOpen]);
 
