@@ -65,12 +65,12 @@ export function ResumePageLayout() {
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/joblonnie",
+      url: "https://www.linkedin.com/in/donghyun-kim-a52b62207/",
       icon: <Linkedin className="h-5 w-5" />,
     },
     {
       name: "Tistory Blog",
-      url: "https://joblonnie.tistory.com",
+      url: "https://aosjehdgus.tistory.com/",
       icon: <Globe className="h-5 w-5" />,
     },
   ];
