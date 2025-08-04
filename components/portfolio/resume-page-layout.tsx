@@ -33,10 +33,20 @@ import { mockPortfolioData } from "@/lib/mock-data";
 
 export function ResumePageLayout() {
   const portfolioData = mockPortfolioData;
-  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+
+  // 모든 프로젝트를 기본적으로 확장된 상태로 설정
+  const allProjectIds = portfolioData.projects.map(
+    (project) => project.projectId
+  );
+  const [expandedProjects, setExpandedProjects] =
+    useState<number[]>(allProjectIds);
 
   const handleProjectClick = (projectId: number) => {
-    setExpandedProject(expandedProject === projectId ? null : projectId);
+    setExpandedProjects((prev) =>
+      prev.includes(projectId)
+        ? prev.filter((id) => id !== projectId)
+        : [...prev, projectId]
+    );
   };
 
   // Extract motivation keywords
@@ -361,7 +371,7 @@ export function ResumePageLayout() {
                               </p>
 
                               {/* 확장된 프로젝트 상세 */}
-                              {expandedProject === project.projectId && (
+                              {expandedProjects.includes(project.projectId) && (
                                 <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
                                   {/* 기술 스택 */}
                                   {project.technologies && (
@@ -433,7 +443,7 @@ export function ResumePageLayout() {
 
                               {/* 클릭 힌트 */}
                               <div className="text-xs text-gray-400 mt-2">
-                                {expandedProject === project.projectId
+                                {expandedProjects.includes(project.projectId)
                                   ? "클릭하여 접기"
                                   : "클릭하여 상세 보기"}
                               </div>

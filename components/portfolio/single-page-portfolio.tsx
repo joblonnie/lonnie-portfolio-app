@@ -43,7 +43,13 @@ import type { Project } from "@/lib/types";
 
 export function SinglePagePortfolio() {
   const portfolioData = mockPortfolioData;
-  const [expandedProjects, setExpandedProjects] = useState<number[]>([]);
+
+  // 모든 프로젝트를 기본적으로 확장된 상태로 설정
+  const allProjectIds = portfolioData.projects.map(
+    (project) => project.projectId
+  );
+  const [expandedProjects, setExpandedProjects] =
+    useState<number[]>(allProjectIds);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [activeTabIndex, setActiveTabIndex] = useState<Record<number, number>>(
     {}
