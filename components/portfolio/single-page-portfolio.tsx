@@ -288,21 +288,23 @@ export function SinglePagePortfolio() {
             </Card>
           </section>
 
-          {/* 개발 철학 */}
+          {/* 업무 철학 */}
           <section className="space-y-8 avoid-break print:space-y-4">
             <Card className="bg-card border-0 avoid-break">
               <CardContent className="p-8 print:p-4">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center print:text-xl print:mb-4">
-                  개발 철학
+                  업무 철학
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 print:grid-cols-1 print:gap-3">
+
+                {/* 상단 2개 철학 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 print:grid-cols-1 print:gap-3 mb-8">
                   {[
                     {
                       icon: "🧑‍💻",
                       gradient: "from-[#FFB6C1] to-[#FF69B4]",
-                      quote: "사용자 경험을 최우선으로 고려합니다",
+                      quote: "사용자 중심의 품질과 성능을 추구합니다",
                       description:
-                        "사용자가 없으면 제품은 없다고 생각합니다. 사용자의 경험을 최우선적으로 생각하고, 이를 UI에 반영하기 위해 UI/UX 디자이너와의 협업을 중요하게 생각합니다.",
+                        "사용자가 없으면 제품은 없다고 생각합니다. 사용자 경험을 최우선으로 고려하며, 동시에 성능 최적화를 통해 신뢰할 수 있는 제품을 만듭니다. UI/UX 디자이너와의 협업을 통해 사용자의 만족도를 높이는 데 집중합니다.",
                     },
                     {
                       icon: "🧑‍🤝‍🧑",
@@ -310,13 +312,6 @@ export function SinglePagePortfolio() {
                       quote: "협업과 팀워크는 개발의 기반입니다",
                       description:
                         "디자이너, 기획자, 백엔드 개발자와의 긴밀한 커뮤니케이션을 통해 문제를 조기에 해결하고, 더 나은 품질을 달성합니다.",
-                    },
-                    {
-                      icon: "🛡️",
-                      gradient: "from-[#00C9A7] to-[#0052D4]",
-                      quote: "성능을 바탕으로 신뢰를 구축합니다",
-                      description:
-                        "사용자의 신뢰를 얻기 위해 성능 최적화는 필수적입니다. 좋은 성능을 고민하면서, 사용자의 이탈을 방지하고 사용자의 만족도를 높이는 데 집중합니다.",
                     },
                   ].map(({ icon, gradient, quote, description }, index) => (
                     <div
@@ -334,10 +329,99 @@ export function SinglePagePortfolio() {
                         "{quote}"
                       </blockquote>
                       <p className="text-sm text-gray-600 dark:text-gray-400 flex-1 leading-relaxed">
-                        {description.split(".").slice(0, 2).join(".") + "."}
+                        {description}
                       </p>
                     </div>
                   ))}
+                </div>
+
+                {/* 하단 프로세스 개선 철학 */}
+                <div className="grid grid-cols-1 gap-6 print:gap-3">
+                  {[
+                    {
+                      icon: "⚡",
+                      gradient: "from-[#00C9A7] to-[#0052D4]",
+                      quote: "프로세스 개선을 통한 생산성 향상을 추구합니다",
+                      description:
+                        "효율적인 개발 프로세스와 자동화를 통해 팀의 생산성을 높이는 것을 중요하게 생각합니다. 반복적인 작업을 줄이고, 업무 워크플로우를 최적화하여 더 나은 결과물을 만들어냅니다.",
+                      hasReference: true,
+                    },
+                  ].map(
+                    (
+                      { icon, gradient, quote, description, hasReference },
+                      index
+                    ) => (
+                      <div
+                        key={index}
+                        className="flex flex-col text-center p-6 bg-card rounded-xl shadow-sm h-full avoid-break print:p-4"
+                      >
+                        <div
+                          className={`w-16 h-16 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center mx-auto mb-4 print:w-12 print:h-12 print:mb-2`}
+                        >
+                          <span className="text-white text-2xl print:text-lg">
+                            {icon}
+                          </span>
+                        </div>
+                        <blockquote className="italic text-gray-800 dark:text-gray-200 mb-4 font-medium print:text-sm print:mb-2">
+                          "{quote}"
+                        </blockquote>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 flex-1 leading-relaxed">
+                          {description}
+                        </p>
+
+                        {hasReference && (
+                          <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <p className="text-xs font-medium text-blue-900 dark:text-blue-100 mb-2">
+                              참고 자료
+                            </p>
+                            <div className="space-y-1">
+                              <a
+                                href="https://www.notion.so/22b4c99a0f8180daa669e4ca8083fd66"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
+                              >
+                                업무 프로세스 개선
+                              </a>
+                              <a
+                                href="https://www.notion.so/PR-template-22b4c99a0f8180d6a24fc3f88d3e9c1b"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
+                              >
+                                좋은 코드 리뷰 문화 유지를 위한 PR template
+                                정의하기
+                              </a>
+                              <a
+                                href="https://www.notion.so/22b4c99a0f81804a9060ea16b423aff9"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
+                              >
+                                구글 크롬 북마크를 활용한 생산성 향상
+                              </a>
+                              <a
+                                href="https://www.notion.so/Outlook-22b4c99a0f81807c92ccc3c2b8bb776d"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
+                              >
+                                Outlook 메일 자동 분류로 생산성 향상
+                              </a>
+                              <a
+                                href="https://www.notion.so/FE-22b4c99a0f8180afb842d15c973c634e"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
+                              >
+                                프론트엔드 개발 프로세스 최적화
+                              </a>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -1112,9 +1196,45 @@ export function SinglePagePortfolio() {
                                                         )
                                                       )}
                                                     </div>
-                                                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                                                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
                                                       {phase.description}
                                                     </p>
+                                                    {phase.detailsLink && (
+                                                      <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                                                        <div className="flex items-start gap-2">
+                                                          <FileText className="h-4 w-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                                                          <div>
+                                                            <h5 className="font-medium text-blue-900 dark:text-blue-100 text-sm">
+                                                              {
+                                                                phase
+                                                                  .detailsLink
+                                                                  .title
+                                                              }
+                                                            </h5>
+                                                            <p className="text-xs text-blue-700 dark:text-blue-300 mt-1 mb-2">
+                                                              {
+                                                                phase
+                                                                  .detailsLink
+                                                                  .description
+                                                              }
+                                                            </p>
+                                                            <a
+                                                              href={
+                                                                phase
+                                                                  .detailsLink
+                                                                  .url
+                                                              }
+                                                              target="_blank"
+                                                              rel="noopener noreferrer"
+                                                              className="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
+                                                            >
+                                                              <Globe className="h-3 w-3" />
+                                                              상세 문서 보기
+                                                            </a>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    )}
                                                   </div>
                                                 )
                                               )}

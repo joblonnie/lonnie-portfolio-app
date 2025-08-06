@@ -1,17 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import {
   Download,
   MapPin,
@@ -34,41 +26,12 @@ import { mockPortfolioData } from "@/lib/mock-data";
 export function ResumePageLayout() {
   const portfolioData = mockPortfolioData;
 
-  // Extract motivation keywords
-  const motivationKeywords = [
-    "사용자 중심 설계",
-    "성능 최적화",
-    "UI/UX 개선",
-    "협업",
-    "혁신적인 기술",
-    "지속적인 학습",
-    "품질 향상",
-  ];
-
   // Get projects by company
   const getProjectsByCompany = (companyId: string) => {
     return portfolioData.projects.filter(
       (project) => project.companyId === companyId
     );
   };
-
-  const externalLinks = [
-    {
-      name: "GitHub",
-      url: "https://github.com/joblonnie",
-      icon: <Github className="h-5 w-5" />,
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/donghyun-kim-a52b62207/",
-      icon: <Linkedin className="h-5 w-5" />,
-    },
-    {
-      name: "Tistory Blog",
-      url: "https://aosjehdgus.tistory.com/",
-      icon: <Globe className="h-5 w-5" />,
-    },
-  ];
 
   return (
     <div
@@ -99,49 +62,63 @@ export function ResumePageLayout() {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 dark:text-gray-300">
-            <div className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              {portfolioData.personalInfo?.location || "서울, 대한민국"}
+          <div className="space-y-3">
+            {/* 첫 번째 줄 - 2개 */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 dark:text-gray-300">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                {portfolioData.personalInfo?.location || "서울, 대한민국"}
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <a
+                  href={`tel:${
+                    portfolioData.personalInfo?.phone || "010-5054-0121"
+                  }`}
+                  className="hover:text-mocha-500 transition-colors"
+                >
+                  {portfolioData.personalInfo?.phone || "010-5054-0121"}
+                </a>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              {portfolioData.personalInfo?.phone || "010-5054-0121"}
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4" />
-              {portfolioData.personalInfo?.email || "joblonnie@gmail.com"}
+
+            {/* 두 번째 줄 - 3개 */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 dark:text-gray-300">
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                <a
+                  href={`mailto:${
+                    portfolioData.personalInfo?.email || "joblonnie@gmail.com"
+                  }`}
+                  className="hover:text-mocha-500 transition-colors"
+                >
+                  {portfolioData.personalInfo?.email || "joblonnie@gmail.com"}
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Github className="h-4 w-4" />
+                <a
+                  href="https://github.com/joblonnie"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-mocha-500 transition-colors"
+                >
+                  github.com/joblonnie
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Linkedin className="h-4 w-4" />
+                <a
+                  href="https://www.linkedin.com/in/donghyun-kim-a52b62207/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-mocha-500 transition-colors"
+                >
+                  linkedin.com/in/donghyun-kim-a52b62207
+                </a>
+              </div>
             </div>
           </div>
-
-          {/* External Links - Icon only with tooltips */}
-          <TooltipProvider>
-            <div className="flex justify-center gap-4">
-              {externalLinks.map((link, index) => (
-                <Tooltip key={index}>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      asChild
-                      className="w-12 h-12 p-0 rounded-full bg-transparent hover:bg-secondary"
-                    >
-                      <a
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {link.icon}
-                      </a>
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{link.name}</p>
-                  </TooltipContent>
-                </Tooltip>
-              ))}
-            </div>
-          </TooltipProvider>
         </section>
 
         {/* 소개 */}
@@ -174,6 +151,15 @@ export function ResumePageLayout() {
                     사용자 테스트 기반의 UI/UX 개선
                   </strong>
                   을 통해 작업 효율성을 40% 향상시킨 경험이 있습니다.
+                </p>
+                <p>
+                  <strong className="text-mocha-500">
+                    "협업과 팀워크는 개발의 기반"
+                  </strong>
+                  이라고 믿습니다. 팀워크를 통해 더 큰 가치를 창출할 수 있다고
+                  생각하며, 효과적인 소통과 체계적인 업무 프로세스를 중시합니다.
+                  이러한 철학을 바탕으로 팀 내 협업 방식을 지속적으로
+                  개선해왔습니다.
                 </p>
                 <p>
                   저의 궁극적인 비전은{" "}

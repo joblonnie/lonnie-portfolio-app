@@ -26,6 +26,7 @@ import {
   Braces,
   ChevronLeft,
   ChevronRight,
+  Globe,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -581,9 +582,33 @@ export function ProjectDetailModal({
                               </Badge>
                             ))}
                           </div>
-                          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
                             {phase.description}
                           </p>
+                          {phase.detailsLink && (
+                            <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                              <div className="flex items-start gap-2">
+                                <FileText className="h-4 w-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                                <div>
+                                  <h5 className="font-medium text-blue-900 dark:text-blue-100 text-sm">
+                                    {phase.detailsLink.title}
+                                  </h5>
+                                  <p className="text-xs text-blue-700 dark:text-blue-300 mt-1 mb-2">
+                                    {phase.detailsLink.description}
+                                  </p>
+                                  <a
+                                    href={phase.detailsLink.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
+                                  >
+                                    <Globe className="h-3 w-3" />
+                                    상세 문서 보기
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>

@@ -123,7 +123,7 @@ export const mockPortfolioData: PortfolioData = {
         {
           phase: "Phase 1: 생산 장비 이상 감지 모니터링 시스템 (2025.01-02)",
           description:
-            "첫 번째 프로젝트에서 NX를 사용한 모노레포를 설정하고, 단일 애플리케이션 내에서 FSD(Feature-Sliced Design)를 적용하여 모듈화 개발의 기반을 확립했습니다. 이 단계에서는 모노레포의 기본 구조와 개발 워크플로우를 정립했습니다.",
+            "첫 번째 프로젝트에서 NX를 사용한 모노레포를 설정하고, 단일 애플리케이션 내에서 FSD(Feature-Sliced Design)를 적용하여 모듈화 개발의 기반을 확립했습니다. 이 단계에서는 모노레포의 기본 구조와 업무 워크플로우를 정립했습니다.",
           outcomes: [
             "모노레포 기반 모듈화 개발 환경 구축",
             "확장 가능한 코드 구조 확립",
@@ -295,6 +295,12 @@ export const mockPortfolioData: PortfolioData = {
             "API 오류 처리 표준화로 시스템 안정성 향상",
             "GS 1등급 인증 획득",
           ],
+          detailsLink: {
+            title: "에러 핸들링 레이어 설계 상세 문서",
+            url: "https://www.notion.so/23d4c99a0f81809f9961f86932c67d03",
+            description:
+              "GS 인증을 위한 체계적인 에러 핸들링 레이어 아키텍처와 구현 과정을 상세히 정리한 문서입니다.",
+          },
         },
       ],
       period: "2023.05 - 2024.11",
