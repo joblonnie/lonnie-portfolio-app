@@ -34,21 +34,6 @@ import { mockPortfolioData } from "@/lib/mock-data";
 export function ResumePageLayout() {
   const portfolioData = mockPortfolioData;
 
-  // 모든 프로젝트를 기본적으로 확장된 상태로 설정
-  const allProjectIds = portfolioData.projects.map(
-    (project) => project.projectId
-  );
-  const [expandedProjects, setExpandedProjects] =
-    useState<number[]>(allProjectIds);
-
-  const handleProjectClick = (projectId: number) => {
-    setExpandedProjects((prev) =>
-      prev.includes(projectId)
-        ? prev.filter((id) => id !== projectId)
-        : [...prev, projectId]
-    );
-  };
-
   // Extract motivation keywords
   const motivationKeywords = [
     "사용자 중심 설계",
@@ -159,44 +144,24 @@ export function ResumePageLayout() {
           </TooltipProvider>
         </section>
 
-        {/* 지원 동기 - 최상단으로 이동 */}
+        {/* 소개 */}
         <section className="space-y-4">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
             <Heart className="h-6 w-6 text-mocha-500" />
-            지원 동기
+            소개
           </h2>
-
-          {/* 핵심 키워드 하이라이트 */}
-          <div className="mb-4">
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
-              핵심 가치 및 관심사
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {motivationKeywords.map((keyword, index) => (
-                <Badge
-                  key={index}
-                  variant="secondary"
-                  className="bg-mocha-500/10 text-mocha-500 border-mocha-500/20"
-                >
-                  {keyword}
-                </Badge>
-              ))}
-            </div>
-          </div>
 
           <Card className="bg-secondary dark:bg-secondary border border-border dark:border-border">
             <CardContent className="p-6">
-              <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+              <div className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>
                   안녕하세요. 4년간의 프론트엔드 개발 경험을 바탕으로{" "}
                   <strong className="text-mocha-500">
                     사용자 중심의 웹 애플리케이션 개발
                   </strong>
-                  에 전념해온 김동현입니다.
-                </p>
-                <p>
-                  현재 (주)세이지에서 React와 TypeScript를 활용한 AI 모니터링
-                  시스템과 안전 관리 솔루션을 개발하고 있으며, 특히{" "}
+                  에 전념해온 김동현입니다. 현재 (주)세이지에서 React와
+                  TypeScript를 활용한 AI 모니터링 시스템과 안전 관리 솔루션을
+                  개발하고 있으며, 특히{" "}
                   <strong className="text-mocha-500">
                     NX Monorepo 아키텍처 도입
                   </strong>
@@ -211,20 +176,47 @@ export function ResumePageLayout() {
                   을 통해 작업 효율성을 40% 향상시킨 경험이 있습니다.
                 </p>
                 <p>
-                  귀사의 혁신적인 기술 문화와 사용자 경험을 중시하는 가치관이
-                  저의 개발 철학과 일치한다고 생각합니다. 특히{" "}
+                  저의 궁극적인 비전은{" "}
                   <strong className="text-mocha-500">
-                    성능 최적화와 사용자 중심 설계
+                    "단순히 기능 구현이 아닌, 삶의 질을 개선하는 개발자"
                   </strong>
-                  에 대한 저의 경험이 귀사의 제품 발전에 기여할 수 있을 것이라
-                  확신합니다.
-                </p>
-                <p>
+                  입니다. 코드를 작성하는 것을 넘어, 사용자의 문제를 해결하고 더
+                  나은 경험을 제공하는 제품을 만들어 사회에 긍정적인 영향을
+                  미치고 싶습니다.{" "}
                   <strong className="text-mocha-500">
                     지속적인 학습과 성장
                   </strong>
-                  을 통해 팀과 함께 더 나은 웹 서비스를 만들어가고 싶습니다.
-                  감사합니다.
+                  을 통해 기술과 비즈니스를 모두 이해하는 개발자가 되는 것이
+                  저의 목표입니다.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* 지원 동기 */}
+        <section className="space-y-4">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+            <FolderOpen className="h-6 w-6 text-mocha-500" />
+            지원 동기
+          </h2>
+
+          <Card className="bg-card dark:bg-card border border-border dark:border-border">
+            <CardContent className="p-6">
+              <div className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p>
+                  제가 [회사명]에 지원하게 된 이유는{" "}
+                  <strong className="text-mocha-500">
+                    [구체적인 지원 동기를 여기에 작성해주세요]
+                  </strong>
+                  입니다.
+                </p>
+                <p>
+                  특히 [회사의 특정 가치/제품/기술]에 대한 관심과{" "}
+                  <strong className="text-mocha-500">
+                    [본인의 경험/기술이 어떻게 기여할 수 있는지]
+                  </strong>
+                  를 통해 함께 성장하고 싶습니다.
                 </p>
               </div>
             </CardContent>
@@ -333,12 +325,7 @@ export function ResumePageLayout() {
                     <div className="space-y-3 print:space-y-2">
                       {getProjectsByCompany(company.id).map((project) => (
                         <div key={project.projectId} className="avoid-break">
-                          <Card
-                            className="bg-secondary hover:shadow-md transition-all duration-300 cursor-pointer border-0 print:cursor-default avoid-break"
-                            onClick={() =>
-                              handleProjectClick(project.projectId)
-                            }
-                          >
+                          <Card className="bg-secondary border-0 avoid-break">
                             <CardContent className="p-4 print:p-3">
                               <div className="flex justify-between items-start mb-2">
                                 <div className="flex-1">
@@ -370,82 +357,131 @@ export function ResumePageLayout() {
                                     .join(".") + "."}
                               </p>
 
-                              {/* 확장된 프로젝트 상세 */}
-                              {expandedProjects.includes(project.projectId) && (
-                                <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
-                                  {/* 기술 스택 */}
-                                  {project.technologies && (
-                                    <div>
-                                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
-                                        사용 기술
-                                      </p>
-                                      <div className="flex flex-wrap gap-1">
-                                        {project.technologies
-                                          .slice(0, 8)
-                                          .map((tech, techIndex) => (
-                                            <Badge
-                                              key={techIndex}
-                                              variant="outline"
-                                              className="text-xs"
-                                            >
-                                              {tech}
-                                            </Badge>
-                                          ))}
-                                      </div>
+                              {/* 프로젝트 상세 */}
+                              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600 space-y-4">
+                                {/* 기술 스택 */}
+                                {project.technologies && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                                      사용 기술
+                                    </p>
+                                    <div className="flex flex-wrap gap-1">
+                                      {project.technologies
+                                        .slice(0, 8)
+                                        .map((tech, techIndex) => (
+                                          <Badge
+                                            key={techIndex}
+                                            variant="outline"
+                                            className="text-xs"
+                                          >
+                                            {tech}
+                                          </Badge>
+                                        ))}
                                     </div>
-                                  )}
+                                  </div>
+                                )}
 
-                                  {/* 주요 성과 */}
-                                  {project.achievements && (
+                                {/* 기술 선택 이유 */}
+                                {project.technologyReasoning &&
+                                  project.technologyReasoning.length > 0 && (
                                     <div>
                                       <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
-                                        <Award className="h-3 w-3" />
-                                        주요 성과
+                                        <Code className="h-3 w-3" />
+                                        기술 및 설계
                                       </p>
-                                      <ul className="space-y-1">
-                                        {project.achievements
-                                          .slice(0, 3)
-                                          .map((achievement, idx) => (
-                                            <li
+                                      <div className="space-y-2">
+                                        {project.technologyReasoning.map(
+                                          (tech, idx) => (
+                                            <div
                                               key={idx}
-                                              className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
+                                              className="bg-gray-50 dark:bg-gray-800 p-2 rounded text-xs"
                                             >
-                                              <div className="w-1 h-1 bg-mocha-500 rounded-full mt-2 flex-shrink-0" />
-                                              <span>{achievement}</span>
-                                            </li>
-                                          ))}
-                                      </ul>
-                                    </div>
-                                  )}
-
-                                  {/* 키워드 */}
-                                  {project.keywords && (
-                                    <div>
-                                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
-                                        핵심 키워드
-                                      </p>
-                                      <div className="flex flex-wrap gap-1">
-                                        {project.keywords
-                                          .slice(0, 4)
-                                          .map((keyword, keywordIndex) => (
-                                            <span
-                                              key={keywordIndex}
-                                              className="px-2 py-1 bg-mocha-500/10 text-mocha-500 text-xs rounded-full"
-                                            >
-                                              {keyword}
-                                            </span>
-                                          ))}
+                                              <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                                {tech.category}
+                                              </div>
+                                              <div className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                                                {tech.reasoning}
+                                              </div>
+                                            </div>
+                                          )
+                                        )}
                                       </div>
                                     </div>
                                   )}
-                                </div>
-                              )}
 
-                              {/* 클릭 힌트 */}
-                              <div className="text-xs text-gray-400 mt-2">
-                                {expandedProjects.includes(project.projectId)
-                                  ? "클릭하여 접기"
-                                  : "클릭하여 상세 보기"}
+                                {/* 프로젝트 성과 */}
+                                {project.detailedDescription?.results && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
+                                      <Award className="h-3 w-3" />
+                                      주요 성과
+                                    </p>
+                                    <ul className="space-y-1">
+                                      {project.detailedDescription.results
+                                        .split(".")
+                                        .filter(
+                                          (sentence) =>
+                                            sentence.trim().length > 10
+                                        )
+                                        .slice(0, 4)
+                                        .map((achievement, idx) => (
+                                          <li
+                                            key={idx}
+                                            className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
+                                          >
+                                            <div className="w-1 h-1 bg-mocha-500 rounded-full mt-2 flex-shrink-0" />
+                                            <span>
+                                              {achievement.trim() + "."}
+                                            </span>
+                                          </li>
+                                        ))}
+                                    </ul>
+                                  </div>
+                                )}
+
+                                {/* 주요 성과 (기존) */}
+                                {project.achievements && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
+                                      <Award className="h-3 w-3" />
+                                      주요 달성 사항
+                                    </p>
+                                    <ul className="space-y-1">
+                                      {project.achievements
+                                        .slice(0, 3)
+                                        .map((achievement, idx) => (
+                                          <li
+                                            key={idx}
+                                            className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
+                                          >
+                                            <div className="w-1 h-1 bg-mocha-500 rounded-full mt-2 flex-shrink-0" />
+                                            <span>{achievement}</span>
+                                          </li>
+                                        ))}
+                                    </ul>
+                                  </div>
+                                )}
+
+                                {/* 키워드 */}
+                                {project.keywords && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                                      핵심 키워드
+                                    </p>
+                                    <div className="flex flex-wrap gap-1">
+                                      {project.keywords
+                                        .slice(0, 4)
+                                        .map((keyword, keywordIndex) => (
+                                          <span
+                                            key={keywordIndex}
+                                            className="px-2 py-1 bg-mocha-500/10 text-mocha-500 text-xs rounded-full"
+                                          >
+                                            {keyword}
+                                          </span>
+                                        ))}
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             </CardContent>
                           </Card>
@@ -485,59 +521,6 @@ export function ResumePageLayout() {
               </div>
             </CardContent>
           </Card>
-        </section>
-
-        {/* 기술 스택 */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
-            <Code className="h-6 w-6 text-mocha-500" />
-            기술 스택
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="bg-card border">
-              <CardHeader>
-                <CardTitle className="text-lg">프론트엔드</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    ...portfolioData.skills.languages,
-                    ...portfolioData.skills.ui.slice(0, 6),
-                  ].map((skill, index) => (
-                    <Badge
-                      key={index}
-                      variant="secondary"
-                      className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border">
-              <CardHeader>
-                <CardTitle className="text-lg">도구 & 협업</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    ...portfolioData.skills.devTools,
-                    ...portfolioData.skills.collaborationTools.slice(0, 4),
-                  ].map((skill, index) => (
-                    <Badge
-                      key={index}
-                      variant="secondary"
-                      className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </section>
       </div>
 
