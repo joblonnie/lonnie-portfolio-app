@@ -6,23 +6,12 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  // 디버깅용 - 개발 중에만 사용
-  useEffect(() => {
-    console.log('Current theme:', theme, 'Resolved theme:', resolvedTheme)
-  }, [theme, resolvedTheme])
-
-  const toggleTheme = () => {
-    const newTheme = resolvedTheme === "dark" ? "light" : "dark"
-    console.log('Switching theme to:', newTheme)
-    setTheme(newTheme)
-  }
 
   if (!mounted) {
     return (
@@ -41,7 +30,7 @@ export function ThemeToggle() {
     <Button
       variant="outline"
       size="icon"
-      onClick={toggleTheme}
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       className="bg-black/20 border-white/30 hover:bg-black/30 text-white backdrop-blur-sm shadow-lg transition-all duration-200 hover:scale-105"
     >
       <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
