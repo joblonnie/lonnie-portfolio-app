@@ -367,27 +367,82 @@ export function ResumePageLayout() {
                                   </div>
                                 )}
 
-                                {/* 기술 선택 이유 */}
-                                {project.technologyReasoning &&
-                                  project.technologyReasoning.length > 0 && (
+                                {/* 구조적 기여 */}
+                                {project.structuralContributions &&
+                                  project.structuralContributions.length >
+                                    0 && (
+                                    <div>
+                                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
+                                        <Briefcase className="h-3 w-3" />
+                                        구조적 기여
+                                      </p>
+                                      <div className="space-y-2">
+                                        {project.structuralContributions.map(
+                                          (contribution, idx) => (
+                                            <div
+                                              key={idx}
+                                              className="bg-blue-50 dark:bg-blue-900/20 p-2 rounded text-xs"
+                                            >
+                                              <div className="font-medium text-blue-700 dark:text-blue-300 mb-1">
+                                                {contribution.title}
+                                              </div>
+                                              <div className="text-blue-600 dark:text-blue-400 leading-relaxed mb-2">
+                                                {contribution.description}
+                                              </div>
+                                              <ul className="space-y-1">
+                                                {contribution.achievements.map(
+                                                  (achievement, achIdx) => (
+                                                    <li
+                                                      key={achIdx}
+                                                      className="flex items-start gap-1 text-blue-600 dark:text-blue-400"
+                                                    >
+                                                      <div className="w-1 h-1 bg-blue-500 rounded-full mt-1.5 flex-shrink-0" />
+                                                      <span>{achievement}</span>
+                                                    </li>
+                                                  )
+                                                )}
+                                              </ul>
+                                            </div>
+                                          )
+                                        )}
+                                      </div>
+                                    </div>
+                                  )}
+
+                                {/* 기술적 기여 */}
+                                {project.technicalContributions &&
+                                  project.technicalContributions.length > 0 && (
                                     <div>
                                       <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
                                         <Code className="h-3 w-3" />
-                                        기술 및 설계
+                                        기술적 기여
                                       </p>
                                       <div className="space-y-2">
-                                        {project.technologyReasoning.map(
-                                          (tech, idx) => (
+                                        {project.technicalContributions.map(
+                                          (contribution, idx) => (
                                             <div
                                               key={idx}
-                                              className="bg-gray-50 dark:bg-gray-800 p-2 rounded text-xs"
+                                              className="bg-green-50 dark:bg-green-900/20 p-2 rounded text-xs"
                                             >
-                                              <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                                {tech.category}
+                                              <div className="font-medium text-green-700 dark:text-green-300 mb-1">
+                                                {contribution.title}
                                               </div>
-                                              <div className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                                                {tech.reasoning}
+                                              <div className="text-green-600 dark:text-green-400 leading-relaxed mb-2">
+                                                {contribution.description}
                                               </div>
+                                              <ul className="space-y-1">
+                                                {contribution.achievements.map(
+                                                  (achievement, achIdx) => (
+                                                    <li
+                                                      key={achIdx}
+                                                      className="flex items-start gap-1 text-green-600 dark:text-green-400"
+                                                    >
+                                                      <div className="w-1 h-1 bg-green-500 rounded-full mt-1.5 flex-shrink-0" />
+                                                      <span>{achievement}</span>
+                                                    </li>
+                                                  )
+                                                )}
+                                              </ul>
                                             </div>
                                           )
                                         )}

@@ -643,12 +643,12 @@ export function SinglePagePortfolio() {
                                       </Card>
                                     </div>
 
-                                    {/* 프로젝트 배경 */}
+                                    {/* 프로젝트 내용 */}
                                     <Card>
                                       <CardHeader className="pb-3">
                                         <CardTitle className="flex items-center gap-2 text-base">
                                           <Target className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                                          <span>프로젝트 배경</span>
+                                          <span>프로젝트 내용</span>
                                         </CardTitle>
                                       </CardHeader>
                                       <CardContent className="pt-0">
@@ -658,503 +658,100 @@ export function SinglePagePortfolio() {
                                       </CardContent>
                                     </Card>
 
-                                    {/* 기술 및 설계 */}
-                                    {project.technologyReasoning &&
-                                      project.technologyReasoning.length >
+                                    {/* 구조적 기여 */}
+                                    {project.structuralContributions &&
+                                      project.structuralContributions.length >
                                         0 && (
                                         <Card>
                                           <CardHeader className="pb-3">
                                             <CardTitle className="flex items-center gap-2 text-base">
-                                              <Code className="h-4 w-4 text-purple-600 flex-shrink-0" />
-                                              <span>기술 및 설계</span>
+                                              <Briefcase className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                                              <span>구조적 기여</span>
                                             </CardTitle>
                                           </CardHeader>
-                                          <CardContent className="pt-0 space-y-6">
-                                            {/* 기술 선택 이유 */}
-                                            <div className="space-y-4">
-                                              {project.technologyReasoning.map(
-                                                (reasoning, index) => (
-                                                  <div
-                                                    key={index}
-                                                    className="border-l-4 border-purple-200 pl-4"
-                                                  >
-                                                    <h4 className="font-semibold text-sm text-gray-900 dark:text-white mb-2">
-                                                      {reasoning.category}
-                                                    </h4>
-                                                    <div className="flex flex-wrap gap-2 mb-3">
-                                                      {reasoning.technologies.map(
-                                                        (tech, techIndex) => (
-                                                          <Badge
-                                                            key={techIndex}
-                                                            variant="secondary"
-                                                            className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 text-xs"
-                                                          >
-                                                            {tech}
-                                                          </Badge>
-                                                        )
-                                                      )}
-                                                    </div>
-                                                    <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                                                      {reasoning.reasoning}
-                                                    </p>
-                                                  </div>
-                                                )
-                                              )}
-                                            </div>
-
-                                            {/* 핵심 코드 스니펫 */}
-                                            {project.codeSnippets &&
-                                              project.codeSnippets.length >
-                                                0 && (
-                                                <div className="border-t pt-6">
-                                                  <h4 className="flex items-center gap-2 text-base font-semibold text-gray-900 dark:text-white mb-4">
-                                                    <Braces className="h-4 w-4 text-indigo-600 flex-shrink-0" />
-                                                    <span>핵심 구조/코드</span>
+                                          <CardContent className="pt-0 space-y-4">
+                                            {project.structuralContributions.map(
+                                              (contribution, index) => (
+                                                <div
+                                                  key={index}
+                                                  className="border-l-4 border-blue-200 pl-4 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-r"
+                                                >
+                                                  <h4 className="font-semibold text-sm text-blue-900 dark:text-blue-100 mb-2">
+                                                    {contribution.title}
                                                   </h4>
-
-                                                  {/* 데스크톱 탭 리스트 */}
-                                                  <div className="hidden sm:block">
-                                                    <Tabs
-                                                      value={(
-                                                        activeTabIndex[
-                                                          project.projectId
-                                                        ] || 0
-                                                      ).toString()}
-                                                      onValueChange={(value) =>
-                                                        setActiveTabIndex(
-                                                          (prev) => ({
-                                                            ...prev,
-                                                            [project.projectId]:
-                                                              Number.parseInt(
-                                                                value
-                                                              ),
-                                                          })
-                                                        )
-                                                      }
-                                                      className="w-full"
-                                                    >
-                                                      <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 h-auto p-1">
-                                                        {project.codeSnippets.map(
-                                                          (snippet, index) => (
-                                                            <TabsTrigger
-                                                              key={index}
-                                                              value={index.toString()}
-                                                              className="text-xs sm:text-sm p-2 h-auto whitespace-normal text-center"
-                                                            >
-                                                              <span className="truncate max-w-full">
-                                                                {snippet.filename ||
-                                                                  snippet.title}
-                                                              </span>
-                                                            </TabsTrigger>
-                                                          )
-                                                        )}
-                                                      </TabsList>
-                                                      {project.codeSnippets.map(
-                                                        (snippet, index) => (
-                                                          <TabsContent
-                                                            key={index}
-                                                            value={index.toString()}
-                                                            className="mt-4"
-                                                          >
-                                                            <div className="space-y-3">
-                                                              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                                                                <div className="flex items-center gap-3 min-w-0">
-                                                                  <Tooltip>
-                                                                    <TooltipTrigger
-                                                                      asChild
-                                                                    >
-                                                                      <h5 className="font-semibold text-base text-gray-900 dark:text-white truncate">
-                                                                        {
-                                                                          snippet.title
-                                                                        }
-                                                                      </h5>
-                                                                    </TooltipTrigger>
-                                                                    <TooltipContent>
-                                                                      <p className="max-w-xs break-words">
-                                                                        {
-                                                                          snippet.title
-                                                                        }
-                                                                      </p>
-                                                                    </TooltipContent>
-                                                                  </Tooltip>
-                                                                  <Badge
-                                                                    variant="secondary"
-                                                                    className={`${getLanguageColor(
-                                                                      snippet.language
-                                                                    )} flex-shrink-0`}
-                                                                  >
-                                                                    {snippet.language.toUpperCase()}
-                                                                  </Badge>
-                                                                </div>
-                                                                <Button
-                                                                  variant="outline"
-                                                                  size="sm"
-                                                                  onClick={() =>
-                                                                    copyToClipboard(
-                                                                      snippet.code,
-                                                                      index,
-                                                                      project.projectId
-                                                                    )
-                                                                  }
-                                                                  className="flex items-center gap-2 self-start sm:self-auto flex-shrink-0"
-                                                                >
-                                                                  <Copy className="h-4 w-4" />
-                                                                  <span>
-                                                                    {copiedIndex ===
-                                                                    index
-                                                                      ? "복사됨!"
-                                                                      : "복사"}
-                                                                  </span>
-                                                                </Button>
-                                                              </div>
-
-                                                              {snippet.description && (
-                                                                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                                                  {
-                                                                    snippet.description
-                                                                  }
-                                                                </p>
-                                                              )}
-
-                                                              <div className="relative">
-                                                                <div className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-3 sm:p-4 rounded-lg border max-w-full overflow-hidden">
-                                                                  <pre className="text-xs sm:text-sm leading-relaxed overflow-x-auto whitespace-pre-wrap break-words max-w-full">
-                                                                    <code
-                                                                      className={`language-${snippet.language} break-words`}
-                                                                      style={{
-                                                                        wordBreak:
-                                                                          "break-all",
-                                                                        overflowWrap:
-                                                                          "break-word",
-                                                                        maxWidth:
-                                                                          "100%",
-                                                                      }}
-                                                                    >
-                                                                      {
-                                                                        snippet.code
-                                                                      }
-                                                                    </code>
-                                                                  </pre>
-                                                                </div>
-                                                                {snippet.filename && (
-                                                                  <Tooltip>
-                                                                    <TooltipTrigger
-                                                                      asChild
-                                                                    >
-                                                                      <div className="absolute top-2 right-2 bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-mono max-w-[150px] truncate">
-                                                                        {
-                                                                          snippet.filename
-                                                                        }
-                                                                      </div>
-                                                                    </TooltipTrigger>
-                                                                    <TooltipContent>
-                                                                      <p className="max-w-xs break-words">
-                                                                        {
-                                                                          snippet.filename
-                                                                        }
-                                                                      </p>
-                                                                    </TooltipContent>
-                                                                  </Tooltip>
-                                                                )}
-                                                              </div>
-                                                            </div>
-                                                          </TabsContent>
-                                                        )
-                                                      )}
-                                                    </Tabs>
-                                                  </div>
-
-                                                  {/* 모바일 탭 네비게이션 */}
-                                                  <div className="block sm:hidden">
-                                                    <div className="flex items-center justify-between bg-muted/50 rounded-lg p-2 mb-4">
-                                                      <Button
-                                                        variant="ghost"
-                                                        size="sm"
-                                                        onClick={() =>
-                                                          navigateTab(
-                                                            "prev",
-                                                            project.projectId,
-                                                            project.codeSnippets!
-                                                              .length
-                                                          )
-                                                        }
-                                                        className="h-8 w-8 p-0 flex-shrink-0"
-                                                        disabled={
-                                                          !project.codeSnippets ||
-                                                          project.codeSnippets
-                                                            .length <= 1
-                                                        }
-                                                      >
-                                                        <ChevronLeft className="h-4 w-4" />
-                                                      </Button>
-
-                                                      <div className="flex items-center gap-2 flex-1 justify-center min-w-0 px-2">
-                                                        <FileText className="h-4 w-4 text-indigo-600 flex-shrink-0" />
-                                                        <Tooltip>
-                                                          <TooltipTrigger
-                                                            asChild
-                                                          >
-                                                            <span className="text-sm font-medium truncate">
-                                                              {project
-                                                                .codeSnippets[
-                                                                activeTabIndex[
-                                                                  project
-                                                                    .projectId
-                                                                ] || 0
-                                                              ]?.filename ||
-                                                                project
-                                                                  .codeSnippets[
-                                                                  activeTabIndex[
-                                                                    project
-                                                                      .projectId
-                                                                  ] || 0
-                                                                ]?.title}
-                                                            </span>
-                                                          </TooltipTrigger>
-                                                          <TooltipContent>
-                                                            <p className="max-w-xs break-words">
-                                                              {project
-                                                                .codeSnippets[
-                                                                activeTabIndex[
-                                                                  project
-                                                                    .projectId
-                                                                ] || 0
-                                                              ]?.filename ||
-                                                                project
-                                                                  .codeSnippets[
-                                                                  activeTabIndex[
-                                                                    project
-                                                                      .projectId
-                                                                  ] || 0
-                                                                ]?.title}
-                                                            </p>
-                                                          </TooltipContent>
-                                                        </Tooltip>
-                                                        <span className="text-xs text-muted-foreground flex-shrink-0">
-                                                          (
-                                                          {(activeTabIndex[
-                                                            project.projectId
-                                                          ] || 0) + 1}
-                                                          /
-                                                          {
-                                                            project.codeSnippets
-                                                              .length
-                                                          }
-                                                          )
-                                                        </span>
-                                                      </div>
-
-                                                      <Button
-                                                        variant="ghost"
-                                                        size="sm"
-                                                        onClick={() =>
-                                                          navigateTab(
-                                                            "next",
-                                                            project.projectId,
-                                                            project.codeSnippets!
-                                                              .length
-                                                          )
-                                                        }
-                                                        className="h-8 w-8 p-0 flex-shrink-0"
-                                                        disabled={
-                                                          !project.codeSnippets ||
-                                                          project.codeSnippets
-                                                            .length <= 1
-                                                        }
-                                                      >
-                                                        <ChevronRight className="h-4 w-4" />
-                                                      </Button>
-                                                    </div>
-
-                                                    {/* Mobile Code Content */}
-                                                    {project.codeSnippets[
-                                                      activeTabIndex[
-                                                        project.projectId
-                                                      ] || 0
-                                                    ] && (
-                                                      <div className="space-y-3">
-                                                        <div className="flex flex-col gap-3">
-                                                          <div className="flex items-start justify-between gap-2">
-                                                            <div className="flex items-center gap-2 min-w-0 flex-1">
-                                                              <Tooltip>
-                                                                <TooltipTrigger
-                                                                  asChild
-                                                                >
-                                                                  <h5 className="font-semibold text-base text-gray-900 dark:text-white truncate">
-                                                                    {
-                                                                      project
-                                                                        .codeSnippets[
-                                                                        activeTabIndex[
-                                                                          project
-                                                                            .projectId
-                                                                        ] || 0
-                                                                      ].title
-                                                                    }
-                                                                  </h5>
-                                                                </TooltipTrigger>
-                                                                <TooltipContent>
-                                                                  <p className="max-w-xs break-words">
-                                                                    {
-                                                                      project
-                                                                        .codeSnippets[
-                                                                        activeTabIndex[
-                                                                          project
-                                                                            .projectId
-                                                                        ] || 0
-                                                                      ].title
-                                                                    }
-                                                                  </p>
-                                                                </TooltipContent>
-                                                              </Tooltip>
-                                                              <Badge
-                                                                variant="secondary"
-                                                                className={`${getLanguageColor(
-                                                                  project
-                                                                    .codeSnippets[
-                                                                    activeTabIndex[
-                                                                      project
-                                                                        .projectId
-                                                                    ] || 0
-                                                                  ].language
-                                                                )} flex-shrink-0 text-xs`}
-                                                              >
-                                                                {project.codeSnippets[
-                                                                  activeTabIndex[
-                                                                    project
-                                                                      .projectId
-                                                                  ] || 0
-                                                                ].language.toUpperCase()}
-                                                              </Badge>
-                                                            </div>
-                                                            <Button
-                                                              variant="outline"
-                                                              size="sm"
-                                                              onClick={() =>
-                                                                copyToClipboard(
-                                                                  project
-                                                                    .codeSnippets?.[
-                                                                    activeTabIndex[
-                                                                      project
-                                                                        .projectId
-                                                                    ] || 0
-                                                                  ]?.code ?? "",
-                                                                  activeTabIndex[
-                                                                    project
-                                                                      .projectId
-                                                                  ] || 0,
-                                                                  project.projectId
-                                                                )
-                                                              }
-                                                              className="flex items-center gap-1 flex-shrink-0 h-8 px-2"
-                                                            >
-                                                              <Copy className="h-3 w-3" />
-                                                              <span className="text-xs">
-                                                                {copiedIndex ===
-                                                                (activeTabIndex[
-                                                                  project
-                                                                    .projectId
-                                                                ] || 0)
-                                                                  ? "✓"
-                                                                  : "복사"}
-                                                              </span>
-                                                            </Button>
-                                                          </div>
-
-                                                          {project.codeSnippets[
-                                                            activeTabIndex[
-                                                              project.projectId
-                                                            ] || 0
-                                                          ].description && (
-                                                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                                              {
-                                                                project
-                                                                  .codeSnippets[
-                                                                  activeTabIndex[
-                                                                    project
-                                                                      .projectId
-                                                                  ] || 0
-                                                                ].description
-                                                              }
-                                                            </p>
-                                                          )}
-                                                        </div>
-
-                                                        <div className="relative">
-                                                          <div className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-3 rounded-lg border max-w-full overflow-hidden">
-                                                            <pre className="text-xs leading-relaxed overflow-x-auto whitespace-pre-wrap break-words max-w-full">
-                                                              <code
-                                                                className={`language-${
-                                                                  project
-                                                                    .codeSnippets[
-                                                                    activeTabIndex[
-                                                                      project
-                                                                        .projectId
-                                                                    ] || 0
-                                                                  ].language
-                                                                } break-words`}
-                                                                style={{
-                                                                  wordBreak:
-                                                                    "break-all",
-                                                                  overflowWrap:
-                                                                    "break-word",
-                                                                  maxWidth:
-                                                                    "100%",
-                                                                }}
-                                                              >
-                                                                {
-                                                                  project
-                                                                    .codeSnippets[
-                                                                    activeTabIndex[
-                                                                      project
-                                                                        .projectId
-                                                                    ] || 0
-                                                                  ].code
-                                                                }
-                                                              </code>
-                                                            </pre>
-                                                          </div>
-                                                          {project.codeSnippets[
-                                                            activeTabIndex[
-                                                              project.projectId
-                                                            ] || 0
-                                                          ].filename && (
-                                                            <Tooltip>
-                                                              <TooltipTrigger
-                                                                asChild
-                                                              >
-                                                                <div className="absolute top-2 right-2 bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-mono max-w-[120px] truncate">
-                                                                  {
-                                                                    project
-                                                                      .codeSnippets[
-                                                                      activeTabIndex[
-                                                                        project
-                                                                          .projectId
-                                                                      ] || 0
-                                                                    ].filename
-                                                                  }
-                                                                </div>
-                                                              </TooltipTrigger>
-                                                              <TooltipContent>
-                                                                <p className="max-w-xs break-words">
-                                                                  {
-                                                                    project
-                                                                      .codeSnippets[
-                                                                      activeTabIndex[
-                                                                        project
-                                                                          .projectId
-                                                                      ] || 0
-                                                                    ].filename
-                                                                  }
-                                                                </p>
-                                                              </TooltipContent>
-                                                            </Tooltip>
-                                                          )}
-                                                        </div>
-                                                      </div>
+                                                  <p className="text-sm text-blue-800 dark:text-blue-200 leading-relaxed mb-3">
+                                                    {contribution.description}
+                                                  </p>
+                                                  <ul className="space-y-2">
+                                                    {contribution.achievements.map(
+                                                      (
+                                                        achievement,
+                                                        achIndex
+                                                      ) => (
+                                                        <li
+                                                          key={achIndex}
+                                                          className="flex items-start gap-2 text-sm text-blue-700 dark:text-blue-300"
+                                                        >
+                                                          <CheckCircle className="h-3 w-3 text-blue-600 mt-0.5 flex-shrink-0" />
+                                                          <span>
+                                                            {achievement}
+                                                          </span>
+                                                        </li>
+                                                      )
                                                     )}
-                                                  </div>
+                                                  </ul>
                                                 </div>
-                                              )}
+                                              )
+                                            )}
+                                          </CardContent>
+                                        </Card>
+                                      )}
+
+                                    {/* 기술적 기여 */}
+                                    {project.technicalContributions &&
+                                      project.technicalContributions.length >
+                                        0 && (
+                                        <Card>
+                                          <CardHeader className="pb-3">
+                                            <CardTitle className="flex items-center gap-2 text-base">
+                                              <Zap className="h-4 w-4 text-green-600 flex-shrink-0" />
+                                              <span>기술적 기여</span>
+                                            </CardTitle>
+                                          </CardHeader>
+                                          <CardContent className="pt-0 space-y-4">
+                                            {project.technicalContributions.map(
+                                              (contribution, index) => (
+                                                <div
+                                                  key={index}
+                                                  className="border-l-4 border-green-200 pl-4 bg-green-50 dark:bg-green-900/20 p-4 rounded-r"
+                                                >
+                                                  <h4 className="font-semibold text-sm text-green-900 dark:text-green-100 mb-2">
+                                                    {contribution.title}
+                                                  </h4>
+                                                  <p className="text-sm text-green-800 dark:text-green-200 leading-relaxed mb-3">
+                                                    {contribution.description}
+                                                  </p>
+                                                  <ul className="space-y-2">
+                                                    {contribution.achievements.map(
+                                                      (
+                                                        achievement,
+                                                        achIndex
+                                                      ) => (
+                                                        <li
+                                                          key={achIndex}
+                                                          className="flex items-start gap-2 text-sm text-green-700 dark:text-green-300"
+                                                        >
+                                                          <CheckCircle className="h-3 w-3 text-green-600 mt-0.5 flex-shrink-0" />
+                                                          <span>
+                                                            {achievement}
+                                                          </span>
+                                                        </li>
+                                                      )
+                                                    )}
+                                                  </ul>
+                                                </div>
+                                              )
+                                            )}
                                           </CardContent>
                                         </Card>
                                       )}

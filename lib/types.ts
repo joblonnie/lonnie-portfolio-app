@@ -57,6 +57,18 @@ export interface ProjectPhase {
   };
 }
 
+export interface StructuralContribution {
+  title: string;
+  description: string;
+  achievements: string[];
+}
+
+export interface TechnicalContribution {
+  title: string;
+  description: string;
+  achievements: string[];
+}
+
 export interface Project {
   projectId: number;
   title: string;
@@ -67,6 +79,8 @@ export interface Project {
     results: string;
   };
   projectPhases?: ProjectPhase[];
+  structuralContributions?: StructuralContribution[];
+  technicalContributions?: TechnicalContribution[];
   period: string;
   role: string;
   frontendDevelopers?: number;

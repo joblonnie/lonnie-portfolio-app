@@ -27,6 +27,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Globe,
+  Briefcase,
+  Zap,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -223,335 +225,6 @@ export function ProjectDetailModal({
                 </CardContent>
               </Card>
 
-              {/* 기술 및 설계 - 코드 스니펫 포함 */}
-              {project.technologyReasoning &&
-                project.technologyReasoning.length > 0 && (
-                  <Card>
-                    <CardHeader className="pb-3">
-                      <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-                        <Code className="h-4 w-4 sm:h-5 sm:w-5 text-purple-600 flex-shrink-0" />
-                        <span>기술 및 설계</span>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0 space-y-6">
-                      {/* 기술 선택 이유 */}
-                      <div className="space-y-4">
-                        {project.technologyReasoning.map((reasoning, index) => (
-                          <div
-                            key={index}
-                            className="border-l-4 border-purple-200 pl-4"
-                          >
-                            <h4 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white mb-2">
-                              {reasoning.category}
-                            </h4>
-                            <div className="flex flex-wrap gap-2 mb-3">
-                              {reasoning.technologies.map((tech, techIndex) => (
-                                <Badge
-                                  key={techIndex}
-                                  variant="secondary"
-                                  className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 text-xs"
-                                >
-                                  {tech}
-                                </Badge>
-                              ))}
-                            </div>
-                            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                              {reasoning.reasoning}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* 핵심 코드 스니펫 - 기술 및 설계 섹션 내부로 이동 */}
-                      {project.codeSnippets &&
-                        project.codeSnippets.length > 0 && (
-                          <div className="border-t pt-6">
-                            <h4 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                              <Braces className="h-4 w-4 sm:h-5 sm:w-5 text-indigo-600 flex-shrink-0" />
-                              <span>핵심 구조/코드</span>
-                            </h4>
-
-                            {/* 데스크톱 탭 리스트 */}
-                            <div className="hidden sm:block">
-                              <Tabs
-                                value={activeTabIndex.toString()}
-                                onValueChange={(value) =>
-                                  setActiveTabIndex(Number.parseInt(value))
-                                }
-                                className="w-full"
-                              >
-                                <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 h-auto p-1">
-                                  {project.codeSnippets.map(
-                                    (snippet, index) => (
-                                      <TabsTrigger
-                                        key={index}
-                                        value={index.toString()}
-                                        className="text-xs sm:text-sm p-2 h-auto whitespace-normal text-center"
-                                      >
-                                        <span className="truncate max-w-full">
-                                          {snippet.filename || snippet.title}
-                                        </span>
-                                      </TabsTrigger>
-                                    )
-                                  )}
-                                </TabsList>
-                                {project.codeSnippets.map((snippet, index) => (
-                                  <TabsContent
-                                    key={index}
-                                    value={index.toString()}
-                                    className="mt-4"
-                                  >
-                                    <div className="space-y-3">
-                                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                                        <div className="flex items-center gap-3 min-w-0">
-                                          <Tooltip>
-                                            <TooltipTrigger asChild>
-                                              <h5 className="font-semibold text-base sm:text-lg text-gray-900 dark:text-white truncate">
-                                                {snippet.title}
-                                              </h5>
-                                            </TooltipTrigger>
-                                            <TooltipContent>
-                                              <p className="max-w-xs break-words">
-                                                {snippet.title}
-                                              </p>
-                                            </TooltipContent>
-                                          </Tooltip>
-                                          <Badge
-                                            variant="secondary"
-                                            className={`${getLanguageColor(
-                                              snippet.language
-                                            )} flex-shrink-0`}
-                                          >
-                                            {snippet.language.toUpperCase()}
-                                          </Badge>
-                                        </div>
-                                        <Button
-                                          variant="outline"
-                                          size="sm"
-                                          onClick={() =>
-                                            copyToClipboard(snippet.code, index)
-                                          }
-                                          className="flex items-center gap-2 self-start sm:self-auto flex-shrink-0"
-                                        >
-                                          <Copy className="h-4 w-4" />
-                                          <span>
-                                            {copiedIndex === index
-                                              ? "복사됨!"
-                                              : "복사"}
-                                          </span>
-                                        </Button>
-                                      </div>
-
-                                      {snippet.description && (
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                          {snippet.description}
-                                        </p>
-                                      )}
-
-                                      <div className="relative">
-                                        <div className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-3 sm:p-4 rounded-lg border max-h-80 overflow-y-auto">
-                                          <pre className="text-xs sm:text-sm leading-relaxed overflow-x-auto">
-                                            <code
-                                              className={`language-${snippet.language}`}
-                                            >
-                                              {snippet.code}
-                                            </code>
-                                          </pre>
-                                        </div>
-                                        {snippet.filename && (
-                                          <Tooltip>
-                                            <TooltipTrigger asChild>
-                                              <div className="absolute top-2 right-2 bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-mono max-w-[150px] truncate">
-                                                {snippet.filename}
-                                              </div>
-                                            </TooltipTrigger>
-                                            <TooltipContent>
-                                              <p className="max-w-xs break-words">
-                                                {snippet.filename}
-                                              </p>
-                                            </TooltipContent>
-                                          </Tooltip>
-                                        )}
-                                      </div>
-                                    </div>
-                                  </TabsContent>
-                                ))}
-                              </Tabs>
-                            </div>
-
-                            {/* 모바일 탭 네비게이션 - 오버플로우 수정 + 툴팁 추가 */}
-                            <div className="block sm:hidden">
-                              <div className="flex items-center justify-between bg-muted/50 rounded-lg p-2 mb-4">
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => navigateTab("prev")}
-                                  className="h-8 w-8 p-0 flex-shrink-0"
-                                  disabled={
-                                    !project.codeSnippets ||
-                                    project.codeSnippets.length <= 1
-                                  }
-                                >
-                                  <ChevronLeft className="h-4 w-4" />
-                                </Button>
-
-                                <div className="flex items-center gap-2 flex-1 justify-center min-w-0 px-2">
-                                  <FileText className="h-4 w-4 text-indigo-600 flex-shrink-0" />
-                                  <Tooltip>
-                                    <TooltipTrigger asChild>
-                                      <span className="text-sm font-medium truncate">
-                                        {project.codeSnippets[activeTabIndex]
-                                          ?.filename ||
-                                          project.codeSnippets[activeTabIndex]
-                                            ?.title}
-                                      </span>
-                                    </TooltipTrigger>
-                                    <TooltipContent>
-                                      <p className="max-w-xs break-words">
-                                        {project.codeSnippets[activeTabIndex]
-                                          ?.filename ||
-                                          project.codeSnippets[activeTabIndex]
-                                            ?.title}
-                                      </p>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                  <span className="text-xs text-muted-foreground flex-shrink-0">
-                                    ({activeTabIndex + 1}/
-                                    {project.codeSnippets.length})
-                                  </span>
-                                </div>
-
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={() => navigateTab("next")}
-                                  className="h-8 w-8 p-0 flex-shrink-0"
-                                  disabled={
-                                    !project.codeSnippets ||
-                                    project.codeSnippets.length <= 1
-                                  }
-                                >
-                                  <ChevronRight className="h-4 w-4" />
-                                </Button>
-                              </div>
-
-                              {/* Mobile Code Content */}
-                              {project.codeSnippets[activeTabIndex] && (
-                                <div className="space-y-3">
-                                  <div className="flex flex-col gap-3">
-                                    <div className="flex items-start justify-between gap-2">
-                                      <div className="flex items-center gap-2 min-w-0 flex-1">
-                                        <Tooltip>
-                                          <TooltipTrigger asChild>
-                                            <h5 className="font-semibold text-base text-gray-900 dark:text-white truncate">
-                                              {
-                                                project.codeSnippets[
-                                                  activeTabIndex
-                                                ].title
-                                              }
-                                            </h5>
-                                          </TooltipTrigger>
-                                          <TooltipContent>
-                                            <p className="max-w-xs break-words">
-                                              {
-                                                project.codeSnippets[
-                                                  activeTabIndex
-                                                ].title
-                                              }
-                                            </p>
-                                          </TooltipContent>
-                                        </Tooltip>
-                                        <Badge
-                                          variant="secondary"
-                                          className={`${getLanguageColor(
-                                            project.codeSnippets[activeTabIndex]
-                                              .language
-                                          )} flex-shrink-0 text-xs`}
-                                        >
-                                          {project.codeSnippets[
-                                            activeTabIndex
-                                          ].language.toUpperCase()}
-                                        </Badge>
-                                      </div>
-                                      <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={() =>
-                                          copyToClipboard(
-                                            project.codeSnippets?.[
-                                              activeTabIndex
-                                            ]?.code ?? "",
-                                            activeTabIndex
-                                          )
-                                        }
-                                        className="flex items-center gap-1 flex-shrink-0 h-8 px-2"
-                                      >
-                                        <Copy className="h-3 w-3" />
-                                        <span className="text-xs">
-                                          {copiedIndex === activeTabIndex
-                                            ? "✓"
-                                            : "복사"}
-                                        </span>
-                                      </Button>
-                                    </div>
-
-                                    {project.codeSnippets[activeTabIndex]
-                                      .description && (
-                                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                        {
-                                          project.codeSnippets[activeTabIndex]
-                                            .description
-                                        }
-                                      </p>
-                                    )}
-                                  </div>
-
-                                  <div className="relative">
-                                    <div className="bg-gray-900 dark:bg-gray-950 text-gray-100 p-3 rounded-lg border max-h-64 overflow-y-auto">
-                                      <pre className="text-xs leading-relaxed overflow-x-auto">
-                                        <code
-                                          className={`language-${project.codeSnippets[activeTabIndex].language}`}
-                                        >
-                                          {
-                                            project.codeSnippets[activeTabIndex]
-                                              .code
-                                          }
-                                        </code>
-                                      </pre>
-                                    </div>
-                                    {project.codeSnippets[activeTabIndex]
-                                      .filename && (
-                                      <Tooltip>
-                                        <TooltipTrigger asChild>
-                                          <div className="absolute top-2 right-2 bg-gray-700 text-gray-300 px-2 py-1 rounded text-xs font-mono max-w-[120px] truncate">
-                                            {
-                                              project.codeSnippets[
-                                                activeTabIndex
-                                              ].filename
-                                            }
-                                          </div>
-                                        </TooltipTrigger>
-                                        <TooltipContent>
-                                          <p className="max-w-xs break-words">
-                                            {
-                                              project.codeSnippets[
-                                                activeTabIndex
-                                              ].filename
-                                            }
-                                          </p>
-                                        </TooltipContent>
-                                      </Tooltip>
-                                    )}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                    </CardContent>
-                  </Card>
-                )}
-
               {/* 프로젝트 상세 */}
               {project.projectPhases && project.projectPhases.length > 0 && (
                 <Card>
@@ -615,6 +288,102 @@ export function ProjectDetailModal({
                   </CardContent>
                 </Card>
               )}
+
+              {/* 구조적 기여 */}
+              {project.structuralContributions &&
+                project.structuralContributions.length > 0 && (
+                  <Card>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                        <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
+                        <span>구조적 기여</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0 space-y-4">
+                      {project.structuralContributions.map(
+                        (contribution, index) => (
+                          <div
+                            key={index}
+                            className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800"
+                          >
+                            <h4 className="font-semibold text-sm sm:text-base text-blue-700 dark:text-blue-300 mb-2">
+                              {contribution.title}
+                            </h4>
+                            <p className="text-sm text-blue-600 dark:text-blue-400 leading-relaxed mb-3">
+                              {contribution.description}
+                            </p>
+                            <div className="space-y-2">
+                              <p className="text-xs font-medium text-blue-700 dark:text-blue-300 mb-1">
+                                주요 성과
+                              </p>
+                              <ul className="space-y-1">
+                                {contribution.achievements.map(
+                                  (achievement, achIdx) => (
+                                    <li
+                                      key={achIdx}
+                                      className="flex items-start gap-2 text-xs text-blue-600 dark:text-blue-400"
+                                    >
+                                      <CheckCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                                      <span>{achievement}</span>
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </CardContent>
+                  </Card>
+                )}
+
+              {/* 기술적 기여 */}
+              {project.technicalContributions &&
+                project.technicalContributions.length > 0 && (
+                  <Card>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                        <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                        <span>기술적 기여</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0 space-y-4">
+                      {project.technicalContributions.map(
+                        (contribution, index) => (
+                          <div
+                            key={index}
+                            className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800"
+                          >
+                            <h4 className="font-semibold text-sm sm:text-base text-green-700 dark:text-green-300 mb-2">
+                              {contribution.title}
+                            </h4>
+                            <p className="text-sm text-green-600 dark:text-green-400 leading-relaxed mb-3">
+                              {contribution.description}
+                            </p>
+                            <div className="space-y-2">
+                              <p className="text-xs font-medium text-green-700 dark:text-green-300 mb-1">
+                                주요 성과
+                              </p>
+                              <ul className="space-y-1">
+                                {contribution.achievements.map(
+                                  (achievement, achIdx) => (
+                                    <li
+                                      key={achIdx}
+                                      className="flex items-start gap-2 text-xs text-green-600 dark:text-green-400"
+                                    >
+                                      <CheckCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                                      <span>{achievement}</span>
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </CardContent>
+                  </Card>
+                )}
 
               {/* 핵심 성과 */}
               {project.detailedDescription?.summary && (
