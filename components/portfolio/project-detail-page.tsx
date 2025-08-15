@@ -130,78 +130,31 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                   <div className="mb-4">
                     <div className="flex items-center gap-3 mb-3">
                       <Code className="h-5 w-5 text-mocha-500" />
-                      <h2 className="text-xl font-bold text-gray-900 dark:text-white m-0">
-                        다양한 고객사별 맞춤형 시스템 개발 요구사항 해결
-                      </h2>
+                      <h2 className="text-xl font-bold text-gray-900 dark:text-white m-0">{contribution.title}</h2>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <Badge variant="outline" className="text-xs border-gray-300 text-gray-600">
-                        확장 가능한 아키텍처
-                      </Badge>
-                      <Badge variant="outline" className="text-xs border-gray-300 text-gray-600">
-                        개발 효율성 향상
-                      </Badge>
+                      {/* 프로젝트별 키워드를 동적으로 표시 */}
+                      {project.keywords?.slice(0, 2).map((keyword, keywordIndex) => (
+                        <Badge key={keywordIndex} variant="outline" className="text-xs border-gray-300 text-gray-600">
+                          {keyword}
+                        </Badge>
+                      ))}
                     </div>
                   </div>
 
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                    A사, B사 등 다양한 고객사의 특화 요구사항에 맞춘 모니터링 시스템을 효율적으로 개발하고 유지보수하기
-                    위한 확장 가능한 개발 아키텍처가 필요했습니다.
-                  </p>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{contribution.description}</p>
 
                   <Card className="bg-gray-50 dark:bg-gray-800/50 border-0 shadow-sm mb-6">
-                    <CardContent className="p-6 card-content space-y-6">
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                          1. NX 모노레포 도입
-                        </h3>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
-                          여러 고객사의 요구사항을 빠르게 반영하고, 공통 로직을 효과적으로 공유하면서도 각 모듈을
-                          독립적으로 관리할 수 있는 개발 구조를 구축했습니다.
-                        </p>
-                        <ul className="space-y-2">
-                          <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
+                    <CardContent className="p-6 card-content space-y-4">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">해결 방법 및 성과</h3>
+                      <ul className="space-y-2">
+                        {contribution.achievements.map((achievement, achIdx) => (
+                          <li key={achIdx} className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
                             <CheckCircle className="h-4 w-4 text-mocha-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">
-                              프로젝트를 앱 단위(workspace)로 구분하여 독립적인 빌드 및 배포 체계 구축
-                            </span>
+                            <span className="text-sm">{achievement}</span>
                           </li>
-                          <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                            <CheckCircle className="h-4 w-4 text-mocha-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">
-                              공통 UI/비즈니스 로직을 라이브러리 패키지로 모듈화하여 재사용성 극대화
-                            </span>
-                          </li>
-                          <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                            <CheckCircle className="h-4 w-4 text-mocha-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">공통 패키지 재사용으로 신규 프로젝트 개발 기간 50% 단축</span>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                          2. Feature-Sliced Design 아키텍처 선택
-                        </h3>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
-                          도메인/기능 단위로 디렉토리를 나누고 의존성을 최소화하는 레이어 분리를 통해 코드 탐색성과 변경
-                          용이성을 향상시켰습니다.
-                        </p>
-                        <ul className="space-y-2">
-                          <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                            <CheckCircle className="h-4 w-4 text-mocha-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">기능별 모듈 구조로 유지보수성과 확장성 대폭 향상</span>
-                          </li>
-                          <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                            <CheckCircle className="h-4 w-4 text-mocha-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">코드 중복 제거 및 기술 부채 해소</span>
-                          </li>
-                          <li className="flex items-start gap-3 text-gray-700 dark:text-gray-300">
-                            <CheckCircle className="h-4 w-4 text-mocha-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">새로운 앱 추가 시 기존 로직 재사용으로 개발 속도 향상</span>
-                          </li>
-                        </ul>
-                      </div>
+                        ))}
+                      </ul>
                     </CardContent>
                   </Card>
                 </div>
@@ -363,7 +316,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                       {project.detailedDescription.summary}
                     </p>
                     <div className="bg-gray-100 dark:bg-gray-700/50 p-3 rounded-lg">
-                      <pre className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-sans">
+                      <pre className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-200 leading-relaxed font-sans">
                         {project.detailedDescription.results}
                       </pre>
                     </div>
