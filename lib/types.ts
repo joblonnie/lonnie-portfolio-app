@@ -90,6 +90,9 @@ export interface Project {
   achievements?: string[];
   codeSnippets?: CodeSnippet[];
   companyId: string;
+  problem?: string;
+  solution?: string;
+  learning?: string;
 }
 
 export interface LearningItem {

@@ -10,7 +10,7 @@ export const mockPortfolioData: PortfolioData = {
     phone: "010-5054-0121",
     location: "서울, 대한민국",
     experience: 4,
-    bio: "UI/UX 중심의 성능 최적화를 지향하는 프론트엔드 개발자입니다. 4년간의 실무 경험을 바탕으로 React와 TypeScript 기반의 SPA 웹 애플리케이션을 설계하고 개발합니다.",
+    bio: "UX를 최우선적으로 고려하려 UI에 반영하고자 노력하는 프론트엔드 개발자입니다. 개발을 진행할 때는, 항상 재사용성을 염두에 두고 모듈화를 진행합니다. 이를 바탕으로 DX 개선을 도모하고, 비즈니스 요구 사항을 빠르게 충족시킬 수 있도록 합니다. 현재 4년간의 실무 경험을 바탕으로 React와 TypeScript 기반의 SPA 웹 애플리케이션을 설계하고 개발합니다.",
   },
   introduction: {
     mindset: [

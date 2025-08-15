@@ -106,20 +106,6 @@ export function ProjectDetailModal({
     );
   };
 
-  const navigateTab = (direction: "prev" | "next") => {
-    if (!project.codeSnippets) return;
-
-    if (direction === "prev") {
-      setActiveTabIndex((prev) =>
-        prev > 0 ? prev - 1 : project.codeSnippets!.length - 1
-      );
-    } else {
-      setActiveTabIndex((prev) =>
-        prev < project.codeSnippets!.length - 1 ? prev + 1 : 0
-      );
-    }
-  };
-
   return (
     <TooltipProvider>
       <Dialog open={isOpen} onOpenChange={onClose}>

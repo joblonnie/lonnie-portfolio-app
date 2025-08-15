@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { mockPortfolioData } from "@/lib/mock-data";
 import type { Project } from "@/lib/types";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type Props = {
   onNavigate: (page: string) => void;
@@ -58,7 +59,7 @@ export function IntroductionPage({ onNavigate }: Props) {
     setSelectedProject(null);
   };
 
-  const { skills, companies, projects } = mockPortfolioData;
+  const { personalInfo, skills, companies, projects } = mockPortfolioData;
 
   const skillCategories = [
     {
@@ -106,7 +107,37 @@ export function IntroductionPage({ onNavigate }: Props) {
 
   return (
     <main className="min-h-screen bg-background py-8 px-4 sm:px-6 lg:px-8 relative">
-      <article className="max-w-4xl mx-auto">
+      <article className="max-w-4xl mx-auto space-y-8">
+        <AnimatedElement
+          animation="scaleIn"
+          delay={0}
+          duration={200}
+          className="space-y-6"
+        >
+          <div className="relative flex justify-center">
+            <Avatar className="w-32 h-32 sm:w-40 sm:h-40 ring-4 ring-white/50 shadow-2xl">
+              <AvatarImage src="/profile.png" alt="Profile" />
+              <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-mocha-500 to-cannoli-500 text-white">
+                {personalInfo?.name?.charAt(0) || "L"}
+              </AvatarFallback>
+            </Avatar>
+          </div>
+
+          <div className="space-y-2 text-center">
+            <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-mocha-500 to-cannoli-500 bg-clip-text text-transparent">
+              {personalInfo?.name || "개발자"}
+            </h1>
+            <p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 font-medium">
+              {personalInfo?.title || "풀스택 개발자"}
+            </p>
+            <p
+              className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+              style={{ lineHeight: 2 }}
+            >
+              {personalInfo?.bio || "혁신적인 웹 솔루션을 만드는 개발자입니다."}
+            </p>
+          </div>
+        </AnimatedElement>
         {/* 업무 철학 */}
         <AnimatedElement
           animation="slideUp"
@@ -119,6 +150,11 @@ export function IntroductionPage({ onNavigate }: Props) {
               <header className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 업무 철학
               </header>
+
+              <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
+                다양한 실무 경험을 통해 얻은 개발 철학과 협업 원칙은 다음과
+                같습니다.
+              </p>
 
               {/* 상단 2개 철학 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -184,65 +220,12 @@ export function IntroductionPage({ onNavigate }: Props) {
                       >
                         <span className="text-white text-2xl">{icon}</span>
                       </div>
-
                       <blockquote className="italic text-gray-800 dark:text-gray-200 mb-4">
                         "{quote}"
                       </blockquote>
-
                       <p className="text-sm text-gray-600 dark:text-gray-400 flex-1">
                         {description}
                       </p>
-
-                      {hasReference && (
-                        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                          <p className="text-xs font-medium text-blue-900 dark:text-blue-100 mb-2">
-                            참고 자료
-                          </p>
-                          <div className="space-y-1">
-                            <a
-                              href="https://www.notion.so/22b4c99a0f8180daa669e4ca8083fd66"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
-                            >
-                              업무 프로세스 개선
-                            </a>
-                            <a
-                              href="https://www.notion.so/PR-template-22b4c99a0f8180d6a24fc3f88d3e9c1b"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
-                            >
-                              좋은 코드 리뷰 문화 유지를 위한 PR template
-                              정의하기
-                            </a>
-                            <a
-                              href="https://www.notion.so/22b4c99a0f81804a9060ea16b423aff9"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
-                            >
-                              구글 크롬 북마크를 활용한 생산성 향상
-                            </a>
-                            <a
-                              href="https://www.notion.so/Outlook-22b4c99a0f81807c92ccc3c2b8bb776d"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
-                            >
-                              Outlook 메일 자동 분류로 생산성 향상
-                            </a>
-                            <a
-                              href="https://www.notion.so/FE-22b4c99a0f8180afb842d15c973c634e"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 hover:underline"
-                            >
-                              프론트엔드 개발 프로세스 최적화
-                            </a>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   )
                 )}
@@ -252,39 +235,6 @@ export function IntroductionPage({ onNavigate }: Props) {
         </AnimatedElement>
 
         {/* 자기소개 */}
-        <AnimatedElement
-          animation="slideUp"
-          delay={50}
-          duration={200}
-          className="mb-12"
-        >
-          <Card className="bg-card shadow-lg border-0">
-            <CardContent className="p-8">
-              <header className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-mocha-500 to-[#BBAA91] rounded-lg flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">🎓</span>
-                </div>
-                학력
-              </header>
-              <section className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-                <div>
-                  <p className="font-semibold text-gray-800 dark:text-white">
-                    서경대학교 나노융합공학과
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    학점 3.7 / 4.5
-                  </p>
-                  <p className="mt-2">
-                    3D 프린팅, 재료 설계 등 다양한 제작 프로젝트를 경험하며,
-                    무언가를 직접 만들고 결과물을 눈앞에 보여주는 일에 큰 흥미를
-                    느꼈습니다. 이러한 경험이 웹 개발로 이어졌고, 사용자에게
-                    가치를 전달하는 개발자로 성장하는 계기가 되었습니다.
-                  </p>
-                </div>
-              </section>
-            </CardContent>
-          </Card>
-        </AnimatedElement>
 
         {/* 경력 및 프로젝트 */}
         <AnimatedElement
@@ -407,6 +357,12 @@ export function IntroductionPage({ onNavigate }: Props) {
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
             기술 스택
           </h2>
+
+          <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
+            기술 스택은 실제 개발을 진행하면서 프로젝트에 적용해왔던 것들을
+            기준으로 작성했습니다.
+          </p>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {skillCategories.map((category, index) => (
               <AnimatedElement
@@ -443,6 +399,40 @@ export function IntroductionPage({ onNavigate }: Props) {
               </AnimatedElement>
             ))}
           </div>
+        </AnimatedElement>
+
+        <AnimatedElement
+          animation="slideUp"
+          delay={50}
+          duration={200}
+          className="mb-12"
+        >
+          <Card className="bg-card shadow-lg border-0">
+            <CardContent className="p-8">
+              <header className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-mocha-500 to-[#BBAA91] rounded-lg flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">🎓</span>
+                </div>
+                학력
+              </header>
+              <section className="space-y-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                <div>
+                  <p className="font-semibold text-gray-800 dark:text-white">
+                    서경대학교 나노융합공학과
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    학점 3.7 / 4.5
+                  </p>
+                  <p className="mt-2">
+                    3D 프린팅, 재료 설계 등 다양한 제작 프로젝트를 경험하며,
+                    무언가를 직접 만들고 결과물을 눈앞에 보여주는 일에 큰 흥미를
+                    느꼈습니다. 이러한 경험이 웹 개발로 이어졌고, 사용자에게
+                    가치를 전달하는 개발자로 성장하는 계기가 되었습니다.
+                  </p>
+                </div>
+              </section>
+            </CardContent>
+          </Card>
         </AnimatedElement>
 
         {/* 목표로 이동 버튼 (모바일 전용) */}
