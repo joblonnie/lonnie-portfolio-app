@@ -1,110 +1,71 @@
-"use client";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
-  Calendar,
-  Users,
-  Code,
-  Target,
-  CheckCircle,
-  Copy,
-  FileText,
-  Braces,
-  ChevronLeft,
-  ChevronRight,
-  Globe,
-  Briefcase,
-  Zap,
-} from "lucide-react";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import type { Project } from "@/lib/types";
+"use client"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { Calendar, Users, Code, Target, CheckCircle, FileText, Globe, AlertCircle, Lightbulb } from "lucide-react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import type { Project } from "@/lib/types"
 
 interface ProjectDetailModalProps {
-  project: Project | null;
-  isOpen: boolean;
-  onClose: () => void;
+  project: Project | null
+  isOpen: boolean
+  onClose: () => void
 }
 
-export function ProjectDetailModal({
-  project,
-  isOpen,
-  onClose,
-}: ProjectDetailModalProps) {
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
-  const router = useRouter();
+export function ProjectDetailModal({ project, isOpen, onClose }: ProjectDetailModalProps) {
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const [activeTabIndex, setActiveTabIndex] = useState(0)
+  const router = useRouter()
 
   // Reset tab index when project changes and scroll to top
   useEffect(() => {
     if (isOpen && project) {
-      setActiveTabIndex(0);
+      setActiveTabIndex(0)
       // Scroll to top of modal content with timeout to ensure DOM is ready
       setTimeout(() => {
-        const modalContent = document.querySelector("[data-modal-content]");
+        const modalContent = document.querySelector("[data-modal-content]")
         if (modalContent) {
-          modalContent.scrollTop = 0;
+          modalContent.scrollTop = 0
         }
         // Also try scrolling the dialog content itself
-        const dialogContent = document.querySelector(
-          "[role='dialog'] .overflow-y-auto"
-        );
+        const dialogContent = document.querySelector("[role='dialog'] .overflow-y-auto")
         if (dialogContent) {
-          dialogContent.scrollTop = 0;
+          dialogContent.scrollTop = 0
         }
-      }, 100);
+      }, 100)
     }
-  }, [project, isOpen]);
+  }, [project, isOpen])
 
-  if (!project) return null;
+  if (!project) return null
 
   const copyToClipboard = async (code: string, index: number) => {
     try {
-      await navigator.clipboard.writeText(code);
-      setCopiedIndex(index);
-      setTimeout(() => setCopiedIndex(null), 2000);
+      await navigator.clipboard.writeText(code)
+      setCopiedIndex(index)
+      setTimeout(() => setCopiedIndex(null), 2000)
     } catch (err) {
-      console.error("Failed to copy code:", err);
+      console.error("Failed to copy code:", err)
     }
-  };
+  }
 
   const getLanguageColor = (language: string) => {
     const colors: Record<string, string> = {
-      javascript:
-        "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
-      typescript:
-        "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+      javascript: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
+      typescript: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
       react: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200",
       html: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
       css: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
       scss: "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200",
       json: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
       sql: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200",
-      python:
-        "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
+      python: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
       text: "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200",
-      plaintext:
-        "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200",
-    };
-    return (
-      colors[language.toLowerCase()] ||
-      "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
-    );
-  };
+      plaintext: "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200",
+    }
+    return colors[language.toLowerCase()] || "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+  }
 
   return (
     <TooltipProvider>
@@ -135,16 +96,13 @@ export function ProjectDetailModal({
           </DialogHeader>
 
           {/* Scrollable Content */}
-          <div
-            className="flex-1 overflow-y-auto overscroll-contain"
-            data-modal-content
-          >
+          <div className="flex-1 overflow-y-auto overscroll-contain" data-modal-content>
             <div className="space-y-4 sm:space-y-6 p-4 sm:p-6">
               {/* 프로젝트 대표 이미지 */}
               {project.image && (
                 <div className="w-full max-w-3xl xl:max-w-2xl px-6 sm:px-12 lg:px-20 py-32 mx-auto">
                   <img
-                    src={project.image}
+                    src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     className="w-full h-auto object-contain"
                   />
@@ -155,9 +113,7 @@ export function ProjectDetailModal({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <Card>
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base sm:text-lg">
-                      사용 기술
-                    </CardTitle>
+                    <CardTitle className="text-base sm:text-lg">사용 기술</CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
                     <div className="flex flex-wrap gap-2">
@@ -176,9 +132,7 @@ export function ProjectDetailModal({
 
                 <Card>
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base sm:text-lg">
-                      핵심 키워드
-                    </CardTitle>
+                    <CardTitle className="text-base sm:text-lg">핵심 키워드</CardTitle>
                   </CardHeader>
                   <CardContent className="pt-0">
                     <div className="flex flex-wrap gap-2">
@@ -211,6 +165,97 @@ export function ProjectDetailModal({
                 </CardContent>
               </Card>
 
+              {/* 문제 상황 또는 요구 사항 */}
+              <Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                    <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-orange-600 flex-shrink-0" />
+                    <span>문제 상황 또는 요구 사항</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0 space-y-4">
+                  {/* 구조적 기여를 문제 해결 과정으로 활용 */}
+                  {project.structuralContributions && project.structuralContributions.length > 0 && (
+                    <>
+                      {project.structuralContributions.map((contribution, index) => (
+                        <div
+                          key={index}
+                          className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800"
+                        >
+                          <h4 className="font-semibold text-sm sm:text-base text-orange-700 dark:text-orange-300 mb-2">
+                            {contribution.title}
+                          </h4>
+                          <p className="text-sm text-orange-600 dark:text-orange-400 leading-relaxed mb-3">
+                            {contribution.description}
+                          </p>
+                          <div className="space-y-2">
+                            <p className="text-xs font-medium text-orange-700 dark:text-orange-300 mb-1">
+                              해결 방법 및 성과
+                            </p>
+                            <ul className="space-y-1">
+                              {contribution.achievements.map((achievement, achIdx) => (
+                                <li
+                                  key={achIdx}
+                                  className="flex items-start gap-2 text-xs text-orange-600 dark:text-orange-400"
+                                >
+                                  <CheckCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                                  <span>{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+
+                  {/* 기술적 기여를 기술적 해결 과정으로 활용 */}
+                  {project.technicalContributions && project.technicalContributions.length > 0 && (
+                    <>
+                      {project.technicalContributions.map((contribution, index) => (
+                        <div
+                          key={index}
+                          className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800"
+                        >
+                          <h4 className="font-semibold text-sm sm:text-base text-purple-700 dark:text-purple-300 mb-2">
+                            {contribution.title}
+                          </h4>
+                          <p className="text-sm text-purple-600 dark:text-purple-400 leading-relaxed mb-3">
+                            {contribution.description}
+                          </p>
+                          <div className="space-y-2">
+                            <p className="text-xs font-medium text-purple-700 dark:text-purple-300 mb-1">
+                              기술적 해결책 및 성과
+                            </p>
+                            <ul className="space-y-1">
+                              {contribution.achievements.map((achievement, achIdx) => (
+                                <li
+                                  key={achIdx}
+                                  className="flex items-start gap-2 text-xs text-purple-600 dark:text-purple-400"
+                                >
+                                  <CheckCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                                  <span>{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+
+                  {/* 기본 문제 상황 (구조적/기술적 기여가 없는 경우) */}
+                  {(!project.structuralContributions || project.structuralContributions.length === 0) &&
+                    (!project.technicalContributions || project.technicalContributions.length === 0) && (
+                      <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
+                        <p className="text-sm text-orange-600 dark:text-orange-400 leading-relaxed">
+                          {project.problem || "이 프로젝트에서 해결해야 했던 주요 문제 상황과 요구 사항을 기술합니다."}
+                        </p>
+                      </div>
+                    )}
+                </CardContent>
+              </Card>
+
               {/* 프로젝트 상세 */}
               {project.projectPhases && project.projectPhases.length > 0 && (
                 <Card>
@@ -223,10 +268,7 @@ export function ProjectDetailModal({
                   <CardContent className="pt-0">
                     <div className="space-y-4">
                       {project.projectPhases.map((phase, index) => (
-                        <div
-                          key={index}
-                          className="border-l-4 border-purple-200 pl-4"
-                        >
+                        <div key={index} className="border-l-4 border-purple-200 pl-4">
                           <h4 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white mb-2">
                             {phase.phase}
                           </h4>
@@ -275,123 +317,44 @@ export function ProjectDetailModal({
                 </Card>
               )}
 
-              {/* 구조적 기여 */}
-              {project.structuralContributions &&
-                project.structuralContributions.length > 0 && (
-                  <Card>
-                    <CardHeader className="pb-3">
-                      <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-                        <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
-                        <span>구조적 기여</span>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0 space-y-4">
-                      {project.structuralContributions.map(
-                        (contribution, index) => (
-                          <div
-                            key={index}
-                            className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800"
-                          >
-                            <h4 className="font-semibold text-sm sm:text-base text-blue-700 dark:text-blue-300 mb-2">
-                              {contribution.title}
-                            </h4>
-                            <p className="text-sm text-blue-600 dark:text-blue-400 leading-relaxed mb-3">
-                              {contribution.description}
-                            </p>
-                            <div className="space-y-2">
-                              <p className="text-xs font-medium text-blue-700 dark:text-blue-300 mb-1">
-                                주요 성과
-                              </p>
-                              <ul className="space-y-1">
-                                {contribution.achievements.map(
-                                  (achievement, achIdx) => (
-                                    <li
-                                      key={achIdx}
-                                      className="flex items-start gap-2 text-xs text-blue-600 dark:text-blue-400"
-                                    >
-                                      <CheckCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
-                                      <span>{achievement}</span>
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            </div>
-                          </div>
-                        )
-                      )}
-                    </CardContent>
-                  </Card>
-                )}
-
-              {/* 기술적 기여 */}
-              {project.technicalContributions &&
-                project.technicalContributions.length > 0 && (
-                  <Card>
-                    <CardHeader className="pb-3">
-                      <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-                        <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
-                        <span>기술적 기여</span>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0 space-y-4">
-                      {project.technicalContributions.map(
-                        (contribution, index) => (
-                          <div
-                            key={index}
-                            className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800"
-                          >
-                            <h4 className="font-semibold text-sm sm:text-base text-green-700 dark:text-green-300 mb-2">
-                              {contribution.title}
-                            </h4>
-                            <p className="text-sm text-green-600 dark:text-green-400 leading-relaxed mb-3">
-                              {contribution.description}
-                            </p>
-                            <div className="space-y-2">
-                              <p className="text-xs font-medium text-green-700 dark:text-green-300 mb-1">
-                                주요 성과
-                              </p>
-                              <ul className="space-y-1">
-                                {contribution.achievements.map(
-                                  (achievement, achIdx) => (
-                                    <li
-                                      key={achIdx}
-                                      className="flex items-start gap-2 text-xs text-green-600 dark:text-green-400"
-                                    >
-                                      <CheckCircle className="h-3 w-3 mt-0.5 flex-shrink-0" />
-                                      <span>{achievement}</span>
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            </div>
-                          </div>
-                        )
-                      )}
-                    </CardContent>
-                  </Card>
-                )}
-
-              {/* 핵심 성과 */}
-              {project.detailedDescription?.summary && (
-                <Card>
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-                      <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
-                      <span>핵심 성과</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="prose prose-sm max-w-none">
-                      <h4 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white mb-2">
-                        {project.detailedDescription.summary}
-                      </h4>
-                      <div className="whitespace-pre-wrap text-sm sm:text-base text-gray-800 dark:text-gray-200 leading-relaxed font-sans bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-md overflow-x-auto max-h-64 overflow-y-auto">
-                        {project.detailedDescription.results}
+              {/* 최종 성과 및 배운 점 */}
+              <Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                    <Lightbulb className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />
+                    <span>최종 성과 및 배운 점</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="space-y-4">
+                    {/* 핵심 성과 */}
+                    {project.detailedDescription?.summary && (
+                      <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <h4 className="font-semibold text-sm sm:text-base text-green-700 dark:text-green-300 mb-2">
+                          핵심 성과
+                        </h4>
+                        <p className="text-sm text-green-600 dark:text-green-400 leading-relaxed mb-3">
+                          {project.detailedDescription.summary}
+                        </p>
+                        <div className="whitespace-pre-wrap text-xs text-green-600 dark:text-green-400 leading-relaxed bg-green-100 dark:bg-green-800/30 p-3 rounded-md">
+                          {project.detailedDescription.results}
+                        </div>
                       </div>
+                    )}
+
+                    {/* 배운 점 */}
+                    <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                      <h4 className="font-semibold text-sm sm:text-base text-blue-700 dark:text-blue-300 mb-2">
+                        얻은 것 / 배운 점
+                      </h4>
+                      <p className="text-sm text-blue-600 dark:text-blue-400 leading-relaxed">
+                        {project.learning ||
+                          "이 프로젝트를 통해 얻은 경험, 성장한 부분, 그리고 향후 적용할 수 있는 인사이트를 정리합니다."}
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-              )}
+                  </div>
+                </CardContent>
+              </Card>
 
               {/* Bottom padding for mobile */}
               <div className="h-4 sm:h-0" />
@@ -400,5 +363,5 @@ export function ProjectDetailModal({
         </DialogContent>
       </Dialog>
     </TooltipProvider>
-  );
+  )
 }
