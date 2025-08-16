@@ -163,7 +163,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                     key={index}
                     className="flex flex-col text-center p-6 bg-gray-50 dark:bg-gray-800/50 rounded-xl h-full"
                   >
-                    <div className="w-16 h-16 bg-mocha-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-mocha-300 to-mocha-400 rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-white text-2xl">{icon}</span>
                     </div>
 
@@ -191,7 +191,7 @@ export function IntroductionPage({ onNavigate }: Props) {
                     key={index}
                     className="flex flex-col text-center p-6 bg-gray-50 dark:bg-gray-800/50 rounded-xl h-full"
                   >
-                    <div className="w-16 h-16 bg-mocha-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-mocha-300 to-mocha-400 rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-white text-2xl">{icon}</span>
                     </div>
                     <blockquote className="italic text-gray-800 dark:text-gray-200 mb-4 font-medium">
