@@ -1,4 +1,4 @@
-import type { PortfolioData } from "./types"
+import type { PortfolioData } from "./types";
 
 export const mockPortfolioData: PortfolioData = {
   personalInfo: {
@@ -14,29 +14,35 @@ export const mockPortfolioData: PortfolioData = {
     mindset: [
       {
         title: "사용자 중심 사고",
-        description: "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
+        description:
+          "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
       },
       {
         title: "품질에 대한 집착",
-        description: "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
+        description:
+          "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
       },
       {
         title: "협업의 가치",
-        description: "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
+        description:
+          "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
       },
     ],
     capabilities: [
       {
         title: "문제 해결 능력",
-        description: "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
+        description:
+          "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
       },
       {
         title: "빠른 학습력",
-        description: "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
+        description:
+          "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
       },
       {
         title: "소통 능력",
-        description: "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
+        description:
+          "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
       },
     ],
   },
@@ -53,10 +59,24 @@ export const mockPortfolioData: PortfolioData = {
       "Saige Elements Design System",
       "React Hook Form",
     ],
-    stateManagement: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "Context API", "MobX"],
+    stateManagement: [
+      "Zustand",
+      "TanStack Query",
+      "Redux",
+      "Redux Toolkit",
+      "Context API",
+      "MobX",
+    ],
     architecture: ["Nx Monorepo", "Featured-Sliced Design", "Atomic Design"],
     devTools: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
-    collaborationTools: ["Storybook", "Figma", "Notion", "Jira", "Swagger", "Teams"],
+    collaborationTools: [
+      "Storybook",
+      "Figma",
+      "Notion",
+      "Jira",
+      "Swagger",
+      "Teams",
+    ],
   },
   companies: [
     {
@@ -65,7 +85,7 @@ export const mockPortfolioData: PortfolioData = {
       position: "프론트엔드 개발자",
       period: "2022.06 - 현재",
       duration: "3년 2개월",
-      achievements: [
+      achievementList: [
         "React 기반 AI 모니터링 시스템 및 안전 관리 솔루션 개발",
         "NX Monorepo 아키텍처 도입으로 개발 효율성 85% 향상",
         "GS 인증 1등급 획득을 위한 UI/UX 개선 주도",
@@ -77,7 +97,7 @@ export const mockPortfolioData: PortfolioData = {
       position: "프론트엔드 개발자",
       period: "2021.04 - 2022.05",
       duration: "1년 2개월",
-      achievements: [
+      achievementList: [
         "자연어 처리 연구를 위한 라벨링 시스템 개발",
         "사용자 테스트 기반 UI/UX 개선으로 작업 효율성 40% 향상",
       ],
@@ -99,7 +119,8 @@ export const mockPortfolioData: PortfolioData = {
       },
       projectPhases: [
         {
-          phase: "Phase 1: 생산 장비 이상 감지 모니터링 시스템(A사 맞춤형 모니터링 시스템) 구축",
+          phase:
+            "Phase 1: 생산 장비 이상 감지 모니터링 시스템(A사 맞춤형 모니터링 시스템) 구축",
           description:
             "NX 모노레포 도입 초기 단계로 단일 앱 형태로 프로젝트를 진행했습니다. Feature-Sliced Design(FSD) 기반 초기 아키텍처를 설계하고 비즈니스 대응을 위한 구조를 세팅했으며, A사 맞춤형 모니터링 시스템 구축에 집중했습니다. ECharts 기반 시계열 그래프에서 오늘 데이터는 API 1회 호출 후, 신규 데이터는 WebSocket 이벤트로 수신하여 TanStack Query의 setQueryData로 누적 업데이트함으로써 불필요한 API 호출을 제거하고 서버 부하를 최적화했습니다.",
           outcomes: [
@@ -119,7 +140,8 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          phase: "Phase 3: 권취 공정 이상 감지 시스템(B사 맞춤형 모니터링 시스템) 개발",
+          phase:
+            "Phase 3: 권취 공정 이상 감지 시스템(B사 맞춤형 모니터링 시스템) 개발",
           description:
             "Phase 2에서 구축한 모듈화된 코드를 기반으로 Phase 1 프로젝트 리팩토링을 수행하여 기술 부채를 해소했습니다. 권취 공정 특화 이상 이벤트 실시간 로그 및 상태 표시 기능을 구현하고, 기존 VIMS 패키지 코드 80% 이상을 재사용하여 개발 기간을 50% 단축(1개월 → 2주)했습니다.",
           outcomes: [
@@ -132,63 +154,83 @@ export const mockPortfolioData: PortfolioData = {
 
       structuralContributions: [
         {
-          title: "Monorepo 기반 확장 가능한 개발 아키텍처 설계",
-          description:
-            "NX 모노레포와 Feature-Sliced Design을 활용하여 고객사별 맞춤형 시스템을 효율적으로 개발할 수 있는 확장 가능한 아키텍처를 설계하고 구축",
-          achievements: [
+          title:
+            "1. 다양한 고객사의 요구 사항을 효율적으로 반영할 수 있는 방법은 없을까?",
+          solutionList: [
+            {
+              title: "NX 모노레포 제안 및 도입",
+              description:
+                "NX 모노레포를 도입하여 고객사별 맞춤형 시스템을 효율적으로 개발할 수 있는 확장 가능한 아키텍처를 설계하고 구축하였습니다.",
+            },
+            {
+              title: "Feature-Sliced Design 아키텍처 도입",
+              description:
+                "컴포넌트를 설계할 때, Feature-Sliced Design을 도입함으로써, 각 slice 단위로 위계와 의존성이 명확하게 정의되어 있어 순환 참조를 방지할 수 있고, 동시에 기능을 독립적인 모듈로 분리해 재사용과 확장을 용이하게 하였습니다. 이를 통해 구조적 안정성을 확보하면서도, 새로운 기능 추가나 기존 기능 개선 시 영향 범위를 최소화할 수 있었습니다.",
+            },
+          ],
+          achievementList: [
             "공통 패키지 재사용으로 신규 프로젝트 개발 기간 50% 단축",
             "모듈화 구조로 유지보수성과 확장성 대폭 향상",
             "코드 중복 제거 및 기술 부채 해소",
           ],
         },
         {
-          title: "비즈니스 요구사항 중심의 제품 설계 및 고도화",
-          description:
-            "A사, B사 등 다양한 고객사의 특화 요구사항을 분석하고 반영하여 맞춤형 모니터링 시스템을 설계하며, 지속적인 VOC 수집을 통한 제품 완성도 향상",
-          achievements: [
+          title:
+            "2. 동일한 구조의 store 구조를 갖는 각각의 앱의 중복 코드 발생",
+          solutionList: [
+            {
+              title: "팩토리 패턴을 활용한 상태 관리 구조 설계",
+              description:
+                "Zustand의 create 함수를 래핑한 커스텀 스토어 팩토리를 직접 구현하여 앱별 독립 상태 관리 구조를 설계하고, 동일 상태 구조 공유와 인스턴스 분리를 통한 상태 충돌 방지를 구현하였습니다.",
+            },
+          ],
+          achievementList: [
+            "고객사별 특화 요구사항 분석 및 맞춤형 시스템 설계",
+            "VOC 기반 지속적인 기능 개선 및 사용성 향상",
+            "비즈니스 가치 창출을 위한 제품 전략 수립 참여",
+          ],
+        },
+        {
+          title: "3. 실시간 데이터 처리 성능 최적화",
+          solutionList: [
+            {
+              title: "ECharts 시계열 그래프 최적화",
+              description:
+                "ECharts 시계열 그래프에서 API 1회 호출 후 WebSocket 이벤트 기반 누적 업데이트 방식 구현과 이벤트 중심 재연결 로직으로 시스템 리소스 효율화하였습니다.",
+            },
+          ],
+          achievementList: [
+            "고객사별 특화 요구사항 분석 및 맞춤형 시스템 설계",
+            "VOC 기반 지속적인 기능 개선 및 사용성 향상",
+            "비즈니스 가치 창출을 위한 제품 전략 수립 참여",
+          ],
+        },
+        {
+          title: "4. 영상 스트리밍 데이터 처리 최적화",
+          solutionList: [
+            {
+              title: "",
+              description:
+                "ECharts 시계열 그래프에서 API 1회 호출 후 WebSocket 이벤트 기반 누적 업데이트 방식 구현과 이벤트 중심 재연결 로직으로 시스템 리소스 효율화하였습니다.",
+            },
+          ],
+          achievementList: [
             "고객사별 특화 요구사항 분석 및 맞춤형 시스템 설계",
             "VOC 기반 지속적인 기능 개선 및 사용성 향상",
             "비즈니스 가치 창출을 위한 제품 전략 수립 참여",
           ],
         },
       ],
-
-      technicalContributions: [
-        {
-          title: "복잡한 상태 관리 환경에서의 충돌 방지 구조 구현",
-          description:
-            "Zustand의 create 함수를 래핑한 커스텀 스토어 팩토리를 직접 구현하여 앱별 독립 상태 관리 구조를 설계하고, 동일 상태 구조 공유와 인스턴스 분리를 통한 상태 충돌 방지",
-          achievements: [
-            "실시간 데이터 처리 환경에서 상태 충돌 없는 안정적 운영",
-            "일관된 상태 구조 유지와 개발 경험 표준화",
-            "새로운 앱 추가 시 기존 로직 재사용으로 개발 속도 향상",
-          ],
-        },
-        {
-          title: "실시간 데이터 처리 성능 최적화",
-          description:
-            "ECharts 시계열 그래프에서 API 1회 호출 후 WebSocket 이벤트 기반 누적 업데이트 방식 구현과 이벤트 중심 재연결 로직으로 시스템 리소스 효율화",
-          achievements: [
-            "불필요한 API 호출 제거로 서버 부하 최적화",
-            "실시간 데이터 업데이트 성능 향상",
-            "WebSocket 재연결 안정성 확보 및 메모리 누수 방지",
-          ],
-        },
-        {
-          title: "영상 스트리밍 데이터 처리 최적화",
-          description:
-            "영상 스트리밍 데이터 형식을 base64에서 binary로 전환하고 메모리 사용량을 최적화하여 실시간 영상 품질 개선",
-          achievements: [
-            "메모리 사용량 약 30% 절감으로 시스템 효율성 향상",
-            "실시간 영상 품질 개선 및 스트리밍 성능 최적화",
-            "대용량 영상 데이터 처리 안정성 확보",
-          ],
-        },
-      ],
       period: "2025.01 - 2025.07",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: ["NX Monorepo", "Feature-Sliced Design", "실시간 데이터 처리", "성능 최적화", "모듈화 아키텍처"],
+      keywords: [
+        "NX Monorepo",
+        "Feature-Sliced Design",
+        "실시간 데이터 처리",
+        "성능 최적화",
+        "모듈화 아키텍처",
+      ],
       technologies: [
         "React",
         "TypeScript",
@@ -260,25 +302,44 @@ export const mockPortfolioData: PortfolioData = {
           phase: "Phase 3: GS 인증 대응 작업 (UI/UX 개선 핵심 담당)",
           description:
             "신규 입사자 2인이 합류한 3인 체제에서 UI/UX·에러 처리 영역을 핵심 담당했습니다. 에러·토스트 레이어 구조를 정의하고 디자이너 제안을 반영했으며, API Error Code별 메시지 매핑 및 UI 표시 체계를 구축하여 사용자 경험 지표 개선에 기여함으로써 GS 인증 1등급을 획득했습니다.",
-          outcomes: ["에러·토스트 레이어 구조 정의", "API Error Code별 메시지 매핑 체계 구축", "GS 인증 1등급 획득"],
+          outcomes: [
+            "에러·토스트 레이어 구조 정의",
+            "API Error Code별 메시지 매핑 체계 구축",
+            "GS 인증 1등급 획득",
+          ],
         },
       ],
       structuralContributions: [
         {
-          title: "MVP부터 GS 인증까지 전체 제품 개발 프로세스 주도",
-          description:
-            "신규 제품 기획부터 MVP 출시, VOC 기반 기능 고도화, GS 인증 획득까지 전체 제품 개발 라이프사이클을 주도하여 비즈니스 가치 창출",
-          achievements: [
+          title: "1. MVP부터 GS 인증까지 전체 제품 개발 프로세스 주도",
+          solutionList: [
+            {
+              title: "신규 제품 기획 및 MVP 출시",
+              description:
+                "신규 제품 기획부터 MVP를 1개월 내 출시하여 빠른 시장 검증 및 제품화 기반을 확보했습니다.",
+            },
+            {
+              title: "VOC 기반 기능 고도화 및 GS 인증 대응",
+              description:
+                "사용자 VOC를 반영한 기능 고도화와 품질 표준 수립을 통해 GS 인증 1등급을 획득했습니다.",
+            },
+          ],
+          achievementList: [
             "MVP를 1개월 내 출시하여 빠른 시장 검증 및 제품화 기반 확보",
             "사용자 VOC 기반 지속적 기능 개선으로 고객 만족도 향상",
             "GS 인증 1등급 획득을 위한 품질 표준 수립 및 달성",
           ],
         },
         {
-          title: "사용자 중심 제품 설계 및 UX 개선 전략 수립",
-          description:
-            "안전 이벤트 모니터링이라는 도메인 특성을 고려하여 알림 중요도 분류, 직관적 설정 인터페이스, 통계 시각화 등 사용자 친화적 제품 설계",
-          achievements: [
+          title: "2. 사용자 중심 제품 설계 및 UX 개선 전략 수립",
+          solutionList: [
+            {
+              title: "알림 중요도 분류 및 직관적 설정 인터페이스 설계",
+              description:
+                "안전 이벤트 모니터링 도메인 특성을 고려하여 중대/일반 알림 분류, 직관적 설정 UI, 통계 시각화 등 사용자 친화적 제품 설계를 진행했습니다.",
+            },
+          ],
+          achievementList: [
             "중대/일반 알림 분류 체계 설계로 사용자 업무 효율성 향상",
             "이벤트 타입별 설정 페이지로 관리 편의성 제공",
             "주요 통계 대시보드로 비즈니스 인사이트 제공",
@@ -291,7 +352,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "실시간 멀티미디어 처리 시스템 구현",
           description:
             "WebSocket 기반 실시간 이미지 수신과 Konva.js를 활용한 Bounding Box 시각화로 AI 안전 이벤트를 직관적으로 표시하는 모니터링 시스템 구현",
-          achievements: [
+          achievementList: [
             "실시간 이미지 스트리밍과 AI 검출 결과 동기화",
             "Konva.js 기반 동적 Bounding Box 렌더링 최적화",
             "드래그 앤 드롭 기반 채널 관리로 사용성 향상",
@@ -301,7 +362,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "대용량 이벤트 데이터 렌더링 최적화",
           description:
             "Virtual Scrolling을 구현하여 대량의 안전 이벤트 데이터를 효율적으로 렌더링하고, 이벤트 클릭 시 필터링된 리포트 페이지 연동 기능 구현",
-          achievements: [
+          achievementList: [
             "Virtual Scrolling으로 대량 데이터 렌더링 성능 최적화",
             "이벤트 상세 조회 워크플로우 구현으로 사용자 경험 향상",
             "메모리 효율적인 대용량 데이터 처리 구조 확립",
@@ -311,7 +372,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "체계적인 에러 핸들링 및 사용자 피드백 시스템 구축",
           description:
             "API 에러 코드별 메시지 매핑 체계와 계층화된 에러 표시 구조를 설계하여 사용자에게 명확하고 일관된 피드백 제공",
-          achievements: [
+          achievementList: [
             "API 에러 코드 체계 정의로 체계적인 오류 관리 구현",
             "Global/Local 에러 표시 계층 설계로 사용자 혼란 최소화",
             "직관적인 에러 메시지로 사용자 경험 지표 개선에 기여",
@@ -321,7 +382,13 @@ export const mockPortfolioData: PortfolioData = {
       period: "2023.05 - 2024.11",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: ["신규 제품 개발", "MVP 출시", "GS 인증 1등급", "에러 처리 체계", "사용자 VOC 반영"],
+      keywords: [
+        "신규 제품 개발",
+        "MVP 출시",
+        "GS 인증 1등급",
+        "에러 처리 체계",
+        "사용자 VOC 반영",
+      ],
       technologies: [
         "React",
         "TypeScript",
@@ -395,20 +462,30 @@ export const mockPortfolioData: PortfolioData = {
       ],
       structuralContributions: [
         {
-          title: "통합 모니터링 시스템 구축으로 운영 효율성 개선",
-          description:
-            "기존에 분리되어 있던 수율 관리와 리소스 모니터링을 통합한 실시간 대시보드를 구축하여 운영팀의 업무 효율성과 시스템 가시성을 개선",
-          achievements: [
+          title: "1. 통합 모니터링 시스템 구축으로 운영 효율성 개선",
+          solutionList: [
+            {
+              title: "수율/리소스 통합 대시보드 설계 및 구축",
+              description:
+                "기존에 분리되어 있던 수율 관리와 리소스 모니터링을 통합한 실시간 대시보드를 구축하여 운영팀의 업무 효율성과 시스템 가시성을 개선했습니다.",
+            },
+          ],
+          achievementList: [
             "라인별 및 검사기별 수율과 시스템 리소스의 통합 모니터링 환경 제공",
             "실시간 모니터링을 통한 시스템 이상 상황 조기 감지 체계 구축",
             "운영 효율성 및 가시성 크게 개선으로 비즈니스 가치 창출",
           ],
         },
         {
-          title: "사내 디자인 시스템 발전 기여 및 개발 표준화 촉진",
-          description:
-            "Saige Elements 디자인 시스템 컨트리뷰터로 참여하여 시스템 안정화와 확장에 기여하고, 사내 UI 개발 표준화를 촉진",
-          achievements: [
+          title: "2. 사내 디자인 시스템 발전 기여 및 개발 표준화 촉진",
+          solutionList: [
+            {
+              title: "디자인 시스템 컨트리뷰터 및 컴포넌트 개발",
+              description:
+                "Saige Elements 디자인 시스템 컨트리뷰터로 참여하여 시스템 안정화와 확장에 기여하고, 신규 컴포넌트 개발 및 팀 전체 생산성 향상에 기여했습니다.",
+            },
+          ],
+          achievementList: [
             "초기 도입 과정의 버그 및 호환성 문제 해결로 시스템 안정화 기여",
             "신규 컴포넌트 개발로 디자인 시스템 확장 및 팀 전체 생산성 향상",
             "Storybook + Chromatic 기반 디자이너-개발자 협업 체계 구축",
@@ -421,7 +498,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "ECharts 기반 모듈화 차트 아키텍처 구현",
           description:
             "BaseChart 컴포넌트를 중심으로 라인/파이/바 차트 등 다양한 차트 타입을 지원하는 재사용 가능한 차트 라이브러리를 구축하고 성능 최적화",
-          achievements: [
+          achievementList: [
             "공통 BaseChart 인터페이스로 일관된 차트 개발 경험 제공",
             "차트별 최적화된 렌더링 로직으로 대용량 데이터 처리 성능 향상",
             "타입 안전성 확보를 통한 개발 시 오류 예방 및 코드 품질 향상",
@@ -431,7 +508,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "TanStack Query 기반 효율적 데이터 관리 체계 구축",
           description:
             "refetchInterval과 커스텀 훅을 결합한 관심사별 데이터 관리와 React Query 캐싱 전략으로 API 호출 최적화 및 성능 향상",
-          achievements: [
+          achievementList: [
             "관심사별 데이터 분리로 불필요한 리렌더링 방지 및 성능 최적화",
             "React Query 캐싱 전략으로 API 호출 횟수 최소화",
             "실시간 데이터 동기화와 메모리 효율성의 균형점 확보",
@@ -441,7 +518,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "디자인 시스템 기반 협업 워크플로우 구축",
           description:
             "Storybook과 Chromatic을 활용한 컴포넌트 문서화 및 시각적 테스트 환경을 구축하여 디자이너-개발자 간 효율적 협업 체계 완성",
-          achievements: [
+          achievementList: [
             "컴포넌트 변경사항에 대한 시각적 회귀 테스트 자동화",
             "디자이너와의 실시간 피드백 순환 구조로 UI 품질 향상",
             "개발 표준화 및 일관된 UI 컴포넌트 가이드라인 수립",
@@ -451,8 +528,21 @@ export const mockPortfolioData: PortfolioData = {
       period: "2022.11 - 2023.01",
       role: "프론트엔드 개발",
       frontendDevelopers: 4,
-      keywords: ["실시간 모니터링", "ECharts 시각화", "디자인 시스템 기여", "성능 최적화", "차트 라이브러리"],
-      technologies: ["React", "TypeScript", "TanStack Query", "ECharts", "Saige Elements", "Vite"],
+      keywords: [
+        "실시간 모니터링",
+        "ECharts 시각화",
+        "디자인 시스템 기여",
+        "성능 최적화",
+        "차트 라이브러리",
+      ],
+      technologies: [
+        "React",
+        "TypeScript",
+        "TanStack Query",
+        "ECharts",
+        "Saige Elements",
+        "Vite",
+      ],
       technologyReasoning: [
         {
           category: "실시간 데이터 처리 및 시각화",
@@ -473,7 +563,8 @@ export const mockPortfolioData: PortfolioData = {
       projectId: 4,
       companyId: "media-corpus",
       title: "비윤리적 표현 말뭉치연구 분석 및 시범 구축 사업 프로젝트",
-      image: "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
+      image:
+        "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
       background:
         "비윤리적 표현을 체계적으로 평가하기 위한 웹 기반 평가 시스템을 개발했습니다. 100명 규모의 사용자 테스트와 대량 데이터 수집을 통해 정확도 높은 평가 모델 구축과 사용자 친화적 인터페이스 설계에 기여했습니다.",
       detailedDescription: {
@@ -497,7 +588,11 @@ export const mockPortfolioData: PortfolioData = {
           phase: "Phase 2: 사용자 테스트 및 피드백 수집 (2022.02-03)",
           description:
             "100명 규모의 사용자 테스트를 주도하여 실제 사용 환경에서의 요구사항과 피드백을 반영했습니다. 평가 기준 안내 및 입력 제한을 통해 정확한 데이터 수집을 유도하고 사용자 친화적인 인터페이스 개선 방향을 도출했습니다.",
-          outcomes: ["100명 규모 사용자 테스트 주도", "실사용 환경 피드백 수집", "데이터 수집 품질 개선 방향 도출"],
+          outcomes: [
+            "100명 규모 사용자 테스트 주도",
+            "실사용 환경 피드백 수집",
+            "데이터 수집 품질 개선 방향 도출",
+          ],
         },
         {
           phase: "Phase 3: UI/UX 개선 및 데이터 수집 완료 (2022.03-04)",
@@ -512,20 +607,30 @@ export const mockPortfolioData: PortfolioData = {
       ],
       structuralContributions: [
         {
-          title: "대규모 사용자 테스트 설계 및 데이터 품질 관리 체계 구축",
-          description:
-            "100명 규모의 사용자 테스트를 기획하고 주도하여 실제 사용 환경에서의 피드백을 체계적으로 수집하고, 데이터 품질 향상을 위한 가이드라인과 검증 프로세스를 수립",
-          achievements: [
+          title: "1. 대규모 사용자 테스트 설계 및 데이터 품질 관리 체계 구축",
+          solutionList: [
+            {
+              title: "사용자 테스트 기획 및 데이터 품질 관리",
+              description:
+                "100명 규모의 사용자 테스트를 기획하고 주도하여 실제 사용 환경에서의 피드백을 체계적으로 수집하고, 데이터 품질 향상을 위한 가이드라인과 검증 프로세스를 수립했습니다.",
+            },
+          ],
+          achievementList: [
             "100명 규모 사용자 테스트 설계 및 운영으로 실사용 환경 피드백 확보",
             "비개발자 사용자도 쉽게 적응할 수 있는 인터페이스 설계 원칙 수립",
             "체계적인 피드백 수집 및 반영 프로세스로 제품 완성도 향상",
           ],
         },
         {
-          title: "사용자 중심 평가 워크플로우 설계 및 효율성 향상",
-          description:
-            "윤리성 평가라는 복잡한 업무를 단순화하기 위해 3단 UI 구조(문단/문장/평가 폼)를 설계하고, 평가 기준 안내와 입력 제한을 통한 정확한 데이터 수집 체계 구축",
-          achievements: [
+          title: "2. 사용자 중심 평가 워크플로우 설계 및 효율성 향상",
+          solutionList: [
+            {
+              title: "3단 UI 구조 설계 및 데이터 수집 체계 구축",
+              description:
+                "윤리성 평가라는 복잡한 업무를 단순화하기 위해 3단 UI 구조(문단/문장/평가 폼)를 설계하고, 평가 기준 안내와 입력 제한을 통한 정확한 데이터 수집 체계를 구축했습니다.",
+            },
+          ],
+          achievementList: [
             "3단 UI 구조 설계로 복잡한 평가 업무의 단순화 및 효율성 향상",
             "직관적인 정보 계층 구조로 사용자 학습 비용 최소화",
             "150,000건 이상의 고품질 윤리성 평가 데이터 수집 달성",
@@ -538,7 +643,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "Feature-based 아키텍처 설계 및 상태 관리 최적화",
           description:
             "Redux Toolkit과 Duck Pattern을 기반으로 기능별 모듈 구조를 설계하고, 컴포넌트-상태-API를 명확히 분리하여 확장 가능한 아키텍처를 구축",
-          achievements: [
+          achievementList: [
             "Feature-based 모듈 구조로 코드 응집도 및 유지보수성 향상",
             "Redux Toolkit 기반 효율적인 상태 관리로 개발 생산성 향상",
             "설계부터 배포까지 전체 프론트엔드 개발 프로세스 단독 운영",
@@ -548,7 +653,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "사용자 경험 중심의 평가 인터페이스 구현",
           description:
             "윤리성 평가의 정확도와 일관성을 높이기 위해 평가 기준 안내, 입력 제한, 시각적 구분 등을 적용한 직관적인 평가 인터페이스를 구현",
-          achievements: [
+          achievementList: [
             "평가 업무를 처음 수행하는 사용자도 쉽게 적응 가능한 시스템 구현",
             "시각적 구분 체계 및 정보 계층 구조로 평가 정확도 향상",
             "평가 기준 안내 및 입력 제한으로 데이터 품질 일관성 확보",
@@ -558,7 +663,13 @@ export const mockPortfolioData: PortfolioData = {
       period: "2021.12 - 2022.04",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: ["사용자 테스트 주도", "대량 데이터 수집", "3단 UI 구조", "평가 시스템", "단독 개발"],
+      keywords: [
+        "사용자 테스트 주도",
+        "대량 데이터 수집",
+        "3단 UI 구조",
+        "평가 시스템",
+        "단독 개발",
+      ],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       technologyReasoning: [
         {
@@ -611,7 +722,8 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          phase: "Phase 3: 품질 관리 시스템 구축 및 데이터 수집 완료 (2021.08-09)",
+          phase:
+            "Phase 3: 품질 관리 시스템 구축 및 데이터 수집 완료 (2021.08-09)",
           description:
             "실시간 진행률 추적과 품질 검증 로직을 적용하여 라벨링 작업 효율 및 일관성을 개선했습니다. 검수자용 전용 인터페이스를 개발하여 라벨링 및 검수 워크플로우를 완성하고 400,000건 이상의 데이터 수집을 완료했습니다.",
           outcomes: [
@@ -623,20 +735,30 @@ export const mockPortfolioData: PortfolioData = {
       ],
       structuralContributions: [
         {
-          title: "대용량 라벨링 운영 체계 구축 및 품질 관리 시스템 도입",
-          description:
-            "100명 라벨링 작업자와 10명 검수자가 참여하는 대규모 작업 환경을 설계하고, 실시간 진행률 추적과 품질 검증 로직을 통한 체계적인 데이터 수집 및 관리 체계 구축",
-          achievements: [
+          title: "1. 대용량 라벨링 운영 체계 구축 및 품질 관리 시스템 도입",
+          solutionList: [
+            {
+              title: "대규모 작업 환경 설계 및 품질 관리 체계 구축",
+              description:
+                "100명 라벨링 작업자와 10명 검수자가 참여하는 대규모 작업 환경을 설계하고, 실시간 진행률 추적과 품질 검증 로직을 통한 체계적인 데이터 수집 및 관리 체계를 구축했습니다.",
+            },
+          ],
+          achievementList: [
             "대규모 작업자 환경에서의 효율적인 작업 분배 및 관리 체계 구축",
             "실시간 진행률 추적으로 작업 현황 투명성 및 관리 효율성 향상",
             "품질 검증 로직으로 라벨링 일관성 85%에서 95%로 향상",
           ],
         },
         {
-          title: "라벨링-검수 통합 워크플로우 설계 및 운영 최적화",
-          description:
-            "라벨링 작업자와 검수자를 위한 차별화된 인터페이스를 설계하고, 작업 효율성과 데이터 품질을 동시에 확보할 수 있는 통합 워크플로우를 구축",
-          achievements: [
+          title: "2. 라벨링-검수 통합 워크플로우 설계 및 운영 최적화",
+          solutionList: [
+            {
+              title: "라벨링/검수 통합 워크플로우 및 인터페이스 설계",
+              description:
+                "라벨링 작업자와 검수자를 위한 차별화된 인터페이스를 설계하고, 작업 효율성과 데이터 품질을 동시에 확보할 수 있는 통합 워크플로우를 구축했습니다.",
+            },
+          ],
+          achievementList: [
             "라벨링 및 검수 워크플로우 완성으로 작업 효율성 극대화",
             "검수자용 전용 인터페이스로 품질 관리 체계 강화",
             "400,000건 이상 대용량 라벨링 데이터 안정적 수집 및 운영",
@@ -649,7 +771,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "직관적 텍스트 라벨링 인터페이스 구현",
           description:
             "window.getSelection API를 활용한 드래그 기반 텍스트 선택과 시각적 라벨링 시스템을 구현하여 사용자가 직관적으로 텍스트를 라벨링할 수 있는 인터페이스 구축",
-          achievements: [
+          achievementList: [
             "드래그 기반 라벨링으로 직관적이고 자연스러운 사용자 경험 제공",
             "텍스트 범위 인식 및 시각적 피드백으로 라벨링 정확도 향상",
             "Redux 기반 안정적인 상태 관리로 라벨링 작업의 일관성 확보",
@@ -659,7 +781,7 @@ export const mockPortfolioData: PortfolioData = {
           title: "대용량 데이터 렌더링 성능 최적화",
           description:
             "IntersectionObserver를 활용한 무한 스크롤 구현으로 초기 30개 문장만 렌더링하고 점진적 로딩을 통해 대용량 데이터 처리 성능을 최적화",
-          achievements: [
+          achievementList: [
             "무한 스크롤 최적화로 초기 로딩 시간 단축 및 메모리 효율성 향상",
             "점진적 로딩으로 작업 연속성 보장 및 사용자 경험 개선",
             "라벨링 작업 시간 평균 40% 단축으로 전체 프로젝트 효율성 향상",
@@ -669,7 +791,13 @@ export const mockPortfolioData: PortfolioData = {
       period: "2021.05 - 2021.09",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: ["대용량 데이터 처리", "드래그 기반 라벨링", "성능 최적화", "품질 관리", "워크플로우 구축"],
+      keywords: [
+        "대용량 데이터 처리",
+        "드래그 기반 라벨링",
+        "성능 최적화",
+        "품질 관리",
+        "워크플로우 구축",
+      ],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       technologyReasoning: [
         {
@@ -692,11 +820,13 @@ export const mockPortfolioData: PortfolioData = {
     learningPlan: [
       {
         title: "React Native",
-        description: "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다.",
+        description:
+          "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다.",
       },
       {
         title: "컴퓨터 사이언스",
-        description: "백엔드 개발자와의 원활한 협업과 시스템 전반에 대한 이해도를 높이기 위해 학습하고 있습니다.",
+        description:
+          "백엔드 개발자와의 원활한 협업과 시스템 전반에 대한 이해도를 높이기 위해 학습하고 있습니다.",
       },
     ],
     futureVision: [
@@ -741,4 +871,4 @@ export const mockPortfolioData: PortfolioData = {
         "코드를 작성하는 것을 넘어, 사용자의 문제를 해결하고 더 나은 경험을 제공하는 제품을 만들어 사회에 긍정적인 영향을 미치고 싶습니다. 지속적인 학습과 성장을 통해 기술과 비즈니스를 모두 이해하는 개발자가 되는 것이 저의 목표입니다.",
     },
   },
-}
+};

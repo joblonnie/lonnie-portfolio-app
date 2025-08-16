@@ -294,7 +294,7 @@ export function ResumePageLayout() {
                       주요 성과
                     </h4>
                     <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                      {company.achievements.map((achievement, achIndex) => (
+                      {company.achievementList.map((achievement, achIndex) => (
                         <li key={achIndex} className="flex items-start gap-2">
                           <div className="w-2 h-2 bg-mocha-500 rounded-full mt-2 flex-shrink-0" />
                           <span>{achievement}</span>
@@ -390,7 +390,7 @@ export function ResumePageLayout() {
                                                 {contribution.description}
                                               </div>
                                               <ul className="space-y-1">
-                                                {contribution.achievements.map(
+                                                {contribution.achievementList.map(
                                                   (achievement, achIdx) => (
                                                     <li
                                                       key={achIdx}
@@ -431,7 +431,7 @@ export function ResumePageLayout() {
                                                 {contribution.description}
                                               </div>
                                               <ul className="space-y-1">
-                                                {contribution.achievements.map(
+                                                {contribution.achievementList.map(
                                                   (achievement, achIdx) => (
                                                     <li
                                                       key={achIdx}
@@ -481,14 +481,14 @@ export function ResumePageLayout() {
                                 )}
 
                                 {/* 주요 성과 (기존) */}
-                                {project.achievements && (
+                                {project.achievementList && (
                                   <div>
                                     <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
                                       <Award className="h-3 w-3" />
                                       주요 달성 사항
                                     </p>
                                     <ul className="space-y-1">
-                                      {project.achievements
+                                      {project.achievementList
                                         .slice(0, 3)
                                         .map((achievement, idx) => (
                                           <li

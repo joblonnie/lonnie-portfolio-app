@@ -57,16 +57,21 @@ export interface ProjectPhase {
   };
 }
 
-export interface StructuralContribution {
+export type Solution = {
   title: string;
   description: string;
-  achievements: string[];
+};
+export interface StructuralContribution {
+  title: string;
+  solutionList?: Solution[];
+  subtitle?: string;
+  achievementList: string[];
 }
 
 export interface TechnicalContribution {
   title: string;
   description: string;
-  achievements: string[];
+  achievementList: string[];
 }
 
 export interface Project {
@@ -87,7 +92,7 @@ export interface Project {
   keywords?: string[];
   technologies?: string[];
   technologyReasoning?: TechnologyReasoning[];
-  achievements?: string[];
+  achievementList?: string[];
   codeSnippets?: CodeSnippet[];
   companyId: string;
   problem?: string;
@@ -135,7 +140,7 @@ export interface Company {
   position: string;
   period: string;
   duration: string;
-  achievements: string[];
+  achievementList: string[];
 }
 
 export interface PortfolioData {
