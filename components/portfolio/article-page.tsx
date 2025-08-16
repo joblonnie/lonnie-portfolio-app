@@ -1,5 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card";
-
 const references = [
   {
     title: "업무 프로세스 개선",

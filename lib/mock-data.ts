@@ -67,7 +67,7 @@ export const mockPortfolioData: PortfolioData = {
       "Context API",
       "MobX",
     ],
-    architecture: ["Nx Monorepo", "Featured-Sliced Design", "Atomic Design"],
+    architecture: ["Nx Monorepo", "Feature-Sliced Design", "Atomic Design"],
     devTools: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
     collaborationTools: [
       "Storybook",

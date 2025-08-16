@@ -10,8 +10,8 @@ import { QueryProvider } from "@/components/query-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Portfolio - 개발자 포트폴리오",
-  description: "프론트엔드 개발자의 포트폴리오 웹사이트입니다.",
+  title: "Lonnie Portfolio",
+  description: "Lonnie의 포트폴리오 페이지입니다.",
   generator: "v0.dev",
 };
 

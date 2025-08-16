@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { mockPortfolioData } from "@/lib/mock-data";
 
-export function ResumePageLayout() {
+export function RapporlabsResumePageLayout() {
   const portfolioData = mockPortfolioData;
 
   // Get projects by company
@@ -32,7 +32,10 @@ export function ResumePageLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-8 print:p-4">
+    <div
+      id="resume-page-content"
+      className="min-h-screen bg-background p-8 print:p-4"
+    >
       {/* 상단 컨트롤 */}
       <div className="absolute top-4 right-4 z-50 flex gap-2 print:hidden">
         <ThemeToggle />
@@ -186,24 +189,33 @@ export function ResumePageLayout() {
             <CardContent className="p-6">
               <div className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>
-                  제가 라포랩스에 지원하게 된 이유는 지원하게 된 이유는 스쿼드
-                  조직을 통해 제품의 전 영역을 빠짐없이 관리하고, 지표 기반으로
-                  성과를 파악하는 방식이{" "}
+                  지원하게 된 이유는{" "}
                   <strong>
-                    제가 추구하는 개발 방향성과 맞닿아 있기 때문입니다.
+                    {" "}
+                    스쿼드 조직을 통해 제품 전 영역을 빠짐없이 관리하고, 지표
+                    기반으로 성과를 파악하는 구조가 제가 추구하는 개발 방향성과
+                    잘 맞기 때문입니다.
                   </strong>{" "}
-                  비즈니스를 모듈화해 관리하는 구조 속에서 각 스쿼드가 명확한
-                  비전을 가지고 자율적으로 움직이는 모습은, 개발 과정에서
-                  결과물에 대한 동기부여를 얻기 쉽게 해줍니다. 또한, 권한과
-                  자율성을 바탕으로 구성원을 신뢰하는 문화는
+                  스쿼드 단위의 명확한 비전과 자율성은 결과물에 대한 동기부여를
+                  높여주며, 권한 부여와 투명한 의사결정 과정은 효율적인 협업
+                  환경을 만든다고 생각합니다. 또한 커머스 산업이라는 새로운 도전
+                  속에서, 부족한 점은 빠르게 학습·보완하고, 팀과 제품에
+                  기여하고자 합니다. 최근 몰로콘에 다녀오면서,{" "}
                   <strong>
-                    제가 적극적으로 의견을 제시하고 성장할 수 있는 토대가 된다고
+                    커머스 시장이 빠르게 성장하고 고객 피드백이 민감하게
+                    반영되는 환경임을 느꼈습니다.{" "}
                   </strong>{" "}
-                  생각합니다. 의사결정 과정이 투명하고, DM 대신 공식 채널을
-                  활용해 집중해야 할 커뮤니케이션 경로를 최소화하는 점 또한 업무
-                  효율성을 높여주는 부분이라 큰 매력을 느꼈습니다. 이러한 환경
-                  속에서 제 경험을 살려 기여하고, 동시에 팀과 함께 빠르게
-                  성장하고자 지원했습니다.
+                  특히 중년 여성을 타깃으로 한 시장에서는,{" "}
+                  <strong>상품의 질을 우선시하며 소량 구매 경향</strong>이 강할
+                  것으로 예상되므로, 다량의 정보보다는{" "}
+                  <strong>
+                    고객별 초개인화된 상품 노출이 필요하다고 판단했습니다.
+                  </strong>{" "}
+                  이를 개발에 반영하여,{" "}
+                  <strong>
+                    해당 연령층의 사용자 경험을 극대화할 수 있는 맞춤형 기능과
+                    UI/UX를 구현하고 싶습니다.
+                  </strong>
                 </p>
               </div>
             </CardContent>
@@ -362,113 +374,6 @@ export function ResumePageLayout() {
                                 )}
 
                                 {/* 주요 기여사항 */}
-                                {project.structuralContributions &&
-                                  project.structuralContributions.length >
-                                    0 && (
-                                    <div>
-                                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
-                                        <Briefcase className="h-3 w-3" />
-                                        주요 기여사항
-                                      </p>
-                                      <div className="space-y-2">
-                                        {project.structuralContributions.map(
-                                          (contribution, idx) => (
-                                            <div
-                                              key={idx}
-                                              className="bg-gray-50 dark:bg-gray-800/50 p-2 rounded text-xs"
-                                            >
-                                              <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                                {contribution.title}
-                                              </div>
-
-                                              {/* solutionList 표시 */}
-                                              {contribution.solutionList &&
-                                                contribution.solutionList
-                                                  .length > 0 && (
-                                                  <div className="space-y-1 mb-2">
-                                                    {contribution.solutionList.map(
-                                                      (
-                                                        solution,
-                                                        solutionIndex
-                                                      ) => (
-                                                        <div
-                                                          key={solutionIndex}
-                                                          className="border-l-2 border-gray-300 pl-2"
-                                                        >
-                                                          <div className="font-medium text-gray-600 dark:text-gray-200 text-xs">
-                                                            {solution.title}
-                                                          </div>
-                                                          <div className="text-gray-500 dark:text-gray-300 text-xs">
-                                                            {
-                                                              solution.description
-                                                            }
-                                                          </div>
-                                                        </div>
-                                                      )
-                                                    )}
-                                                  </div>
-                                                )}
-
-                                              <ul className="space-y-1">
-                                                {contribution.achievementList.map(
-                                                  (achievement, achIdx) => (
-                                                    <li
-                                                      key={achIdx}
-                                                      className="flex items-start gap-1 text-gray-600 dark:text-gray-400"
-                                                    >
-                                                      <div className="w-1 h-1 bg-gray-500 rounded-full mt-1.5 flex-shrink-0" />
-                                                      <span>{achievement}</span>
-                                                    </li>
-                                                  )
-                                                )}
-                                              </ul>
-                                            </div>
-                                          )
-                                        )}
-                                      </div>
-                                    </div>
-                                  )}
-
-                                {/* 기술적 기여 */}
-                                {project.technicalContributions &&
-                                  project.technicalContributions.length > 0 && (
-                                    <div>
-                                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
-                                        <Code className="h-3 w-3" />
-                                        기술적 기여
-                                      </p>
-                                      <div className="space-y-2">
-                                        {project.technicalContributions.map(
-                                          (contribution, idx) => (
-                                            <div
-                                              key={idx}
-                                              className="bg-gray-50 dark:bg-gray-800/50 p-2 rounded text-xs"
-                                            >
-                                              <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                                {contribution.title}
-                                              </div>
-                                              <div className="text-gray-600 dark:text-gray-400 leading-relaxed mb-2">
-                                                {contribution.description}
-                                              </div>
-                                              <ul className="space-y-1">
-                                                {contribution.achievementList.map(
-                                                  (achievement, achIdx) => (
-                                                    <li
-                                                      key={achIdx}
-                                                      className="flex items-start gap-1 text-gray-600 dark:text-gray-400"
-                                                    >
-                                                      <div className="w-1 h-1 bg-gray-500 rounded-full mt-1.5 flex-shrink-0" />
-                                                      <span>{achievement}</span>
-                                                    </li>
-                                                  )
-                                                )}
-                                              </ul>
-                                            </div>
-                                          )
-                                        )}
-                                      </div>
-                                    </div>
-                                  )}
 
                                 {/* 프로젝트 성과 */}
                                 {project.detailedDescription?.results && (
