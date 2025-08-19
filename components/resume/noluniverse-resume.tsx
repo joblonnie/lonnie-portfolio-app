@@ -33,7 +33,7 @@ export function RapporlabsResumePageLayout() {
 
   return (
     <div
-      id="rapporlabs-resume-page-content"
+      id="noluniverse-resume-page-content"
       className="min-h-screen bg-background p-8 print:p-4"
     >
       {/* 상단 컨트롤 */}
@@ -372,6 +372,8 @@ export function RapporlabsResumePageLayout() {
                                     </div>
                                   </div>
                                 )}
+
+                                {/* 주요 기여사항 */}
 
                                 {/* 프로젝트 성과 */}
                                 {project.detailedDescription?.results && (

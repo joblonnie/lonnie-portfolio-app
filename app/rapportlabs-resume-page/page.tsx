@@ -2,6 +2,6 @@
 
 import { RapporlabsResumePageLayout } from "@/components/resume/rapportlabs-resume";
 
-export default function ResumePage() {
+export default function RapporlabsResumePage() {
   return <RapporlabsResumePageLayout />;
 }
