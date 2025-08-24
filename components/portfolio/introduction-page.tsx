@@ -18,7 +18,6 @@ import {
   Calendar,
   Users,
   Eye,
-  Star,
   Target,
   BookOpen,
 } from "lucide-react"
@@ -384,68 +383,15 @@ export function IntroductionPage({ onNavigate }: Props) {
             </div>
           </div>
 
-          {/* 미래 포부 */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-center flex items-center justify-center gap-3 text-gray-900 dark:text-white">
-              <Star className="h-6 w-6 text-lime-500" />
-              미래 포부
-            </h3>
-
-            <Card className="bg-card border-0">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-lime-500 rounded-full"></span>
-                        단기 목표 (1-2년)
-                      </h4>
-                      <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                        {goals.shortTerm.map((goal, idx) => (
-                          <li key={goal.title + idx} className="flex items-start gap-3">
-                            <div className="w-1.5 h-1.5 bg-lime-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="leading-relaxed">
-                              <strong>{goal.title}:</strong> {goal.description}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                        <span className="w-2 h-2 bg-coral-500 rounded-full"></span>
-                        장기 목표 (3-5년)
-                      </h4>
-                      <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                        {goals.longTerm.map((goal, idx) => (
-                          <li key={goal.title + idx} className="flex items-start gap-3">
-                            <div className="w-1.5 h-1.5 bg-coral-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="leading-relaxed">
-                              <strong>{goal.title}:</strong> {goal.description}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">궁극적인 비전</h4>
-                  <div className="bg-card rounded-xl p-6 text-center">
-                    <p className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed italic">
-                      "{goals.vision.quote}"
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
-                      {goals.vision.description}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          {/* 궁극적인 비전 */}
+          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
+            <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">궁극적인 비전</h4>
+            <div className="bg-card rounded-xl p-6 text-center">
+              <p className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed italic">"{goals.vision.quote}"</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
+                {goals.vision.description}
+              </p>
+            </div>
           </div>
         </AnimatedElement>
 

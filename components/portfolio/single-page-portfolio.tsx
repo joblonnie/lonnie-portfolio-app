@@ -668,7 +668,7 @@ export function SinglePagePortfolio() {
             <Card className="bg-card border-0">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">미래 비전</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   {portfolioData.goals.futureVision.map((vision, index) => (
                     <div key={index} className="flex flex-col text-center p-6 bg-card rounded-xl shadow-sm h-full">
                       <div
@@ -685,67 +685,22 @@ export function SinglePagePortfolio() {
                     </div>
                   ))}
                 </div>
+
+                {/* 궁극적인 비전 */}
+                <div className="pt-6 border-t border-gray-200 dark:border-gray-600">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">궁극적인 비전</h3>
+                  <div className="bg-card rounded-xl p-6 text-center">
+                    <p className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed italic">
+                      "{portfolioData.goals.vision.quote}"
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
+                      {portfolioData.goals.vision.description}
+                    </p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </section>
-
-          {/* 미래 포부 */}
-          <Card className="bg-card border-0">
-            <CardContent className="p-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">미래 포부</h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-lime-500 rounded-full"></span>
-                      단기 목표 (1-2년)
-                    </h3>
-                    <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                      {portfolioData.goals.shortTerm.map((goal, idx) => (
-                        <li key={goal.title + idx} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 bg-lime-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="leading-relaxed">
-                            <strong>{goal.title}:</strong> {goal.description}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-coral-500 rounded-full"></span>
-                      장기 목표 (3-5년)
-                    </h3>
-                    <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                      {portfolioData.goals.longTerm.map((goal, idx) => (
-                        <li key={goal.title + idx} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 bg-coral-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="leading-relaxed">
-                            <strong>{goal.title}:</strong> {goal.description}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">궁극적인 비전</h3>
-                <div className="bg-card rounded-xl p-6 text-center">
-                  <p className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed italic">
-                    "{portfolioData.goals.vision.quote}"
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
-                    {portfolioData.goals.vision.description}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </TooltipProvider>

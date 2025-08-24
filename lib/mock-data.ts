@@ -1,4 +1,4 @@
-import type { PortfolioData } from "./types";
+import type { PortfolioData } from "./types"
 
 export const mockPortfolioData: PortfolioData = {
   personalInfo: {
@@ -14,35 +14,29 @@ export const mockPortfolioData: PortfolioData = {
     mindset: [
       {
         title: "사용자 중심 사고",
-        description:
-          "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
+        description: "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
       },
       {
         title: "품질에 대한 집착",
-        description:
-          "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
+        description: "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
       },
       {
         title: "협업의 가치",
-        description:
-          "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
+        description: "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
       },
     ],
     capabilities: [
       {
         title: "문제 해결 능력",
-        description:
-          "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
+        description: "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
       },
       {
         title: "빠른 학습력",
-        description:
-          "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
+        description: "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
       },
       {
         title: "소통 능력",
-        description:
-          "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
+        description: "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
       },
     ],
   },
@@ -59,24 +53,10 @@ export const mockPortfolioData: PortfolioData = {
       "Saige Elements Design System",
       "React Hook Form",
     ],
-    stateManagement: [
-      "Zustand",
-      "TanStack Query",
-      "Redux",
-      "Redux Toolkit",
-      "Context API",
-      "MobX",
-    ],
+    stateManagement: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "Context API", "MobX"],
     architecture: ["Nx Monorepo", "Feature-Sliced Design", "Atomic Design"],
     devTools: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
-    collaborationTools: [
-      "Storybook",
-      "Figma",
-      "Notion",
-      "Jira",
-      "Swagger",
-      "Teams",
-    ],
+    collaborationTools: ["Storybook", "Figma", "Notion", "Jira", "Swagger", "Teams"],
   },
   companies: [
     {
@@ -119,8 +99,7 @@ export const mockPortfolioData: PortfolioData = {
       },
       structuralContributions: [
         {
-          title:
-            "1. 다양한 고객사의 요구 사항을 효율적으로 반영할 수 있는 방법은 없을까?",
+          title: "1. 다양한 고객사의 요구 사항을 효율적으로 반영할 수 있는 방법은 없을까?",
           solutionList: [
             {
               title: "NX 모노레포 제안 및 도입",
@@ -140,8 +119,7 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          title:
-            "2. 실시간으로 쌓이는 데이터를 효율적으로 처리할 수 있는 방법은 없을까?",
+          title: "2. 실시간으로 쌓이는 데이터를 효율적으로 처리할 수 있는 방법은 없을까?",
           solutionList: [
             {
               title: "무한 + 가상 스크롤링을 통한 리스트 렌더링 최적화",
@@ -157,8 +135,7 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          title:
-            "3. 동일한 구조의 스토어 구조를 갖는 각각의 앱의 중복 코드를 줄여보자!",
+          title: "3. 동일한 구조의 스토어 구조를 갖는 각각의 앱의 중복 코드를 줄여보자!",
           solutionList: [
             {
               title: "팩토리 패턴을 활용한 상태 관리 구조 설계",
@@ -193,13 +170,7 @@ export const mockPortfolioData: PortfolioData = {
       period: "2025.01 - 2025.08",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: [
-        "NX Monorepo",
-        "Feature-Sliced Design",
-        "실시간 데이터 처리",
-        "성능 최적화",
-        "모듈화 아키텍처",
-      ],
+      keywords: ["NX Monorepo", "Feature-Sliced Design", "실시간 데이터 처리", "성능 최적화", "모듈화 아키텍처"],
       technologies: [
         "React",
         "TypeScript",
@@ -241,16 +212,13 @@ export const mockPortfolioData: PortfolioData = {
                 "초기 MVP 단계에서는 디자이너가 참여하지 못하고 개발이 진행되었습니다. 사내 다른 제품의 UI를 분석하여 일관된 UX를 주는 인터페이스를 구현했습니다. 이를 통해 사용자 친화적인 경험을 제공하고, 빠른 시장 검증을 위한 제품을 1개월 내 릴리즈할 수 있었습니다.",
             },
           ],
-          achievementList: [
-            { text: "1개월 내 MVP 출시로 빠른 시장 검증 및 제품화 기반 확보" },
-          ],
+          achievementList: [{ text: "1개월 내 MVP 출시로 빠른 시장 검증 및 제품화 기반 확보" }],
         },
         {
           title: "2. GS 인증 1등급을 획득하기 위한 사용자 경험 개선 방안은?",
           solutionList: [
             {
-              title:
-                "체계적인 에러 핸들링 시스템 구축을 통한 신뢰성 있는 사용자 경험 제공",
+              title: "체계적인 에러 핸들링 시스템 구축을 통한 신뢰성 있는 사용자 경험 제공",
               description:
                 "백엔드 개발자와 협업하여 API 에러 코드 체계를 정의하고, 프로덕트 디자이너와 협력하여 표시 범위(Global/Local) 및 UI 계층을 결정했습니다. 정의된 기준을 바탕으로 Toast를 통해서 사용자에게 적절한 피드백을 제공했습니다.",
             },
@@ -261,8 +229,7 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          title:
-            "3. 사용자가 중요도에 따라 알림을 빠르게 분류하고 설정할 수 있게 하려면?",
+          title: "3. 사용자가 중요도에 따라 알림을 빠르게 분류하고 설정할 수 있게 하려면?",
           solutionList: [
             {
               title: "알림 중요도 분류 및 직관적 설정 인터페이스 설계",
@@ -277,8 +244,7 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          title:
-            "4. 사용자가 AI 이벤트를 더 빠르고 직관적으로 이해할 수 있게 하려면 어떻게 할까?",
+          title: "4. 사용자가 AI 이벤트를 더 빠르고 직관적으로 이해할 수 있게 하려면 어떻게 할까?",
           solutionList: [
             {
               title: "WebSocket 기반 실시간 이미지 처리 및 시각화",
@@ -318,13 +284,7 @@ export const mockPortfolioData: PortfolioData = {
       period: "2023.05 - 2024.11",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: [
-        "신규 제품 개발",
-        "MVP 출시",
-        "GS 인증 1등급",
-        "에러 처리 체계",
-        "사용자 VOC 반영",
-      ],
+      keywords: ["신규 제품 개발", "MVP 출시", "GS 인증 1등급", "에러 처리 체계", "사용자 VOC 반영"],
       technologies: [
         "React",
         "TypeScript",
@@ -418,29 +378,15 @@ export const mockPortfolioData: PortfolioData = {
       period: "2022.11 - 2023.01",
       role: "프론트엔드 개발",
       frontendDevelopers: 4,
-      keywords: [
-        "실시간 모니터링",
-        "ECharts 시각화",
-        "디자인 시스템 기여",
-        "성능 최적화",
-        "차트 라이브러리",
-      ],
-      technologies: [
-        "React",
-        "TypeScript",
-        "TanStack Query",
-        "ECharts",
-        "Saige Elements",
-        "Vite",
-      ],
+      keywords: ["실시간 모니터링", "ECharts 시각화", "디자인 시스템 기여", "성능 최적화", "차트 라이브러리"],
+      technologies: ["React", "TypeScript", "TanStack Query", "ECharts", "Saige Elements", "Vite"],
       codeSnippets: [],
     },
     {
       projectId: 6,
       companyId: "saige",
       title: "SAIGE ELEMENTS 디자인 시스템 구축 및 기여",
-      image:
-        "/placeholder.svg?height=400&width=800&text=SAIGE+ELEMENTS+디자인+시스템",
+      image: "/placeholder.svg?height=400&width=800&text=SAIGE+ELEMENTS+디자인+시스템",
       background:
         "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 React 기반 디자인 시스템을 구축하고, 컨트리뷰터로 참여하여 컴포넌트 개발, 문서화, 품질 관리 체계를 수립한 프로젝트입니다.",
       detailedDescription: {
@@ -529,29 +475,15 @@ export const mockPortfolioData: PortfolioData = {
       period: "2022.08 - 2023.03",
       role: "디자인 시스템 컨트리뷰터",
       frontendDevelopers: 3,
-      keywords: [
-        "디자인 시스템",
-        "컴포넌트 라이브러리",
-        "Storybook",
-        "Chromatic",
-        "UI 일관성",
-      ],
-      technologies: [
-        "React",
-        "TypeScript",
-        "Storybook",
-        "Chromatic",
-        "Styled Components",
-        "Rollup",
-      ],
+      keywords: ["디자인 시스템", "컴포넌트 라이브러리", "Storybook", "Chromatic", "UI 일관성"],
+      technologies: ["React", "TypeScript", "Storybook", "Chromatic", "Styled Components", "Rollup"],
       codeSnippets: [],
     },
     {
       projectId: 4,
       companyId: "media-corpus",
       title: "비윤리적 표현 말뭉치연구 분석 및 시범 구축 사업 프로젝트",
-      image:
-        "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
+      image: "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
       background:
         "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템 개발 프로젝트입니다. 3단 UI 구조, 단계별 UX, feature-based 아키텍처 등 평가 효율성과 확장성을 극대화하는 구조를 설계·구현했습니다.",
       detailedDescription: {
@@ -579,12 +511,10 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          title:
-            "2. 확장 가능한 구조 설계 및 유지보수를 용이하게 하기 위해 노력해보자!",
+          title: "2. 확장 가능한 구조 설계 및 유지보수를 용이하게 하기 위해 노력해보자!",
           solutionList: [
             {
-              title:
-                "Feature-based 아키텍처를 활용한 모듈화된 프로젝트 구조 및 상태 관리 체계",
+              title: "Feature-based 아키텍처를 활용한 모듈화된 프로젝트 구조 및 상태 관리 체계",
               description:
                 "Redux Toolkit과 Duck Pattern을 기반으로 상태 관리 구조를 개선하여 유지보수성과 코드 응집도를 강화했습니다. Feature-based 모듈 아키텍처를 도입하여 컴포넌트, 상태, API를 명확히 분리하고 확장 가능성을 확보했습니다. 기능별 모듈 구조를 설계하고, 컴포넌트-상태-API를 명확히 분리하여 확장 가능한 아키텍처를 구축했습니다.",
             },
@@ -602,13 +532,7 @@ export const mockPortfolioData: PortfolioData = {
       period: "2021.12 - 2022.04",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: [
-        "사용자 테스트 주도",
-        "대량 데이터 수집",
-        "3단 UI 구조",
-        "평가 시스템",
-        "단독 개발",
-      ],
+      keywords: ["사용자 테스트 주도", "대량 데이터 수집", "3단 UI 구조", "평가 시스템", "단독 개발"],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       codeSnippets: [],
     },
@@ -645,8 +569,7 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          title:
-            "2. 렌더링 성능 개선을 통해 사용자에게 더 나은 경험을 제공할 수 있을까?",
+          title: "2. 렌더링 성능 개선을 통해 사용자에게 더 나은 경험을 제공할 수 있을까?",
           solutionList: [
             {
               title: "무한 스크롤 및 점진적 로딩 시스템",
@@ -668,13 +591,7 @@ export const mockPortfolioData: PortfolioData = {
       period: "2021.05 - 2021.09",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: [
-        "대용량 데이터 처리",
-        "드래그 기반 라벨링",
-        "성능 최적화",
-        "품질 관리",
-        "워크플로우 구축",
-      ],
+      keywords: ["대용량 데이터 처리", "드래그 기반 라벨링", "성능 최적화", "품질 관리", "워크플로우 구축"],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       codeSnippets: [],
     },
@@ -682,14 +599,14 @@ export const mockPortfolioData: PortfolioData = {
   goals: {
     learningPlan: [
       {
-        title: "React Native",
+        title: "UX 전문성 강화",
         description:
-          "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다.",
+          "UX 전문가로의 자리매김을 위해 관련 강의를 수강하고 인증서 취득을 위해 노력하고 있습니다. 사용자 중심 설계 방법론과 디자인 시스템에 대한 깊이 있는 이해를 바탕으로 더 나은 사용자 경험을 제공하고자 합니다.",
       },
       {
-        title: "컴퓨터 사이언스",
+        title: "React Native",
         description:
-          "백엔드 개발자와의 원활한 협업과 시스템 전반에 대한 이해도를 높이기 위해 학습하고 있습니다.",
+          "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다. 현재 React Native를 활용한 사이드 프로젝트를 진행 중이며, 웹과 모바일을 아우르는 개발 경험을 쌓고 있습니다.",
       },
     ],
     futureVision: [
@@ -698,34 +615,28 @@ export const mockPortfolioData: PortfolioData = {
         gradient: "from-blue-500 to-purple-600",
         quote: "크로스 플랫폼 개발자로의 성장",
         description:
-          "웹, 모바일, 데스크톱 등 다양한 환경에서 동작하는 제품을 설계·구현할 수 있는 크로스 플랫폼 개발자로 성장하고 싶습니다.",
+          "웹, 모바일, 데스크톱 등 다양한 환경에서 동작하는 제품을 설계·구현할 수 있는 크로스 플랫폼 개발자로 성장하고 싶습니다. React Native를 통한 모바일 앱 개발 경험을 쌓고 있으며, 향후 Electron을 활용한 데스크톱 애플리케이션 개발까지 확장하여 하나의 코드베이스로 여러 플랫폼을 지원하는 효율적인 개발 방식을 추구합니다. 특히 사용자가 어떤 디바이스를 사용하든 일관된 경험을 제공할 수 있는 개발자가 되는 것이 목표입니다.",
+      },
+      {
+        icon: "🎨",
+        gradient: "from-pink-500 to-rose-600",
+        quote: "UX 전문성을 갖춘 개발자로의 발전",
+        description:
+          "단순히 기능을 구현하는 개발자를 넘어, 사용자 경험을 깊이 이해하고 이를 코드로 구현할 수 있는 UX 전문성을 갖춘 개발자가 되고 싶습니다. 사용자 리서치, 프로토타이핑, 사용성 테스트 등 UX 프로세스 전반에 대한 이해를 바탕으로 디자이너와 더욱 효과적으로 협업하고, 사용자 중심의 제품을 만들어내는 것이 저의 비전입니다. 이를 통해 기술과 디자인의 경계를 허무는 개발자로 성장하고자 합니다.",
       },
       {
         icon: "🚀",
         gradient: "from-green-500 to-teal-600",
-        quote: "기술 리더십 발휘",
+        quote: "기술 리더십과 팀 성장을 이끄는 개발자",
         description:
-          "팀의 기술적 방향성을 제시하고, 주니어 개발자들을 멘토링하며 조직의 기술 역량 향상에 기여하고 싶습니다.",
-      },
-    ],
-    shortTerm: [
-      {
-        title: "기술 리더십 강화",
-        description: "프로젝트 리딩 및 기술적 의사결정 경험 확대",
+          "팀의 기술적 방향성을 제시하고, 주니어 개발자들을 멘토링하며 조직의 기술 역량 향상에 기여하고 싶습니다. 코드 리뷰 문화 정착, 개발 프로세스 개선, 기술 스택 선정 등을 통해 팀 전체의 생산성을 높이는 역할을 하고자 합니다. 또한 지식 공유와 문서화를 통해 팀의 집단 지성을 높이고, 지속 가능한 개발 문화를 만들어가는 리더가 되는 것이 저의 목표입니다.",
       },
       {
-        title: "아키텍처 설계 역량",
-        description: "대규모 서비스의 구조 설계 및 성능 최적화 경험",
-      },
-    ],
-    longTerm: [
-      {
-        title: "조직 내 영향력 확대",
-        description: "기술 전략 수립 및 조직 문화 개선에 기여",
-      },
-      {
-        title: "글로벌 프로젝트 경험",
-        description: "해외 협업 및 글로벌 서비스 개발 경험 쌓기",
+        icon: "🌍",
+        gradient: "from-indigo-500 to-purple-600",
+        quote: "사회적 가치를 창출하는 개발자",
+        description:
+          "기술을 통해 사회 문제를 해결하고 사람들의 삶의 질을 향상시키는 개발자가 되고 싶습니다. 접근성을 고려한 웹 개발, 환경을 생각하는 지속 가능한 코딩, 디지털 격차 해소를 위한 기술 교육 등을 통해 기술이 모든 사람에게 도움이 될 수 있도록 기여하고자 합니다. 단순히 비즈니스 성과만을 추구하는 것이 아니라, 기술의 사회적 책임을 인식하고 실천하는 개발자로 성장하는 것이 저의 궁극적인 비전입니다.",
       },
     ],
     vision: {
@@ -738,8 +649,7 @@ export const mockPortfolioData: PortfolioData = {
     {
       id: "pr-template",
       title: "좋은 코드 리뷰 문화 유지를 위한 PR template 정의하기",
-      description:
-        "팀 내 코드 리뷰 문화를 개선하기 위한 PR 템플릿 정의를 담당하고, 적용한 사례입니다",
+      description: "팀 내 코드 리뷰 문화를 개선하기 위한 PR 템플릿 정의를 담당하고, 적용한 사례입니다",
       date: "2024-12-18",
       category: "개발 문화",
       tags: ["코드리뷰", "PR", "템플릿", "협업"],
@@ -846,8 +756,7 @@ PR 템플릿 도입으로 코드 리뷰의 품질과 효율성이 크게 향상�
     {
       id: "chrome-bookmarks",
       title: "구글 크롬 북마크를 활용한 생산성 향상",
-      description:
-        "크롬 북마크 폴더링과 활용법으로 반복 업무를 줄이는 것을 전사적으로 공유했던 사례입니다.",
+      description: "크롬 북마크 폴더링과 활용법으로 반복 업무를 줄이는 것을 전사적으로 공유했던 사례입니다.",
       date: "2024-10-30",
       category: "생산성",
       tags: ["크롬", "북마크", "생산성", "업무효율"],
@@ -932,23 +841,20 @@ Jira, Notion, 사내 서버, Azure 등의 대분류로 폴더를 만들고, 폴�
 
 ## 결론
 
-작은 습관의 변화가 큰 생산성 향상으로 이어질 수 있습니다.
+도구의 기능을 제대로 활용하면 업무 효율성을 크게 높일 수 있습니다.
 
-북마크 관리는 개발자의 필수 스킬 중 하나라고 생각합니다.`,
+**작은 자동화라도 누적되면 큰 효과**를 가져다줍니다.
+
+하루에 몇 분씩 절약되는 시간이 1년이면 상당한 시간이 됩니다. 이런 작은 개선들이 모여 큰 생산성 향상을 만들어냅니다.`,
     },
     {
       id: "workflow-improvement",
       title: "업무 프로세스 개선",
-      description:
-        "업무 효율을 높이기 위한 프로세스 개선하기 위해 제안했던 사례입니다.",
+      description: "업무 효율을 높이기 위한 프로세스 개선하기 위해 제안했던 사례입니다.",
       date: "2024-09-24",
       category: "프로세스 개선",
       tags: ["워크플로우", "효율성", "팀워크", "Shape Up"],
       content: `# 업무 프로세스 개선
-
-Shape Up 방식으로 업무가 진행되면서 발견된 문제점들을 분석하고, 더 효율적으로 일하기 위한 개선 방안을 제안한 경험을 공유합니다.
-
-## 현재 프로세스 (As Is)
 
 Shape Up 방식으로 진행되는 현재 프로세스는 다음과 같은 단계로 구성되어 있습니다:
 
@@ -1033,8 +939,7 @@ graph TD
     {
       id: "fe-process-improvement",
       title: "FE 업무 프로세스 개선",
-      description:
-        "프론트엔드 개발 조직이 좀 더 나은 프로세스로 일하고자, 제안했던 경험 사례입니다.",
+      description: "프론트엔드 개발 조직이 좀 더 나은 프로세스로 일하고자, 제안했던 경험 사례입니다.",
       date: "2024-09-24",
       category: "프로세스 개선",
       tags: ["프론트엔드", "프로세스", "개발문화", "팀워크"],
@@ -1155,8 +1060,7 @@ graph LR
     {
       id: "outlook-automation",
       title: "Outlook 메일 자동 분류로 생산성 향상",
-      description:
-        "Outlook 규칙을 활용해 메일함을 자동 정리하는 방법을 전사적으로 공유했던 사례입니다.",
+      description: "Outlook 규칙을 활용해 메일함을 자동 정리하는 방법을 전사적으로 공유했던 사례입니다.",
       date: "2023-11-07",
       category: "생산성",
       tags: ["Outlook", "메일관리", "자동화", "업무효율"],
@@ -1270,4 +1174,4 @@ Outlook의 규칙 기능을 활용하여 메일을 자동으로 분류하는 방
 하루에 몇 분씩 절약되는 시간이 1년이면 상당한 시간이 됩니다. 이런 작은 개선들이 모여 큰 생산성 향상을 만들어냅니다.`,
     },
   ],
-};
+}
