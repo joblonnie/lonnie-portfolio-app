@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 import {
   MapPin,
   Phone,
@@ -18,18 +18,16 @@ import {
   Heart,
   Github,
   Linkedin,
-} from "lucide-react";
-import { mockPortfolioData } from "@/lib/mock-data";
+} from "lucide-react"
+import { mockPortfolioData } from "@/lib/mock-data"
 
 export function ResumePageLayout() {
-  const portfolioData = mockPortfolioData;
+  const portfolioData = mockPortfolioData
 
   // Get projects by company
   const getProjectsByCompany = (companyId: string) => {
-    return portfolioData.projects.filter(
-      (project) => project.companyId === companyId
-    );
-  };
+    return portfolioData.projects.filter((project) => project.companyId === companyId)
+  }
 
   return (
     <div className="min-h-screen bg-background p-8 print:p-4">
@@ -43,7 +41,7 @@ export function ResumePageLayout() {
         <section className="text-center space-y-6 py-8 border-b-2 border-gray-200 dark:border-gray-700">
           <Avatar className="w-32 h-32 sm:w-40 sm:h-40 mx-auto ring-4 ring-white/50 shadow-2xl">
             <AvatarImage src="/profile.png" alt="Profile" />
-            <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-mocha-500 to-cannoli-500 text-white">
+            <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-gray-400 to-gray-500 text-white">
               {portfolioData.personalInfo?.name?.charAt(0) || "L"}
             </AvatarFallback>
           </Avatar>
@@ -67,9 +65,7 @@ export function ResumePageLayout() {
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 <a
-                  href={`tel:${
-                    portfolioData.personalInfo?.phone || "010-5054-0121"
-                  }`}
+                  href={`tel:${portfolioData.personalInfo?.phone || "010-5054-0121"}`}
                   className="hover:text-mocha-500 transition-colors"
                 >
                   {portfolioData.personalInfo?.phone || "010-5054-0121"}
@@ -82,9 +78,7 @@ export function ResumePageLayout() {
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
                 <a
-                  href={`mailto:${
-                    portfolioData.personalInfo?.email || "joblonnie@gmail.com"
-                  }`}
+                  href={`mailto:${portfolioData.personalInfo?.email || "joblonnie@gmail.com"}`}
                   className="hover:text-mocha-500 transition-colors"
                 >
                   {portfolioData.personalInfo?.email || "joblonnie@gmail.com"}
@@ -128,47 +122,28 @@ export function ResumePageLayout() {
               <div className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>
                   안녕하세요. 4년간의 프론트엔드 개발 경험을 바탕으로{" "}
-                  <strong className="text-mocha-500">
-                    사용자 중심의 웹 애플리케이션 개발
-                  </strong>
-                  에 전념해온 김동현입니다. 현재 (주)세이지에서 React와
-                  TypeScript를 활용한 AI 모니터링 시스템과 안전 관리 솔루션을
-                  개발하고 있으며, 특히{" "}
-                  <strong className="text-mocha-500">
-                    NX Monorepo 아키텍처 도입
-                  </strong>
-                  을 통해 개발 효율성을 85% 향상시키는 성과를 달성했습니다.
+                  <strong className="text-mocha-500">사용자 중심의 웹 애플리케이션 개발</strong>에 전념해온
+                  김동현입니다. 현재 (주)세이지에서 React와 TypeScript를 활용한 AI 모니터링 시스템과 안전 관리 솔루션을
+                  개발하고 있으며, 특히 <strong className="text-mocha-500">NX Monorepo 아키텍처 도입</strong>을 통해
+                  개발 효율성을 85% 향상시키는 성과를 달성했습니다.
                 </p>
                 <p>
-                  이전 (주)미디어 코퍼스에서는 자연어 처리 연구를 위한 라벨링
-                  시스템을 개발하며,{" "}
-                  <strong className="text-mocha-500">
-                    사용자 테스트 기반의 UI/UX 개선
-                  </strong>
-                  을 통해 작업 효율성을 40% 향상시킨 경험이 있습니다.
+                  이전 (주)미디어 코퍼스에서는 자연어 처리 연구를 위한 라벨링 시스템을 개발하며,{" "}
+                  <strong className="text-mocha-500">사용자 테스트 기반의 UI/UX 개선</strong>을 통해 작업 효율성을 40%
+                  향상시킨 경험이 있습니다.
                 </p>
                 <p>
-                  <strong className="text-mocha-500">
-                    "협업과 팀워크는 개발의 기반"
-                  </strong>
-                  이라고 믿습니다. 팀워크를 통해 더 큰 가치를 창출할 수 있다고
-                  생각하며, 효과적인 소통과 체계적인 업무 프로세스를 중시합니다.
-                  이러한 철학을 바탕으로 팀 내 협업 방식을 지속적으로
-                  개선해왔습니다.
+                  <strong className="text-mocha-500">"협업과 팀워크는 개발의 기반"</strong>
+                  이라고 믿습니다. 팀워크를 통해 더 큰 가치를 창출할 수 있다고 생각하며, 효과적인 소통과 체계적인 업무
+                  프로세스를 중시합니다. 이러한 철학을 바탕으로 팀 내 협업 방식을 지속적으로 개선해왔습니다.
                 </p>
                 <p>
                   저의 궁극적인 비전은{" "}
-                  <strong className="text-mocha-500">
-                    "단순히 기능 구현이 아닌, 삶의 질을 개선하는 개발자"
-                  </strong>
-                  입니다. 코드를 작성하는 것을 넘어, 사용자의 문제를 해결하고 더
-                  나은 경험을 제공하는 제품을 만들어 사회에 긍정적인 영향을
-                  미치고 싶습니다.{" "}
-                  <strong className="text-mocha-500">
-                    지속적인 학습과 성장
-                  </strong>
-                  을 통해 기술과 비즈니스를 모두 이해하는 개발자가 되는 것이
-                  저의 목표입니다.
+                  <strong className="text-mocha-500">"단순히 기능 구현이 아닌, 삶의 질을 개선하는 개발자"</strong>
+                  입니다. 코드를 작성하는 것을 넘어, 사용자의 문제를 해결하고 더 나은 경험을 제공하는 제품을 만들어
+                  사회에 긍정적인 영향을 미치고 싶습니다.{" "}
+                  <strong className="text-mocha-500">지속적인 학습과 성장</strong>을 통해 기술과 비즈니스를 모두
+                  이해하는 개발자가 되는 것이 저의 목표입니다.
                 </p>
               </div>
             </CardContent>
@@ -186,24 +161,15 @@ export function ResumePageLayout() {
             <CardContent className="p-6">
               <div className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>
-                  제가 라포랩스에 지원하게 된 이유는 지원하게 된 이유는 스쿼드
-                  조직을 통해 제품의 전 영역을 빠짐없이 관리하고, 지표 기반으로
-                  성과를 파악하는 방식이{" "}
-                  <strong>
-                    제가 추구하는 개발 방향성과 맞닿아 있기 때문입니다.
-                  </strong>{" "}
-                  비즈니스를 모듈화해 관리하는 구조 속에서 각 스쿼드가 명확한
-                  비전을 가지고 자율적으로 움직이는 모습은, 개발 과정에서
-                  결과물에 대한 동기부여를 얻기 쉽게 해줍니다. 또한, 권한과
-                  자율성을 바탕으로 구성원을 신뢰하는 문화는
-                  <strong>
-                    제가 적극적으로 의견을 제시하고 성장할 수 있는 토대가 된다고
-                  </strong>{" "}
-                  생각합니다. 의사결정 과정이 투명하고, DM 대신 공식 채널을
-                  활용해 집중해야 할 커뮤니케이션 경로를 최소화하는 점 또한 업무
-                  효율성을 높여주는 부분이라 큰 매력을 느꼈습니다. 이러한 환경
-                  속에서 제 경험을 살려 기여하고, 동시에 팀과 함께 빠르게
-                  성장하고자 지원했습니다.
+                  제가 라포랩스에 지원하게 된 이유는 지원하게 된 이유는 스쿼드 조직을 통해 제품의 전 영역을 빠짐없이
+                  관리하고, 지표 기반으로 성과를 파악하는 방식이{" "}
+                  <strong>제가 추구하는 개발 방향성과 맞닿아 있기 때문입니다.</strong> 비즈니스를 모듈화해 관리하는 구조
+                  속에서 각 스쿼드가 명확한 비전을 가지고 자율적으로 움직이는 모습은, 개발 과정에서 결과물에 대한
+                  동기부여를 얻기 쉽게 해줍니다. 또한, 권한과 자율성을 바탕으로 구성원을 신뢰하는 문화는
+                  <strong>제가 적극적으로 의견을 제시하고 성장할 수 있는 토대가 된다고</strong> 생각합니다. 의사결정
+                  과정이 투명하고, DM 대신 공식 채널을 활용해 집중해야 할 커뮤니케이션 경로를 최소화하는 점 또한 업무
+                  효율성을 높여주는 부분이라 큰 매력을 느꼈습니다. 이러한 환경 속에서 제 경험을 살려 기여하고, 동시에
+                  팀과 함께 빠르게 성장하고자 지원했습니다.
                 </p>
               </div>
             </CardContent>
@@ -220,17 +186,13 @@ export function ResumePageLayout() {
             <CardContent className="p-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                    온라인 포트폴리오
-                  </h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">온라인 포트폴리오</h3>
                   <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
                     프로젝트 상세 내용, 기술 스택 등을 확인하실 수 있습니다.
                   </p>
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-sm">
-                      <span className="font-medium text-gray-700 dark:text-gray-300">
-                        URL:
-                      </span>
+                      <span className="font-medium text-gray-700 dark:text-gray-300">URL:</span>
                       <a
                         href="https://joblonnie-portfolio.vercel.app/"
                         target="_blank"
@@ -241,9 +203,7 @@ export function ResumePageLayout() {
                       </a>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
-                      <span className="font-medium text-gray-700 dark:text-gray-300">
-                        단일 페이지:
-                      </span>
+                      <span className="font-medium text-gray-700 dark:text-gray-300">단일 페이지:</span>
                       <a
                         href="https://joblonnie-portfolio.vercel.app/single-page"
                         target="_blank"
@@ -268,19 +228,12 @@ export function ResumePageLayout() {
           </h2>
           <div className="space-y-6 print:space-y-3">
             {portfolioData.companies.map((company, index) => (
-              <Card
-                key={index}
-                className="bg-card border avoid-break project-card"
-              >
+              <Card key={index} className="bg-card border avoid-break project-card">
                 <CardContent className="p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {company.position}
-                      </h3>
-                      <p className="text-lg text-mocha-500 font-medium">
-                        {company.name}
-                      </p>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{company.position}</h3>
+                      <p className="text-lg text-mocha-500 font-medium">{company.name}</p>
                     </div>
                     <div className="text-right text-gray-500 dark:text-gray-400">
                       <p className="font-medium">{company.period}</p>
@@ -290,9 +243,7 @@ export function ResumePageLayout() {
 
                   {/* 주요 성과 */}
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                      주요 성과
-                    </h4>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">주요 성과</h4>
                     <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                       {company.achievementList.map((achievement, achIndex) => (
                         <li key={achIndex} className="flex items-start gap-2">
@@ -333,8 +284,7 @@ export function ResumePageLayout() {
 
                               {/* 프로젝트 요약 */}
                               <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3">
-                                {project.detailedDescription?.summary ||
-                                  project.background}
+                                {project.detailedDescription?.summary || project.background}
                               </p>
 
                               {/* 프로젝트 상세 */}
@@ -346,129 +296,94 @@ export function ResumePageLayout() {
                                       사용 기술
                                     </p>
                                     <div className="flex flex-wrap gap-1">
-                                      {project.technologies
-                                        .slice(0, 8)
-                                        .map((tech, techIndex) => (
-                                          <Badge
-                                            key={techIndex}
-                                            variant="outline"
-                                            className="text-xs"
-                                          >
-                                            {tech}
-                                          </Badge>
-                                        ))}
+                                      {project.technologies.slice(0, 8).map((tech, techIndex) => (
+                                        <Badge key={techIndex} variant="outline" className="text-xs">
+                                          {tech}
+                                        </Badge>
+                                      ))}
                                     </div>
                                   </div>
                                 )}
 
                                 {/* 주요 기여사항 */}
-                                {project.structuralContributions &&
-                                  project.structuralContributions.length >
-                                    0 && (
-                                    <div>
-                                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
-                                        <Briefcase className="h-3 w-3" />
-                                        주요 기여사항
-                                      </p>
-                                      <div className="space-y-2">
-                                        {project.structuralContributions.map(
-                                          (contribution, idx) => (
-                                            <div
-                                              key={idx}
-                                              className="bg-gray-50 dark:bg-gray-800/50 p-2 rounded text-xs"
-                                            >
-                                              <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                                {contribution.title}
-                                              </div>
+                                {project.structuralContributions && project.structuralContributions.length > 0 && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
+                                      <Briefcase className="h-3 w-3" />
+                                      주요 기여사항
+                                    </p>
+                                    <div className="space-y-2">
+                                      {project.structuralContributions.map((contribution, idx) => (
+                                        <div key={idx} className="bg-gray-50 dark:bg-gray-800/50 p-2 rounded text-xs">
+                                          <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                            {contribution.title}
+                                          </div>
 
-                                              {/* solutionList 표시 */}
-                                              {contribution.solutionList &&
-                                                contribution.solutionList
-                                                  .length > 0 && (
-                                                  <div className="space-y-1 mb-2">
-                                                    {contribution.solutionList.map(
-                                                      (
-                                                        solution,
-                                                        solutionIndex
-                                                      ) => (
-                                                        <div
-                                                          key={solutionIndex}
-                                                          className="border-l-2 border-gray-300 pl-2"
-                                                        >
-                                                          <div className="font-medium text-gray-600 dark:text-gray-200 text-xs">
-                                                            {solution.title}
-                                                          </div>
-                                                          <div className="text-gray-500 dark:text-gray-300 text-xs">
-                                                            {
-                                                              solution.description
-                                                            }
-                                                          </div>
-                                                        </div>
-                                                      )
-                                                    )}
+                                          {/* solutionList 표시 */}
+                                          {contribution.solutionList && contribution.solutionList.length > 0 && (
+                                            <div className="space-y-1 mb-2">
+                                              {contribution.solutionList.map((solution, solutionIndex) => (
+                                                <div key={solutionIndex} className="border-l-2 border-gray-300 pl-2">
+                                                  <div className="font-medium text-gray-600 dark:text-gray-200 text-xs">
+                                                    {solution.title}
                                                   </div>
-                                                )}
-
-                                              <ul className="space-y-1">
-                                                {contribution.achievementList.map(
-                                                  (achievement, achIdx) => (
-                                                    <li
-                                                      key={achIdx}
-                                                      className="flex items-start gap-1 text-gray-600 dark:text-gray-400"
-                                                    >
-                                                      <div className="w-1 h-1 bg-gray-500 rounded-full mt-1.5 flex-shrink-0" />
-                                                      <span>{achievement}</span>
-                                                    </li>
-                                                  )
-                                                )}
-                                              </ul>
+                                                  <div className="text-gray-500 dark:text-gray-300 text-xs">
+                                                    {solution.description}
+                                                  </div>
+                                                </div>
+                                              ))}
                                             </div>
-                                          )
-                                        )}
-                                      </div>
+                                          )}
+
+                                          <ul className="space-y-1">
+                                            {contribution.achievementList.map((achievement, achIdx) => (
+                                              <li
+                                                key={achIdx}
+                                                className="flex items-start gap-1 text-gray-600 dark:text-gray-400"
+                                              >
+                                                <div className="w-1 h-1 bg-gray-500 rounded-full mt-1.5 flex-shrink-0" />
+                                                <span>{achievement}</span>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                      ))}
                                     </div>
-                                  )}
+                                  </div>
+                                )}
 
                                 {/* 기술적 기여 */}
-                                {project.technicalContributions &&
-                                  project.technicalContributions.length > 0 && (
-                                    <div>
-                                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
-                                        <Code className="h-3 w-3" />
-                                        기술적 기여
-                                      </p>
-                                      <div className="space-y-2">
-                                        {project.technicalContributions.map(
-                                          (contribution, idx) => (
-                                            <div
-                                              key={idx}
-                                              className="bg-gray-50 dark:bg-gray-800/50 p-2 rounded text-xs"
-                                            >
-                                              <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                                {contribution.title}
-                                              </div>
-                                              <div className="text-gray-600 dark:text-gray-400 leading-relaxed mb-2">
-                                                {contribution.description}
-                                              </div>
-                                              <ul className="space-y-1">
-                                                {contribution.achievementList.map(
-                                                  (achievement, achIdx) => (
-                                                    <li
-                                                      key={achIdx}
-                                                      className="flex items-start gap-1 text-gray-600 dark:text-gray-400"
-                                                    >
-                                                      <div className="w-1 h-1 bg-gray-500 rounded-full mt-1.5 flex-shrink-0" />
-                                                      <span>{achievement}</span>
-                                                    </li>
-                                                  )
-                                                )}
-                                              </ul>
-                                            </div>
-                                          )
-                                        )}
-                                      </div>
+                                {project.technicalContributions && project.technicalContributions.length > 0 && (
+                                  <div>
+                                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-1">
+                                      <Code className="h-3 w-3" />
+                                      기술적 기여
+                                    </p>
+                                    <div className="space-y-2">
+                                      {project.technicalContributions.map((contribution, idx) => (
+                                        <div key={idx} className="bg-gray-50 dark:bg-gray-800/50 p-2 rounded text-xs">
+                                          <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                            {contribution.title}
+                                          </div>
+                                          <div className="text-gray-600 dark:text-gray-400 leading-relaxed mb-2">
+                                            {contribution.description}
+                                          </div>
+                                          <ul className="space-y-1">
+                                            {contribution.achievementList.map((achievement, achIdx) => (
+                                              <li
+                                                key={achIdx}
+                                                className="flex items-start gap-1 text-gray-600 dark:text-gray-400"
+                                              >
+                                                <div className="w-1 h-1 bg-gray-500 rounded-full mt-1.5 flex-shrink-0" />
+                                                <span>{achievement}</span>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                      ))}
                                     </div>
-                                  )}
+                                  </div>
+                                )}
 
                                 {/* 프로젝트 성과 */}
                                 {project.detailedDescription?.results && (
@@ -480,10 +395,7 @@ export function ResumePageLayout() {
                                     <ul className="space-y-1">
                                       {project.detailedDescription.results
                                         .split(".")
-                                        .filter(
-                                          (sentence) =>
-                                            sentence.trim().length > 10
-                                        )
+                                        .filter((sentence) => sentence.trim().length > 10)
                                         .slice(0, 4)
                                         .map((achievement, idx) => (
                                           <li
@@ -491,9 +403,7 @@ export function ResumePageLayout() {
                                             className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
                                           >
                                             <div className="w-1 h-1 bg-mocha-500 rounded-full mt-2 flex-shrink-0" />
-                                            <span>
-                                              {achievement.trim() + "."}
-                                            </span>
+                                            <span>{achievement.trim() + "."}</span>
                                           </li>
                                         ))}
                                     </ul>
@@ -507,16 +417,14 @@ export function ResumePageLayout() {
                                       핵심 키워드
                                     </p>
                                     <div className="flex flex-wrap gap-1">
-                                      {project.keywords
-                                        .slice(0, 4)
-                                        .map((keyword, keywordIndex) => (
-                                          <span
-                                            key={keywordIndex}
-                                            className="px-2 py-1 bg-mocha-500/10 text-mocha-500 text-xs rounded-full"
-                                          >
-                                            {keyword}
-                                          </span>
-                                        ))}
+                                      {project.keywords.slice(0, 4).map((keyword, keywordIndex) => (
+                                        <span
+                                          key={keywordIndex}
+                                          className="px-2 py-1 bg-mocha-500/10 text-mocha-500 text-xs rounded-full"
+                                        >
+                                          {keyword}
+                                        </span>
+                                      ))}
                                     </div>
                                   </div>
                                 )}
@@ -543,15 +451,9 @@ export function ResumePageLayout() {
             <CardContent className="p-6">
               <div className="flex justify-between items-start">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    서경대학교
-                  </h3>
-                  <p className="text-lg text-gray-600 dark:text-gray-300">
-                    나노융합공학과
-                  </p>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    학점 3.7 / 4.5
-                  </p>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">서경대학교</h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-300">나노융합공학과</p>
+                  <p className="text-gray-500 dark:text-gray-400">학점 3.7 / 4.5</p>
                 </div>
                 <div className="text-right text-gray-500 dark:text-gray-400">
                   <p className="font-medium">2017.03 - 2021.02</p>
@@ -592,5 +494,5 @@ export function ResumePageLayout() {
         }
       `}</style>
     </div>
-  );
+  )
 }

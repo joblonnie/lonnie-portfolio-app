@@ -1,7 +1,8 @@
 "use client";
 
-import { TemplateResumePageLayout } from "@/components/resume/template-resume";
+import { ResumePageLayout } from "@/components/portfolio/resume-page-layout";
+import { RapporlabsResumePageLayout } from "@/components/resume/rapportlabs-resume";
 
 export default function ResumePage() {
-  return <TemplateResumePageLayout />;
+  return <RapporlabsResumePageLayout />;
 }

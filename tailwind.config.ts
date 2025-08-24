@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config: Config = {
   darkMode: ["class"],
@@ -53,34 +53,34 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Mocha 팔레트를 CSS 변수로 정의
-        mocha: {
-          50: "hsl(var(--mocha-50))",
-          100: "hsl(var(--mocha-100))",
-          200: "hsl(var(--mocha-200))",
-          300: "hsl(var(--mocha-300))",
-          400: "hsl(var(--mocha-400))",
-          500: "hsl(var(--mocha-500))", // #A47864
-          600: "hsl(var(--mocha-600))",
-          700: "hsl(var(--mocha-700))",
-          800: "hsl(var(--mocha-800))",
-          900: "hsl(var(--mocha-900))",
-          950: "hsl(var(--mocha-950))",
+        // Soft Lime 팔레트 (#9CCC65)
+        lime: {
+          50: "hsl(88, 50%, 95%)",
+          100: "hsl(88, 50%, 90%)",
+          200: "hsl(88, 50%, 80%)",
+          300: "hsl(88, 50%, 70%)",
+          400: "hsl(88, 50%, 60%)",
+          500: "hsl(88, 50%, 50%)", // #9CCC65 base
+          600: "hsl(88, 50%, 40%)",
+          700: "hsl(88, 50%, 30%)",
+          800: "hsl(88, 50%, 20%)",
+          900: "hsl(88, 50%, 10%)",
+          950: "hsl(88, 50%, 5%)",
         },
 
-        // Cannoli Cream 팔레트를 CSS 변수로 정의
-        cannoli: {
-          50: "hsl(var(--cannoli-50))",
-          100: "hsl(var(--cannoli-100))",
-          200: "hsl(var(--cannoli-200))",
-          300: "hsl(var(--cannoli-300))",
-          400: "hsl(var(--cannoli-400))",
-          500: "hsl(var(--cannoli-500))", // #F1F0E2
-          600: "hsl(var(--cannoli-600))",
-          700: "hsl(var(--cannoli-700))",
-          800: "hsl(var(--cannoli-800))",
-          900: "hsl(var(--cannoli-900))",
-          950: "hsl(var(--cannoli-950))",
+        // Coral Orange 팔레트 (#FF7043)
+        coral: {
+          50: "hsl(14, 100%, 95%)",
+          100: "hsl(14, 100%, 90%)",
+          200: "hsl(14, 100%, 80%)",
+          300: "hsl(14, 100%, 70%)",
+          400: "hsl(14, 100%, 60%)",
+          500: "hsl(14, 100%, 50%)", // #FF7043 base
+          600: "hsl(14, 100%, 40%)",
+          700: "hsl(14, 100%, 30%)",
+          800: "hsl(14, 100%, 20%)",
+          900: "hsl(14, 100%, 10%)",
+          950: "hsl(14, 100%, 5%)",
         },
       },
       borderRadius: {
@@ -105,6 +105,6 @@ const config: Config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+} satisfies Config
 
-export default config;
+export default config

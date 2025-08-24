@@ -4,134 +4,48 @@
 
 @layer base {
   :root {
-    /* 기본 무채색 테마 */
-    --background: 0 0% 98%; /* 아주 연한 회색 */
-    --foreground: 222.2 84% 4.9%; /* Near Black */
-    --card: 0 0% 100%; /* 카드는 순백색 */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: var(--mocha-500); /* 또는 20 30% 50% */
-    --primary-foreground: 210 40% 98%; /* 글자색은 유지 가능 */
-    --secondary: 0 0% 96%; /* Light Gray - 무채색으로 변경 */
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 0 0% 96%; /* 무채색으로 변경 */
-    --muted-foreground: 215.4 16.3% 46.9%; /* Medium Gray */
-    --accent: 0 0% 96%; /* 무채색으로 변경 */
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 0 0% 91%; /* Light Border Gray - 무채색으로 변경 */
-    --input: 0 0% 91%; /* 무채색으로 변경 */
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-
-    /* Mocha Mousse 팔레트 (HSL)*/
-    --mocha-50: 20 30% 95%;
-    --mocha-100: 20 30% 90%;
-    --mocha-200: 20 30% 80%;
-    --mocha-300: 20 30% 70%;
-    --mocha-400: 20 30% 60%;
-    --mocha-500: 20 30% 50%;
-    --mocha-600: 20 30% 40%;
-    --mocha-700: 20 30% 30%;
-    --mocha-800: 20 30% 20%;
-    --mocha-900: 20 30% 10%;
-    --mocha-950: 20 30% 5%;
-
-    /* Cannoli Cream 팔레트 (HSL) */
-
-    --cannoli-50: 55 36% 98%;
-    --cannoli-100: 55 36% 95%;
-    --cannoli-200: 55 36% 90%;
-    --cannoli-300: 55 36% 85%;
-    --cannoli-400: 55 36% 80%;
-    --cannoli-500: 55 36% 75%;
-    --cannoli-600: 55 36% 65%;
-    --cannoli-700: 55 36% 55%;
-    --cannoli-800: 55 36% 45%;
-    --cannoli-900: 55 36% 35%;
-    --cannoli-950: 55 36% 25%;
-
-    /* Cornflower Blue 팔레트 (HSL) */
-    --cornflower-50: 220 100% 97%;
-    --cornflower-100: 220 100% 94%;
-    --cornflower-200: 220 100% 88%;
-    --cornflower-300: 220 100% 80%;
-    --cornflower-400: 220 100% 70%;
-    --cornflower-500: 220 79% 66%; /* #6495ED */
-    --cornflower-600: 220 79% 56%;
-    --cornflower-700: 220 79% 46%;
-    --cornflower-800: 220 79% 36%;
-    --cornflower-900: 220 79% 26%;
-    --cornflower-950: 220 79% 16%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    /* 다크 모드 무채색 테마 - 자연스러운 다크 그레이 */
-    --background: 0 0% 10%; /* 더 밝은 다크 그레이 */
-    --foreground: 0 0% 95%; /* 부드러운 흰색 */
-    --card: 0 0% 15%; /* 카드 배경 - 더 밝게 */
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 15%;
-    --popover-foreground: 0 0% 95%;
-    --primary: var(--mocha-500); /* 다크모드에서도 mocha 색상 사용 */
-    --primary-foreground: 0 0% 95%;
-    --secondary: 0 0% 18%; /* 부드러운 다크 그레이 */
-    --secondary-foreground: 0 0% 95%;
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 0% 18%;
-    --accent-foreground: 0 0% 95%;
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 0 0% 95%;
-    --border: 0 0% 25%; /* 경계선 - 더 밝게 */
-    --input: 0 0% 18%;
-    --ring: 0 0% 70%;
-
-    /* 다크 모드 Mocha 팔레트 - 따뜻하고 차분한 톤 */
-    --mocha-50: 25 20% 8%;
-    --mocha-100: 25 25% 12%;
-    --mocha-200: 25 30% 18%;
-    --mocha-300: 25 35% 25%;
-    --mocha-400: 25 40% 35%;
-    --mocha-500: 25 45% 45%; /* 메인 컬러 */
-    --mocha-600: 25 50% 55%;
-    --mocha-700: 25 55% 65%;
-    --mocha-800: 25 60% 75%;
-    --mocha-900: 25 65% 85%;
-    --mocha-950: 25 70% 92%;
-
-    /* 다크 모드 Cannoli 팔레트 - 따뜻한 크림 톤 */
-    --cannoli-50: 45 25% 10%;
-    --cannoli-100: 45 30% 15%;
-    --cannoli-200: 45 35% 22%;
-    --cannoli-300: 45 40% 30%;
-    --cannoli-400: 45 45% 40%;
-    --cannoli-500: 45 50% 50%;
-    --cannoli-600: 45 55% 60%;
-    --cannoli-700: 45 60% 70%;
-    --cannoli-800: 45 65% 80%;
-    --cannoli-900: 45 70% 88%;
-    --cannoli-950: 45 75% 94%;
-
-    /* 다크 모드 Cornflower Blue 팔레트 (HSL) */
-    --cornflower-50: 220 79% 10%;
-    --cornflower-100: 220 79% 15%;
-    --cornflower-200: 220 79% 20%;
-    --cornflower-300: 220 79% 30%;
-    --cornflower-400: 220 79% 40%;
-    --cornflower-500: 220 79% 50%;
-    --cornflower-600: 220 79% 60%;
-    --cornflower-700: 220 79% 70%;
-    --cornflower-800: 220 79% 80%;
-    --cornflower-900: 220 79% 90%;
-    --cornflower-950: 220 79% 95%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
   }
 }
 
@@ -144,260 +58,154 @@
   }
 }
 
-/* 책 페이지 스크롤 스타일 */
-.book-page {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(var(--cornflower-500)) transparent;
-}
-
-.book-page::-webkit-scrollbar {
-  width: 4px;
-}
-
-.book-page::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.book-page::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--cornflower-500));
-  border-radius: 2px;
-}
-
-.book-page::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(var(--cornflower-600));
-}
-
-/* 부드러운 전환 효과 */
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.duration-400 {
-  transition-duration: 400ms;
-}
-
-/* 키보드 포커스 스타일 */
-.focus\:ring-cornflower-500:focus {
-  --tw-ring-color: hsl(var(--cornflower-500));
-}
-
-/* 커스텀 그라데이션 */
-.gradient-cornflower {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--cornflower-50)) 0%,
-    hsl(var(--cornflower-100)) 50%,
-    hsl(var(--cornflower-200)) 100%
-  );
-}
-
-.dark .gradient-cornflower {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--cornflower-900)) 0%,
-    hsl(var(--cornflower-800)) 50%,
-    hsl(var(--cornflower-700)) 100%
-  );
-}
-
-/* Mocha 그라데이션 */
-.gradient-mocha {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--mocha-50)) 0%,
-    hsl(var(--mocha-100)) 50%,
-    hsl(var(--mocha-200)) 100%
-  );
-}
-
-.dark .gradient-mocha {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--mocha-800)) 0%,
-    hsl(var(--mocha-700)) 50%,
-    hsl(var(--mocha-600)) 100%
-  );
-}
-
-/* Cannoli 그라데이션 */
-.gradient-cannoli {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--cannoli-50)) 0%,
-    hsl(var(--cannoli-100)) 50%,
-    hsl(var(--cannoli-200)) 100%
-  );
-}
-
-.dark .gradient-cannoli {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--cannoli-800)) 0%,
-    hsl(var(--cannoli-700)) 50%,
-    hsl(var(--cannoli-600)) 100%
-  );
-}
-
-/* PDF 프린트 스타일 */
+/* Print styles */
 @media print {
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+  .avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
-  html,
-  body {
-    height: auto !important;
-    overflow: visible !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  .project-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   @page {
-    size: A4 !important;
-    margin: 0.5in !important;
-    -webkit-print-color-adjust: exact !important;
+    margin: 0.5in;
+    size: A4;
   }
 
-  /* 페이지 브레이크 방지 */
-  .avoid-break {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  /* 카드 요소들이 잘리지 않도록 */
-  .card,
-  [data-card] {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    margin-bottom: 1rem !important;
-  }
-
-  /* 섹션 단위 페이지 브레이크 */
-  section {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  /* 프로젝트 카드 스타일 조정 */
-  .project-card {
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    margin-bottom: 1rem !important;
-  }
-
-  /* 컨테이너 크기 조정 */
-  .container,
-  .max-w-4xl,
-  .max-w-6xl {
-    max-width: none !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  /* 히든 요소들 숨기기 */
-  .print\\:hidden,
-  button:not(.print\\:block),
-  .theme-toggle,
-  .scroll-to-top,
-  .fixed,
-  .sticky,
-  .z-50,
-  .z-40 {
+  /* Hide elements that shouldn't print */
+  .print\\:hidden {
     display: none !important;
   }
 
-  /* 배경색과 그림자 유지 */
-  .bg-card,
-  .bg-background,
-  .bg-secondary {
-    background-color: white !important;
-    border: 1px solid #e5e7eb !important;
+  /* Adjust spacing for print */
+  .print\\:space-y-2 > * + * {
+    margin-top: 0.5rem !important;
   }
 
-  .shadow-lg,
-  .shadow-xl,
-  .shadow-md {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+  .print\\:space-y-3 > * + * {
+    margin-top: 0.75rem !important;
   }
 
-  /* 텍스트 크기 조정 */
-  .text-5xl {
-    font-size: 2.5rem !important;
-  }
-
-  .text-4xl {
-    font-size: 2rem !important;
-  }
-
-  .text-3xl {
-    font-size: 1.5rem !important;
-  }
-
-  /* 그리드 레이아웃 조정 */
-  .grid-cols-1,
-  .grid-cols-2,
-  .md\\:grid-cols-2,
-  .lg\\:grid-cols-2 {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-  }
-
-  /* 간격 조정 */
-  .space-y-12 > :not([hidden]) ~ :not([hidden]) {
-    margin-top: 1.5rem !important;
-  }
-
-  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  .print\\:space-y-4 > * + * {
     margin-top: 1rem !important;
   }
 
-  .gap-8 {
-    gap: 1rem !important;
+  .print\\:space-y-6 > * + * {
+    margin-top: 1.5rem !important;
   }
 
-  .gap-6 {
-    gap: 0.75rem !important;
+  /* Adjust text sizes for print */
+  .print\\:text-xl {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
   }
 
-  /* 패딩 조정 */
-  .p-8 {
-    padding: 1rem !important;
+  .print\\:text-3xl {
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
   }
 
-  .p-6 {
+  /* Adjust dimensions for print */
+  .print\\:w-24 {
+    width: 6rem !important;
+  }
+
+  .print\\:h-24 {
+    height: 6rem !important;
+  }
+
+  .print\\:w-6 {
+    width: 1.5rem !important;
+  }
+
+  .print\\:h-6 {
+    height: 1.5rem !important;
+  }
+
+  .print\\:w-12 {
+    width: 3rem !important;
+  }
+
+  .print\\:h-12 {
+    height: 3rem !important;
+  }
+
+  .print\\:ring-2 {
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important;
+  }
+
+  .print\\:border-2 {
+    border-width: 2px !important;
+  }
+
+  .print\\:mb-2 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .print\\:mb-4 {
+    margin-bottom: 1rem !important;
+  }
+
+  .print\\:p-3 {
     padding: 0.75rem !important;
   }
 
-  /* 아바타 크기 조정 */
-  .w-32,
-  .h-32,
-  .w-40,
-  .h-40 {
-    width: 4rem !important;
-    height: 4rem !important;
+  .print\\:p-4 {
+    padding: 1rem !important;
   }
 
-  /* 프린트용 페이지 브레이크 클래스 */
-  .print-break-before {
-    page-break-before: always !important;
-    break-before: page !important;
+  .print\\:max-w-none {
+    max-width: none !important;
   }
 
-  .print-break-after {
-    page-break-after: always !important;
-    break-after: page !important;
+  .print\\:grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 
-  /* 프린트 시 모든 확장 가능한 요소들을 펼치기 */
-  .print\\:block {
-    display: block !important;
+  .print\\:gap-3 {
+    gap: 0.75rem !important;
   }
 
-  /* 프린트 시 확장된 프로젝트 내용 표시 */
-  [data-expanded="false"] .project-details {
-    display: block !important;
+  .print\\:text-base {
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+  }
+
+  .print\\:text-sm {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  .print\\:text-lg {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  .print\\:py-6 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .print\\:text-gray-900 {
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39 / var(--tw-text-opacity)) !important;
+  }
+
+  .print\\:h-5 {
+    height: 1.25rem !important;
+  }
+
+  .print\\:w-5 {
+    width: 1.25rem !important;
   }
 }
