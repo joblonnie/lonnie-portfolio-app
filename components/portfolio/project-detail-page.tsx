@@ -1,13 +1,18 @@
 "use client"
 
+import type React from "react"
+
 import { useEffect } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowLeft, Code, CheckCircle } from "lucide-react"
+import { Progress } from "@/components/ui/progress"
+import { ArrowLeft, Code, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import type { Project, ImprovementType } from "@/lib/types"
+import { mockPortfolioData } from "@/lib/mock-data"
 
 interface ProjectDetailPageProps {
   project: Project
@@ -16,19 +21,31 @@ interface ProjectDetailPageProps {
 const getImprovementTypeColor = (type: ImprovementType) => {
   switch (type) {
     case "UX":
-      return "bg-coral-100 text-coral-800 dark:bg-coral-900 dark:text-coral-200"
+      return "bg-coral-100 text-coral-800"
     case "DX":
-      return "bg-lime-100 text-lime-800 dark:bg-lime-900 dark:text-lime-200"
+      return "bg-lime-100 text-lime-800"
     default:
       return ""
   }
 }
 
 export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
+  const router = useRouter()
+
   // 페이지 로드 시 스크롤을 최상단으로 이동
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  // 프로젝트 간 이동을 위한 함수
+  const allProjects = mockPortfolioData.projects
+  const currentIndex = allProjects.findIndex((p) => p.projectId === project.projectId)
+  const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null
+  const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null
+
+  const handleProjectNavigation = (projectId: number) => {
+    router.push(`/project/${projectId}`)
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -52,7 +69,8 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                 className="w-full h-auto object-contain rounded-lg"
               />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">{project.title}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">{project.title}</h1>
+            {project.subtitle && <p className="text-xl text-gray-600 mb-4 font-medium">{project.subtitle}</p>}
             <p className="text-gray-600 mb-6 leading-relaxed">{project.background}</p>
 
             <div className="flex flex-wrap gap-2 mb-6">
@@ -80,6 +98,34 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           </div>
         </div>
 
+        {/* 기여도 요약 */}
+        {project.contributions && (
+          <Card className="mb-8">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">프로젝트 기여 요약</h2>
+              <div className="space-y-4">
+                {project.contributions.map((contribution, index) => (
+                  <div key={index} className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium text-gray-700">{contribution.category}</span>
+                      <span className="text-sm font-semibold text-gray-900">{contribution.percentage}%</span>
+                    </div>
+                    <Progress
+                      value={contribution.percentage}
+                      className="h-2"
+                      style={
+                        {
+                          "--progress-background": contribution.color,
+                        } as React.CSSProperties
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* 프로젝트 요약 */}
         {project.detailedDescription && (
           <Card className="mb-8">
@@ -103,6 +149,24 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                   <Code className="w-5 h-5 text-coral-500 mt-1 flex-shrink-0" />
                   <h3 className="text-lg font-semibold text-gray-900">{contribution.title}</h3>
                 </div>
+
+                {/* 미디어 콘텐츠 */}
+                {contribution.media && (
+                  <div className="mb-6">
+                    <div className="relative rounded-lg overflow-hidden border">
+                      <Image
+                        src={contribution.media.url || "/placeholder.svg"}
+                        alt={contribution.media.alt}
+                        width={800}
+                        height={400}
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                    {contribution.media.caption && (
+                      <p className="text-sm text-gray-500 mt-2 text-center italic">{contribution.media.caption}</p>
+                    )}
+                  </div>
+                )}
 
                 <div className="space-y-4">
                   {contribution.solutionList?.map((solution, solutionIndex) => (
@@ -140,7 +204,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
         </div>
 
         {/* 사용 기술 */}
-        <Card>
+        <Card className="mb-8">
           <CardContent className="p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">사용 기술</h2>
             <div className="flex flex-wrap gap-2">
@@ -152,6 +216,41 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             </div>
           </CardContent>
         </Card>
+
+        {/* 프로젝트 간 이동 */}
+        <div className="flex justify-between items-center pt-8 border-t border-gray-200">
+          <div className="flex-1">
+            {prevProject && (
+              <Button
+                variant="ghost"
+                onClick={() => handleProjectNavigation(prevProject.projectId)}
+                className="flex items-center gap-2 hover:bg-gray-100 p-4 rounded-lg"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <div className="text-left">
+                  <p className="text-xs text-gray-500">이전 프로젝트</p>
+                  <p className="font-medium text-gray-900 truncate max-w-48">{prevProject.title}</p>
+                </div>
+              </Button>
+            )}
+          </div>
+
+          <div className="flex-1 text-right">
+            {nextProject && (
+              <Button
+                variant="ghost"
+                onClick={() => handleProjectNavigation(nextProject.projectId)}
+                className="flex items-center gap-2 hover:bg-gray-100 p-4 rounded-lg ml-auto"
+              >
+                <div className="text-right">
+                  <p className="text-xs text-gray-500">다음 프로젝트</p>
+                  <p className="font-medium text-gray-900 truncate max-w-48">{nextProject.title}</p>
+                </div>
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )

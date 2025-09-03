@@ -88,6 +88,7 @@ export const mockPortfolioData: PortfolioData = {
       projectId: 1,
       companyId: "saige",
       title: "SAIGE VIMS 통합 모니터링 시스템 개발 (Monorepo 기반)",
+      subtitle: "NX Monorepo 아키텍처 도입으로 개발 효율성 85% 향상",
       image: "/vims-logo.svg?text=SAIGE+VIMS+모니터링+시스템",
       background:
         "산업용 AI 기반 검사·모니터링 시스템을 통합 관리하는 웹 플랫폼으로, 초기 설계부터 개발을 주도하고 고객사별 맞춤 요구와 VOC를 반영해 실시간 데이터 처리·시각화 기능을 구현한 프로젝트입니다.",
@@ -187,11 +188,34 @@ export const mockPortfolioData: PortfolioData = {
         "Vite",
       ],
       codeSnippets: [],
+      contributions: [
+        {
+          category: "아키텍처 설계",
+          percentage: 90,
+          color: "#9CCC65",
+        },
+        {
+          category: "실시간 데이터 처리",
+          percentage: 85,
+          color: "#FF7043",
+        },
+        {
+          category: "UI/UX 구현",
+          percentage: 80,
+          color: "#9CCC65",
+        },
+        {
+          category: "성능 최적화",
+          percentage: 95,
+          color: "#FF7043",
+        },
+      ],
     },
     {
       projectId: 2,
       companyId: "saige",
       title: "SAIGE SAFETY 제품 개발 - MVP부터 GS 인증까지",
+      subtitle: "1개월 내 MVP 출시 후 GS 인증 1등급 획득",
       image: "/safety-logo.svg?text=SAIGE+SAFETY+안전+관리+시스템",
       background:
         "산업 현장의 안전 이벤트를 실시간 감지·시각화하는 AI 기반 모니터링 웹 애플리케이션으로, MVP 단계부터 개발을 주도하고 고객사 VOC를 반영한 기능 고도화와 GS 인증 대응까지 전 과정에 참여한 프로젝트입니다.",
@@ -262,11 +286,34 @@ export const mockPortfolioData: PortfolioData = {
         "Webpack",
       ],
       codeSnippets: [],
+      contributions: [
+        {
+          category: "MVP 개발",
+          percentage: 85,
+          color: "#9CCC65",
+        },
+        {
+          category: "에러 핸들링 체계",
+          percentage: 90,
+          color: "#FF7043",
+        },
+        {
+          category: "알림 시스템",
+          percentage: 95,
+          color: "#9CCC65",
+        },
+        {
+          category: "모니터링 UI",
+          percentage: 80,
+          color: "#FF7043",
+        },
+      ],
     },
     {
       projectId: 3,
       companyId: "saige",
       title: "SAIGE VISION 수율 모니터링 시스템 신규 개발",
+      subtitle: "ECharts 기반 재사용 가능한 차트 라이브러리 구축",
       image: "/vision-logo.svg",
       background:
         "생산 라인의 Vision 검사 결과와 시스템 리소스를 실시간으로 통합 모니터링하는 대시보드를 신규 개발하고, 기존에 분리돼 있던 수율·리소스 관리의 가시성과 운영 효율성을 개선한 프로젝트입니다.",
@@ -314,11 +361,34 @@ export const mockPortfolioData: PortfolioData = {
       keywords: ["실시간 모니터링", "ECharts 시각화", "성능 최적화", "차트 라이브러리", "데이터 대시보드"],
       technologies: ["React", "TypeScript", "TanStack Query", "ECharts", "Prometheus", "Vite"],
       codeSnippets: [],
+      contributions: [
+        {
+          category: "차트 컴포넌트 모듈화",
+          percentage: 85,
+          color: "#9CCC65",
+        },
+        {
+          category: "실시간 데이터 관리",
+          percentage: 90,
+          color: "#FF7043",
+        },
+        {
+          category: "대시보드 구축",
+          percentage: 80,
+          color: "#9CCC65",
+        },
+        {
+          category: "리소스 모니터링",
+          percentage: 95,
+          color: "#FF7043",
+        },
+      ],
     },
     {
       projectId: 6,
       companyId: "saige",
       title: "SAIGE ELEMENTS 디자인 시스템 구축 및 기여",
+      subtitle: "Storybook과 Chromatic을 활용한 컴포넌트 문서화 및 시각적 테스트 환경 구축",
       image: "/elements-logo.svg?text=SAIGE+ELEMENTS+디자인+시스템",
       background:
         "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 React 기반 디자인 시스템을 구축하고, 컨트리뷰터로 참여하여 컴포넌트 개발, 문서화, 품질 관리 체계를 수립한 프로젝트입니다.",
@@ -425,11 +495,34 @@ export const mockPortfolioData: PortfolioData = {
       keywords: ["디자인 시스템", "컴포넌트 라이브러리", "Storybook", "Chromatic", "UI 일관성"],
       technologies: ["React", "TypeScript", "Storybook", "Chromatic", "Styled Components", "Rollup"],
       codeSnippets: [],
+      contributions: [
+        {
+          category: "디자인 시스템 고도화",
+          percentage: 85,
+          color: "#9CCC65",
+        },
+        {
+          category: "컴포넌트 문서화",
+          percentage: 90,
+          color: "#FF7043",
+        },
+        {
+          category: "협업 체계 구축",
+          percentage: 80,
+          color: "#9CCC65",
+        },
+        {
+          category: "버전 관리 및 배포 자동화",
+          percentage: 95,
+          color: "#FF7043",
+        },
+      ],
     },
     {
       projectId: 4,
       companyId: "media-corpus",
       title: "비윤리적 표현 말뭉치연구 분석 및 시범 구축 사업 프로젝트",
+      subtitle: "3단 UI 구조 설계 및 데이터 수집 체계 구축",
       image: "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
       background:
         "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템 개발 프로젝트입니다. 3단 UI 구조, 단계별 UX, feature-based 아키텍처 등 평가 효율성과 확장성을 극대화하는 구조를 설계·구현했습니다.",
@@ -492,11 +585,34 @@ export const mockPortfolioData: PortfolioData = {
       keywords: ["사용자 테스트 주도", "대량 데이터 수집", "3단 UI 구조", "평가 시스템", "단독 개발"],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       codeSnippets: [],
+      contributions: [
+        {
+          category: "UI 구조 설계",
+          percentage: 85,
+          color: "#9CCC65",
+        },
+        {
+          category: "데이터 수집 체계",
+          percentage: 90,
+          color: "#FF7043",
+        },
+        {
+          category: "평가 시스템 개발",
+          percentage: 80,
+          color: "#9CCC65",
+        },
+        {
+          category: "사용자 테스트",
+          percentage: 95,
+          color: "#FF7043",
+        },
+      ],
     },
     {
       projectId: 5,
       companyId: "media-corpus",
       title: "말뭉치 언어의 사회적 인식 조사 분류 사업 프로젝트",
+      subtitle: "드래그 기반 라벨링 시스템 구축",
       image: "/media-logo-1.png?text=문장+라벨링+시스템",
       background:
         "400,000건 이상의 대용량 라벨링 데이터를 효율적으로 수집·운영하기 위해 드래그 기반 라벨링, 무한 스크롤, 실시간 품질 관리 등 직관적이고 성능 최적화된 웹 라벨링/검수 시스템을 설계·구현한 프로젝트입니다.",
@@ -557,6 +673,28 @@ export const mockPortfolioData: PortfolioData = {
       keywords: ["대용량 데이터 처리", "드래그 기반 라벨링", "성능 최적화", "품질 관리", "워크플로우 구축"],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       codeSnippets: [],
+      contributions: [
+        {
+          category: "드래그 기반 라벨링",
+          percentage: 85,
+          color: "#9CCC65",
+        },
+        {
+          category: "무한 스크롤",
+          percentage: 90,
+          color: "#FF7043",
+        },
+        {
+          category: "라벨링 시스템 개발",
+          percentage: 80,
+          color: "#9CCC65",
+        },
+        {
+          category: "실시간 품질 관리",
+          percentage: 95,
+          color: "#FF7043",
+        },
+      ],
     },
   ],
   goals: {

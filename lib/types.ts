@@ -74,6 +74,12 @@ export interface StructuralContribution {
   solutionList?: Solution[]
   subtitle?: string
   achievementList: Achievement[]
+  media?: {
+    type: "image" | "gif"
+    url: string
+    alt: string
+    caption?: string
+  } // 미디어 정보 추가
 }
 
 export interface TechnicalContribution {
@@ -85,6 +91,7 @@ export interface TechnicalContribution {
 export interface Project {
   projectId: number
   title: string
+  subtitle?: string // 부제목 추가
   background: string
   image?: string
   detailedDescription?: {
@@ -106,6 +113,12 @@ export interface Project {
   problem?: string
   solution?: string
   learning?: string
+  // 기여도 정보 추가
+  contributions?: {
+    category: string
+    percentage: number
+    color: string
+  }[]
 }
 
 export interface LearningItem {
