@@ -15,7 +15,7 @@ const menuItems = [
 export function TopNav({ currentPage, onPageChange }: TopNavProps) {
   const handleArticleClick = () => {
     // Article 클릭 시 별도 페이지로 이동
-    window.location.href = "/article"
+    onPageChange("article")
   }
 
   return (
@@ -39,8 +39,12 @@ export function TopNav({ currentPage, onPageChange }: TopNavProps) {
             Home
           </Button>
           <Button
-            variant="ghost"
-            className="flex items-center gap-2 px-4 py-2 text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
+            variant={currentPage === "article" ? "default" : "ghost"}
+            className={`flex items-center gap-2 px-4 py-2 text-base font-medium ${
+              currentPage === "article"
+                ? "bg-coral-500 hover:bg-coral-600 text-white"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800"
+            }`}
             onClick={handleArticleClick}
           >
             Article

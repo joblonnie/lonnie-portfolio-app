@@ -2,12 +2,12 @@
 
 import type React from "react"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { ArrowLeft, Code, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowLeft, Code, CheckCircle, ChevronLeft, ChevronRight, ArrowUp, Grid3X3 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -31,11 +31,27 @@ const getImprovementTypeColor = (type: ImprovementType) => {
 
 export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
   const router = useRouter()
+  const [showScrollTop, setShowScrollTop] = useState(false)
+  const [showProjectNav, setShowProjectNav] = useState(false)
 
   // 페이지 로드 시 스크롤을 최상단으로 이동
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  // 스크롤 이벤트 리스너
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   // 프로젝트 간 이동을 위한 함수
   const allProjects = mockPortfolioData.projects
@@ -47,17 +63,28 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
     router.push(`/project/${projectId}`)
   }
 
+  const toggleProjectNav = () => {
+    setShowProjectNav(!showProjectNav)
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-4xl mx-auto p-6">
         {/* 헤더 */}
         <div className="mb-12">
-          <Link href="/">
-            <Button variant="ghost" className="mb-6 hover:bg-gray-100">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              돌아가기
+          <div className="flex justify-between items-center mb-6">
+            <Link href="/">
+              <Button variant="ghost" className="hover:bg-gray-100">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                돌아가기
+              </Button>
+            </Link>
+
+            <Button variant="outline" onClick={toggleProjectNav} className="flex items-center gap-2 bg-transparent">
+              <Grid3X3 className="w-4 h-4" />
+              프로젝트 목록
             </Button>
-          </Link>
+          </div>
 
           <div className="mb-8">
             <div className="w-full max-w-xs mx-auto mb-6 p-8">
@@ -97,6 +124,81 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             </div>
           </div>
         </div>
+
+        {/* 프로젝트 네비게이션 모달 */}
+        {showProjectNav && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">프로젝트 목록</h2>
+                  <Button variant="ghost" onClick={toggleProjectNav}>
+                    ✕
+                  </Button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {allProjects.map((proj) => (
+                    <Card
+                      key={proj.projectId}
+                      className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                        proj.projectId === project.projectId ? "ring-2 ring-lime-500 bg-lime-50" : "hover:scale-[1.02]"
+                      }`}
+                      onClick={() => {
+                        if (proj.projectId !== project.projectId) {
+                          handleProjectNavigation(proj.projectId)
+                        }
+                        setShowProjectNav(false)
+                      }}
+                    >
+                      <CardContent className="p-4">
+                        <div className="flex items-start gap-4">
+                          <div className="w-16 h-16 flex-shrink-0">
+                            <Image
+                              src={proj.image || "/placeholder.svg"}
+                              alt={proj.title}
+                              width={64}
+                              height={64}
+                              className="w-full h-full object-contain rounded"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-gray-900 text-sm mb-1 line-clamp-2">{proj.title}</h3>
+                            {proj.subtitle && (
+                              <p className="text-xs text-gray-600 mb-2 line-clamp-1">{proj.subtitle}</p>
+                            )}
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
+                              <span>{proj.period}</span>
+                              <span>•</span>
+                              <span>{proj.role}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-1 mt-2">
+                              {proj.keywords?.slice(0, 2).map((keyword, index) => (
+                                <span key={index} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                                  {keyword}
+                                </span>
+                              ))}
+                              {proj.keywords && proj.keywords.length > 2 && (
+                                <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                                  +{proj.keywords.length - 2}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        {proj.projectId === project.projectId && (
+                          <div className="mt-3 pt-3 border-t border-lime-200">
+                            <span className="text-xs font-medium text-lime-700">현재 보고 있는 프로젝트</span>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* 기여도 요약 */}
         {project.contributions && (
@@ -224,12 +326,12 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
               <Button
                 variant="ghost"
                 onClick={() => handleProjectNavigation(prevProject.projectId)}
-                className="flex items-center gap-2 hover:bg-gray-100 p-4 rounded-lg"
+                className="flex items-center gap-2 hover:bg-gray-100 p-4 rounded-lg w-full justify-start"
               >
-                <ChevronLeft className="w-4 h-4" />
-                <div className="text-left">
+                <ChevronLeft className="w-4 h-4 flex-shrink-0" />
+                <div className="text-left min-w-0 flex-1">
                   <p className="text-xs text-gray-500">이전 프로젝트</p>
-                  <p className="font-medium text-gray-900 truncate max-w-48">{prevProject.title}</p>
+                  <p className="font-medium text-gray-900 truncate">{prevProject.title}</p>
                 </div>
               </Button>
             )}
@@ -240,18 +342,29 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
               <Button
                 variant="ghost"
                 onClick={() => handleProjectNavigation(nextProject.projectId)}
-                className="flex items-center gap-2 hover:bg-gray-100 p-4 rounded-lg ml-auto"
+                className="flex items-center gap-2 hover:bg-gray-100 p-4 rounded-lg w-full justify-end ml-auto"
               >
-                <div className="text-right">
+                <div className="text-right min-w-0 flex-1">
                   <p className="text-xs text-gray-500">다음 프로젝트</p>
-                  <p className="font-medium text-gray-900 truncate max-w-48">{nextProject.title}</p>
+                  <p className="font-medium text-gray-900 truncate">{nextProject.title}</p>
                 </div>
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-4 h-4 flex-shrink-0" />
               </Button>
             )}
           </div>
         </div>
       </div>
+
+      {/* 최상단 이동 버튼 */}
+      {showScrollTop && (
+        <Button
+          onClick={scrollToTop}
+          size="icon"
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-lime-500 hover:bg-lime-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        >
+          <ArrowUp className="h-5 w-5" />
+        </Button>
+      )}
     </div>
   )
 }
