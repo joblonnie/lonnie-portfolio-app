@@ -110,6 +110,29 @@ export interface Introduction {
   capabilities: Capability[]
 }
 
+export interface Education {
+  institution: string
+  degree: string
+  period: string
+  gpa?: string
+  description: string
+}
+
+export interface Certification {
+  name: string
+  issuer: string
+  date: string
+  description?: string
+}
+
+export interface Activity {
+  title: string
+  organization: string
+  period: string
+  description: string
+  type: "스터디" | "프로젝트" | "봉사활동" | "기타"
+}
+
 export interface LearningPlan {
   title: string
   description: string
@@ -140,6 +163,7 @@ export interface Article {
   date: string
   category: string
   tags: string[]
+  notionUrl: string
   content: string
 }
 
@@ -149,6 +173,9 @@ export interface PortfolioData {
   skills: Skills
   companies: Company[]
   projects: Project[]
+  education: Education[]
+  certifications: Certification[]
+  activities: Activity[]
   goals: Goals
   articles: Article[]
 }
