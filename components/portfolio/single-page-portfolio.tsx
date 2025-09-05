@@ -418,6 +418,47 @@ export function SinglePagePortfolio() {
                                 </div>
                               )}
 
+                              {/* 핵심 기술 및 상태 관리 섹션 추가 */}
+                              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                                <Card>
+                                  <CardHeader className="pb-3">
+                                    <CardTitle className="text-base">핵심 기술</CardTitle>
+                                  </CardHeader>
+                                  <CardContent className="pt-0">
+                                    <div className="flex flex-wrap gap-2">
+                                      {portfolioData.skills.core.map((skill, index) => (
+                                        <Badge
+                                          key={index}
+                                          variant="secondary"
+                                          className="bg-gray-100 text-gray-800 text-xs"
+                                        >
+                                          {skill}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </CardContent>
+                                </Card>
+
+                                <Card>
+                                  <CardHeader className="pb-3">
+                                    <CardTitle className="text-base">상태 관리</CardTitle>
+                                  </CardHeader>
+                                  <CardContent className="pt-0">
+                                    <div className="flex flex-wrap gap-2">
+                                      {portfolioData.skills.stateManagement.map((skill, index) => (
+                                        <Badge
+                                          key={index}
+                                          variant="outline"
+                                          className="border-gray-200 text-gray-700 text-xs"
+                                        >
+                                          {skill}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              </div>
+
                               {/* 프로젝트 상세 내용 - 확장 시 표시 */}
                               <div
                                 className="mt-6 pt-6 border-t border-gray-200 space-y-6 max-w-full overflow-hidden"

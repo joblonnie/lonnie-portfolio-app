@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import { Database, Users } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,21 +11,29 @@ import { ArrowLeft, Code, CheckCircle, ChevronLeft, ChevronRight, ArrowUp, Grid3
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import type { Project, ImprovementType } from "@/lib/types"
+import type { Project, ImprovementCategory } from "@/lib/types"
 import { mockPortfolioData } from "@/lib/mock-data"
 
 interface ProjectDetailPageProps {
   project: Project
 }
 
-const getImprovementTypeColor = (type: ImprovementType) => {
-  switch (type) {
-    case "UX":
-      return "bg-coral-100 text-coral-800"
-    case "DX":
-      return "bg-lime-100 text-lime-800"
+const getCategoryColor = (category: ImprovementCategory) => {
+  switch (category) {
+    case "성능최적화":
+      return "bg-blue-100 text-blue-800"
+    case "사용자경험":
+      return "bg-green-100 text-green-800"
+    case "개발효율성":
+      return "bg-purple-100 text-purple-800"
+    case "시스템안정성":
+      return "bg-red-100 text-red-800"
+    case "협업개선":
+      return "bg-yellow-100 text-yellow-800"
+    case "품질향상":
+      return "bg-indigo-100 text-indigo-800"
     default:
-      return ""
+      return "bg-gray-100 text-gray-800"
   }
 }
 
@@ -65,6 +73,26 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
 
   const toggleProjectNav = () => {
     setShowProjectNav(!showProjectNav)
+  }
+
+  // 카테고리별로 성과를 그룹화하는 함수
+  const groupAchievementsByCategory = (achievements: Array<{ text: string; category: ImprovementCategory }>) => {
+    const grouped: Record<ImprovementCategory, string[]> = {
+      성능최적화: [],
+      사용자경험: [],
+      개발효율성: [],
+      시스템안정성: [],
+      협업개선: [],
+      품질향상: [],
+    }
+
+    achievements.forEach((achievement) => {
+      if (grouped[achievement.category]) {
+        grouped[achievement.category].push(achievement.text)
+      }
+    })
+
+    return grouped
   }
 
   return (
@@ -120,6 +148,27 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
               <div>
                 <span className="font-medium text-gray-900">팀 구성:</span>
                 <p className="text-gray-600 mt-1">프론트엔드 {project.frontendDevelopers}명</p>
+
+                {/* 팀 변화 정보 표시 */}
+                {project.teamChanges && project.teamChanges.length > 0 && (
+                  <div className="mt-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Users className="w-4 h-4 text-gray-500" />
+                      <span className="font-medium text-gray-900 text-xs">팀 구성 변화:</span>
+                    </div>
+                    <div className="space-y-2">
+                      {project.teamChanges.map((change, index) => (
+                        <div key={index} className="bg-gray-50 p-2 rounded text-xs">
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-600">{change.period}</span>
+                            <span className="font-medium text-gray-900">FE {change.frontendDevelopers}명</span>
+                          </div>
+                          {change.reason && <p className="text-gray-500 mt-1 text-xs">{change.reason}</p>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -233,14 +282,63 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           <Card className="mb-8">
             <CardContent className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">프로젝트 요약</h2>
-              <p className="text-gray-700 mb-4">{project.detailedDescription.summary}</p>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-medium text-gray-900 mb-2">최종 성과</h3>
-                <p className="text-gray-700">{project.detailedDescription.results}</p>
+              <p className="text-gray-700 mb-6 leading-relaxed">{project.detailedDescription.summary}</p>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-lime-600" />
+                  주요 성과
+                </h3>
+                <div className="space-y-3">
+                  {project.detailedDescription.results.map((result, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-lime-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 leading-relaxed">{result}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
         )}
+
+        {/* 핵심 기술 및 상태 관리 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {project.coreStack && (
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <Code className="w-5 h-5 text-coral-500" />
+                  핵심 기술
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.coreStack.map((tech, index) => (
+                    <Badge key={index} className="bg-coral-100 text-coral-800 font-medium">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {project.stateManagement && project.stateManagement.length > 0 && (
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <Database className="w-5 h-5 text-lime-500" />
+                  상태 관리
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.stateManagement.map((state, index) => (
+                    <Badge key={index} className="bg-lime-100 text-lime-800 font-medium">
+                      {state}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
 
         {/* 기여사항 */}
         <div className="mb-8 space-y-6">
@@ -274,31 +372,41 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                   {contribution.solutionList?.map((solution, solutionIndex) => (
                     <div key={solutionIndex} className="border-l-4 border-lime-300 pl-4">
                       <h4 className="font-medium text-gray-900 mb-2">{solution.title}</h4>
-                      <p className="text-gray-700">{solution.description}</p>
+                      <p className="text-gray-700 leading-relaxed">{solution.description}</p>
                     </div>
                   ))}
                 </div>
 
                 <div className="mt-6">
-                  <h4 className="font-medium text-gray-900 mb-3">주요 성과</h4>
-                  <ul className="space-y-3">
-                    {contribution.achievementList.map((achievement, achievementIndex) => (
-                      <li key={achievementIndex} className="flex items-start gap-3">
-                        <CheckCircle className="w-4 h-4 text-lime-600 mt-0.5 flex-shrink-0" />
-                        <div className="flex-1">
-                          <span className="text-gray-700">{achievement.text}</span>
-                          {achievement.type && getImprovementTypeColor(achievement.type) && (
-                            <Badge
-                              className={`ml-2 text-xs ${getImprovementTypeColor(achievement.type)}`}
-                              variant="secondary"
-                            >
-                              {achievement.type}
-                            </Badge>
-                          )}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
+                  <h4 className="font-medium text-gray-900 mb-4">주요 성과</h4>
+                  {(() => {
+                    const groupedAchievements = groupAchievementsByCategory(contribution.achievementList)
+                    return (
+                      <div className="space-y-4">
+                        {Object.entries(groupedAchievements).map(([category, achievements]) => {
+                          if (achievements.length === 0) return null
+                          return (
+                            <div key={category} className="space-y-2">
+                              <Badge
+                                className={`${getCategoryColor(category as ImprovementCategory)} text-xs font-medium`}
+                                variant="secondary"
+                              >
+                                {category}
+                              </Badge>
+                              <div className="ml-4 space-y-2">
+                                {achievements.map((achievement, achievementIndex) => (
+                                  <div key={achievementIndex} className="flex items-start gap-3">
+                                    <CheckCircle className="w-4 h-4 text-lime-600 mt-0.5 flex-shrink-0" />
+                                    <p className="text-gray-700 leading-relaxed">{achievement}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )
+                  })()}
                 </div>
               </CardContent>
             </Card>
@@ -306,18 +414,20 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
         </div>
 
         {/* 사용 기술 */}
-        <Card className="mb-8">
-          <CardContent className="p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">사용 기술</h2>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies?.map((tech, index) => (
-                <Badge key={index} variant="secondary" className="bg-gray-100 text-gray-700">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        {project.technologies && (
+          <Card className="mb-8">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">사용 기술</h2>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech, index) => (
+                  <Badge key={index} variant="secondary" className="bg-gray-100 text-gray-700">
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* 프로젝트 간 이동 */}
         <div className="flex justify-between items-center pt-8 border-t border-gray-200">

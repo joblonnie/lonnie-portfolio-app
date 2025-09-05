@@ -32,102 +32,86 @@ export interface Skills {
   collaborationTools: string[]
 }
 
-export interface CodeSnippet {
-  title: string
-  description?: string
-  language: string
-  code: string
-  filename?: string
+export interface Company {
+  id: string
+  name: string
+  position: string
+  period: string
+  duration: string
+  achievementList: string[]
 }
 
-export interface TechnologyReasoning {
-  category: string
-  technologies: string[]
-  reasoning: string
-}
-
-export interface ProjectPhase {
-  phase: string
-  description: string
-  outcomes: string[]
-  detailsLink?: {
-    title: string
-    url: string
-    description: string
-  }
-}
-
-export type Solution = {
-  title: string
-  description: string
-}
-
-export type ImprovementType = "UX" | "DX"
+export type ImprovementCategory = "성능최적화" | "사용자경험" | "개발효율성" | "시스템안정성" | "협업개선" | "품질향상"
 
 export interface Achievement {
   text: string
-  type?: ImprovementType
+  category: ImprovementCategory
+}
+
+export interface Solution {
+  title: string
+  description: string
+}
+
+export interface MediaContent {
+  url: string
+  alt: string
+  caption?: string
 }
 
 export interface StructuralContribution {
   title: string
-  solutionList?: Solution[]
-  subtitle?: string
+  solutionList: Solution[]
   achievementList: Achievement[]
-  media?: {
-    type: "image" | "gif"
-    url: string
-    alt: string
-    caption?: string
-  } // 미디어 정보 추가
+  media?: MediaContent
 }
 
-export interface TechnicalContribution {
+export interface DetailedDescription {
+  summary: string
+  results: string[]
+}
+
+export interface Contribution {
+  category: string
+  percentage: number
+  color: string
+}
+
+export interface TeamChange {
+  period: string
+  frontendDevelopers: number
+  reason: string
+}
+
+export interface CodeSnippet {
   title: string
-  description: string
-  achievementList: Achievement[]
+  language: string
+  code: string
+  description?: string
 }
 
 export interface Project {
   projectId: number
+  companyId: string
   title: string
-  subtitle?: string // 부제목 추가
-  background: string
+  subtitle?: string
   image?: string
-  detailedDescription?: {
-    summary: string
-    results: string
-  }
-  projectPhases?: ProjectPhase[]
+  background: string
+  detailedDescription?: DetailedDescription
   structuralContributions?: StructuralContribution[]
-  technicalContributions?: TechnicalContribution[]
   period: string
   role: string
-  frontendDevelopers?: number
+  frontendDevelopers: number
   keywords?: string[]
   technologies?: string[]
-  technologyReasoning?: TechnologyReasoning[]
-  achievementList?: string[]
   codeSnippets?: CodeSnippet[]
-  companyId: string
-  problem?: string
-  solution?: string
-  learning?: string
-  // 기여도 정보 추가
-  contributions?: {
-    category: string
-    percentage: number
-    color: string
-  }[]
+  contributions?: Contribution[]
+  coreStack?: string[]
+  stateManagement?: string[]
+  teamChanges?: TeamChange[]
 }
 
-export interface LearningItem {
-  title: string
-  description: string
-  progress: number
-}
-
-export interface LearningCategory {
+export interface LearningPlan {
   title: string
   description: string
 }
@@ -139,27 +123,15 @@ export interface FutureVision {
   description: string
 }
 
-export interface GoalAchievement {
-  title: string
+export interface Vision {
+  quote: string
   description: string
 }
 
 export interface Goals {
-  learningPlan: LearningCategory[]
+  learningPlan: LearningPlan[]
   futureVision: FutureVision[]
-  vision: {
-    quote: string
-    description: string
-  }
-}
-
-export interface Company {
-  id: string
-  name: string
-  position: string
-  period: string
-  duration: string
-  achievementList: string[]
+  vision: Vision
 }
 
 export interface Article {
@@ -176,8 +148,8 @@ export interface PortfolioData {
   personalInfo: PersonalInfo
   introduction: Introduction
   skills: Skills
+  companies: Company[]
   projects: Project[]
   goals: Goals
-  companies: Company[]
   articles: Article[]
 }

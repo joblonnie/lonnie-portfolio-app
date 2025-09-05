@@ -261,6 +261,35 @@ export function IntroductionPage({ onNavigate }: Props) {
                                 ))}
                               </div>
                             )}
+
+                            {/* 핵심 기술 및 상태 관리 */}
+                            {(project.coreStack || project.stateManagement) && (
+                              <div className="mt-3 pt-3 border-t border-gray-200">
+                                {project.coreStack && (
+                                  <div className="mb-2">
+                                    <span className="text-xs font-medium text-gray-500 mb-1 block">핵심 기술</span>
+                                    <div className="flex flex-wrap gap-1">
+                                      {project.coreStack.map((tech, techIndex) => (
+                                        <span
+                                          key={techIndex}
+                                          className="px-2 py-1 bg-coral-100 text-coral-700 text-xs rounded-full font-medium"
+                                        >
+                                          {tech}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                                {project.stateManagement && (
+                                  <div>
+                                    <span className="text-xs font-medium text-gray-500 mb-1 block">상태 관리</span>
+                                    <span className="px-2 py-1 bg-lime-100 text-lime-700 text-xs rounded-full font-medium">
+                                      {project.stateManagement}
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            )}
                           </CardContent>
                         </Card>
                       ))}

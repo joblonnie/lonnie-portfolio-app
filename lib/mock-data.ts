@@ -87,16 +87,22 @@ export const mockPortfolioData: PortfolioData = {
     {
       projectId: 1,
       companyId: "saige",
-      title: "SAIGE VIMS 통합 모니터링 시스템 개발 (Monorepo 기반)",
-      subtitle: "NX Monorepo 아키텍처 도입으로 개발 효율성 85% 향상",
+      title: "영상 기반 결함·이상 동작 실시간 모니터링 시스템",
+      subtitle: "사내 제품 - SAIGE VIMS 개발",
       image: "/vims-logo.svg?text=SAIGE+VIMS+모니터링+시스템",
       background:
         "산업용 AI 기반 검사·모니터링 시스템을 통합 관리하는 웹 플랫폼으로, 초기 설계부터 개발을 주도하고 고객사별 맞춤 요구와 VOC를 반영해 실시간 데이터 처리·시각화 기능을 구현한 프로젝트입니다.",
       detailedDescription: {
         summary:
           "NX 모노레포 및 Feature-Sliced Design 아키텍처 도입으로 개발 생산성과 유지보수성을 크게 향상시키고, Zustand 기반 독립 상태 관리 구조 설계로 실시간 데이터 충돌을 최소화한 프로젝트",
-        results:
-          "NX 모노레포와 Feature-Sliced Design 아키텍처 도입으로 유지보수성과 확장성을 크게 높였고, Zustand 기반 독립 상태 관리 구조로 실시간 데이터 충돌을 방지하며 관리 효율을 극대화했습니다. ECharts와 TanStack Query 연동 최적화로 API 호출을 최소화하고 실시간 데이터 업데이트 성능을 개선했습니다. 이벤트 기반 WebSocket 재연결 로직으로 시스템 안정성과 리소스 효율성을 높였으며, 공통 패키지 모듈화로 개발 기간을 50% 단축하고 기술 부채를 해소했습니다.",
+        results: [
+          "공통 패키지를 기반으로 3개 앱 개발, 신규 프로젝트 개발 기간 50% 단축",
+          "모듈화 구조로 유지보수성과 확장성 대폭 향상",
+          "메모리 누수 방지 및 안정적 렌더링으로 장시간 모니터링 환경 확보",
+          "가상 스크롤 적용으로 DOM 렌더링 부담 최소화",
+          "seekbar 기반 즉시 탐색으로 원하는 시점 빠른 확인 가능",
+          "'결함 찾기' 버튼 제안 및 구현으로 검수 정확도와 효율성 크게 향상",
+        ],
       },
       structuralContributions: [
         {
@@ -105,13 +111,13 @@ export const mockPortfolioData: PortfolioData = {
             {
               title: "NX Monorepo + Feature-Sliced Design(FSD) 도입",
               description:
-                "여러 고객사의 요구사항을 빠르게 반영하고, 공통 로직을 효과적으로 공유하면서도 각 모듈을 독립적으로 관리할 수 있는 개발 구조가 필요했습니다. NX Monorepo를 도입하여 프로젝트를 앱 단위(workspace)로 구분하고, Feature-Sliced Design 아키텍처로 각 slice 단위의 위계와 의존성을 명확하게 정의했습니다. 공통 UI/비즈니스 로직은 라이브러리 패키지로 모듈화하여 독립적인 빌드 및 배포 체계를 구축했습니다.",
+                "여러 고객사의 요구사항을 빠르게 반영하고, 공통 로직을 효과적으로 공유하면서도 각 모듈을 독립적으로 관리할 수 있는 개발 구조가 필요했습니다. NX Monorepo를 도입하여 프로젝트를 앱 단위(workspace)로 구분하고, 앱 레벨에서는 Feature-Sliced Design 아키텍처로 비즈니스 도메인 중심의 구조를 적용했습니다. 공통 패키지는 기능/기술 중심의 단순화된 모듈 구조로 설계하여 독립적인 빌드 및 배포 체계를 구축했습니다.",
             },
           ],
           achievementList: [
-            { text: "공통 패키지를 기반으로 3개 앱 개발, 신규 프로젝트 개발 기간 50% 단축", type: "DX" },
-            { text: "모듈화 구조로 유지보수성과 확장성 대폭 향상", type: "DX" },
-            { text: "코드 중복 제거 및 기술 부채 해소", type: "DX" },
+            { text: "공통 패키지를 기반으로 3개 앱 개발, 신규 프로젝트 개발 기간 50% 단축", category: "개발효율성" },
+            { text: "모듈화 구조로 유지보수성과 확장성 대폭 향상", category: "개발효율성" },
+            { text: "코드 중복 제거 및 기술 부채 해소", category: "품질향상" },
           ],
         },
         {
@@ -124,8 +130,8 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "메모리 누수 방지 및 안정적 렌더링으로 장시간 모니터링 환경 확보", type: "UX" },
-            { text: "대용량 이미지 처리 최적화로 시스템 안정성 향상", type: "UX" },
+            { text: "메모리 누수 방지 및 안정적 렌더링으로 장시간 모니터링 환경 확보", category: "성능최적화" },
+            { text: "대용량 이미지 처리 최적화로 시스템 안정성 향상", category: "시스템안정성" },
           ],
         },
         {
@@ -138,8 +144,8 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "가상 스크롤 적용으로 DOM 렌더링 부담 최소화", type: "UX" },
-            { text: "펄스 효과 + 빠른 이동 버튼으로 알람 인지 속도 향상 및 UX 개선", type: "UX" },
+            { text: "가상 스크롤 적용으로 DOM 렌더링 부담 최소화", category: "성능최적화" },
+            { text: "펄스 효과 + 빠른 이동 버튼으로 알람 인지 속도 향상 및 UX 개선", category: "사용자경험" },
           ],
         },
         {
@@ -152,8 +158,8 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "seekbar 기반 즉시 탐색으로 원하는 시점 빠른 확인 가능", type: "UX" },
-            { text: "이상 이벤트 연동으로 문제 구간 정확한 탐지 및 검수 시간 단축", type: "UX" },
+            { text: "seekbar 기반 즉시 탐색으로 원하는 시점 빠른 확인 가능", category: "사용자경험" },
+            { text: "이상 이벤트 연동으로 문제 구간 정확한 탐지 및 검수 시간 단축", category: "사용자경험" },
           ],
         },
         {
@@ -166,9 +172,9 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "이미지 확대/축소 기능으로 이상 발생 지점 정확한 탐색 가능", type: "UX" },
-            { text: "'결함 찾기' 버튼 제안 및 구현으로 검수 정확도와 효율성 크게 향상", type: "UX" },
-            { text: "즉시 이동 기능으로 사용자가 빠르고 확실하게 문제 확인 가능", type: "UX" },
+            { text: "이미지 확대/축소 기능으로 이상 발생 지점 정확한 탐색 가능", category: "사용자경험" },
+            { text: "'결함 찾기' 버튼 제안 및 구현으로 검수 정확도와 효율성 크게 향상", category: "사용자경험" },
+            { text: "즉시 이동 기능으로 사용자가 빠르고 확실하게 문제 확인 가능", category: "사용자경험" },
           ],
         },
       ],
@@ -191,39 +197,59 @@ export const mockPortfolioData: PortfolioData = {
       contributions: [
         {
           category: "아키텍처 설계",
-          percentage: 90,
+          percentage: 40,
           color: "#9CCC65",
         },
         {
           category: "실시간 데이터 처리",
-          percentage: 85,
+          percentage: 60,
           color: "#FF7043",
         },
         {
           category: "UI/UX 구현",
-          percentage: 80,
+          percentage: 90,
           color: "#9CCC65",
         },
         {
           category: "성능 최적화",
-          percentage: 95,
+          percentage: 70,
           color: "#FF7043",
+        },
+      ],
+      coreStack: ["React", "TypeScript", "NX Monorepo"],
+      stateManagement: ["Zustand"],
+      teamChanges: [
+        {
+          period: "2025.01 - 2025.03",
+          frontendDevelopers: 1,
+          reason: "프로젝트 초기 설계 단계",
+        },
+        {
+          period: "2025.04 - 2025.08",
+          frontendDevelopers: 2,
+          reason: "개발 속도 향상을 위한 인력 증원",
         },
       ],
     },
     {
       projectId: 2,
       companyId: "saige",
-      title: "SAIGE SAFETY 제품 개발 - MVP부터 GS 인증까지",
-      subtitle: "1개월 내 MVP 출시 후 GS 인증 1등급 획득",
+      title: "산업 현장 안전 이벤트 실시간 모니터링 시스템",
+      subtitle: "사내 제품 - SAIGE SAFETY 개발",
       image: "/safety-logo.svg?text=SAIGE+SAFETY+안전+관리+시스템",
       background:
         "산업 현장의 안전 이벤트를 실시간 감지·시각화하는 AI 기반 모니터링 웹 애플리케이션으로, MVP 단계부터 개발을 주도하고 고객사 VOC를 반영한 기능 고도화와 GS 인증 대응까지 전 과정에 참여한 프로젝트입니다.",
       detailedDescription: {
         summary:
           "팀 내 자체 개발 상태관리 라이브러리 X-view-model 기반으로 1개월 내 MVP를 출시하고, 사용자 VOC 기반 기능 고도화를 통해 GS 인증 1등급 획득까지 주도한 신규 제품 개발 프로젝트",
-        results:
-          "MVP를 신속히 출시하여 시장 검증과 제품화를 앞당겼으며, 사용자 VOC를 반영해 알림 중요도 분류, 이벤트 상세 조회, 리포트 연동 등 실질적인 UX 개선을 달성했습니다. 또한 WebSocket 기반 실시간 이미지 수신·Bounding Box 시각화·Virtual Scrolling 등 다양한 성능 최적화를 통해 대용량 데이터에서도 원활한 사용자 경험을 제공했습니다. 이러한 개선과 품질 표준화로 GS 인증 1등급을 획득하여 제품 신뢰성과 경쟁력을 확보했습니다.",
+        results: [
+          "체계적인 에러 핸들링으로 안정적 시스템 동작 확보",
+          "일관된 API 에러 코드 체계로 개발 효율성 향상",
+          "중요도별 알림 분류로 신속한 상황 인지 및 대응 가능",
+          "1~25개 채널 유연한 레이아웃 지원으로 맞춤형 모니터링 환경 제공",
+          "드래그 앤 드롭 기반 직관적인 채널 관리 인터페이스 구현",
+          "채널 수 기반 자동 품질 조정으로 성능 최적화 달성",
+        ],
       },
       structuralContributions: [
         {
@@ -236,9 +262,9 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "체계적인 에러 핸들링으로 안정적 시스템 동작 확보", type: "UX" },
-            { text: "일관된 API 에러 코드 체계로 개발 효율성 향상", type: "DX" },
-            { text: "Toast 기반 피드백으로 신뢰성 있는 사용자 경험 제공", type: "UX" },
+            { text: "체계적인 에러 핸들링으로 안정적 시스템 동작 확보", category: "시스템안정성" },
+            { text: "일관된 API 에러 코드 체계로 개발 효율성 향상", category: "개발효율성" },
+            { text: "Toast 기반 피드백으로 신뢰성 있는 사용자 경험 제공", category: "사용자경험" },
           ],
         },
         {
@@ -251,8 +277,8 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "중요도별 알림 분류로 신속한 상황 인지 및 대응 가능", type: "UX" },
-            { text: "차별화된 UI로 중대 알림 우선순위 명확화", type: "UX" },
+            { text: "중요도별 알림 분류로 신속한 상황 인지 및 대응 가능", category: "사용자경험" },
+            { text: "차별화된 UI로 중대 알림 우선순위 명확화", category: "사용자경험" },
           ],
         },
         {
@@ -265,9 +291,9 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "1~25개 채널 유연한 레이아웃 지원으로 맞춤형 모니터링 환경 제공", type: "UX" },
-            { text: "드래그 앤 드롭 기반 직관적인 채널 관리 인터페이스 구현", type: "UX" },
-            { text: "채널 수 기반 자동 품질 조정으로 성능 최적화 달성", type: "UX" },
+            { text: "1~25개 채널 유연한 레이아웃 지원으로 맞춤형 모니터링 환경 제공", category: "사용자경험" },
+            { text: "드래그 앤 드롭 기반 직관적인 채널 관리 인터페이스 구현", category: "사용자경험" },
+            { text: "채널 수 기반 자동 품질 조정으로 성능 최적화 달성", category: "성능최적화" },
           ],
         },
       ],
@@ -289,39 +315,48 @@ export const mockPortfolioData: PortfolioData = {
       contributions: [
         {
           category: "MVP 개발",
-          percentage: 85,
+          percentage: 60,
           color: "#9CCC65",
         },
         {
           category: "에러 핸들링 체계",
-          percentage: 90,
+          percentage: 80,
           color: "#FF7043",
         },
         {
           category: "알림 시스템",
-          percentage: 95,
+          percentage: 100,
           color: "#9CCC65",
         },
         {
           category: "모니터링 UI",
-          percentage: 80,
+          percentage: 25,
           color: "#FF7043",
         },
       ],
+      coreStack: ["React", "TypeScript", "WebSocket"],
+      stateManagement: ["X-view-model"],
+      teamChanges: [],
     },
     {
       projectId: 3,
       companyId: "saige",
-      title: "SAIGE VISION 수율 모니터링 시스템 신규 개발",
-      subtitle: "ECharts 기반 재사용 가능한 차트 라이브러리 구축",
+      title: "AI 비전 검사 기반 공정 운영·배치·수율 모니터링 시스템",
+      subtitle: "사내 제품 - SAIGE VISION 개발",
       image: "/vision-logo.svg",
       background:
         "생산 라인의 Vision 검사 결과와 시스템 리소스를 실시간으로 통합 모니터링하는 대시보드를 신규 개발하고, 기존에 분리돼 있던 수율·리소스 관리의 가시성과 운영 효율성을 개선한 프로젝트입니다.",
       detailedDescription: {
         summary:
           "ECharts 기반 재사용 가능한 차트 라이브러리를 구축하고 TanStack Query를 활용한 효율적인 실시간 데이터 관리 체계를 구현하여 운영 효율성과 가시성을 크게 개선한 신규 개발 프로젝트",
-        results:
-          "라인별 및 검사기별 수율과 시스템 리소스를 실시간으로 모니터링하는 통합 대시보드를 구축하여 운영 효율성 및 가시성을 크게 개선했습니다. 공통 차트 라이브러리 개발로 개발 생산성을 약 30% 향상시키고 유지보수성을 강화했으며, TanStack Query의 refetchInterval과 커스텀 훅을 결합한 관심사별 데이터 관리 체계를 구축하여 각 페이지에서 필요한 데이터만을 효율적으로 관리하고, 불필요한 API 호출을 최소화했습니다.",
+        results: [
+          "수율 대시보드, 리소스 모니터링 등 다양한 페이지에서 공통 차트 활용",
+          "Legend 컴포넌트 분리로 디자인 시안 대응 속도 향상",
+          "BaseChart 인터페이스로 일관된 차트 개발 경험 제공",
+          "리소스별 독립 훅으로 관심사 분리 및 성능 최적화",
+          "필요한 컴포넌트만 리렌더링하여 불필요한 렌더링 최소화",
+          "실시간 모니터링 환경에서 안정적인 성능 확보",
+        ],
       },
       structuralContributions: [
         {
@@ -334,9 +369,9 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "수율 대시보드, 리소스 모니터링 등 다양한 페이지에서 공통 차트 활용", type: "DX" },
-            { text: "Legend 컴포넌트 분리로 디자인 시안 대응 속도 향상", type: "DX" },
-            { text: "BaseChart 인터페이스로 일관된 차트 개발 경험 제공", type: "DX" },
+            { text: "수율 대시보드, 리소스 모니터링 등 다양한 페이지에서 공통 차트 활용", category: "개발효율성" },
+            { text: "Legend 컴포넌트 분리로 디자인 시안 대응 속도 향상", category: "개발효율성" },
+            { text: "BaseChart 인터페이스로 일관된 차트 개발 경험 제공", category: "개발효율성" },
           ],
         },
         {
@@ -349,9 +384,9 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "리소스별 독립 훅으로 관심사 분리 및 성능 최적화", type: "DX" },
-            { text: "필요한 컴포넌트만 리렌더링하여 불필요한 렌더링 최소화", type: "DX" },
-            { text: "실시간 모니터링 환경에서 안정적인 성능 확보", type: "UX" },
+            { text: "리소스별 독립 훅으로 관심사 분리 및 성능 최적화", category: "성능최적화" },
+            { text: "필요한 컴포넌트만 리렌더링하여 불필요한 렌더링 최소화", category: "성능최적화" },
+            { text: "실시간 모니터링 환경에서 안정적인 성능 확보", category: "시스템안정성" },
           ],
         },
       ],
@@ -364,39 +399,48 @@ export const mockPortfolioData: PortfolioData = {
       contributions: [
         {
           category: "차트 컴포넌트 모듈화",
-          percentage: 85,
+          percentage: 100,
           color: "#9CCC65",
         },
         {
           category: "실시간 데이터 관리",
-          percentage: 90,
+          percentage: 80,
           color: "#FF7043",
         },
         {
           category: "대시보드 구축",
-          percentage: 80,
+          percentage: 100,
           color: "#9CCC65",
         },
         {
           category: "리소스 모니터링",
-          percentage: 95,
+          percentage: 100,
           color: "#FF7043",
         },
       ],
+      coreStack: ["React", "TypeScript", "ECharts"],
+      stateManagement: ["TanStack Query"],
+      teamChanges: [],
     },
     {
       projectId: 6,
       companyId: "saige",
-      title: "SAIGE ELEMENTS 디자인 시스템 구축 및 기여",
-      subtitle: "Storybook과 Chromatic을 활용한 컴포넌트 문서화 및 시각적 테스트 환경 구축",
+      title: "사내 디자인 시스템",
+      subtitle: "사내 제품 - SAIGE ELEMENTS 개발",
       image: "/elements-logo.svg?text=SAIGE+ELEMENTS+디자인+시스템",
       background:
         "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 React 기반 디자인 시스템을 구축하고, 컨트리뷰터로 참여하여 컴포넌트 개발, 문서화, 품질 관리 체계를 수립한 프로젝트입니다.",
       detailedDescription: {
         summary:
           "Storybook과 Chromatic을 활용한 컴포넌트 문서화 및 시각적 테스트 환경을 구축하고, 재사용 가능한 UI 컴포넌트 라이브러리를 개발하여 팀 전체의 개발 생산성과 UI 일관성을 크게 향상시킨 프로젝트",
-        results:
-          "Switch, Banner, DatePicker 등 핵심 컴포넌트를 개발하고 Storybook 문서화를 통해 사용법과 가이드라인을 체계화했습니다. Chromatic을 활용한 시각적 회귀 테스트와 디자이너-개발자 간 협업 워크플로우를 구축하여 디자인 품질을 보장했습니다. 사내 3개 제품에 점진적 도입을 통해 호환성 검증과 안정화를 진행했으며, 컴포넌트 재사용률 70% 달성으로 개발 효율성을 크게 향상시켰습니다.",
+        results: [
+          "사내 3개 제품에 점진적 도입으로 UI 일관성 70% 향상",
+          "컴포넌트 재사용률 70% 달성으로 개발 효율성 대폭 향상",
+          "Primitive 토큰 기반 Theme 토큰 매핑으로 개발 환경 활용성 향상",
+          "Storybook 문서화로 컴포넌트 사용법 학습 시간 60% 단축",
+          "점진적 도입으로 기존 제품 안정성 100% 유지",
+          "체계적인 버전 관리로 하위 호환성 보장",
+        ],
       },
       structuralContributions: [
         {
@@ -421,14 +465,14 @@ export const mockPortfolioData: PortfolioData = {
           achievementList: [
             {
               text: "사내 3개 제품에 점진적 도입으로 UI 일관성 70% 향상",
-              type: "UX",
+              category: "사용자경험",
             },
             {
               text: "컴포넌트 재사용률 70% 달성으로 개발 효율성 대폭 향상",
-              type: "DX",
+              category: "개발효율성",
             },
-            { text: "디자인 토큰 시스템으로 브랜딩 일관성 확보", type: "UX" },
-            { text: "Dynamic Subset 적용으로 폰트 번들 사이즈 최적화 및 렌더링 성능 향상", type: "UX" },
+            { text: "디자인 토큰 시스템으로 브랜딩 일관성 확보", category: "사용자경험" },
+            { text: "Dynamic Subset 적용으로 폰트 번들 사이즈 최적화 및 렌더링 성능 향상", category: "성능최적화" },
           ],
         },
         {
@@ -448,21 +492,21 @@ export const mockPortfolioData: PortfolioData = {
           achievementList: [
             {
               text: "Primitive 토큰 기반 Theme 토큰 매핑으로 개발 환경 활용성 향상",
-              type: "DX",
+              category: "개발효율성",
             },
             {
               text: "피그마 코드 Syntax 제안으로 토큰 사용성 개선 및 DX 향상",
-              type: "DX",
+              category: "개발효율성",
             },
             {
               text: "Storybook 문서화로 컴포넌트 사용법 학습 시간 60% 단축",
-              type: "DX",
+              category: "개발효율성",
             },
             {
               text: "Chromatic 기반 시각적 테스트로 디자인 QA 프로세스 자동화",
-              type: "DX",
+              category: "개발효율성",
             },
-            { text: "디자이너-개발자 협업 효율성 50% 향상", type: "DX" },
+            { text: "디자이너-개발자 협업 효율성 50% 향상", category: "협업개선" },
           ],
         },
         {
@@ -480,12 +524,12 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "점진적 도입으로 기존 제품 안정성 100% 유지", type: "DX" },
+            { text: "점진적 도입으로 기존 제품 안정성 100% 유지", category: "시스템안정성" },
             {
               text: "자동화된 배포 시스템으로 업데이트 리드타임 80% 단축",
-              type: "DX",
+              category: "개발효율성",
             },
-            { text: "체계적인 버전 관리로 하위 호환성 보장", type: "DX" },
+            { text: "체계적인 버전 관리로 하위 호환성 보장", category: "시스템안정성" },
           ],
         },
       ],
@@ -497,40 +541,44 @@ export const mockPortfolioData: PortfolioData = {
       codeSnippets: [],
       contributions: [
         {
-          category: "디자인 시스템 고도화",
-          percentage: 85,
-          color: "#9CCC65",
-        },
-        {
           category: "컴포넌트 문서화",
-          percentage: 90,
-          color: "#FF7043",
+          percentage: 40,
+          color: "#9CCC65",
         },
         {
           category: "협업 체계 구축",
-          percentage: 80,
-          color: "#9CCC65",
-        },
-        {
-          category: "버전 관리 및 배포 자동화",
-          percentage: 95,
+          percentage: 50,
           color: "#FF7043",
         },
+        {
+          category: "디자인 시스템 고도화",
+          percentage: 40,
+          color: "#9CCC65",
+        },
       ],
+      coreStack: ["React", "TypeScript", "Storybook"],
+      stateManagement: [],
+      teamChanges: [],
     },
     {
       projectId: 4,
       companyId: "media-corpus",
-      title: "비윤리적 표현 말뭉치연구 분석 및 시범 구축 사업 프로젝트",
-      subtitle: "3단 UI 구조 설계 및 데이터 수집 체계 구축",
+      title: "텍스트 윤리성 평가 시스템",
+      subtitle: "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
       image: "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
       background:
         "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템 개발 프로젝트입니다. 3단 UI 구조, 단계별 UX, feature-based 아키텍처 등 평가 효율성과 확장성을 극대화하는 구조를 설계·구현했습니다.",
       detailedDescription: {
         summary:
           "3단계 UI 구조와 feature-based 아키텍처, 단계별 UX 설계로 평가 효율성과 확장성을 극대화하고, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 프로젝트",
-        results:
-          "문단-문장-평가 폼의 3단 UI 구조와 정보 계층화, 평가 기준 안내 및 입력 제한 등으로 평가 효율성과 정확도를 높였습니다. Redux Toolkit 기반 feature 모듈 구조로 유지보수성과 확장성을 강화했으며, 100명 규모의 사용자 테스트를 통해 실제 사용 환경의 피드백을 반영했습니다. 그 결과, 150,000건 이상의 고품질 윤리성 평가 데이터를 안정적으로 수집·운영할 수 있었습니다.",
+        results: [
+          "3단 UI 구조 설계로 복잡한 평가 업무의 단순화 및 효율성 향상",
+          "직관적인 정보 계층 구조로 사용자 학습 비용 최소화",
+          "시각적 구분 설계로 평가 정확도 및 작업 속도 향상",
+          "Feature-based 모듈 구조로 코드 응집도 및 유지보수성 향상",
+          "Redux Toolkit 기반 효율적인 상태 관리로 개발 생산성 향상",
+          "150,000건 이상의 고품질 윤리성 평가 데이터 수집 달성",
+        ],
       },
       structuralContributions: [
         {
@@ -550,11 +598,12 @@ export const mockPortfolioData: PortfolioData = {
           achievementList: [
             {
               text: "3단 UI 구조 설계로 복잡한 평가 업무의 단순화 및 효율성 향상",
+              category: "사용자경험",
             },
-            { text: "직관적인 정보 계층 구조로 사용자 학습 비용 최소화" },
-            { text: "시각적 구분 설계로 평가 정확도 및 작업 속도 향상" },
-            { text: "진행 현황 제공으로 사용자 몰입도 및 작업 지속성 개선" },
-            { text: "150,000건 이상의 고품질 윤리성 평가 데이터 수집 달성" },
+            { text: "직관적인 정보 계층 구조로 사용자 학습 비용 최소화", category: "사용자경험" },
+            { text: "시각적 구분 설계로 평가 정확도 및 작업 속도 향상", category: "사용자경험" },
+            { text: "진행 현황 제공으로 사용자 몰입도 및 작업 지속성 개선", category: "사용자경험" },
+            { text: "150,000건 이상의 고품질 윤리성 평가 데이터 수집 달성", category: "품질향상" },
           ],
         },
         {
@@ -569,12 +618,15 @@ export const mockPortfolioData: PortfolioData = {
           achievementList: [
             {
               text: "Feature-based 모듈 구조로 코드 응집도 및 유지보수성 향상",
+              category: "개발효율성",
             },
             {
               text: "Redux Toolkit 기반 효율적인 상태 관리로 개발 생산성 향상",
+              category: "개발효율성",
             },
             {
               text: "모듈화된 아키텍처로 신규 기능 추가 및 확장성 확보",
+              category: "개발효율성",
             },
           ],
         },
@@ -588,39 +640,48 @@ export const mockPortfolioData: PortfolioData = {
       contributions: [
         {
           category: "UI 구조 설계",
-          percentage: 85,
+          percentage: 100,
           color: "#9CCC65",
         },
         {
           category: "데이터 수집 체계",
-          percentage: 90,
+          percentage: 100,
           color: "#FF7043",
         },
         {
           category: "평가 시스템 개발",
-          percentage: 80,
+          percentage: 100,
           color: "#9CCC65",
         },
         {
           category: "사용자 테스트",
-          percentage: 95,
+          percentage: 100,
           color: "#FF7043",
         },
       ],
+      coreStack: ["React", "JavaScript", "Redux"],
+      stateManagement: ["Redux"],
+      teamChanges: [],
     },
     {
       projectId: 5,
       companyId: "media-corpus",
-      title: "말뭉치 언어의 사회적 인식 조사 분류 사업 프로젝트",
-      subtitle: "드래그 기반 라벨링 시스템 구축",
+      title: "비윤리적 표현 라벨링 시스템",
+      subtitle: "국립 국어원 - 말뭉치 언어의 사회적 인식 조사 분류 사업 참여",
       image: "/media-logo-1.png?text=문장+라벨링+시스템",
       background:
         "400,000건 이상의 대용량 라벨링 데이터를 효율적으로 수집·운영하기 위해 드래그 기반 라벨링, 무한 스크롤, 실시간 품질 관리 등 직관적이고 성능 최적화된 웹 라벨링/검수 시스템을 설계·구현한 프로젝트입니다.",
       detailedDescription: {
         summary:
           "드래그 기반 라벨링 시스템, 무한 스크롤, 실시간 품질 관리 등 대용량 데이터 환경에서의 효율성과 직관적 UX를 구현하여 400,000건 이상의 라벨링 데이터를 안정적으로 수집·운영한 프로젝트",
-        results:
-          "window.getSelection API를 활용한 드래그 기반 라벨링, IntersectionObserver 기반 무한 스크롤, 실시간 진행률 추적 및 품질 검증 등으로 대용량 데이터 환경에서의 성능과 사용자 경험을 극대화했습니다. 검수자 전용 인터페이스와 점진적 데이터 로딩, 시각적 피드백 등으로 라벨링 효율성과 정확성을 크게 향상시켰으며, 라벨링 작업 시간을 단축하였습니다.",
+        results: [
+          "드래그 기반 라벨링으로 직관적이고 자연스러운 사용자 경험 제공",
+          "실시간 시각적 피드백으로 라벨링 정확도 향상",
+          "IntersectionObserver 기반 무한 스크롤로 대용량 데이터 렌더링 문제 해결",
+          "점진적 로딩으로 초기 로딩 시간 단축 및 메모리 효율성 향상",
+          "렌더링 부하 분산으로 작업 연속성 보장 및 사용자 경험 개선",
+          "라벨링 작업 시간 평균 40% 단축으로 전체 프로젝트 효율성 향상",
+        ],
       },
       structuralContributions: [
         {
@@ -635,12 +696,15 @@ export const mockPortfolioData: PortfolioData = {
           achievementList: [
             {
               text: "드래그 기반 라벨링으로 직관적이고 자연스러운 사용자 경험 제공",
+              category: "사용자경험",
             },
             {
               text: "실시간 시각적 피드백으로 라벨링 정확도 향상",
+              category: "사용자경험",
             },
             {
-              text: "별도 학습 없이 자연스러운 라벨링 수행 가능한 인터랙션 설계",
+              text: "별도 학습 없이 자연스럽게 라벨링 수행 가능한 인터랙션 설계",
+              category: "사용자경험",
             },
           ],
         },
@@ -656,13 +720,16 @@ export const mockPortfolioData: PortfolioData = {
           achievementList: [
             {
               text: "IntersectionObserver 기반 무한 스크롤로 대용량 데이터 렌더링 문제 해결",
+              category: "성능최적화",
             },
             {
               text: "점진적 로딩으로 초기 로딩 시간 단축 및 메모리 효율성 향상",
+              category: "성능최적화",
             },
-            { text: "렌더링 부하 분산으로 작업 연속성 보장 및 사용자 경험 개선" },
+            { text: "렌더링 부하 분산으로 작업 연속성 보장 및 사용자 경험 개선", category: "성능최적화" },
             {
               text: "라벨링 작업 시간 평균 40% 단축으로 전체 프로젝트 효율성 향상",
+              category: "개발효율성",
             },
           ],
         },
@@ -676,25 +743,28 @@ export const mockPortfolioData: PortfolioData = {
       contributions: [
         {
           category: "드래그 기반 라벨링",
-          percentage: 85,
+          percentage: 100,
           color: "#9CCC65",
         },
         {
           category: "무한 스크롤",
-          percentage: 90,
+          percentage: 100,
           color: "#FF7043",
         },
         {
           category: "라벨링 시스템 개발",
-          percentage: 80,
+          percentage: 100,
           color: "#9CCC65",
         },
         {
           category: "실시간 품질 관리",
-          percentage: 95,
+          percentage: 100,
           color: "#FF7043",
         },
       ],
+      coreStack: ["React", "JavaScript", "Ant Design"],
+      stateManagement: ["Redux"],
+      teamChanges: [],
     },
   ],
   goals: {
@@ -863,82 +933,104 @@ PR 템플릿 도입으로 코드 리뷰의 품질과 효율성이 크게 향상�
       tags: ["크롬", "북마크", "생산성", "업무효율"],
       content: `# 구글 크롬 북마크를 활용한 생산성 향상
 
-Jira, Notion, Figma 등 많은 문서들을 좀 더 쉽게 트래킹해서 볼 수 없을까? 라는 생각에서 시작된 북마크 활용법을 전사에 공유한 경험입니다.
-
-## 문제 상황
-
-문서들을 북마킹을 하면서 '이것도 중요하지, 이것도 해야지' 하다보면 북마크는 그 라인을 벗어나게 되고 나중에는 추적하기가 힘들어지는 상황이 생기게 됩니다.
-
-### 정보 과부하
-
-쏟아지는 정보들 속에서 살아남기 위해 좀 더 체계적으로 관리할 필요성을 느꼈습니다.
-
-## 북마크 관리 시연
-
-먼저 제가 세팅한 북마크를 보여드리겠습니다.
-
-![북마크 데모](/placeholder.svg?height=300&width=600&text=북마크+관리+시연+영상)
-
-### 실제 북마크 구조
-
-Jira, Notion, 사내 서버, Azure 등의 대분류로 폴더를 만들고, 폴더 내에서도 그룹핑을 할 수 있는 기준을 정해서 배치했습니다.
+속절없이 쌓이는 outlook 메일들을 보면서, 비슷한 항목들을 자동으로 분류할 수 없을까? 라는 생각으로 찾던 중에 좋은 정보가 있어서 공유한 경험입니다.
 
 ## 설정 방법
 
-방법은 아주 간단합니다.
+Outlook의 규칙 기능을 활용하여 메일을 자동으로 분류하는 방법을 단계별로 설명합니다.
 
-### 1단계: 메뉴 접근
+### 1단계: 폴더 생성
 
-크롬 우측 상단에 미트볼 메뉴 아이콘을 클릭합니다.
+분류하고자 하는 키워드의 폴더를 만들어 줍니다.
 
-![메뉴 접근](/placeholder.svg?height=200&width=400&text=크롬+메뉴+접근)
+예를 들어 **'Figma'**라는 폴더를 만들어보겠습니다.
 
-### 2단계: 북마크 생성
+![폴더 생성](/placeholder.svg?height=200&width=400&text=Outlook+폴더+생성)
 
-북마크 및 목록에 **모든 탭 북마크**를 클릭합니다.
+### 2단계: 규칙 설정
 
-![북마크 생성](/placeholder.svg?height=200&width=400&text=북마크+생성+단계)
+아웃룩 우측 상단의 말줄임표를 클릭 → **규칙** → **규칙 및 알림 관리**를 차례로 들어갑니다.
 
-### 3단계: 폴더 구성
+### 3단계: 새 규칙 생성
 
-원하는 폴더를 만들고 폴더 구성을 바꿉니다.
+**새 규칙**을 클릭하고, **'받은 메세지에 규칙 적용'**을 선택합니다.
 
-![폴더 구성](/placeholder.svg?height=200&width=400&text=북마크+폴더+구성)
+### 4단계: 조건 설정
 
-## 효과
+**'제목이나 본문에 지정 단어가 포함된 경우'**를 클릭하고, 원하는 키워드를 추가합니다.
 
-처음에는 조금 귀찮을 수 있지만, 해놓고 나면 아주 편합니다!
+### 5단계: 동작 설정
 
-### 시간 절약
+**'지정 폴더로 이동'**을 선택하고, 앞서 만들어둔 폴더를 선택합니다.
 
-자주 사용하는 사이트들을 체계적으로 관리하여 검색 시간을 크게 줄일 수 있었습니다.
+### 6단계: 기존 메일 정리
 
-### 업무 연속성
+현재 받은 메일도 정리하고 싶다면, **'받은 편지함에 있는 메세지에 이 규칙 지금 실행'**을 선택합니다.
 
-프로젝트별로 관련 링크들을 정리해두어 업무 맥락을 빠르게 파악할 수 있게 되었습니다.
+## 활용 결과
 
-## 추천 폴더 구조
+규칙을 적용한 후의 효과와 개선사항을 정리했습니다.
+
+### 폴더 구성 예시
+
+**최종 폴더 구성**
+
+- **Figma** 폴더
+- **Jira** 폴더  
+- **시스템 알림** 폴더
+- **업무 메일** 폴더
+
+총 4개의 폴더로 구성하여 메일을 체계적으로 관리할 수 있게 되었습니다.
+
+![폴더 구조](/placeholder.svg?height=300&width=500&text=Outlook+폴더+구조+예시)
+
+### 생산성 향상
+
+좀 더 편하게 메일을 관리할 수 있게 되어 **업무 효율성이 크게 향상**되었습니다.
+
+## 추천 규칙 설정
 
 \`\`\`
-📁 업무
-  📁 Jira
-    - 진행 중인 스프린트
-    - 백로그
-    - 대시보드
-  📁 Notion
-    - 팀 위키
-    - 프로젝트 문서
-    - 회의록
-  📁 개발 도구
-    - GitHub 저장소
-    - Azure DevOps
-    - Figma 디자인
+규칙 1: Figma 관련
+- 조건: 제목에 "Figma" 포함
+- 동작: Figma 폴더로 이동
 
-📁 참고 자료
-  📁 기술 문서
-  📁 디자인 가이드
-  📁 API 문서
+규칙 2: Jira 알림
+- 조건: 발신자가 "noreply@atlassian.net"
+- 동작: Jira 폴더로 이동
+
+규칙 3: 시스템 알림
+- 조건: 제목에 "[시스템]" 포함
+- 동작: 시스템 알림 폴더로 이동
+
+규칙 4: 회의 초대
+- 조건: 메시지 유형이 "모임 요청"
+- 동작: 회의 폴더로 이동
 \`\`\`
+
+## 고급 활용법
+
+### 중요도별 분류
+
+**중요** 표시가 있는 메일은 별도 폴더로 분류하여 우선순위를 관리할 수 있습니다.
+
+### 발신자별 분류
+
+특정 고객이나 파트너의 메일을 자동으로 분류하여 빠른 대응이 가능합니다.
+
+### 프로젝트별 분류
+
+프로젝트 코드나 키워드를 활용해 프로젝트별로 메일을 정리할 수 있습니다.
+
+## 주의사항
+
+### 규칙 순서
+
+여러 규칙이 있을 때는 순서가 중요합니다. 더 구체적인 규칙을 상위에 배치해야 합니다.
+
+### 정기적 점검
+
+규칙이 제대로 작동하는지 정기적으로 확인하고 필요시 수정합니다.
 
 ## 결론
 
