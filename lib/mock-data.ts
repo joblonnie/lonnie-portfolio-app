@@ -1,4 +1,4 @@
-import type { PortfolioData } from "./types"
+import type { PortfolioData } from "./types";
 
 export const mockPortfolioData: PortfolioData = {
   personalInfo: {
@@ -14,29 +14,35 @@ export const mockPortfolioData: PortfolioData = {
     mindset: [
       {
         title: "사용자 중심 사고",
-        description: "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
+        description:
+          "항상 사용자의 관점에서 생각하며, 직관적이고 편리한 경험을 제공하기 위해 노력합니다.",
       },
       {
         title: "품질에 대한 집착",
-        description: "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
+        description:
+          "완벽한 코드는 없지만, 더 나은 코드를 위해 지속적으로 개선하고 학습합니다.",
       },
       {
         title: "협업의 가치",
-        description: "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
+        description:
+          "팀워크를 통해 더 큰 가치를 창출할 수 있다고 믿으며, 소통을 중시합니다.",
       },
     ],
     capabilities: [
       {
         title: "문제 해결 능력",
-        description: "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
+        description:
+          "복잡한 문제를 단순하게 분해하고, 효율적인 해결책을 찾아냅니다.",
       },
       {
         title: "빠른 학습력",
-        description: "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
+        description:
+          "새로운 기술과 트렌드를 빠르게 습득하고 프로젝트에 적용합니다.",
       },
       {
         title: "소통 능력",
-        description: "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
+        description:
+          "기술적 내용을 비개발자도 이해할 수 있게 설명할 수 있습니다.",
       },
     ],
   },
@@ -53,10 +59,24 @@ export const mockPortfolioData: PortfolioData = {
       "Saige Elements Design System",
       "React Hook Form",
     ],
-    stateManagement: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "Context API", "MobX"],
+    stateManagement: [
+      "Zustand",
+      "TanStack Query",
+      "Redux",
+      "Redux Toolkit",
+      "Context API",
+      "MobX",
+    ],
     architecture: ["Nx Monorepo", "Feature-Sliced Design", "Atomic Design"],
     devTools: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
-    collaborationTools: ["Storybook", "Figma", "Notion", "Jira", "Swagger", "Teams"],
+    collaborationTools: [
+      "Storybook",
+      "Figma",
+      "Notion",
+      "Jira",
+      "Swagger",
+      "Teams",
+    ],
   },
   companies: [
     {
@@ -64,7 +84,7 @@ export const mockPortfolioData: PortfolioData = {
       name: "(주) 세이지",
       position: "프론트엔드 개발자",
       period: "2022.06 - 현재",
-      duration: "3년 2개월",
+      duration: "3년 3개월",
       achievementList: [
         "React 기반 AI 모니터링 시스템 및 안전 관리 솔루션 개발",
         "NX Monorepo 아키텍처 도입으로 개발 효율성 85% 향상",
@@ -113,8 +133,14 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "공통 패키지를 기반으로 3개 앱 개발, 신규 프로젝트 개발 기간 50% 단축", category: "개발효율성" },
-            { text: "모듈화 구조로 유지보수성과 확장성 대폭 향상", category: "개발효율성" },
+            {
+              text: "공통 패키지를 기반으로 3개 앱 개발, 신규 프로젝트 개발 기간 50% 단축",
+              category: "개발효율성",
+            },
+            {
+              text: "모듈화 구조로 유지보수성과 확장성 대폭 향상",
+              category: "개발효율성",
+            },
             { text: "코드 중복 제거 및 기술 부채 해소", category: "품질향상" },
           ],
         },
@@ -122,14 +148,21 @@ export const mockPortfolioData: PortfolioData = {
           title: "2. 실시간 영상 스트리밍 최적화 및 안정성을 개선하려면?",
           solutionList: [
             {
-              title: "WebSocket 기반 이미지 스트리밍 구현 및 대용량 이미지 처리 최적화",
+              title:
+                "WebSocket 기반 이미지 스트리밍 구현 및 대용량 이미지 처리 최적화",
               description:
                 "실시간 모니터링 환경에서 안정적인 영상 스트리밍을 위해 WebSocket 기반 이미지 스트리밍을 구현했습니다. 대용량 이미지 처리 시 발생하는 메모리 누수를 방지하고, 장시간 모니터링 환경에서도 안정적인 렌더링이 가능하도록 최적화했습니다. 이미지 캐싱과 메모리 관리 로직을 통해 시스템 리소스를 효율적으로 활용했습니다.",
             },
           ],
           achievementList: [
-            { text: "메모리 누수 방지 및 안정적 렌더링으로 장시간 모니터링 환경 확보", category: "성능최적화" },
-            { text: "대용량 이미지 처리 최적화로 시스템 안정성 향상", category: "시스템안정성" },
+            {
+              text: "메모리 누수 방지 및 안정적 렌더링으로 장시간 모니터링 환경 확보",
+              category: "성능최적화",
+            },
+            {
+              text: "대용량 이미지 처리 최적화로 시스템 안정성 향상",
+              category: "시스템안정성",
+            },
           ],
         },
         {
@@ -142,8 +175,14 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "가상 스크롤 적용으로 DOM 렌더링 부담 최소화", category: "성능최적화" },
-            { text: "펄스 효과 + 빠른 이동 버튼으로 알람 인지 속도 향상 및 UX 개선", category: "사용자경험" },
+            {
+              text: "가상 스크롤 적용으로 DOM 렌더링 부담 최소화",
+              category: "성능최적화",
+            },
+            {
+              text: "펄스 효과 + 빠른 이동 버튼으로 알람 인지 속도 향상 및 UX 개선",
+              category: "사용자경험",
+            },
           ],
         },
         {
@@ -156,8 +195,14 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "seekbar 기반 즉시 탐색으로 원하는 시점 빠른 확인 가능", category: "사용자경험" },
-            { text: "이상 이벤트 연동으로 문제 구간 정확한 탐지 및 검수 시간 단축", category: "사용자경험" },
+            {
+              text: "seekbar 기반 즉시 탐색으로 원하는 시점 빠른 확인 가능",
+              category: "사용자경험",
+            },
+            {
+              text: "이상 이벤트 연동으로 문제 구간 정확한 탐지 및 검수 시간 단축",
+              category: "사용자경험",
+            },
           ],
         },
         {
@@ -170,16 +215,31 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "이미지 확대/축소 기능으로 이상 발생 지점 정확한 탐색 가능", category: "사용자경험" },
-            { text: "'결함 찾기' 버튼 제안 및 구현으로 검수 정확도와 효율성 크게 향상", category: "사용자경험" },
-            { text: "즉시 이동 기능으로 사용자가 빠르고 확실하게 문제 확인 가능", category: "사용자경험" },
+            {
+              text: "이미지 확대/축소 기능으로 이상 발생 지점 정확한 탐색 가능",
+              category: "사용자경험",
+            },
+            {
+              text: "'결함 찾기' 버튼 제안 및 구현으로 검수 정확도와 효율성 크게 향상",
+              category: "사용자경험",
+            },
+            {
+              text: "즉시 이동 기능으로 사용자가 빠르고 확실하게 문제 확인 가능",
+              category: "사용자경험",
+            },
           ],
         },
       ],
       period: "2025.01 - 2025.08",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: ["NX Monorepo", "Feature-Sliced Design", "실시간 데이터 처리", "성능 최적화", "모듈화 아키텍처"],
+      keywords: [
+        "NX Monorepo",
+        "Feature-Sliced Design",
+        "실시간 데이터 처리",
+        "성능 최적화",
+        "모듈화 아키텍처",
+      ],
       technologies: [
         "React",
         "TypeScript",
@@ -214,20 +274,9 @@ export const mockPortfolioData: PortfolioData = {
           color: "#FF7043",
         },
       ],
-      coreStack: ["React", "TypeScript", "NX Monorepo"],
-      stateManagement: ["Zustand"],
-      teamChanges: [
-        {
-          period: "2025.01 - 2025.03",
-          frontendDevelopers: 1,
-          reason: "프로젝트 초기 설계 단계",
-        },
-        {
-          period: "2025.04 - 2025.08",
-          frontendDevelopers: 2,
-          reason: "개발 속도 향상을 위한 인력 증원",
-        },
-      ],
+      coreStack: ["React", "TypeScript", "NX Monorepo", "ECharts", "WebSocket"],
+      stateManagement: ["Zustand", "TanStack Query"],
+      teamChanges: [],
     },
     {
       projectId: 2,
@@ -258,9 +307,18 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "체계적인 에러 핸들링으로 안정적 시스템 동작 확보", category: "시스템안정성" },
-            { text: "일관된 API 에러 코드 체계로 개발 효율성 향상", category: "개발효율성" },
-            { text: "Toast 기반 피드백으로 신뢰성 있는 사용자 경험 제공", category: "사용자경험" },
+            {
+              text: "체계적인 에러 핸들링으로 안정적 시스템 동작 확보",
+              category: "시스템안정성",
+            },
+            {
+              text: "일관된 API 에러 코드 체계로 개발 효율성 향상",
+              category: "개발효율성",
+            },
+            {
+              text: "Toast 기반 피드백으로 신뢰성 있는 사용자 경험 제공",
+              category: "사용자경험",
+            },
           ],
         },
         {
@@ -273,8 +331,14 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "중요도별 알림 분류로 신속한 상황 인지 및 대응 가능", category: "사용자경험" },
-            { text: "차별화된 UI로 중대 알림 우선순위 명확화", category: "사용자경험" },
+            {
+              text: "중요도별 알림 분류로 신속한 상황 인지 및 대응 가능",
+              category: "사용자경험",
+            },
+            {
+              text: "차별화된 UI로 중대 알림 우선순위 명확화",
+              category: "사용자경험",
+            },
           ],
         },
         {
@@ -287,16 +351,31 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "1~25개 채널 유연한 레이아웃 지원으로 맞춤형 모니터링 환경 제공", category: "사용자경험" },
-            { text: "드래그 앤 드롭 기반 직관적인 채널 관리 인터페이스 구현", category: "사용자경험" },
-            { text: "채널 수 기반 자동 품질 조정으로 성능 최적화 달성", category: "성능최적화" },
+            {
+              text: "1~25개 채널 유연한 레이아웃 지원으로 맞춤형 모니터링 환경 제공",
+              category: "사용자경험",
+            },
+            {
+              text: "드래그 앤 드롭 기반 직관적인 채널 관리 인터페이스 구현",
+              category: "사용자경험",
+            },
+            {
+              text: "채널 수 기반 자동 품질 조정으로 성능 최적화 달성",
+              category: "성능최적화",
+            },
           ],
         },
       ],
-      period: "2023.05 - 2024.11",
+      period: "2023.05 - 2024.12",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: ["신규 제품 개발", "MVP 출시", "GS 인증 1등급", "에러 처리 체계", "사용자 VOC 반영"],
+      keywords: [
+        "신규 제품 개발",
+        "MVP 출시",
+        "GS 인증 1등급",
+        "에러 처리 체계",
+        "사용자 VOC 반영",
+      ],
       technologies: [
         "React",
         "TypeScript",
@@ -330,7 +409,7 @@ export const mockPortfolioData: PortfolioData = {
           color: "#FF7043",
         },
       ],
-      coreStack: ["React", "TypeScript", "WebSocket"],
+      coreStack: ["React", "TypeScript", "Material UI", "WebSocket"],
       stateManagement: ["X-view-model"],
       teamChanges: [],
     },
@@ -363,9 +442,18 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "수율 대시보드, 리소스 모니터링 등 다양한 페이지에서 공통 차트 활용", category: "개발효율성" },
-            { text: "Legend 컴포넌트 분리로 디자인 시안 대응 속도 향상", category: "개발효율성" },
-            { text: "BaseChart 인터페이스로 일관된 차트 개발 경험 제공", category: "개발효율성" },
+            {
+              text: "수율 대시보드, 리소스 모니터링 등 다양한 페이지에서 공통 차트 활용",
+              category: "개발효율성",
+            },
+            {
+              text: "Legend 컴포넌트 분리로 디자인 시안 대응 속도 향상",
+              category: "개발효율성",
+            },
+            {
+              text: "BaseChart 인터페이스로 일관된 차트 개발 경험 제공",
+              category: "개발효율성",
+            },
           ],
         },
         {
@@ -378,17 +466,39 @@ export const mockPortfolioData: PortfolioData = {
             },
           ],
           achievementList: [
-            { text: "리소스별 독립 훅으로 관심사 분리 및 성능 최적화", category: "성능최적화" },
-            { text: "필요한 컴포넌트만 리렌더링하여 불필요한 렌더링 최소화", category: "성능최적화" },
-            { text: "실시간 모니터링 환경에서 안정적인 성능 확보", category: "시스템안정성" },
+            {
+              text: "리소스별 독립 훅으로 관심사 분리 및 성능 최적화",
+              category: "성능최적화",
+            },
+            {
+              text: "필요한 컴포넌트만 리렌더링하여 불필요한 렌더링 최소화",
+              category: "성능최적화",
+            },
+            {
+              text: "실시간 모니터링 환경에서 안정적인 성능 확보",
+              category: "시스템안정성",
+            },
           ],
         },
       ],
       period: "2022.11 - 2023.01",
       role: "프론트엔드 개발",
       frontendDevelopers: 4,
-      keywords: ["실시간 모니터링", "ECharts 시각화", "성능 최적화", "차트 라이브러리", "데이터 대시보드"],
-      technologies: ["React", "TypeScript", "TanStack Query", "ECharts", "Prometheus", "Vite"],
+      keywords: [
+        "실시간 모니터링",
+        "ECharts 시각화",
+        "성능 최적화",
+        "차트 라이브러리",
+        "데이터 대시보드",
+      ],
+      technologies: [
+        "React",
+        "TypeScript",
+        "TanStack Query",
+        "ECharts",
+        "Prometheus",
+        "Vite",
+      ],
       codeSnippets: [],
       contributions: [
         {
@@ -413,7 +523,7 @@ export const mockPortfolioData: PortfolioData = {
         },
       ],
       coreStack: ["React", "TypeScript", "ECharts"],
-      stateManagement: ["TanStack Query"],
+      stateManagement: ["Recoil", "TanStack Query"],
       teamChanges: [],
     },
     {
@@ -426,12 +536,9 @@ export const mockPortfolioData: PortfolioData = {
         "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 React 기반 디자인 시스템을 구축하고, 컨트리뷰터로 참여하여 컴포넌트 개발, 문서화, 품질 관리 체계를 수립한 프로젝트입니다.",
       detailedDescription: {
         results: [
-          "사내 3개 제품에 점진적 도입으로 UI 일관성 70% 향상",
           "컴포넌트 재사용률 70% 달성으로 개발 효율성 대폭 향상",
           "Primitive 토큰 기반 Theme 토큰 매핑으로 개발 환경 활용성 향상",
           "Storybook 문서화로 컴포넌트 사용법 학습 시간 60% 단축",
-          "점진적 도입으로 기존 제품 안정성 100% 유지",
-          "체계적인 버전 관리로 하위 호환성 보장",
         ],
       },
       structuralContributions: [
@@ -463,8 +570,14 @@ export const mockPortfolioData: PortfolioData = {
               text: "컴포넌트 재사용률 70% 달성으로 개발 효율성 대폭 향상",
               category: "개발효율성",
             },
-            { text: "디자인 토큰 시스템으로 브랜딩 일관성 확보", category: "사용자경험" },
-            { text: "Dynamic Subset 적용으로 폰트 번들 사이즈 최적화 및 렌더링 성능 향상", category: "성능최적화" },
+            {
+              text: "디자인 토큰 시스템으로 브랜딩 일관성 확보",
+              category: "사용자경험",
+            },
+            {
+              text: "Dynamic Subset 적용으로 폰트 번들 사이즈 최적화 및 렌더링 성능 향상",
+              category: "성능최적화",
+            },
           ],
         },
         {
@@ -476,9 +589,9 @@ export const mockPortfolioData: PortfolioData = {
                 "Primitive 토큰 기반 Theme 토큰 매핑 작업을 수행하여 개발 환경에서 바로 활용할 수 있도록 했습니다. 피그마 코드 Syntax를 제안하여 토큰 사용성을 개선하고 개발자 경험(DX)을 향상시켰습니다. Storybook과 Chromatic을 활용한 디자이너 리뷰 후 Saige Elements에 적용하는 체계적인 워크플로우를 구축했습니다.",
             },
             {
-              title: "신규 컴포넌트 개발 및 테스트 환경 구축",
+              title: "신규 컴포넌트 개발 및 디자인 QA 프로세스 도입",
               description:
-                "Switch, Banner 등 신규 컴포넌트를 개발하고 Storybook을 통한 일관된 UI 확인 및 테스트 환경을 구축했습니다. 각 컴포넌트의 다양한 상태와 props를 문서화하여 개발자들이 쉽게 활용할 수 있도록 했으며, Chromatic을 통한 시각적 회귀 테스트로 품질을 보장했습니다.",
+                "Switch, Banner 등 신규 컴포넌트를 개발하고 Storybook을 통한 일관된 UI 확인 및 테스트 환경을 구축했습니다. 각 컴포넌트의 다양한 상태와 props를 문서화하여 개발자들이 쉽게 활용할 수 있도록 했으며, Chromatic을 통한 QA 프로세스를 도입해 구현의 품질을 보장했습니다.",
             },
           ],
           achievementList: [
@@ -491,45 +604,38 @@ export const mockPortfolioData: PortfolioData = {
               category: "개발효율성",
             },
             {
-              text: "Storybook 문서화로 컴포넌트 사용법 학습 시간 60% 단축",
+              text: "Storybook 문서화로 컴포넌트 사용법 학습 시간 단축",
               category: "개발효율성",
             },
             {
-              text: "Chromatic 기반 시각적 테스트로 디자인 QA 프로세스 자동화",
+              text: "Chromatic 기반 시각적 테스트로 디자인 QA 프로세스 도입",
               category: "개발효율성",
             },
-            { text: "디자이너-개발자 협업 효율성 50% 향상", category: "협업개선" },
-          ],
-        },
-        {
-          title: "3. 디자인 시스템의 안정성과 확장성을 확보하려면?",
-          solutionList: [
             {
-              title: "점진적 도입 전략 및 호환성 검증",
-              description:
-                "기존 제품에 디자인 시스템을 한 번에 적용하는 것은 리스크가 크기 때문에, 단계적 도입 전략을 수립했습니다. SAIGE VISION 프로젝트를 시작으로 점진적으로 적용하며 발생하는 호환성 문제와 사이드 이펙트를 해결하고, 실제 프로덕션 환경에서의 안정성을 검증했습니다.",
+              text: "디자이너-개발자 협업 효율성 50% 향상",
+              category: "협업개선",
             },
-            {
-              title: "컴포넌트 버전 관리 및 배포 자동화",
-              description:
-                "Semantic Versioning을 적용한 컴포넌트 라이브러리 버전 관리 체계를 구축하고, CI/CD 파이프라인을 통한 자동 배포 시스템을 구현했습니다. 변경사항에 대한 체인지로그를 자동 생성하고, 각 제품팀이 안전하게 업데이트할 수 있도록 마이그레이션 가이드를 제공했습니다.",
-            },
-          ],
-          achievementList: [
-            { text: "점진적 도입으로 기존 제품 안정성 100% 유지", category: "시스템안정성" },
-            {
-              text: "자동화된 배포 시스템으로 업데이트 리드타임 80% 단축",
-              category: "개발효율성",
-            },
-            { text: "체계적인 버전 관리로 하위 호환성 보장", category: "시스템안정성" },
           ],
         },
       ],
-      period: "2022.08 - 2023.03",
+      period: "2023.05 - 현재",
       role: "디자인 시스템 컨트리뷰터",
       frontendDevelopers: 3,
-      keywords: ["디자인 시스템", "컴포넌트 라이브러리", "Storybook", "Chromatic", "UI 일관성"],
-      technologies: ["React", "TypeScript", "Storybook", "Chromatic", "Styled Components", "Rollup"],
+      keywords: [
+        "디자인 시스템",
+        "컴포넌트 라이브러리",
+        "Storybook",
+        "Chromatic",
+        "UI 일관성",
+      ],
+      technologies: [
+        "React",
+        "TypeScript",
+        "Storybook",
+        "Chromatic",
+        "Styled Components",
+        "Rollup",
+      ],
       codeSnippets: [],
       contributions: [
         {
@@ -548,7 +654,7 @@ export const mockPortfolioData: PortfolioData = {
           color: "#9CCC65",
         },
       ],
-      coreStack: ["React", "TypeScript", "Storybook"],
+      coreStack: ["React", "TypeScript", "Storybook", "Chromatic"],
       stateManagement: [],
       teamChanges: [],
     },
@@ -556,8 +662,10 @@ export const mockPortfolioData: PortfolioData = {
       projectId: 4,
       companyId: "media-corpus",
       title: "텍스트 윤리성 평가 시스템",
-      subtitle: "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
-      image: "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
+      subtitle:
+        "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
+      image:
+        "/media-logo-2.png?height=400&width=800&text=비윤리적+표현+평가+시스템",
       background:
         "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템 개발 프로젝트입니다. 3단 UI 구조, 단계별 UX, feature-based 아키텍처 등 평가 효율성과 확장성을 극대화하는 구조를 설계·구현했습니다.",
       detailedDescription: {
@@ -567,7 +675,6 @@ export const mockPortfolioData: PortfolioData = {
           "시각적 구분 설계로 평가 정확도 및 작업 속도 향상",
           "Feature-based 모듈 구조로 코드 응집도 및 유지보수성 향상",
           "Redux Toolkit 기반 효율적인 상태 관리로 개발 생산성 향상",
-          "150,000건 이상의 고품질 윤리성 평가 데이터 수집 달성",
         ],
       },
       structuralContributions: [
@@ -580,7 +687,8 @@ export const mockPortfolioData: PortfolioData = {
                 "평가 효율성과 정확도를 높이기 위해 3단 UI 구조(문단/문장/평가 폼)를 설계하고 단계별 UX 흐름을 구현했습니다. 평가 기준 안내와 입력 제한을 통한 정확한 데이터 수집 체계를 구축했습니다. 비개발자 사용자들도 쉽게 이해하고 평가할 수 있도록 인터페이스의 정보 계층 구조 및 시각적 구분 체계를 수립했습니다.",
             },
             {
-              title: "시각적 구분 기반 UI 설계를 통한 평가 효율성 및 정확도 개선",
+              title:
+                "시각적 구분 기반 UI 설계를 통한 평가 효율성 및 정확도 개선",
               description:
                 "평가 대상 문장을 볼록 처리하여 작업자가 한 눈에 식별 가능하도록 설계했습니다. 중요 키워드를 빨간색으로 표시해 핵심 포인트를 빠르게 파악할 수 있도록 했으며, 화면 영역을 분리하여 좌측에는 문장·키워드 표시, 우측에는 평가 입력 영역을 배치해 정보 탐색과 입력 동작을 분리했습니다. 헤더 영역에 작업 진행률 및 현재 할당된 작업 정보를 표시하여 사용자 몰입도를 향상시켰습니다.",
             },
@@ -590,17 +698,27 @@ export const mockPortfolioData: PortfolioData = {
               text: "3단 UI 구조 설계로 복잡한 평가 업무의 단순화 및 효율성 향상",
               category: "사용자경험",
             },
-            { text: "직관적인 정보 계층 구조로 사용자 학습 비용 최소화", category: "사용자경험" },
-            { text: "시각적 구분 설계로 평가 정확도 및 작업 속도 향상", category: "사용자경험" },
-            { text: "진행 현황 제공으로 사용자 몰입도 및 작업 지속성 개선", category: "사용자경험" },
-            { text: "150,000건 이상의 고품질 윤리성 평가 데이터 수집 달성", category: "품질향상" },
+            {
+              text: "직관적인 정보 계층 구조로 사용자 학습 비용 최소화",
+              category: "사용자경험",
+            },
+            {
+              text: "시각적 구분 설계로 평가 정확도 및 작업 속도 향상",
+              category: "사용자경험",
+            },
+            {
+              text: "진행 현황 제공으로 사용자 몰입도 및 작업 지속성 개선",
+              category: "사용자경험",
+            },
           ],
         },
         {
-          title: "2. 확장 가능한 구조 설계 및 유지보수를 용이하게 하기 위해 노력해보자!",
+          title:
+            "2. 확장 가능한 구조 설계 및 유지보수를 용이하게 하기 위해 노력해보자!",
           solutionList: [
             {
-              title: "Feature-based 아키텍처 도입을 통한 유지보수성 및 확장성 개선",
+              title:
+                "Feature-based 아키텍처 도입을 통한 유지보수성 및 확장성 개선",
               description:
                 "Redux Toolkit + Duck Pattern 기반으로 상태 관리 구조를 개선하여 코드 응집도를 강화했습니다. Feature 단위로 컴포넌트/상태/API를 모듈화하여 명확히 분리하고, 기능별 모듈 아키텍처 설계로 신규 기능 추가 및 확장이 용이한 구조를 구축했습니다. 각 기능 모듈은 독립적으로 개발·테스트·배포가 가능하도록 설계하여 개발 생산성을 향상시켰습니다.",
             },
@@ -624,7 +742,13 @@ export const mockPortfolioData: PortfolioData = {
       period: "2021.12 - 2022.04",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: ["사용자 테스트 주도", "대량 데이터 수집", "3단 UI 구조", "평가 시스템", "단독 개발"],
+      keywords: [
+        "사용자 테스트 주도",
+        "대량 데이터 수집",
+        "3단 UI 구조",
+        "평가 시스템",
+        "단독 개발",
+      ],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       codeSnippets: [],
       contributions: [
@@ -649,7 +773,7 @@ export const mockPortfolioData: PortfolioData = {
           color: "#FF7043",
         },
       ],
-      coreStack: ["React", "JavaScript", "Redux"],
+      coreStack: ["React", "JavaScript", "Ant Design"],
       stateManagement: ["Redux"],
       teamChanges: [],
     },
@@ -697,10 +821,12 @@ export const mockPortfolioData: PortfolioData = {
           ],
         },
         {
-          title: "2. 렌더링 성능 개선을 통해 사용자에게 더 나은 경험을 제공할 수 있을까?",
+          title:
+            "2. 렌더링 성능 개선을 통해 사용자에게 더 나은 경험을 제공할 수 있을까?",
           solutionList: [
             {
-              title: "무한 스크롤 및 점진적 로딩 시스템 도입을 통한 렌더링 성능 개선",
+              title:
+                "무한 스크롤 및 점진적 로딩 시스템 도입을 통한 렌더링 성능 개선",
               description:
                 "대용량 데이터 렌더링 문제 해결을 위해 IntersectionObserver 기반 무한 스크롤을 구현했습니다. 초기 30개 문장만 렌더링하고 스크롤 시 점진적 로딩으로 성능 부담을 최소화했으며, 메모리 사용량 최적화 및 렌더링 부하를 분산시켜 대용량 텍스트 데이터에서도 원활한 사용자 경험을 제공했습니다.",
             },
@@ -714,10 +840,13 @@ export const mockPortfolioData: PortfolioData = {
               text: "점진적 로딩으로 초기 로딩 시간 단축 및 메모리 효율성 향상",
               category: "성능최적화",
             },
-            { text: "렌더링 부하 분산으로 작업 연속성 보장 및 사용자 경험 개선", category: "성능최적화" },
             {
-              text: "라벨링 작업 시간 평균 40% 단축으로 전체 프로젝트 효율성 향상",
-              category: "개발효율성",
+              text: "렌더링 부하 분산으로 작업 연속성 보장 및 사용자 경험 개선",
+              category: "성능최적화",
+            },
+            {
+              text: "직관적 라벨링 UI 제공으로, 작업 시간 평균 40% 단축하여 전체 프로젝트 효율성 향상",
+              category: "사용자경험",
             },
           ],
         },
@@ -725,7 +854,13 @@ export const mockPortfolioData: PortfolioData = {
       period: "2021.05 - 2021.09",
       role: "프론트엔드 개발 (단독)",
       frontendDevelopers: 1,
-      keywords: ["대용량 데이터 처리", "드래그 기반 라벨링", "성능 최적화", "품질 관리", "워크플로우 구축"],
+      keywords: [
+        "대용량 데이터 처리",
+        "드래그 기반 라벨링",
+        "성능 최적화",
+        "품질 관리",
+        "워크플로우 구축",
+      ],
       technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
       codeSnippets: [],
       contributions: [
@@ -756,26 +891,8 @@ export const mockPortfolioData: PortfolioData = {
     },
   ],
   goals: {
-    learningPlan: [
-      {
-        title: "UX 전문성 강화",
-        description:
-          "UX 전문가로의 자리매김을 위해 관련 강의를 수강하고 인증서 취득을 위해 노력하고 있습니다. 사용자 중심 설계 방법론과 디자인 시스템에 대한 깊이 있는 이해를 바탕으로 더 나은 사용자 경험을 제공하고자 합니다.",
-      },
-      {
-        title: "React Native",
-        description:
-          "모바일 앱 개발 역량을 확장하여 크로스 플랫폼 개발자로 성장하기 위해 학습하고 있습니다. 현재 React Native를 활용한 사이드 프로젝트를 진행 중이며, 웹과 모바일을 아우르는 개발 경험을 쌓고 있습니다.",
-      },
-    ],
+    learningPlan: [],
     futureVision: [
-      {
-        icon: "🌟",
-        gradient: "from-blue-500 to-purple-600",
-        quote: "크로스 플랫폼 개발자로의 성장",
-        description:
-          "웹, 모바일, 데스크톱 등 다양한 환경에서 동작하는 제품을 설계·구현할 수 있는 크로스 플랫폼 개발자로 성장하고 싶습니다. React Native를 통한 모바일 앱 개발 경험을 쌓고 있으며, 향후 Electron을 활용한 데스크톱 애플리케이션 개발까지 확장하여 하나의 코드베이스로 여러 플랫폼을 지원하는 효율적인 개발 방식을 추구합니다. 특히 사용자가 어떤 디바이스를 사용하든 일관된 경험을 제공할 수 있는 개발자가 되는 것이 목표입니다.",
-      },
       {
         icon: "🎨",
         gradient: "from-pink-500 to-rose-600",
@@ -790,13 +907,6 @@ export const mockPortfolioData: PortfolioData = {
         description:
           "팀의 기술적 방향성을 제시하고, 주니어 개발자들을 멘토링하며 조직의 기술 역량 향상에 기여하고 싶습니다. 코드 리뷰 문화 정착, 개발 프로세스 개선, 기술 스택 선정 등을 통해 팀 전체의 생산성을 높이는 역할을 하고자 합니다. 또한 지식 공유와 문서화를 통해 팀의 집단 지성을 높이고, 지속 가능한 개발 문화를 만들어가는 리더가 되는 것이 저의 목표입니다.",
       },
-      {
-        icon: "🌍",
-        gradient: "from-indigo-500 to-purple-600",
-        quote: "사회적 가치를 창출하는 개발자",
-        description:
-          "기술을 통해 사회 문제를 해결하고 사람들의 삶의 질을 향상시키는 개발자가 되고 싶습니다. 접근성을 고려한 웹 개발, 환경을 생각하는 지속 가능한 코딩, 디지털 격차 해소를 위한 기술 교육 등을 통해 기술이 모든 사람에게 도움이 될 수 있도록 기여하고자 합니다. 단순히 비즈니스 성과만을 추구하는 것이 아니라, 기술의 사회적 책임을 인식하고 실천하는 개발자로 성장하는 것이 저의 궁극적인 비전입니다.",
-      },
     ],
     vision: {
       quote: "단순히 기능 구현이 아닌, 삶의 질을 개선하는 개발자",
@@ -808,7 +918,8 @@ export const mockPortfolioData: PortfolioData = {
     {
       id: "pr-template",
       title: "좋은 코드 리뷰 문화 유지를 위한 PR template 정의하기",
-      description: "팀 내 코드 리뷰 문화를 개선하기 위한 PR 템플릿 정의를 담당하고, 적용한 사례입니다",
+      description:
+        "팀 내 코드 리뷰 문화를 개선하기 위한 PR 템플릿 정의를 담당하고, 적용한 사례입니다",
       date: "2024-12-18",
       category: "개발 문화",
       tags: ["코드리뷰", "PR", "템플릿", "협업"],
@@ -915,7 +1026,8 @@ PR 템플릿 도입으로 코드 리뷰의 품질과 효율성이 크게 향상�
     {
       id: "chrome-bookmarks",
       title: "구글 크롬 북마크를 활용한 생산성 향상",
-      description: "크롬 북마크 폴더링과 활용법으로 반복 업무를 줄이는 것을 전사적으로 공유했던 사례입니다.",
+      description:
+        "크롬 북마크 폴더링과 활용법으로 반복 업무를 줄이는 것을 전사적으로 공유했던 사례입니다.",
       date: "2024-10-30",
       category: "생산성",
       tags: ["크롬", "북마크", "생산성", "업무효율"],
@@ -1031,7 +1143,8 @@ Outlook의 규칙 기능을 활용하여 메일을 자동으로 분류하는 방
     {
       id: "workflow-improvement",
       title: "업무 프로세스 개선",
-      description: "업무 효율을 높이기 위한 프로세스 개선하기 위해 제안했던 사례입니다.",
+      description:
+        "업무 효율을 높이기 위한 프로세스 개선하기 위해 제안했던 사례입니다.",
       date: "2024-09-24",
       category: "프로세스 개선",
       tags: ["워크플로우", "효율성", "팀워크", "Shape Up"],
@@ -1120,7 +1233,8 @@ graph TD
     {
       id: "fe-process-improvement",
       title: "FE 업무 프로세스 개선",
-      description: "프론트엔드 개발 조직이 좀 더 나은 프로세스로 일하고자, 제안했던 경험 사례입니다.",
+      description:
+        "프론트엔드 개발 조직이 좀 더 나은 프로세스로 일하고자, 제안했던 경험 사례입니다.",
       date: "2024-09-24",
       category: "프로세스 개선",
       tags: ["프론트엔드", "프로세스", "개발문화", "팀워크"],
@@ -1241,7 +1355,8 @@ graph LR
     {
       id: "outlook-automation",
       title: "Outlook 메일 자동 분류로 생산성 향상",
-      description: "Outlook 규칙을 활용해 메일함을 자동 정리하는 방법을 전사적으로 공유했던 사례입니다.",
+      description:
+        "Outlook 규칙을 활용해 메일함을 자동 정리하는 방법을 전사적으로 공유했던 사례입니다.",
       date: "2023-11-07",
       category: "생산성",
       tags: ["Outlook", "메일관리", "자동화", "업무효율"],
@@ -1355,4 +1470,4 @@ Outlook의 규칙 기능을 활용하여 메일을 자동으로 분류하는 방
 하루에 몇 분씩 절약되는 시간이 1년이면 상당한 시간이 됩니다. 이런 작은 개선들이 모여 큰 생산성 향상을 만들어냅니다.`,
     },
   ],
-}
+};
