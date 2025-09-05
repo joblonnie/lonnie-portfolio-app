@@ -282,7 +282,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           <Card className="mb-8">
             <CardContent className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">프로젝트 요약</h2>
-              <p className="text-gray-700 mb-6 leading-relaxed">{project.detailedDescription.summary}</p>
+              <p className="text-gray-700 mb-6 leading-relaxed">{project.background}</p>
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-lime-600" />

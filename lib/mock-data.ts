@@ -93,8 +93,6 @@ export const mockPortfolioData: PortfolioData = {
       background:
         "산업용 AI 기반 검사·모니터링 시스템을 통합 관리하는 웹 플랫폼으로, 초기 설계부터 개발을 주도하고 고객사별 맞춤 요구와 VOC를 반영해 실시간 데이터 처리·시각화 기능을 구현한 프로젝트입니다.",
       detailedDescription: {
-        summary:
-          "NX 모노레포 및 Feature-Sliced Design 아키텍처 도입으로 개발 생산성과 유지보수성을 크게 향상시키고, Zustand 기반 독립 상태 관리 구조 설계로 실시간 데이터 충돌을 최소화한 프로젝트",
         results: [
           "공통 패키지를 기반으로 3개 앱 개발, 신규 프로젝트 개발 기간 50% 단축",
           "모듈화 구조로 유지보수성과 확장성 대폭 향상",
@@ -240,8 +238,6 @@ export const mockPortfolioData: PortfolioData = {
       background:
         "산업 현장의 안전 이벤트를 실시간 감지·시각화하는 AI 기반 모니터링 웹 애플리케이션으로, MVP 단계부터 개발을 주도하고 고객사 VOC를 반영한 기능 고도화와 GS 인증 대응까지 전 과정에 참여한 프로젝트입니다.",
       detailedDescription: {
-        summary:
-          "팀 내 자체 개발 상태관리 라이브러리 X-view-model 기반으로 1개월 내 MVP를 출시하고, 사용자 VOC 기반 기능 고도화를 통해 GS 인증 1등급 획득까지 주도한 신규 제품 개발 프로젝트",
         results: [
           "체계적인 에러 핸들링으로 안정적 시스템 동작 확보",
           "일관된 API 에러 코드 체계로 개발 효율성 향상",
@@ -347,8 +343,6 @@ export const mockPortfolioData: PortfolioData = {
       background:
         "생산 라인의 Vision 검사 결과와 시스템 리소스를 실시간으로 통합 모니터링하는 대시보드를 신규 개발하고, 기존에 분리돼 있던 수율·리소스 관리의 가시성과 운영 효율성을 개선한 프로젝트입니다.",
       detailedDescription: {
-        summary:
-          "ECharts 기반 재사용 가능한 차트 라이브러리를 구축하고 TanStack Query를 활용한 효율적인 실시간 데이터 관리 체계를 구현하여 운영 효율성과 가시성을 크게 개선한 신규 개발 프로젝트",
         results: [
           "수율 대시보드, 리소스 모니터링 등 다양한 페이지에서 공통 차트 활용",
           "Legend 컴포넌트 분리로 디자인 시안 대응 속도 향상",
@@ -431,8 +425,6 @@ export const mockPortfolioData: PortfolioData = {
       background:
         "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 React 기반 디자인 시스템을 구축하고, 컨트리뷰터로 참여하여 컴포넌트 개발, 문서화, 품질 관리 체계를 수립한 프로젝트입니다.",
       detailedDescription: {
-        summary:
-          "Storybook과 Chromatic을 활용한 컴포넌트 문서화 및 시각적 테스트 환경을 구축하고, 재사용 가능한 UI 컴포넌트 라이브러리를 개발하여 팀 전체의 개발 생산성과 UI 일관성을 크게 향상시킨 프로젝트",
         results: [
           "사내 3개 제품에 점진적 도입으로 UI 일관성 70% 향상",
           "컴포넌트 재사용률 70% 달성으로 개발 효율성 대폭 향상",
@@ -569,8 +561,6 @@ export const mockPortfolioData: PortfolioData = {
       background:
         "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템 개발 프로젝트입니다. 3단 UI 구조, 단계별 UX, feature-based 아키텍처 등 평가 효율성과 확장성을 극대화하는 구조를 설계·구현했습니다.",
       detailedDescription: {
-        summary:
-          "3단계 UI 구조와 feature-based 아키텍처, 단계별 UX 설계로 평가 효율성과 확장성을 극대화하고, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 프로젝트",
         results: [
           "3단 UI 구조 설계로 복잡한 평가 업무의 단순화 및 효율성 향상",
           "직관적인 정보 계층 구조로 사용자 학습 비용 최소화",
@@ -672,8 +662,6 @@ export const mockPortfolioData: PortfolioData = {
       background:
         "400,000건 이상의 대용량 라벨링 데이터를 효율적으로 수집·운영하기 위해 드래그 기반 라벨링, 무한 스크롤, 실시간 품질 관리 등 직관적이고 성능 최적화된 웹 라벨링/검수 시스템을 설계·구현한 프로젝트입니다.",
       detailedDescription: {
-        summary:
-          "드래그 기반 라벨링 시스템, 무한 스크롤, 실시간 품질 관리 등 대용량 데이터 환경에서의 효율성과 직관적 UX를 구현하여 400,000건 이상의 라벨링 데이터를 안정적으로 수집·운영한 프로젝트",
         results: [
           "드래그 기반 라벨링으로 직관적이고 자연스러운 사용자 경험 제공",
           "실시간 시각적 피드백으로 라벨링 정확도 향상",

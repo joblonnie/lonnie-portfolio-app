@@ -1,46 +1,3 @@
-export interface PersonalInfo {
-  name: string
-  title: string
-  email: string
-  phone: string
-  location: string
-  experience: number
-  bio: string
-}
-
-export interface MindsetItem {
-  title: string
-  description: string
-}
-
-export interface CapabilityItem {
-  title: string
-  description: string
-}
-
-export interface Introduction {
-  mindset: MindsetItem[]
-  capabilities: CapabilityItem[]
-}
-
-export interface Skills {
-  languages: string[]
-  ui: string[]
-  stateManagement: string[]
-  architecture: string[]
-  devTools: string[]
-  collaborationTools: string[]
-}
-
-export interface Company {
-  id: string
-  name: string
-  position: string
-  period: string
-  duration: string
-  achievementList: string[]
-}
-
 export type ImprovementCategory = "성능최적화" | "사용자경험" | "개발효율성" | "시스템안정성" | "협업개선" | "품질향상"
 
 export interface Achievement {
@@ -53,7 +10,7 @@ export interface Solution {
   description: string
 }
 
-export interface MediaContent {
+export interface Media {
   url: string
   alt: string
   caption?: string
@@ -61,33 +18,31 @@ export interface MediaContent {
 
 export interface StructuralContribution {
   title: string
-  solutionList: Solution[]
+  solutionList?: Solution[]
   achievementList: Achievement[]
-  media?: MediaContent
+  media?: Media
+}
+
+export interface TechnicalContribution {
+  title: string
+  description: string
+  achievementList: Achievement[]
 }
 
 export interface DetailedDescription {
-  summary: string
   results: string[]
+}
+
+export interface TeamChange {
+  period: string
+  frontendDevelopers: number
+  reason?: string
 }
 
 export interface Contribution {
   category: string
   percentage: number
   color: string
-}
-
-export interface TeamChange {
-  period: string
-  frontendDevelopers: number
-  reason: string
-}
-
-export interface CodeSnippet {
-  title: string
-  language: string
-  code: string
-  description?: string
 }
 
 export interface Project {
@@ -99,16 +54,60 @@ export interface Project {
   background: string
   detailedDescription?: DetailedDescription
   structuralContributions?: StructuralContribution[]
+  technicalContributions?: TechnicalContribution[]
   period: string
   role: string
   frontendDevelopers: number
   keywords?: string[]
   technologies?: string[]
-  codeSnippets?: CodeSnippet[]
+  codeSnippets?: any[]
   contributions?: Contribution[]
   coreStack?: string[]
   stateManagement?: string[]
   teamChanges?: TeamChange[]
+}
+
+export interface Company {
+  id: string
+  name: string
+  position: string
+  period: string
+  duration: string
+  achievementList: string[]
+}
+
+export interface Skills {
+  languages: string[]
+  ui: string[]
+  stateManagement: string[]
+  architecture: string[]
+  devTools: string[]
+  collaborationTools: string[]
+}
+
+export interface PersonalInfo {
+  name: string
+  title: string
+  email: string
+  phone: string
+  location: string
+  experience: number
+  bio: string
+}
+
+export interface Mindset {
+  title: string
+  description: string
+}
+
+export interface Capability {
+  title: string
+  description: string
+}
+
+export interface Introduction {
+  mindset: Mindset[]
+  capabilities: Capability[]
 }
 
 export interface LearningPlan {
