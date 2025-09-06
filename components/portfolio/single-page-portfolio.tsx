@@ -1,732 +1,514 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import {
-  MapPin,
-  Calendar,
-  User,
-  Mail,
-  Code,
-  Palette,
-  Database,
-  Globe,
-  Smartphone,
-  Zap,
-  Briefcase,
-  Users,
-  Github,
-  Linkedin,
-  Target,
-  CheckCircle,
-} from "lucide-react"
-import { mockPortfolioData } from "@/lib/mock-data"
-import type { Project, ImprovementType } from "@/lib/types"
+import type React from "react"
 
-const getImprovementTypeColor = (type: ImprovementType) => {
-  switch (type) {
-    case "UX":
-      return "bg-blue-100 text-blue-800"
-    case "DX":
-      return "bg-green-100 text-green-800"
-    default:
-      return ""
-  }
-}
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Progress } from "@/components/ui/progress"
+import { mockPortfolioData } from "@/lib/mock-data"
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Award,
+  BookOpen,
+  Users,
+  Code,
+  Briefcase,
+  GraduationCap,
+  Target,
+  Lightbulb,
+  ExternalLink,
+  User,
+  Zap,
+} from "lucide-react"
 
 export function SinglePagePortfolio() {
-  const router = useRouter()
-  const portfolioData = mockPortfolioData
+  const {
+    personalInfo,
+    introduction,
+    companies,
+    projects,
+    education,
+    certifications,
+    activities,
+    sideProjects,
+    skills,
+    goals,
+    articles,
+  } = mockPortfolioData
 
-  const handleProjectClick = (project: Project) => {
-    router.push(`/project/${project.projectId}`)
-  }
-
-  const skillCategories = [
-    {
-      title: "프로그래밍 언어",
-      icon: <Code className="h-5 w-5" />,
-      skills: portfolioData.skills.languages,
-      color: "from-gray-500 to-gray-600",
-    },
-    {
-      title: "UI/UX 라이브러리 및 프레임워크",
-      icon: <Palette className="h-5 w-5" />,
-      skills: portfolioData.skills.ui,
-      color: "from-gray-500 to-gray-600",
-    },
-    {
-      title: "상태 관리",
-      icon: <Database className="h-5 w-5" />,
-      skills: portfolioData.skills.stateManagement,
-      color: "from-gray-500 to-gray-600",
-    },
-    {
-      title: "아키텍처",
-      icon: <Smartphone className="h-5 w-5" />,
-      skills: portfolioData.skills.architecture,
-      color: "from-gray-500 to-gray-600",
-    },
-    {
-      title: "개발 도구",
-      icon: <Zap className="h-5 w-5" />,
-      skills: portfolioData.skills.devTools,
-      color: "from-gray-500 to-gray-600",
-    },
-    {
-      title: "협업 도구",
-      icon: <Globe className="h-5 w-5" />,
-      skills: portfolioData.skills.collaborationTools,
-      color: "from-gray-500 to-gray-600",
-    },
-  ]
-
-  // Get projects by company
-  const getProjectsByCompany = (companyId: string) => {
-    return portfolioData.projects.filter((project) => project.companyId === companyId)
-  }
-
-  const externalLinks = [
-    {
-      name: "GitHub",
-      url: "https://github.com/joblonnie",
-      icon: <Github className="h-5 w-5" />,
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/donghyun-kim-a52b62207/",
-      icon: <Linkedin className="h-5 w-5" />,
-    },
-    {
-      name: "Tistory Blog",
-      url: "https://aosjehdgus.tistory.com/",
-      icon: <Globe className="h-5 w-5" />,
-    },
-  ]
+  const [selectedProject, setSelectedProject] = useState<number | null>(null)
 
   return (
-    <TooltipProvider>
-      <div className="min-h-screen bg-background p-8 print:p-4">
-        <div className="max-w-6xl mx-auto space-y-12 print:space-y-6 print:max-w-none">
-          {/* 커버 섹션 */}
-          <section className="text-center space-y-8 py-12 bg-card rounded-3xl relative overflow-hidden avoid-break print:py-6 print:space-y-4">
-            {/* 배경 장식 */}
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute -top-40 -right-40 w-80 h-80 bg-secondary rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary rounded-full blur-3xl"></div>
-            </div>
-
-            <div className="relative z-10 space-y-6">
-              <div className="relative inline-block">
-                <Avatar className="w-32 h-32 sm:w-40 sm:h-40 mx-auto ring-4 ring-white/50 shadow-2xl print:w-24 print:h-24 print:ring-2">
-                  <AvatarImage src="/profile.png" alt="Profile" />
-                  <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-gray-400 to-gray-500 text-white print:text-xl">
-                    {portfolioData.personalInfo?.name?.charAt(0) || "L"}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg print:w-6 print:h-6 print:border-2"></div>
-              </div>
-
-              <div className="space-y-4 print:space-y-2">
-                <h1 className="text-5xl font-bold bg-gradient-to-r from-lime-600 to-coral-600 bg-clip-text text-transparent print:text-3xl print:text-gray-900">
-                  {portfolioData.personalInfo?.name || "개발자"}
-                </h1>
-                <p className="text-2xl text-gray-700 font-medium print:text-lg">
-                  {portfolioData.personalInfo?.title || "풀스택 개발자"}
-                </p>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed print:text-base">
-                  {portfolioData.personalInfo?.bio || "혁신적인 웹 솔루션을 만드는 개발자입니다."}
-                </p>
-              </div>
-            </div>
-
-            {/* 개인 정보 카드 */}
-            <Card className="bg-card/80 backdrop-blur-sm border-0 shadow-xl max-w-2xl mx-auto relative z-10">
-              <CardContent className="p-6">
-                <div className="grid grid-cols-2 gap-4 text-sm mb-4">
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <MapPin className="h-4 w-4 text-gray-500" />
-                    {portfolioData.personalInfo?.location || "대한민국"}
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <Calendar className="h-4 w-4 text-gray-500" />
-                    4년차 개발자
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <User className="h-4 w-4 text-gray-500" />
-                    Available for work
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <Mail className="h-4 w-4 text-gray-500" />
-                    {portfolioData.personalInfo?.email || "contact@example.com"}
-                  </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="max-w-6xl mx-auto p-6 space-y-8">
+        {/* Header Section */}
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold text-slate-800">
+            "좋은 경험은 결국 좋은 기억이 된다" UX·DX 중심 개발자의 여정
+          </h1>
+          <div className="flex items-center justify-center gap-4">
+            <Avatar className="w-24 h-24">
+              <AvatarImage src="/avatar.png" alt={personalInfo.name} />
+              <AvatarFallback className="text-2xl bg-slate-200 text-slate-700">
+                {personalInfo.name.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="text-left">
+              <h2 className="text-2xl font-bold text-slate-800">{personalInfo.name}</h2>
+              <p className="text-lg text-slate-600">{personalInfo.title}</p>
+              <p className="text-slate-500">{personalInfo.experience}년차 프론트엔드 개발자</p>
+              <div className="flex gap-4 mt-2 text-sm text-slate-600">
+                <div className="flex items-center gap-1">
+                  <Mail className="w-4 h-4" />
+                  {personalInfo.email}
                 </div>
-
-                {/* External Links - Icon only with tooltips */}
-                <div className="flex justify-center gap-3 pt-4 border-t border-gray-200">
-                  {externalLinks.map((link, index) => (
-                    <Tooltip key={index}>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          asChild
-                          className="w-10 h-10 p-0 rounded-full bg-transparent hover:bg-secondary"
-                        >
-                          <a href={link.url} target="_blank" rel="noopener noreferrer">
-                            {link.icon}
-                          </a>
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{link.name}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  ))}
+                <div className="flex items-center gap-1">
+                  <Phone className="w-4 h-4" />
+                  {personalInfo.phone}
                 </div>
-              </CardContent>
-            </Card>
-          </section>
+                <div className="flex items-center gap-1">
+                  <MapPin className="w-4 h-4" />
+                  {personalInfo.location}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        {/* Bio Section */}
+        <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+          <CardContent className="p-8">
+            <div className="prose prose-slate max-w-none">
+              {personalInfo.bio.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="text-slate-700 leading-relaxed mb-4 last:mb-0">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Mindset & Capabilities */}
+        <div className="grid md:grid-cols-2 gap-8">
           {/* 업무 철학 */}
-          <section className="space-y-8 avoid-break print:space-y-4">
-            <Card className="bg-card border-0 avoid-break">
-              <CardContent className="p-8 print:p-4">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center print:text-xl print:mb-4">
-                  업무 철학
-                </h2>
-
-                {/* 상단 2개 철학 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 print:grid-cols-1 print:gap-3 mb-8">
-                  {[
-                    {
-                      icon: <User className="h-6 w-6" />,
-                      quote: "사용자 중심의 품질과 성능을 추구합니다",
-                      description:
-                        "사용자가 없으면 제품은 없다고 생각합니다. 사용자 경험을 최우선으로 고려하며, 동시에 성능 최적화를 통해 신뢰할 수 있는 제품을 만듭니다. UI/UX 디자이너와의 협업을 통해 사용자의 만족도를 높이는 데 집중합니다.",
-                    },
-                    {
-                      icon: <Users className="h-6 w-6" />,
-                      quote: "협업과 팀워크는 개발의 기반입니다",
-                      description:
-                        "디자이너, 기획자, 백엔드 개발자와의 긴밀한 커뮤니케이션을 통해 문제를 조기에 해결하고, 더 나은 품질을 달성합니다. 또한 팀 내 개발 경험(DX) 개선을 위해 코드 리뷰 문화 정착, 개발 프로세스 최적화, 공통 컴포넌트 라이브러리 구축 등을 통해 팀 전체의 생산성 향상에 기여합니다.",
-                    },
-                  ].map(({ icon, quote, description }, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col text-center p-6 bg-card rounded-xl shadow-sm h-full avoid-break print:p-4"
-                    >
-                      <div className="w-16 h-16 bg-gray-500 rounded-lg flex items-center justify-center mx-auto mb-4 print:w-12 print:h-12 print:mb-2">
-                        <span className="text-white">{icon}</span>
+          <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <Lightbulb className="w-5 h-5 text-slate-600" />
+                업무 철학
+              </h3>
+              <div className="space-y-4">
+                {introduction.mindset.map((item, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
+                        <User className="w-5 h-5 text-slate-600" />
                       </div>
-                      <blockquote className="italic text-gray-800 mb-4 font-medium print:text-sm print:mb-2">
-                        "{quote}"
-                      </blockquote>
-                      <p className="text-sm text-gray-600 flex-1 leading-relaxed">{description}</p>
                     </div>
-                  ))}
-                </div>
-
-                {/* 하단 프로세스 개선 철학 */}
-                <div className="grid grid-cols-1 gap-6 print:gap-3">
-                  {[
-                    {
-                      icon: <Zap className="h-6 w-6" />,
-                      quote: "프로세스 개선을 통한 생산성 향상을 추구합니다",
-                      description:
-                        "효율적인 개발 프로세스와 자동화를 통해 팀의 생산성을 높이는 것을 중요하게 생각합니다. 반복적인 작업을 줄이고, 업무 워크플로우를 최적화하여 더 나은 결과물을 만들어냅니다.",
-                      hasReference: true,
-                    },
-                  ].map(({ icon, quote, description, hasReference }, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col text-center p-6 bg-card rounded-xl shadow-sm h-full avoid-break print:p-4"
-                    >
-                      <div className="w-16 h-16 bg-gray-500 rounded-lg flex items-center justify-center mx-auto mb-4 print:w-12 print:h-12 print:mb-2">
-                        <span className="text-white">{icon}</span>
-                      </div>
-                      <blockquote className="italic text-gray-800 mb-4 font-medium print:text-sm print:mb-2">
-                        "{quote}"
-                      </blockquote>
-                      <p className="text-sm text-gray-600 flex-1 leading-relaxed">{description}</p>
-
-                      {hasReference && (
-                        <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                          <p className="text-xs font-medium text-blue-900 mb-2">참고 자료</p>
-                          <div className="space-y-1">
-                            <a
-                              href="https://www.notion.so/22b4c99a0f8180daa669e4ca8083fd66"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                            >
-                              업무 프로세스 개선
-                            </a>
-                            <a
-                              href="https://www.notion.so/PR-template-22b4c99a0f8180d6a24fc3f88d3e9c1b"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                            >
-                              좋은 코드 리뷰 문화 유지를 위한 PR template 정의하기
-                            </a>
-                            <a
-                              href="https://www.notion.so/22b4c99a0f81804a9060ea16b423aff9"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                            >
-                              구글 크롬 북마크를 활용한 생산성 향상
-                            </a>
-                            <a
-                              href="https://www.notion.so/Outlook-22b4c99a0f81807c92ccc3c2b8bb776d"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                            >
-                              Outlook 메일 자동 분류로 생산성 향상
-                            </a>
-                            <a
-                              href="https://www.notion.so/FE-22b4c99a0f8180afb842d15c973c634e"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                            >
-                              프론트엔드 개발 프로세스 최적화
-                            </a>
-                          </div>
-                        </div>
-                      )}
+                    <div>
+                      <h4 className="font-semibold text-slate-800 mb-1">{item.title}</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed">{item.description}</p>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* 학력 */}
-          <section className="space-y-6">
-            <Card className="bg-card shadow-lg border-0">
-              <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-r from-gray-500 to-gray-600 rounded-lg flex items-center justify-center text-white">
-                    🎓
                   </div>
-                  학력
-                </h2>
-                <div className="space-y-4 text-gray-600 leading-relaxed">
-                  <div>
-                    <p className="font-semibold text-gray-800 text-lg">서경대학교 나노융합공학과</p>
-                    <p className="text-sm text-gray-500 mb-2">학점 3.7 / 4.5</p>
-                    <p>
-                      3D 프린팅, 재료 설계 등 다양한 제작 프로젝트를 경험하며, 무언가를 직접 만들고 결과물을 눈앞에
-                      보여주는 일에 큰 흥미를 느꼈습니다. 이러한 경험이 웹 개발로 이어졌고, 사용자에게 가치를 전달하는
-                      개발자로 성장하는 계기가 되었습니다.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
 
-          {/* 경력 및 프로젝트 */}
-          <section className="space-y-6">
-            <h2 className="text-3xl font-bold text-center text-gray-900">경력 및 프로젝트</h2>
-            <div className="space-y-8">
-              {portfolioData.companies.map((company, index) => (
-                <Card key={index} className="bg-card shadow-lg border-0">
-                  <CardContent className="p-8">
-                    <div className="flex items-center gap-3 mb-6">
-                      <Briefcase className="h-8 w-8 text-gray-500" />
-                      <div className="flex-1">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                          <div>
-                            <h3 className="text-2xl font-bold text-gray-900">{company.position}</h3>
-                            <p className="text-lg text-coral-500 font-medium">{company.name}</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-gray-500">{company.period}</p>
-                            <p className="text-sm text-gray-400">({company.duration})</p>
-                          </div>
-                        </div>
+          {/* 핵심 역량 */}
+          <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                <Zap className="w-5 h-5 text-slate-600" />
+                핵심 역량
+              </h3>
+              <div className="space-y-4">
+                {introduction.capabilities.map((item, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
+                        <Zap className="w-5 h-5 text-slate-600" />
                       </div>
                     </div>
+                    <div>
+                      <h4 className="font-semibold text-slate-800 mb-1">{item.title}</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
-                    {/* 프로젝트 목록 */}
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4">담당 프로젝트</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {getProjectsByCompany(company.id).map((project) => (
-                          <Card
-                            key={project.projectId}
-                            className="bg-secondary hover:shadow-md transition-all duration-300 border-0"
-                          >
-                            <CardContent className="p-6">
-                              <div className="flex justify-between items-start mb-3">
-                                <div className="flex-1">
-                                  <h5 className="text-lg font-semibold text-gray-900 hover:text-lime-600 transition-colors mb-2">
-                                    {project.title}
-                                  </h5>
-                                  {/* 부제목 추가 */}
-                                  {project.subtitle && (
-                                    <p className="text-sm text-gray-600 mb-3 font-medium">{project.subtitle}</p>
-                                  )}
-                                  <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
-                                    <div className="flex items-center gap-1">
-                                      <Calendar className="h-4 w-4" />
-                                      {project.period}
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <Users className="h-4 w-4" />
-                                      {project.role}
-                                    </div>
-                                  </div>
+        {/* 경력 */}
+        <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-slate-800">
+              <Briefcase className="w-5 h-5" />
+              경력 및 프로젝트
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-8">
+            {companies.map((company, companyIndex) => (
+              <div key={companyIndex} className="space-y-6">
+                <div className="border-l-4 border-slate-300 pl-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-800">{company.name}</h3>
+                      <p className="text-slate-600">{company.position}</p>
+                    </div>
+                    <div className="text-right text-sm text-slate-500">
+                      <p>{company.period}</p>
+                      <p>{company.duration}</p>
+                    </div>
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    {company.achievementList.map((achievement, idx) => (
+                      <li key={idx} className="text-slate-700 flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* 해당 회사의 프로젝트들 */}
+                <div className="grid gap-6">
+                  {projects
+                    .filter((project) => project.companyId === company.id)
+                    .map((project, projectIndex) => (
+                      <Card key={projectIndex} className="bg-slate-50/50 border-slate-200">
+                        <CardContent className="p-6">
+                          <div className="flex items-start gap-4 mb-4">
+                            {project.image && (
+                              <img
+                                src={project.image || "/placeholder.svg"}
+                                alt={project.title}
+                                className="w-12 h-12 rounded-lg object-cover"
+                              />
+                            )}
+                            <div className="flex-1">
+                              <div className="flex justify-between items-start mb-2">
+                                <div>
+                                  <h4 className="text-lg font-semibold text-slate-800">{project.title}</h4>
+                                  {project.subtitle && <p className="text-slate-600 text-sm">{project.subtitle}</p>}
                                 </div>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    handleProjectClick(project)
-                                  }}
-                                  className="flex items-center gap-2 text-gray-500 hover:text-gray-600"
-                                >
-                                  상세보기
-                                </Button>
+                                <p className="text-sm text-slate-500">{project.period}</p>
                               </div>
+                              <p className="text-slate-700 mb-4 leading-relaxed">{project.background}</p>
 
-                              <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                                {project.detailedDescription?.summary?.split(".").slice(0, 2).join(".") + "." ||
-                                  project.background.split(".").slice(0, 2).join(".") + "."}
-                              </p>
-
-                              {/* 키워드 태그 */}
-                              {project.keywords && (
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                  {project.keywords.map((keyword, keywordIndex) => (
-                                    <span
-                                      key={keywordIndex}
-                                      className="px-2 py-1 bg-lime-100 text-lime-700 text-xs rounded-full"
-                                    >
-                                      {keyword}
-                                    </span>
-                                  ))}
+                              {/* 기여도 */}
+                              {project.contributions && project.contributions.length > 0 && (
+                                <div className="mb-4">
+                                  <h5 className="font-medium text-slate-800 mb-2">기여도</h5>
+                                  <div className="grid grid-cols-2 gap-3">
+                                    {project.contributions.map((contribution, idx) => (
+                                      <div key={idx}>
+                                        <div className="flex justify-between text-sm mb-1">
+                                          <span className="text-slate-700">{contribution.category}</span>
+                                          <span className="text-slate-600">{contribution.percentage}%</span>
+                                        </div>
+                                        <Progress
+                                          value={contribution.percentage}
+                                          className="h-2"
+                                          style={
+                                            {
+                                              "--progress-background": contribution.color,
+                                            } as React.CSSProperties
+                                          }
+                                        />
+                                      </div>
+                                    ))}
+                                  </div>
                                 </div>
                               )}
 
-                              {/* 핵심 기술 및 상태 관리 섹션 추가 */}
-                              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-                                <Card>
-                                  <CardHeader className="pb-3">
-                                    <CardTitle className="text-base">핵심 기술</CardTitle>
-                                  </CardHeader>
-                                  <CardContent className="pt-0">
-                                    <div className="flex flex-wrap gap-2">
-                                      {portfolioData.skills.core.map((skill, index) => (
-                                        <Badge
-                                          key={index}
-                                          variant="secondary"
-                                          className="bg-gray-100 text-gray-800 text-xs"
-                                        >
-                                          {skill}
-                                        </Badge>
-                                      ))}
-                                    </div>
-                                  </CardContent>
-                                </Card>
-
-                                <Card>
-                                  <CardHeader className="pb-3">
-                                    <CardTitle className="text-base">상태 관리</CardTitle>
-                                  </CardHeader>
-                                  <CardContent className="pt-0">
-                                    <div className="flex flex-wrap gap-2">
-                                      {portfolioData.skills.stateManagement.map((skill, index) => (
-                                        <Badge
-                                          key={index}
-                                          variant="outline"
-                                          className="border-gray-200 text-gray-700 text-xs"
-                                        >
-                                          {skill}
-                                        </Badge>
-                                      ))}
-                                    </div>
-                                  </CardContent>
-                                </Card>
-                              </div>
-
-                              {/* 프로젝트 상세 내용 - 확장 시 표시 */}
-                              <div
-                                className="mt-6 pt-6 border-t border-gray-200 space-y-6 max-w-full overflow-hidden"
-                                style={{
-                                  wordBreak: "break-word",
-                                  overflowWrap: "break-word",
-                                }}
-                              >
-                                {/* 프로젝트 대표 이미지 */}
-                                {project.image && (
-                                  <div className="w-full max-w-md mx-auto">
-                                    <img
-                                      src={project.image || "/placeholder.svg"}
-                                      alt={project.title}
-                                      className="w-full h-auto object-contain rounded-lg max-h-48"
-                                    />
-                                  </div>
-                                )}
-
-                                {/* 기술 스택 및 키워드 */}
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                  <Card>
-                                    <CardHeader className="pb-3">
-                                      <CardTitle className="text-base">사용 기술</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="pt-0">
-                                      <div className="flex flex-wrap gap-2">
-                                        {project.technologies?.map((tech, index) => (
-                                          <Badge
-                                            key={index}
-                                            variant="secondary"
-                                            className="bg-gray-100 text-gray-800 text-xs"
-                                          >
-                                            {tech}
-                                          </Badge>
-                                        ))}
-                                      </div>
-                                    </CardContent>
-                                  </Card>
-
-                                  <Card>
-                                    <CardHeader className="pb-3">
-                                      <CardTitle className="text-base">핵심 키워드</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="pt-0">
-                                      <div className="flex flex-wrap gap-2">
-                                        {project.keywords?.map((keyword, index) => (
-                                          <Badge
-                                            key={index}
-                                            variant="outline"
-                                            className="border-gray-200 text-gray-700 text-xs"
-                                          >
-                                            {keyword}
-                                          </Badge>
-                                        ))}
-                                      </div>
-                                    </CardContent>
-                                  </Card>
+                              {/* 주요 성과 */}
+                              {project.detailedDescription?.results && (
+                                <div className="mb-4">
+                                  <h5 className="font-medium text-slate-800 mb-2">주요 성과</h5>
+                                  <ul className="space-y-1">
+                                    {project.detailedDescription.results.slice(0, 3).map((result, idx) => (
+                                      <li key={idx} className="text-slate-700 text-sm flex items-start gap-2">
+                                        <span className="w-1.5 h-1.5 bg-slate-400 rounded-full mt-2 flex-shrink-0"></span>
+                                        {result}
+                                      </li>
+                                    ))}
+                                  </ul>
                                 </div>
+                              )}
 
-                                {/* 프로젝트 내용 */}
-                                <Card>
-                                  <CardHeader className="pb-3">
-                                    <CardTitle className="flex items-center gap-2 text-base">
-                                      <Target className="h-4 w-4 text-gray-600 flex-shrink-0" />
-                                      <span>프로젝트 내용</span>
-                                    </CardTitle>
-                                  </CardHeader>
-                                  <CardContent className="pt-0">
-                                    <p className="text-sm text-gray-700 leading-relaxed">{project.background}</p>
-                                  </CardContent>
-                                </Card>
-
-                                {/* 주요 기여사항 */}
-                                {project.structuralContributions && project.structuralContributions.length > 0 && (
-                                  <Card>
-                                    <CardHeader className="pb-3">
-                                      <CardTitle className="flex items-center gap-2 text-base">
-                                        <Briefcase className="h-4 w-4 text-gray-600 flex-shrink-0" />
-                                        <span>주요 기여사항</span>
-                                      </CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="pt-0 space-y-4">
-                                      {project.structuralContributions.map((contribution, index) => (
-                                        <div
-                                          key={index}
-                                          className="border-l-4 border-gray-200 pl-4 bg-gray-50 p-4 rounded-r"
-                                        >
-                                          <h4 className="font-semibold text-sm text-gray-900 mb-2">
-                                            {contribution.title}
-                                          </h4>
-
-                                          {/* solutionList 표시 */}
-                                          {contribution.solutionList && contribution.solutionList.length > 0 && (
-                                            <div className="space-y-3 mb-4">
-                                              {contribution.solutionList.map((solution, solutionIndex) => (
-                                                <div key={solutionIndex} className="border-l-2 border-gray-300 pl-3">
-                                                  <h5 className="font-medium text-gray-800 text-sm mb-1">
-                                                    {solution.title}
-                                                  </h5>
-                                                  <p className="text-sm text-gray-700 leading-relaxed">
-                                                    {solution.description}
-                                                  </p>
-                                                </div>
-                                              ))}
-                                            </div>
-                                          )}
-
-                                          <div className="space-y-2">
-                                            <h5 className="font-medium text-gray-800 text-sm">주요 성과</h5>
-                                            <ul className="space-y-2">
-                                              {contribution.achievementList.map((achievement, achIndex) => (
-                                                <li key={achIndex} className="flex items-start gap-2 text-sm">
-                                                  <CheckCircle className="h-3 w-3 text-gray-600 mt-0.5 flex-shrink-0" />
-                                                  <div className="flex-1">
-                                                    <span className="text-gray-700">{achievement.text}</span>
-                                                    {achievement.type && getImprovementTypeColor(achievement.type) && (
-                                                      <Badge
-                                                        className={`ml-2 text-xs ${getImprovementTypeColor(achievement.type)}`}
-                                                        variant="secondary"
-                                                      >
-                                                        {achievement.type}
-                                                      </Badge>
-                                                    )}
-                                                  </div>
-                                                </li>
-                                              ))}
-                                            </ul>
-                                          </div>
-                                        </div>
-                                      ))}
-                                    </CardContent>
-                                  </Card>
-                                )}
-
-                                {/* 기술적 기여 */}
-                                {project.technicalContributions && project.technicalContributions.length > 0 && (
-                                  <Card>
-                                    <CardHeader className="pb-3">
-                                      <CardTitle className="flex items-center gap-2 text-base">
-                                        <Code className="h-4 w-4 text-gray-600 flex-shrink-0" />
-                                        <span>기술적 기여</span>
-                                      </CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="pt-0 space-y-4">
-                                      {project.technicalContributions.map((contribution, index) => (
-                                        <div
-                                          key={index}
-                                          className="border-l-4 border-gray-200 pl-4 bg-gray-50 p-4 rounded-r"
-                                        >
-                                          <h4 className="font-semibold text-sm text-gray-900 mb-2">
-                                            {contribution.title}
-                                          </h4>
-                                          <p className="text-sm text-gray-800 leading-relaxed mb-3">
-                                            {contribution.description}
-                                          </p>
-                                          <ul className="space-y-2">
-                                            {contribution.achievementList.map((achievement, achIndex) => (
-                                              <li
-                                                key={achIndex}
-                                                className="flex items-start gap-2 text-sm text-gray-700"
-                                              >
-                                                <CheckCircle className="h-3 w-3 text-gray-600 mt-0.5 flex-shrink-0" />
-                                                <span>{achievement.text}</span>
-                                              </li>
-                                            ))}
-                                          </ul>
-                                        </div>
-                                      ))}
-                                    </CardContent>
-                                  </Card>
-                                )}
-
-                                {/* 핵심 성과 */}
-                                {project.detailedDescription?.results && (
-                                  <Card>
-                                    <CardHeader className="pb-3">
-                                      <CardTitle className="flex items-center gap-2 text-base">
-                                        <CheckCircle className="h-4 w-4 text-gray-600 flex-shrink-0" />
-                                        <span>핵심 성과</span>
-                                      </CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="pt-0">
-                                      <div className="prose prose-sm max-w-none">
-                                        <h4 className="font-semibold text-sm text-gray-900 mb-2">
-                                          {project.detailedDescription.summary}
-                                        </h4>
-                                        <div className="whitespace-pre-wrap text-sm leading-relaxed font-sans bg-gray-50 p-3 sm:p-4 rounded-md overflow-x-auto">
-                                          {project.detailedDescription.results}
-                                        </div>
-                                      </div>
-                                    </CardContent>
-                                  </Card>
-                                )}
+                              {/* 기술 스택 */}
+                              <div className="flex flex-wrap gap-2">
+                                {project.technologies.slice(0, 8).map((tech) => (
+                                  <Badge key={tech} variant="secondary" className="text-xs bg-white text-slate-700">
+                                    {tech}
+                                  </Badge>
+                                ))}
                               </div>
-                            </CardContent>
-                          </Card>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
 
-          {/* 기술 스택 */}
-          <section className="space-y-6">
-            <h2 className="text-3xl font-bold text-center text-gray-900">기술 스택</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {skillCategories.map((category, index) => (
-                <Card key={index} className="bg-card shadow-lg border-0 hover:shadow-xl transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div
-                        className={`w-10 h-10 bg-gradient-to-r ${category.color} rounded-lg flex items-center justify-center text-white`}
-                      >
-                        {category.icon}
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900">{category.title}</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill, skillIndex) => (
-                        <span key={skillIndex} className="px-3 py-1 bg-gray-50 text-gray-700 text-sm rounded-full">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-
-          {/* 미래 비전 */}
-          <section className="space-y-8">
-            <Card className="bg-card border-0">
-              <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">미래 비전</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {portfolioData.goals.futureVision.map((vision, index) => (
-                    <div key={index} className="flex flex-col text-center p-6 bg-card rounded-xl shadow-sm h-full">
-                      <div
-                        className={`w-16 h-16 bg-gradient-to-r ${vision.gradient} rounded-full flex items-center justify-center mx-auto mb-4`}
-                      >
-                        <span className="text-white text-2xl">{vision.icon}</span>
-                      </div>
-                      <blockquote className="italic text-gray-800 mb-4 font-medium">"{vision.quote}"</blockquote>
-                      <p className="text-sm text-gray-600 flex-1 leading-relaxed">{vision.description}</p>
-                    </div>
+        {/* 기술 스택 */}
+        <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-slate-800">
+              <Code className="w-5 h-5" />
+              기술 스택
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <h4 className="font-semibold text-slate-700 mb-3">언어</h4>
+                <div className="flex flex-wrap gap-2">
+                  {skills.languages.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="bg-slate-100 text-slate-700">
+                      {skill}
+                    </Badge>
                   ))}
                 </div>
-
-                {/* 궁극적인 비전 */}
-                <div className="pt-6 border-t border-gray-200">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">궁극적인 비전</h3>
-                  <div className="bg-card rounded-xl p-6 text-center">
-                    <p className="text-lg text-gray-800 leading-relaxed italic">"{portfolioData.goals.vision.quote}"</p>
-                    <p className="text-sm text-gray-600 mt-4 leading-relaxed">
-                      {portfolioData.goals.vision.description}
-                    </p>
-                  </div>
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-700 mb-3">UI/UX</h4>
+                <div className="flex flex-wrap gap-2">
+                  {skills.ui.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="bg-slate-100 text-slate-700">
+                      {skill}
+                    </Badge>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
-          </section>
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-700 mb-3">상태 관리</h4>
+                <div className="flex flex-wrap gap-2">
+                  {skills.stateManagement.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="bg-slate-100 text-slate-700">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-700 mb-3">아키텍처</h4>
+                <div className="flex flex-wrap gap-2">
+                  {skills.architecture.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="bg-slate-100 text-slate-700">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-700 mb-3">개발 도구</h4>
+                <div className="flex flex-wrap gap-2">
+                  {skills.devTools.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="bg-slate-100 text-slate-700">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold text-slate-700 mb-3">협업 도구</h4>
+                <div className="flex flex-wrap gap-2">
+                  {skills.collaborationTools.map((skill) => (
+                    <Badge key={skill} variant="secondary" className="bg-slate-100 text-slate-700">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* 학력 */}
+        <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-slate-800">
+              <GraduationCap className="w-5 h-5" />
+              학력
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {education.map((edu, index) => (
+              <div key={index} className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-semibold text-slate-800">{edu.institution}</h3>
+                  <p className="text-slate-600">{edu.degree}</p>
+                  {edu.gpa && <p className="text-slate-500 text-sm">GPA: {edu.gpa}</p>}
+                  <p className="text-slate-700 text-sm mt-2 leading-relaxed">{edu.description}</p>
+                </div>
+                <p className="text-sm text-slate-500">{edu.period}</p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        {/* Activities & Side Projects */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* 사내활동 */}
+          <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-slate-800">
+                <Users className="w-5 h-5" />
+                사내활동
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {activities && activities.length > 0 ? (
+                activities.map((activity, index) => (
+                  <div key={index} className="border-l-4 border-slate-200 pl-4">
+                    <h4 className="font-semibold text-slate-800">{activity.title}</h4>
+                    <p className="text-sm text-slate-600 mb-2">
+                      {activity.organization} • {activity.period}
+                    </p>
+                    <p className="text-slate-700 text-sm leading-relaxed">{activity.description}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-slate-500 text-sm">등록된 사내활동이 없습니다.</p>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* 사이드 프로젝트 */}
+          <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-slate-800">
+                <Lightbulb className="w-5 h-5" />
+                사이드 프로젝트
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {sideProjects && sideProjects.length > 0 ? (
+                sideProjects.map((project, index) => (
+                  <div key={index} className="border-l-4 border-slate-200 pl-4">
+                    <h4 className="font-semibold text-slate-800">{project.title}</h4>
+                    <p className="text-sm text-slate-600 mb-2">
+                      {project.organization} • {project.period}
+                    </p>
+                    <p className="text-slate-700 text-sm leading-relaxed">{project.description}</p>
+                  </div>
+                ))
+              ) : (
+                <p className="text-slate-500 text-sm">등록된 사이드 프로젝트가 없습니다.</p>
+              )}
+            </CardContent>
+          </Card>
         </div>
+
+        {/* 자격증 & 교육 */}
+        <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-slate-800">
+              <Award className="w-5 h-5" />
+              자격증 & 교육
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {certifications.map((cert, index) => (
+              <div key={index} className="flex justify-between items-start">
+                <div>
+                  <h4 className="font-medium text-slate-800">{cert.name}</h4>
+                  <p className="text-slate-600 text-sm">{cert.issuer}</p>
+                  {cert.description && (
+                    <p className="text-slate-700 text-sm mt-1 leading-relaxed">{cert.description}</p>
+                  )}
+                </div>
+                <p className="text-sm text-slate-500">{cert.date}</p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        {/* 아티클 */}
+        <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-slate-800">
+              <BookOpen className="w-5 h-5" />
+              아티클
+            </CardTitle>
+            <p className="text-slate-600 text-sm mt-2">개발하면서 정리했던 문서들입니다.</p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-4">
+              {articles.slice(0, 6).map((article, index) => (
+                <Card key={index} className="bg-slate-50/50 border-slate-200 hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <Badge variant="secondary" className="text-xs bg-white text-slate-700">
+                        {article.category}
+                      </Badge>
+                      <p className="text-xs text-slate-500">{article.date}</p>
+                    </div>
+                    <h4 className="font-medium text-slate-800 mb-2 line-clamp-2">{article.title}</h4>
+                    <p className="text-slate-600 text-sm mb-3 line-clamp-2">{article.description}</p>
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {article.tags.slice(0, 3).map((tag) => (
+                        <Badge key={tag} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-full justify-between text-lime-600 hover:text-lime-700"
+                      onClick={() => window.open(article.notionUrl, "_blank")}
+                    >
+                      자세히 보기
+                      <ExternalLink className="w-3 h-3" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* 목표 & 비전 */}
+        <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-slate-800">
+              <Target className="w-5 h-5" />
+              목표 & 비전
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="mb-6">
+              <h3 className="font-semibold text-slate-800 mb-2">{goals.vision.quote}</h3>
+              <p className="text-slate-700 leading-relaxed">{goals.vision.description}</p>
+            </div>
+            <div className="space-y-6">
+              {goals.futureVision.map((vision, index) => (
+                <div key={index} className="border-l-4 border-slate-200 pl-6">
+                  <div className="flex items-start gap-3 mb-2">
+                    <span className="text-2xl">{vision.icon}</span>
+                    <h4 className="font-medium text-slate-800">{vision.quote}</h4>
+                  </div>
+                  <p className="text-slate-700 leading-relaxed">{vision.description}</p>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
-    </TooltipProvider>
+    </div>
   )
 }

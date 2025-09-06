@@ -217,7 +217,7 @@ export const mockPortfolioData: PortfolioData = {
       period: "2025.01 - 2025.08",
       role: "프론트엔드 개발",
       frontendDevelopers: 2,
-      keywords: ["NX Monorepo", "Feature-Sliced Design", "실시간 데이터 처리", "성능 최적화", "모듈화 아키텍처"],
+      keywords: ["NX Monorepo", "Feature-Sliced Design", "실시간 데이터 처리", "성능 최적화", "모듈화 ���키텍처"],
       technologies: [
         "React",
         "TypeScript",
