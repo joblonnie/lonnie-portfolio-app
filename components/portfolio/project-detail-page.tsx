@@ -197,17 +197,6 @@ export function ProjectDetailPage() {
                 <p className="text-gray-700">
                   프론트엔드 개발자 {project.frontendDevelopers}명
                 </p>
-                {project.teamChanges && project.teamChanges.length > 0 && (
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500 mb-1">인원 변화</p>
-                    {project.teamChanges.map((change, index) => (
-                      <p key={index} className="text-sm text-coral-600">
-                        {change.period}: {change.frontendDevelopers}명{" "}
-                        {change.reason && `(${change.reason})`}
-                      </p>
-                    ))}
-                  </div>
-                )}
               </CardContent>
             </Card>
             <Card className="border-gray-200">
