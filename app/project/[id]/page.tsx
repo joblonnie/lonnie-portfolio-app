@@ -1,22 +1,8 @@
-import { ProjectDetailPage } from "@/components/portfolio/project-detail-page"
+import { ProjectPageClient } from "./ProjectPageClient"
 import { mockPortfolioData } from "@/lib/mock-data"
-import { notFound } from "next/navigation"
 
-interface ProjectPageProps {
-  params: {
-    id: string
-  }
-}
-
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const projectId = Number.parseInt(params.id)
-  const project = mockPortfolioData.projects.find((p) => p.projectId === projectId)
-
-  if (!project) {
-    notFound()
-  }
-
-  return <ProjectDetailPage project={project} />
+export default function ProjectPage({ params }: { params: { id: string } }) {
+  return <ProjectPageClient params={params} />
 }
 
 export async function generateStaticParams() {

@@ -1,21 +1,8 @@
-import { ArticleDetailPage } from "@/components/portfolio/article-detail-page"
 import { mockPortfolioData } from "@/lib/mock-data"
-import { notFound } from "next/navigation"
+import ArticlePageClient from "./ArticlePageClient"
 
-interface ArticlePageProps {
-  params: {
-    id: string
-  }
-}
-
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = mockPortfolioData.articles.find((a) => a.id === params.id)
-
-  if (!article) {
-    notFound()
-  }
-
-  return <ArticleDetailPage article={article} />
+export default async function ArticlePage({ params }: { params: { id: string } }) {
+  return <ArticlePageClient params={params} />
 }
 
 export async function generateStaticParams() {
