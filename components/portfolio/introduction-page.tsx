@@ -241,11 +241,7 @@ export function IntroductionPage() {
                     </div>
 
                     <div className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed mt-6 space-y-4">
-                      {personalInfo?.bio
-                        ?.split("\n")
-                        .map((paragraph, index) => (
-                          <p key={index}>{paragraph}</p>
-                        )) || <p>혁신적인 웹 솔루션을 만드는 개발자입니다.</p>}
+                      <p>{personalInfo?.bio}</p>
                     </div>
                   </div>
                 </div>
