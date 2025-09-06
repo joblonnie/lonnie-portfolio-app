@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { AnimatedElement } from "@/components/ui/animated-element"
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { AnimatedElement } from "@/components/ui/animated-element";
 import {
   ArrowUp,
   Code,
@@ -28,39 +28,48 @@ import {
   Award,
   GraduationCap,
   Activity,
-} from "lucide-react"
-import { mockPortfolioData } from "@/lib/mock-data"
-import type { Project } from "@/lib/types"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "lucide-react";
+import { mockPortfolioData } from "@/lib/mock-data";
+import type { Project } from "@/lib/types";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function IntroductionPage() {
-  const router = useRouter()
-  const [showScrollTop, setShowScrollTop] = useState(false)
-  const [showAllArticles, setShowAllArticles] = useState(false)
+  const router = useRouter();
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showAllArticles, setShowAllArticles] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300)
-    }
+      setShowScrollTop(window.scrollY > 300);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleProjectClick = (project: Project) => {
-    router.push(`/project/${project.projectId}`)
-  }
+    router.push(`/project/${project.projectId}`);
+  };
 
   const handleArticleClick = (notionUrl: string) => {
-    window.open(notionUrl, "_blank")
-  }
+    window.open(notionUrl, "_blank");
+  };
 
-  const { personalInfo, skills, companies, projects, goals, articles, education, certifications, activities } =
-    mockPortfolioData
+  const {
+    personalInfo,
+    skills,
+    companies,
+    projects,
+    goals,
+    articles,
+    education,
+    certifications,
+    activities,
+  } = mockPortfolioData;
 
   const skillCategories = [
     {
@@ -99,15 +108,17 @@ export function IntroductionPage() {
       skills: skills.collaborationTools,
       color: "from-gray-500 to-gray-600",
     },
-  ]
+  ];
 
   // Get projects by company
   const getProjectsByCompany = (companyId: string) => {
-    return projects.filter((project) => project.companyId === companyId)
-  }
+    return projects.filter((project) => project.companyId === companyId);
+  };
 
   // 아티클 표시 개수 결정
-  const displayedArticles = showAllArticles ? articles : articles?.slice(0, 4) || []
+  const displayedArticles = showAllArticles
+    ? articles
+    : articles?.slice(0, 2) || [];
 
   return (
     <main className="min-h-screen relative overflow-hidden">
@@ -121,7 +132,12 @@ export function IntroductionPage() {
       <div className="relative z-10 py-8 px-4 sm:px-6 lg:px-8">
         <article className="max-w-4xl mx-auto space-y-8">
           {/* 개인 정보 섹션 */}
-          <AnimatedElement animation="scaleIn" delay={0} duration={200} className="space-y-6">
+          <AnimatedElement
+            animation="scaleIn"
+            delay={0}
+            duration={200}
+            className="space-y-6"
+          >
             <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
               <CardContent className="p-8">
                 <div className="flex flex-col items-center space-y-6">
@@ -130,7 +146,9 @@ export function IntroductionPage() {
                     <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                       "좋은 경험은 결국 좋은 기억이 된다"
                     </h1>
-                    <p className="text-lg text-gray-600">UX·DX 중심 개발자의 여정</p>
+                    <p className="text-lg text-gray-600">
+                      UX·DX 중심 개발자의 여정
+                    </p>
                   </div>
 
                   {/* 아바타 */}
@@ -148,7 +166,7 @@ export function IntroductionPage() {
                   </div>
 
                   {/* 개인 정보 */}
-                  <div className="space-y-4 text-center">
+                  <div className="space-y-8 text-center">
                     <div>
                       <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
                         {personalInfo?.name || "개발자"}
@@ -162,7 +180,9 @@ export function IntroductionPage() {
                     <div className="flex flex-wrap gap-3 justify-center">
                       <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100/50">
                         <MapPin className="w-4 h-4 text-coral-500" />
-                        <span className="text-sm text-gray-700">{personalInfo?.location || "서울, 대한민국"}</span>
+                        <span className="text-sm text-gray-700">
+                          {personalInfo?.location || "서울, 대한민국"}
+                        </span>
                       </div>
 
                       <a
@@ -170,17 +190,21 @@ export function IntroductionPage() {
                         className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100/50 hover:border-lime-200 group"
                       >
                         <Mail className="w-4 h-4 text-lime-500 group-hover:scale-110 transition-transform" />
-                        <span className="text-sm text-gray-700">{personalInfo?.email || "contact@example.com"}</span>
+                        <span className="text-sm text-gray-700">
+                          {personalInfo?.email || "contact@example.com"}
+                        </span>
                       </a>
 
                       <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100/50">
                         <Phone className="w-4 h-4 text-coral-500" />
-                        <span className="text-sm text-gray-700">{personalInfo?.phone || "010-0000-0000"}</span>
+                        <span className="text-sm text-gray-700">
+                          {personalInfo?.phone || "010-0000-0000"}
+                        </span>
                       </div>
                     </div>
 
                     {/* 소셜 링크 - 로고로 변경 */}
-                    <div className="flex gap-4 justify-center pt-4">
+                    <div className="flex gap-4 justify-center ">
                       <a
                         href="https://aosjehdgus.tistory.com/"
                         target="_blank"
@@ -216,10 +240,12 @@ export function IntroductionPage() {
                       </a>
                     </div>
 
-                    <div className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto leading-relaxed mt-6 space-y-4">
-                      {personalInfo?.bio?.split("\n\n").map((paragraph, index) => <p key={index}>{paragraph}</p>) || (
-                        <p>혁신적인 웹 솔루션을 만드는 개발자입니다.</p>
-                      )}
+                    <div className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto leading-relaxed mt-6 space-y-4">
+                      {personalInfo?.bio
+                        ?.split("\n")
+                        .map((paragraph, index) => (
+                          <p key={index}>{paragraph}</p>
+                        )) || <p>혁신적인 웹 솔루션을 만드는 개발자입니다.</p>}
                     </div>
                   </div>
                 </div>
@@ -228,13 +254,21 @@ export function IntroductionPage() {
           </AnimatedElement>
 
           {/* 업무 철학 */}
-          <AnimatedElement animation="slideUp" delay={300} duration={200} className="mb-12">
+          <AnimatedElement
+            animation="slideUp"
+            delay={300}
+            duration={200}
+            className="mb-12"
+          >
             <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
               <CardContent className="p-8">
-                <header className="text-2xl font-bold text-gray-900 mb-6 text-center">업무 철학</header>
+                <header className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                  업무 철학
+                </header>
 
                 <p className="text-center text-gray-500 mb-8">
-                  다양한 실무 경험을 통해 얻은 개발 철학과 협업 원칙은 다음과 같습니다.
+                  다양한 실무 경험을 통해 얻은 개발 철학과 협업 원칙은 다음과
+                  같습니다.
                 </p>
 
                 {/* 상단 2개 철학 */}
@@ -261,9 +295,13 @@ export function IntroductionPage() {
                         <span className="text-white text-2xl">{icon}</span>
                       </div>
 
-                      <blockquote className="italic text-gray-800 mb-4 font-medium">"{quote}"</blockquote>
+                      <blockquote className="italic text-gray-800 mb-4 font-medium">
+                        "{quote}"
+                      </blockquote>
 
-                      <p className="text-sm text-gray-600 flex-1 leading-relaxed">{description}</p>
+                      <p className="text-sm text-gray-600 flex-1 leading-relaxed">
+                        {description}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -272,8 +310,18 @@ export function IntroductionPage() {
           </AnimatedElement>
 
           {/* 경력 및 프로젝트 */}
-          <AnimatedElement animation="slideUp" delay={100} duration={200} className="mb-12">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">경력 및 프로젝트</h2>
+          <AnimatedElement
+            animation="slideUp"
+            delay={100}
+            duration={200}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              경력 및 프로젝트
+            </h2>
+            <p className="text-center text-gray-500 mb-8">
+              지금까지 참여했던 회사와 주요 프로젝트들을 소개합니다.
+            </p>
             <div className="space-y-8">
               {companies.map((company, index) => (
                 <Card
@@ -288,12 +336,18 @@ export function IntroductionPage() {
                       <div className="flex-1">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                           <div>
-                            <h3 className="text-2xl font-bold text-gray-900">{company.position}</h3>
-                            <p className="text-lg text-coral-500 font-medium">{company.name}</p>
+                            <h3 className="text-2xl font-bold text-gray-900">
+                              {company.position}
+                            </h3>
+                            <p className="text-lg text-coral-500 font-medium">
+                              {company.name}
+                            </p>
                           </div>
                           <div className="text-right">
                             <p className="text-gray-500">{company.period}</p>
-                            <p className="text-sm text-gray-400">({company.duration})</p>
+                            <p className="text-sm text-gray-400">
+                              ({company.duration})
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -301,68 +355,79 @@ export function IntroductionPage() {
 
                     {/* 프로젝트 목록 */}
                     <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4">담당 프로젝트</h4>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                        담당 프로젝트
+                      </h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {getProjectsByCompany(company.id).map((project, projectIndex) => (
-                          <Card
-                            key={project.projectId}
-                            className="group bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-gray-100/50 shadow-lg"
-                            onClick={() => handleProjectClick(project)}
-                          >
-                            <CardContent className="p-6">
-                              {/* 프로젝트 이미지 */}
-                              {project.image && (
-                                <div className="mb-4 p-2 bg-gray-50 rounded-lg">
-                                  <img
-                                    src={project.image || "/placeholder.svg"}
-                                    alt={project.title}
-                                    className="w-full h-32 object-contain rounded-lg"
-                                  />
-                                </div>
-                              )}
+                        {getProjectsByCompany(company.id).map(
+                          (project, projectIndex) => (
+                            <Card
+                              key={project.projectId}
+                              className="group bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-gray-100/50 shadow-lg"
+                              onClick={() => handleProjectClick(project)}
+                            >
+                              <CardContent className="p-6">
+                                {/* 프로젝트 이미지 */}
+                                {project.image && (
+                                  <div className="mb-4 p-2 bg-gray-50 rounded-lg">
+                                    <img
+                                      src={project.image || "/placeholder.svg"}
+                                      alt={project.title}
+                                      className="w-full h-32 object-contain rounded-lg"
+                                    />
+                                  </div>
+                                )}
 
-                              <div className="flex justify-between items-start mb-3">
-                                <div className="flex-1">
-                                  <h5 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-2">
-                                    {project.title}
-                                  </h5>
-                                  {/* 부제목 추가 */}
-                                  {project.subtitle && (
-                                    <p className="text-sm text-gray-600 mb-3 font-medium">{project.subtitle}</p>
-                                  )}
-                                  <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
-                                    <div className="flex items-center gap-1">
-                                      <Calendar className="h-4 w-4" />
-                                      {project.period}
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <Users className="h-4 w-4" />
-                                      {project.role}
+                                <div className="flex justify-between items-start mb-3">
+                                  <div className="flex-1">
+                                    <h5 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-2">
+                                      {project.title}
+                                    </h5>
+                                    {/* 부제목 추가 */}
+                                    {project.subtitle && (
+                                      <p className="text-sm text-gray-600 mb-3 font-medium">
+                                        {project.subtitle}
+                                      </p>
+                                    )}
+                                    <div className="flex items-center gap-4 text-sm text-gray-500 mt-1">
+                                      <div className="flex items-center gap-1">
+                                        <Calendar className="h-4 w-4" />
+                                        {project.period}
+                                      </div>
+                                      <div className="flex items-center gap-1">
+                                        <Users className="h-4 w-4" />
+                                        {project.role}
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
 
-                              <p className="text-gray-600 mb-4 leading-relaxed text-sm">
-                                {project.background.split(".").slice(0, 2).join(". ")}
-                              </p>
+                                <p className="text-gray-600 mb-4 leading-relaxed text-sm">
+                                  {project.background
+                                    .split(".")
+                                    .slice(0, 2)
+                                    .join(". ")}
+                                </p>
 
-                              {/* 키워드 태그 */}
-                              {project.keywords && (
-                                <div className="flex flex-wrap gap-2">
-                                  {project.keywords.map((keyword, keywordIndex) => (
-                                    <span
-                                      key={keywordIndex}
-                                      className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-gray-200 hover:text-gray-800 transition-all duration-300"
-                                    >
-                                      {keyword}
-                                    </span>
-                                  ))}
-                                </div>
-                              )}
-                            </CardContent>
-                          </Card>
-                        ))}
+                                {/* 키워드 태그 */}
+                                {project.keywords && (
+                                  <div className="flex flex-wrap gap-2">
+                                    {project.keywords.map(
+                                      (keyword, keywordIndex) => (
+                                        <span
+                                          key={keywordIndex}
+                                          className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-gray-200 hover:text-gray-800 transition-all duration-300"
+                                        >
+                                          {keyword}
+                                        </span>
+                                      )
+                                    )}
+                                  </div>
+                                )}
+                              </CardContent>
+                            </Card>
+                          )
+                        )}
                       </div>
                     </div>
                   </CardContent>
@@ -371,24 +436,225 @@ export function IntroductionPage() {
             </div>
           </AnimatedElement>
 
-          {/* 기술 스택 */}
-          <AnimatedElement animation="slideUp" delay={150} duration={200} className="mb-12">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">기술 스택</h2>
+          {/* 학력 · 자격 · 활동 */}
+
+          <AnimatedElement
+            animation="slideUp"
+            delay={50}
+            duration={200}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              학력 · 자격 · 활동
+            </h2>
 
             <p className="text-center text-gray-500 mb-8">
-              기술 스택은 실제 개발을 진행하면서 프로젝트에 적용해왔던 것들을 기준으로 작성했습니다.
+              학력, 자격증, 그리고 활동 경험을 소개합니다.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* 교육 */}
+              <Card className="backdrop-blur-sm bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 border-0">
+                <CardContent className="p-8">
+                  <header className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
+                      <GraduationCap className="h-5 w-5 text-white" />
+                    </div>
+                    학력
+                  </header>
+                  <div className="space-y-4">
+                    {education.map((edu, index) => (
+                      <div key={index} className="border-l-4 gray-700 pl-4">
+                        <h4 className="font-semibold text-gray-800">
+                          {edu.institution}
+                        </h4>
+                        <p className="text-gray-600">{edu.degree}</p>
+                        <p className="text-sm text-gray-500">{edu.period}</p>
+                        {edu.gpa && (
+                          <p className="text-sm text-gray-500">
+                            학점: {edu.gpa}
+                          </p>
+                        )}
+                        <p className="text-sm text-gray-600 mt-2 leading-relaxed">
+                          {edu.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 인증서 */}
+              <Card className="backdrop-blur-sm bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 border-0">
+                <CardContent className="p-8">
+                  <header className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
+                      <Award className="h-5 w-5 text-white" />
+                    </div>
+                    인증서
+                  </header>
+                  <div className="space-y-4">
+                    {certifications.map((cert, index) => (
+                      <div key={index} className="border-l-4 gray-700 pl-4">
+                        <h4 className="font-semibold text-gray-800">
+                          {cert.name}
+                        </h4>
+                        <p className="text-gray-600">{cert.issuer}</p>
+                        <p className="text-sm text-gray-500">{cert.date}</p>
+                        {cert.description && (
+                          <p className="text-sm text-gray-600 mt-2 leading-relaxed">
+                            {cert.description}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </AnimatedElement>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* 대외활동 */}
+            <AnimatedElement
+              animation="slideUp"
+              delay={50}
+              duration={200}
+              className="mb-12"
+            >
+              <Card className="backdrop-blur-sm bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 border-0">
+                <CardContent className="p-8">
+                  <header className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
+                      <Activity className="h-5 w-5 text-white" />
+                    </div>
+                    사내활동
+                  </header>
+                  <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                    {activities.map((activity, index) => (
+                      <div
+                        key={index}
+                        className="p-6 bg-white/70 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100/50"
+                      >
+                        <div className="flex items-center gap-2 mb-3">
+                          <Badge
+                            variant="secondary"
+                            className={`text-xs ${
+                              activity.type === "스터디"
+                                ? "bg-blue-100 text-blue-700"
+                                : activity.type === "프로젝트"
+                                ? "bg-green-100 text-green-700"
+                                : "bg-gray-100 text-gray-700"
+                            }`}
+                          >
+                            {activity.type}
+                          </Badge>
+                          <span className="text-sm text-gray-500">
+                            {activity.period}
+                          </span>
+                        </div>
+                        <h4 className="font-semibold text-gray-900 mb-2">
+                          {activity.title}
+                        </h4>
+                        <p className="text-sm text-gray-600 mb-2">
+                          {activity.organization}
+                        </p>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {activity.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedElement>
+
+            <AnimatedElement
+              animation="slideUp"
+              delay={50}
+              duration={200}
+              className="mb-12"
+            >
+              <Card className="backdrop-blur-sm bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 border-0">
+                <CardContent className="p-8">
+                  <header className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
+                      <Activity className="h-5 w-5 text-white" />
+                    </div>
+                    대외활동
+                  </header>
+                  <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                    {activities.map((activity, index) => (
+                      <div
+                        key={index}
+                        className="p-6 bg-white/70 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100/50"
+                      >
+                        <div className="flex items-center gap-2 mb-3">
+                          <Badge
+                            variant="secondary"
+                            className={`text-xs ${
+                              activity.type === "스터디"
+                                ? "bg-blue-100 text-blue-700"
+                                : activity.type === "프로젝트"
+                                ? "bg-green-100 text-green-700"
+                                : "bg-gray-100 text-gray-700"
+                            }`}
+                          >
+                            {activity.type}
+                          </Badge>
+                          <span className="text-sm text-gray-500">
+                            {activity.period}
+                          </span>
+                        </div>
+                        <h4 className="font-semibold text-gray-900 mb-2">
+                          {activity.title}
+                        </h4>
+                        <p className="text-sm text-gray-600 mb-2">
+                          {activity.organization}
+                        </p>
+                        <p className="text-sm text-gray-600 leading-relaxed">
+                          {activity.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedElement>
+          </div>
+
+          {/* 기술 스택 */}
+          <AnimatedElement
+            animation="slideUp"
+            delay={150}
+            duration={200}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+              기술 스택
+            </h2>
+
+            <p className="text-center text-gray-500 mb-8">
+              기술 스택은 실제 개발을 진행하면서 프로젝트에 적용해왔던 것들을
+              기준으로 작성했습니다.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {skillCategories.map((category, index) => (
-                <AnimatedElement key={category.title} animation="slideUp" delay={150 + index * 30} duration={200}>
+                <AnimatedElement
+                  key={category.title}
+                  animation="slideUp"
+                  delay={150 + index * 30}
+                  duration={200}
+                >
                   <Card className="group backdrop-blur-sm bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border-0 h-full">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 bg-gray-600 rounded-lg flex items-center justify-center text-white shadow-lg group-hover:bg-gray-700 transition-all duration-300 group-hover:scale-110">
                           {category.icon}
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">{category.title}</h3>
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {category.title}
+                        </h3>
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {category.skills.map((skill, skillIndex) => (
@@ -408,148 +674,20 @@ export function IntroductionPage() {
             </div>
           </AnimatedElement>
 
-          {/* 목표 & 비전 */}
-          <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-12">
-            <div className="text-center space-y-4 mb-8">
-              <h2 className="text-3xl font-bold text-gray-900">목표 & 비전</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">개발자로서의 비전을 소개합니다.</p>
-            </div>
-
-            {/* 미래 비전 */}
-            <div className="space-y-6 mb-12">
-              <h3 className="text-2xl font-bold text-center flex items-center justify-center gap-3 text-gray-900">
-                <Eye className="h-6 w-6 text-coral-500" />
-                미래 비전
-              </h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {goals.futureVision.map(({ icon, gradient, quote, description }, index) => (
-                  <div
-                    key={index}
-                    className="group flex flex-col text-center p-6 backdrop-blur-sm bg-white/90 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100/50"
-                  >
-                    <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:bg-gray-700 transition-all duration-300 group-hover:scale-110">
-                      <span className="text-white text-2xl">{icon}</span>
-                    </div>
-
-                    <blockquote className="italic text-gray-800 mb-4 font-medium">"{quote}"</blockquote>
-
-                    <p className="text-sm text-gray-600 flex-1 leading-relaxed">{description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 궁극적인 비전 */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h4 className="text-xl font-bold text-gray-900 mb-4 text-center">궁극적인 비전</h4>
-              <div className="backdrop-blur-sm bg-white/90 rounded-xl p-6 text-center shadow-2xl border border-gray-100/50">
-                <p className="text-lg text-gray-800 leading-relaxed italic">"{goals.vision.quote}"</p>
-                <p className="text-sm text-gray-600 mt-4 leading-relaxed">{goals.vision.description}</p>
-              </div>
-            </div>
-          </AnimatedElement>
-
-          {/* 교육 및 인증서 */}
-          <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-12">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">교육 및 인증서</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* 교육 */}
-              <Card className="backdrop-blur-sm bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 border-0">
-                <CardContent className="p-8">
-                  <header className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
-                      <GraduationCap className="h-5 w-5 text-white" />
-                    </div>
-                    학력
-                  </header>
-                  <div className="space-y-4">
-                    {education.map((edu, index) => (
-                      <div key={index} className="border-l-4 border-lime-500 pl-4">
-                        <h4 className="font-semibold text-gray-800">{edu.institution}</h4>
-                        <p className="text-gray-600">{edu.degree}</p>
-                        <p className="text-sm text-gray-500">{edu.period}</p>
-                        {edu.gpa && <p className="text-sm text-gray-500">학점: {edu.gpa}</p>}
-                        <p className="text-sm text-gray-600 mt-2 leading-relaxed">{edu.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* 인증서 */}
-              <Card className="backdrop-blur-sm bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 border-0">
-                <CardContent className="p-8">
-                  <header className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
-                      <Award className="h-5 w-5 text-white" />
-                    </div>
-                    인증서
-                  </header>
-                  <div className="space-y-4">
-                    {certifications.map((cert, index) => (
-                      <div key={index} className="border-l-4 border-coral-500 pl-4">
-                        <h4 className="font-semibold text-gray-800">{cert.name}</h4>
-                        <p className="text-gray-600">{cert.issuer}</p>
-                        <p className="text-sm text-gray-500">{cert.date}</p>
-                        {cert.description && (
-                          <p className="text-sm text-gray-600 mt-2 leading-relaxed">{cert.description}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </AnimatedElement>
-
-          {/* 대외활동 */}
-          <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-12">
-            <Card className="backdrop-blur-sm bg-white/90 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 border-0">
-              <CardContent className="p-8">
-                <header className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
-                    <Activity className="h-5 w-5 text-white" />
-                  </div>
-                  대외활동
-                </header>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {activities.map((activity, index) => (
-                    <div
-                      key={index}
-                      className="p-6 bg-white/70 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100/50"
-                    >
-                      <div className="flex items-center gap-2 mb-3">
-                        <Badge
-                          variant="secondary"
-                          className={`text-xs ${
-                            activity.type === "스터디"
-                              ? "bg-blue-100 text-blue-700"
-                              : activity.type === "프로젝트"
-                                ? "bg-green-100 text-green-700"
-                                : "bg-gray-100 text-gray-700"
-                          }`}
-                        >
-                          {activity.type}
-                        </Badge>
-                        <span className="text-sm text-gray-500">{activity.period}</span>
-                      </div>
-                      <h4 className="font-semibold text-gray-900 mb-2">{activity.title}</h4>
-                      <p className="text-sm text-gray-600 mb-2">{activity.organization}</p>
-                      <p className="text-sm text-gray-600 leading-relaxed">{activity.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </AnimatedElement>
-
           {/* 아티클 섹션 */}
           {articles && articles.length > 0 && (
-            <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-12">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">아티클</h2>
-              <p className="text-center text-gray-500 mb-8">개발하면서 정리했던 문서들입니다.</p>
+            <AnimatedElement
+              animation="slideUp"
+              delay={50}
+              duration={200}
+              className="mb-12"
+            >
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+                아티클
+              </h2>
+              <p className="text-center text-gray-500 mb-8">
+                개발하면서 정리했던 문서들입니다.
+              </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {displayedArticles.map((article) => (
                   <Card
@@ -560,7 +698,9 @@ export function IntroductionPage() {
                     <CardContent className="p-6">
                       <div className="flex items-center gap-2 mb-3">
                         <BookOpen className="w-4 h-4 text-coral-500" />
-                        <span className="text-xs text-gray-500">{article.category}</span>
+                        <span className="text-xs text-gray-500">
+                          {article.category}
+                        </span>
                         <span className="text-xs text-gray-400">•</span>
                         <span className="text-xs text-gray-500">
                           {new Date(article.date).toLocaleDateString("ko-KR")}
@@ -571,19 +711,27 @@ export function IntroductionPage() {
                         {article.title}
                       </h3>
 
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">{article.description}</p>
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                        {article.description}
+                      </p>
 
                       <div className="flex flex-wrap gap-1 mb-4">
                         {article.tags &&
                           article.tags.slice(0, 2).map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-xs bg-coral-50 text-coral-700">
+                            <Badge
+                              key={tag}
+                              variant="secondary"
+                              className="text-xs bg-coral-50 text-coral-700"
+                            >
                               {tag}
                             </Badge>
                           ))}
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-500">Notion에서 읽기</span>
+                        <span className="text-xs text-gray-500">
+                          Notion에서 읽기
+                        </span>
                         <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-coral-600 transition-colors" />
                       </div>
                     </CardContent>
@@ -592,7 +740,7 @@ export function IntroductionPage() {
               </div>
 
               {/* 더보기/접기 버튼 */}
-              {articles && articles.length > 4 && (
+              {articles && articles.length > 2 && (
                 <div className="text-center mt-8">
                   <Button
                     variant="outline"
@@ -607,7 +755,7 @@ export function IntroductionPage() {
                     ) : (
                       <>
                         <ChevronDown className="w-4 h-4 mr-2" />
-                        더보기 ({articles.length - 4}개 더)
+                        더보기 ({articles.length - 2}개 더)
                       </>
                     )}
                   </Button>
@@ -615,6 +763,67 @@ export function IntroductionPage() {
               )}
             </AnimatedElement>
           )}
+
+          {/* 목표 & 비전 */}
+          <AnimatedElement
+            animation="slideUp"
+            delay={50}
+            duration={200}
+            className="mb-12"
+          >
+            <div className="text-center space-y-4 mb-8">
+              <h2 className="text-3xl font-bold text-gray-900">목표 & 비전</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                개발자로서의 비전을 소개합니다.
+              </p>
+            </div>
+
+            {/* 미래 비전 */}
+            <div className="space-y-6 mb-12">
+              <h3 className="text-2xl font-bold text-center flex items-center justify-center gap-3 text-gray-900">
+                <Eye className="h-6 w-6 text-coral-500" />
+                미래 비전
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {goals.futureVision.map(
+                  ({ icon, gradient, quote, description }, index) => (
+                    <div
+                      key={index}
+                      className="group flex flex-col text-center p-6 backdrop-blur-sm bg-white/90 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100/50"
+                    >
+                      <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:bg-gray-700 transition-all duration-300 group-hover:scale-110">
+                        <span className="text-white text-2xl">{icon}</span>
+                      </div>
+
+                      <blockquote className="italic text-gray-800 mb-4 font-medium">
+                        "{quote}"
+                      </blockquote>
+
+                      <p className="text-sm text-gray-600 flex-1 leading-relaxed">
+                        {description}
+                      </p>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+
+            {/* 궁극적인 비전 */}
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <h4 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                궁극적인 비전
+              </h4>
+              <div className="backdrop-blur-sm bg-white/90 rounded-xl p-6 text-center shadow-2xl border border-gray-100/50">
+                <p className="text-lg text-gray-800 leading-relaxed italic">
+                  "{goals.vision.quote}"
+                </p>
+                <p className="text-sm text-gray-600 mt-4 leading-relaxed">
+                  {goals.vision.description}
+                </p>
+              </div>
+            </div>
+          </AnimatedElement>
         </article>
       </div>
 
@@ -629,5 +838,5 @@ export function IntroductionPage() {
         </Button>
       )}
     </main>
-  )
+  );
 }
