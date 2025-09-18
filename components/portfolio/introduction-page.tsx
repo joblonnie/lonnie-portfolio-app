@@ -14,8 +14,6 @@ import {
   Globe,
   Smartphone,
   Zap,
-  Briefcase,
-  Calendar,
   Users,
   Eye,
   Mail,
@@ -29,6 +27,8 @@ import {
   GraduationCap,
   Activity,
   Lightbulb,
+  Clock,
+  Building,
 } from "lucide-react"
 import { mockPortfolioData } from "@/lib/mock-data"
 import type { Project } from "@/lib/types"
@@ -121,6 +121,95 @@ export function IntroductionPage() {
   const getProjectsByCompany = (companyId: string) => {
     return projects.filter((project) => project.companyId === companyId)
   }
+
+  // 프로젝트를 시간순으로 정렬하는 함수
+  const getProjectsInTimeOrder = () => {
+    const projectsWithCompany = projects.map((project) => {
+      const company = companies.find((c) => c.id === project.companyId)
+      return {
+        ...project,
+        companyName: company?.name || "",
+        companyPosition: company?.position || "",
+      }
+    })
+
+    // 시작 날짜를 기준으로 역순 정렬 (최신순)
+    return projectsWithCompany.sort((a, b) => {
+      const getStartDate = (period: string) => {
+        const startPart = period.split(" - ")[0]
+        const [year, month] = startPart.split(".")
+        return new Date(Number.parseInt(year), Number.parseInt(month) - 1)
+      }
+
+      return getStartDate(b.period).getTime() - getStartDate(a.period).getTime()
+    })
+  }
+
+  const timelineProjects = getProjectsInTimeOrder()
+
+  // 학력·자격·활동을 최신순으로 정렬하는 함수
+  const getEducationTimelineItems = () => {
+    const allItems: Array<{
+      type: "education" | "certification" | "activity" | "sideProject"
+      data: any
+      date: Date
+    }> = []
+
+    // 학력 추가
+    education.forEach((edu) => {
+      const endYear = edu.period.split(" - ")[1] || edu.period.split(" - ")[0]
+      const year = endYear.split(".")[0]
+      allItems.push({
+        type: "education",
+        data: edu,
+        date: new Date(Number.parseInt(year), 11), // 12월로 설정
+      })
+    })
+
+    // 수료증 추가
+    certifications.forEach((cert) => {
+      let date: Date
+      if (cert.date.includes("년")) {
+        const year = cert.date.match(/(\d{4})년/)?.[1]
+        const month = cert.date.match(/(\d{1,2})월/)?.[1] || "12"
+        date = new Date(Number.parseInt(year || "2023"), Number.parseInt(month) - 1)
+      } else {
+        date = new Date(cert.date)
+      }
+      allItems.push({
+        type: "certification",
+        data: cert,
+        date,
+      })
+    })
+
+    // 사내활동 추가
+    activities.forEach((activity) => {
+      const startYear = activity.period.split(" - ")[0] || activity.period
+      const year = startYear.split(".")[0]
+      allItems.push({
+        type: "activity",
+        data: activity,
+        date: new Date(Number.parseInt(year), 0), // 1월로 설정
+      })
+    })
+
+    // 사이드 프로젝트 추가
+    sideProjects.forEach((project) => {
+      const startYear = project.period.split(" - ")[0] || project.period
+      const year = startYear.split(".")[0]
+      allItems.push({
+        type: "sideProject",
+        data: project,
+        date: new Date(Number.parseInt(year), 0), // 1월로 설정
+      })
+    })
+
+    // 최신순으로 정렬
+    return allItems.sort((a, b) => b.date.getTime() - a.date.getTime())
+  }
+
+  const timelineItems = getEducationTimelineItems()
 
   // 아티클 표시 개수 결정
   const displayedArticles = showAllArticles ? articles : articles?.slice(0, 2) || []
@@ -329,226 +418,240 @@ export function IntroductionPage() {
             </Card>
           </AnimatedElement>
 
-          {/* 경력 및 프로젝트 - 크기 축소 */}
+          {/* 프로젝트 타임라인 - 새로 추가 */}
           <AnimatedElement animation="slideUp" delay={100} duration={200} className="mb-8">
-            <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">경력 및 프로젝트</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">프로젝트 타임라인</h2>
             <p className="text-center text-gray-500 mb-6 text-sm">
-              지금까지 참여했던 회사와 주요 프로젝트들을 소개합니다.
+              시간 순서대로 진행했던 프로젝트들의 여정을 확인해보세요.
             </p>
-            <div className="space-y-6">
-              {companies.map((company, index) => (
-                <Card
-                  key={index}
-                  className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-0 hover:bg-gray-50"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center shadow-lg group-hover:bg-gray-700 transition-all duration-300 group-hover:scale-110">
-                        <Briefcase className="h-5 w-5 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                          <div>
-                            <h3 className="text-xl font-bold text-gray-900">{company.position}</h3>
-                            <p className="text-base text-gray-600 font-medium">{company.name}</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-gray-500 text-sm">{company.period}</p>
-                            <p className="text-xs text-gray-400">({company.duration})</p>
-                          </div>
+
+            <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+              <CardContent className="p-6">
+                <div className="relative">
+                  {/* 타임라인 중앙 라인 */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-gray-300 via-gray-400 to-gray-300"></div>
+
+                  <div className="space-y-8">
+                    {timelineProjects.map((project, index) => (
+                      <div key={project.projectId} className="relative">
+                        {/* 타임라인 포인트 */}
+                        <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
+                          <div className="w-4 h-4 bg-gray-600 rounded-full border-4 border-white shadow-lg"></div>
                         </div>
-                      </div>
-                    </div>
 
-                    {/* 프로젝트 목록 */}
-                    <div className="space-y-3">
-                      <h4 className="text-base font-semibold text-gray-900 mb-3">담당 프로젝트</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {getProjectsByCompany(company.id).map((project, projectIndex) => (
-                          <Card
-                            key={project.projectId}
-                            className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-gray-100/50 shadow-md hover:bg-gray-50"
-                            onClick={() => handleProjectClick(project)}
-                          >
-                            <CardContent className="p-4">
-                              {/* 프로젝트 이미지 */}
-                              {project.image && (
-                                <div className="mb-3 p-2 bg-gray-50 rounded-lg">
-                                  <img
-                                    src={project.image || "/placeholder.svg"}
-                                    alt={project.title}
-                                    className="w-full h-16 object-contain rounded-lg"
-                                  />
+                        {/* 프로젝트 카드 - 좌우 교대 배치, 겹치지 않게 */}
+                        <div className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
+                          <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
+                            <Card
+                              className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-gray-100/50 shadow-md hover:bg-gray-50"
+                              onClick={() => handleProjectClick(project)}
+                            >
+                              <CardContent className="p-6">
+                                {/* 회사 정보 */}
+                                <div className="flex items-center gap-2 mb-3">
+                                  <Building className="w-4 h-4 text-gray-500" />
+                                  <span className="text-sm text-gray-600 font-medium">{project.companyName}</span>
+                                  <span className="text-xs text-gray-400">•</span>
+                                  <span className="text-xs text-gray-500">{project.companyPosition}</span>
                                 </div>
-                              )}
 
-                              <div className="flex justify-between items-start mb-2">
-                                <div className="flex-1">
-                                  <h5 className="text-base font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1">
+                                {/* 프로젝트 이미지 */}
+                                {project.image && (
+                                  <div className="mb-3 p-2 bg-gray-50 rounded-lg">
+                                    <img
+                                      src={project.image || "/placeholder.svg"}
+                                      alt={project.title}
+                                      className="w-full h-16 object-contain rounded-lg"
+                                    />
+                                  </div>
+                                )}
+
+                                {/* 프로젝트 정보 */}
+                                <div className="mb-3">
+                                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1">
                                     {project.title}
-                                  </h5>
-                                  {/* 부제목 추가 */}
+                                  </h3>
                                   {project.subtitle && (
-                                    <p className="text-xs text-gray-600 mb-2 font-medium">{project.subtitle}</p>
+                                    <p className="text-sm text-gray-600 mb-2 font-medium">{project.subtitle}</p>
                                   )}
-                                  <div className="flex items-center gap-3 text-xs text-gray-500 mt-1">
-                                    <div className="flex items-center gap-1">
-                                      <Calendar className="h-3 w-3" />
-                                      {project.period}
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                      <Users className="h-3 w-3" />
-                                      {project.role}
-                                    </div>
+
+                                  {/* 기간 정보 */}
+                                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                                    <Clock className="w-4 h-4" />
+                                    <span className="font-medium">{project.period}</span>
                                   </div>
                                 </div>
-                              </div>
 
-                              <p className="text-gray-600 mb-3 leading-relaxed text-xs">
-                                {project.background.split(".").slice(0, 2).join(". ")}
-                              </p>
+                                <p className="text-gray-600 mb-3 leading-relaxed text-sm">
+                                  {project.background.split(".").slice(0, 2).join(". ")}
+                                </p>
 
-                              {/* 키워드 태그 */}
-                              {project.keywords && (
+                                {/* 키워드 태그 */}
+                                {project.keywords && (
+                                  <div className="flex flex-wrap gap-1 mb-3">
+                                    {project.keywords.slice(0, 3).map((keyword, keywordIndex) => (
+                                      <span
+                                        key={keywordIndex}
+                                        className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-gray-200 hover:text-gray-800 transition-all duration-300"
+                                      >
+                                        {keyword}
+                                      </span>
+                                    ))}
+                                  </div>
+                                )}
+
+                                {/* 기술 스택 */}
                                 <div className="flex flex-wrap gap-1">
-                                  {project.keywords.map((keyword, keywordIndex) => (
-                                    <span
-                                      key={keywordIndex}
-                                      className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-gray-200 hover:text-gray-800 transition-all duration-300"
+                                  {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                                    <Badge
+                                      key={techIndex}
+                                      variant="secondary"
+                                      className="text-xs bg-slate-100 text-slate-700"
                                     >
-                                      {keyword}
-                                    </span>
+                                      {tech}
+                                    </Badge>
                                   ))}
                                 </div>
-                              )}
-                            </CardContent>
-                          </Card>
-                        ))}
+                              </CardContent>
+                            </Card>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </AnimatedElement>
 
-          {/* 학력 · 자격 · 활동 - 크기 축소 */}
+          {/* 학력 · 수료 · 활동 - 타임라인 형태로 변경 (최신순) */}
           <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-8">
-            <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">학력 · 자격 · 활동</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">학력 · 수료 · 활동</h2>
+            <p className="text-center text-gray-500 mb-6 text-sm">
+              학력, 수료증, 그리고 활동 경험을 최신순으로 소개합니다.
+            </p>
 
-            <p className="text-center text-gray-500 mb-6 text-sm">학력, 자격증, 그리고 활동 경험을 소개합니다.</p>
+            <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+              <CardContent className="p-6">
+                <div className="relative">
+                  {/* 타임라인 중앙 라인 */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-gray-300 via-gray-400 to-gray-300"></div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              {/* 교육 */}
-              <Card className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-0 hover:bg-gray-50">
-                <CardContent className="p-6">
-                  <header className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <div className="w-7 h-7 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
-                      <GraduationCap className="h-4 w-4 text-white" />
-                    </div>
-                    학력
-                  </header>
-                  <div className="space-y-3">
-                    {education.map((edu, index) => (
-                      <div key={index} className="border-l-4 border-gray-700 pl-3">
-                        <h4 className="font-semibold text-gray-800 text-sm">{edu.institution}</h4>
-                        <p className="text-gray-600 text-sm">{edu.degree}</p>
-                        <p className="text-xs text-gray-500">{edu.period}</p>
-                        {edu.gpa && <p className="text-xs text-gray-500">학점: {edu.gpa}</p>}
-                        <p className="text-xs text-gray-600 mt-1 leading-relaxed">{edu.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                  <div className="space-y-8">
+                    {timelineItems.map((item, index) => {
+                      const getItemConfig = () => {
+                        switch (item.type) {
+                          case "education":
+                            return {
+                              color: "blue-600",
+                              icon: <GraduationCap className="h-4 w-4 text-white" />,
+                              badge: { bg: "blue-100", text: "blue-700", label: "학력" },
+                            }
+                          case "certification":
+                            return {
+                              color: "green-600",
+                              icon: <Award className="h-4 w-4 text-white" />,
+                              badge: { bg: "green-100", text: "green-700", label: "수료증" },
+                            }
+                          case "activity":
+                            return {
+                              color: "purple-600",
+                              icon: <Activity className="h-4 w-4 text-white" />,
+                              badge: { bg: "purple-100", text: "purple-700", label: "사내활동" },
+                            }
+                          case "sideProject":
+                            return {
+                              color: "orange-600",
+                              icon: <Lightbulb className="h-4 w-4 text-white" />,
+                              badge: { bg: "orange-100", text: "orange-700", label: "사이드 프로젝트" },
+                            }
+                          default:
+                            return {
+                              color: "gray-600",
+                              icon: <Activity className="h-4 w-4 text-white" />,
+                              badge: { bg: "gray-100", text: "gray-700", label: "기타" },
+                            }
+                        }
+                      }
 
-              {/* 인증서 */}
-              <Card className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-0 hover:bg-gray-50">
-                <CardContent className="p-6">
-                  <header className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <div className="w-7 h-7 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
-                      <Award className="h-4 w-4 text-white" />
-                    </div>
-                    인증서
-                  </header>
-                  <div className="space-y-3">
-                    {certifications.map((cert, index) => (
-                      <div key={index} className="border-l-4 border-gray-700 pl-3">
-                        <h4 className="font-semibold text-gray-800 text-sm">{cert.name}</h4>
-                        <p className="text-gray-600 text-sm">{cert.issuer}</p>
-                        <p className="text-xs text-gray-500">{cert.date}</p>
-                        {cert.description && (
-                          <p className="text-xs text-gray-600 mt-1 leading-relaxed">{cert.description}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                      const config = getItemConfig()
 
-            {/* 사내활동과 사이드 프로젝트 분리 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* 사내활동 */}
-              <Card className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-0 hover:bg-gray-50">
-                <CardContent className="p-6">
-                  <header className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <div className="w-7 h-7 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
-                      <Activity className="h-4 w-4 text-white" />
-                    </div>
-                    사내활동
-                  </header>
-                  <div className="space-y-4">
-                    {activities.map((activity, index) => (
-                      <div
-                        key={index}
-                        className="p-4 bg-white/70 backdrop-blur-sm rounded-lg shadow-md border border-gray-100/50 hover:bg-gray-50"
-                      >
-                        <div className="flex items-center gap-2 mb-2">
-                          <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">
-                            {activity.type}
-                          </Badge>
-                          <span className="text-xs text-gray-500">{activity.period}</span>
+                      return (
+                        <div key={`${item.type}-${index}`} className="relative">
+                          {/* 타임라인 포인트 */}
+                          <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
+                            <div
+                              className={`w-4 h-4 bg-${config.color} rounded-full border-4 border-white shadow-lg`}
+                            ></div>
+                          </div>
+
+                          {/* 카드 */}
+                          <div className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
+                            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
+                              <Card className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 border border-gray-100/50 shadow-md hover:bg-gray-50">
+                                <CardContent className="p-5">
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <div
+                                      className={`w-8 h-8 bg-${config.color} rounded-lg flex items-center justify-center shadow-lg`}
+                                    >
+                                      {config.icon}
+                                    </div>
+                                    <Badge
+                                      variant="secondary"
+                                      className={`text-xs bg-${config.badge.bg} text-${config.badge.text}`}
+                                    >
+                                      {config.badge.label}
+                                    </Badge>
+                                    <span className="text-xs text-gray-500">
+                                      {item.type === "education"
+                                        ? item.data.period
+                                        : item.type === "certification"
+                                          ? item.data.date
+                                          : item.data.period}
+                                    </span>
+                                  </div>
+
+                                  {item.type === "education" && (
+                                    <>
+                                      <h4 className="font-semibold text-gray-900 text-base mb-1">
+                                        {item.data.institution}
+                                      </h4>
+                                      <p className="text-gray-700 text-sm mb-2">{item.data.degree}</p>
+                                      {item.data.gpa && (
+                                        <p className="text-xs text-gray-500 mb-2">학점: {item.data.gpa}</p>
+                                      )}
+                                      <p className="text-xs text-gray-600 leading-relaxed">{item.data.description}</p>
+                                    </>
+                                  )}
+
+                                  {item.type === "certification" && (
+                                    <>
+                                      <h4 className="font-semibold text-gray-900 text-base mb-1">{item.data.name}</h4>
+                                      <p className="text-gray-700 text-sm mb-2">{item.data.issuer}</p>
+                                      {item.data.description && (
+                                        <p className="text-xs text-gray-600 leading-relaxed">{item.data.description}</p>
+                                      )}
+                                    </>
+                                  )}
+
+                                  {(item.type === "activity" || item.type === "sideProject") && (
+                                    <>
+                                      <h4 className="font-semibold text-gray-900 text-base mb-1">{item.data.title}</h4>
+                                      <p className="text-gray-700 text-sm mb-2">{item.data.organization}</p>
+                                      <p className="text-xs text-gray-600 leading-relaxed">{item.data.description}</p>
+                                    </>
+                                  )}
+                                </CardContent>
+                              </Card>
+                            </div>
+                          </div>
                         </div>
-                        <h4 className="font-semibold text-gray-900 mb-1 text-sm">{activity.title}</h4>
-                        <p className="text-xs text-gray-600 mb-1">{activity.organization}</p>
-                        <p className="text-xs text-gray-600 leading-relaxed">{activity.description}</p>
-                      </div>
-                    ))}
+                      )
+                    })}
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* 사이드 프로젝트 */}
-              <Card className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-0 hover:bg-gray-50">
-                <CardContent className="p-6">
-                  <header className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <div className="w-7 h-7 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
-                      <Activity className="h-4 w-4 text-white" />
-                    </div>
-                    사이드 프로젝트
-                  </header>
-                  <div className="space-y-4">
-                    {sideProjects.map((project, index) => (
-                      <div
-                        key={index}
-                        className="p-4 bg-white/70 backdrop-blur-sm rounded-lg shadow-md border border-gray-100/50 hover:bg-gray-50"
-                      >
-                        <div className="flex items-center gap-2 mb-2">
-                          <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">
-                            {project.type}
-                          </Badge>
-                          <span className="text-xs text-gray-500">{project.period}</span>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-1 text-sm">{project.title}</h4>
-                        <p className="text-xs text-gray-600 mb-1">{project.organization}</p>
-                        <p className="text-xs text-gray-600 leading-relaxed">{project.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                </div>
+              </CardContent>
+            </Card>
           </AnimatedElement>
 
           {/* 기술 스택 - 크기 축소 */}
