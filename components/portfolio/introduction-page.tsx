@@ -247,7 +247,7 @@ export function IntroductionPage() {
                 <div className="bg-gradient-to-br from-white via-lime-50/50 to-orange-100/30 rounded-2xl p-6 sm:p-8 shadow-xl border border-lime-200/50 backdrop-blur-sm">
                   {/* 포트폴리오 타이틀 */}
                   <div className="text-center space-y-3 mb-6">
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-lime-700 via-orange-600 to-lime-800 bg-clip-text text-transparent leading-tight">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
                       "좋은 경험은 결국 좋은 기억이 된다"
                     </h1>
                     <p className="text-lg sm:text-xl text-gray-600 font-medium">UX·DX 중심 개발자의 여정</p>
@@ -270,22 +270,22 @@ export function IntroductionPage() {
                     <div className="flex-1 text-center lg:text-left space-y-4">
                       {/* 이름과 직책 */}
                       <div>
-                        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-lime-700 to-orange-800 bg-clip-text text-transparent mb-1">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
                           {personalInfo?.name || "개발자"}
                         </h2>
                         <p className="text-lg text-gray-600 font-medium">{personalInfo?.title || "풀스택 개발자"}</p>
                       </div>
 
                       {/* 연락처 정보 */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div className="group bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-lime-300/50">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                            <div className="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 group-hover:from-lime-600 group-hover:to-lime-700">
                               <MapPin className="w-5 h-5 text-white" />
                             </div>
-                            <div className="text-left flex-1">
+                            <div className="text-left flex-1 min-w-0">
                               <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">위치</p>
-                              <p className="text-sm text-gray-800 font-semibold group-hover:text-gray-900 transition-colors">
+                              <p className="text-sm text-gray-800 font-semibold group-hover:text-gray-900 transition-colors truncate">
                                 {personalInfo?.location || "서울"}
                               </p>
                             </div>
@@ -294,29 +294,29 @@ export function IntroductionPage() {
 
                         <div
                           onClick={handleEmailClick}
-                          className="group bg-gradient-to-br from-white to-lime-50/50 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-lime-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer hover:border-lime-300/50"
+                          className="group bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer hover:border-lime-300/50"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-lime-600 to-lime-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                            <div className="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 group-hover:from-lime-600 group-hover:to-lime-700">
                               <Mail className="w-5 h-5 text-white" />
                             </div>
-                            <div className="text-left flex-1">
+                            <div className="text-left flex-1 min-w-0">
                               <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">이메일</p>
-                              <p className="text-sm text-gray-800 font-semibold group-hover:text-lime-700 transition-colors">
+                              <p className="text-sm text-gray-800 font-semibold group-hover:text-lime-700 transition-colors truncate">
                                 joblonnie@gmail.com
                               </p>
                             </div>
                           </div>
                         </div>
 
-                        <div className="group bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-orange-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-orange-300/50">
+                        <div className="group bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-coral-300/50 sm:col-span-2 lg:col-span-1">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-orange-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                            <div className="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 group-hover:from-coral-600 group-hover:to-coral-700">
                               <Phone className="w-5 h-5 text-white" />
                             </div>
-                            <div className="text-left flex-1">
+                            <div className="text-left flex-1 min-w-0">
                               <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">연락처</p>
-                              <p className="text-sm text-gray-800 font-semibold group-hover:text-orange-700 transition-colors">
+                              <p className="text-sm text-gray-800 font-semibold group-hover:text-coral-700 transition-colors truncate">
                                 010-5054-0121
                               </p>
                             </div>
@@ -324,7 +324,7 @@ export function IntroductionPage() {
                         </div>
                       </div>
 
-                      {/* 소셜 링크 - 설명 추가 및 GitHub 추가 */}
+                      {/* 소셜 링크 - neutral 색상으로 변경 */}
                       <div className="space-y-3">
                         <p className="text-sm text-gray-600 text-center lg:text-left font-medium">
                           개발 여정을 기록하는 공간
@@ -354,7 +354,7 @@ export function IntroductionPage() {
                             href="https://github.com/username"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-orange-500 hover:text-orange-600 hover:bg-orange-50 transition-all duration-300 shadow-sm hover:shadow-md"
+                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-coral-500 hover:text-coral-600 hover:bg-coral-50 transition-all duration-300 shadow-sm hover:shadow-md"
                           >
                             <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
                             <div className="text-left">
@@ -388,11 +388,11 @@ export function IntroductionPage() {
                     </div>
                   </div>
 
-                  {/* 소개 텍스트 */}
+                  {/* 소개 텍스트 - neutral 색상으로 변경 */}
                   <div className="mt-6">
-                    <div className="bg-gradient-to-br from-white/95 to-lime-50/70 rounded-xl p-6 shadow-lg border border-lime-200/50 backdrop-blur-sm">
+                    <div className="bg-gradient-to-br from-white/95 to-gray-50/70 rounded-xl p-6 shadow-lg border border-gray-200/50 backdrop-blur-sm">
                       <div className="space-y-4 text-gray-700 leading-relaxed">
-                        <p className="text-base font-semibold text-gray-900 border-l-4 border-lime-600 pl-4">
+                        <p className="text-base font-semibold text-gray-900 border-l-4 border-gray-600 pl-4">
                           저는 사용자와 개발자가 모두 기억할 만한 경험을 만들어가는 데 집중하는 프론트엔드 개발자입니다.
                         </p>
                         <p className="pl-4 text-sm">
@@ -403,7 +403,7 @@ export function IntroductionPage() {
                           코드 구조화, 반복 작업의 자동화, 협업 환경 개선 등을 통해 팀이 보다 효율적이고 즐겁게 일할 수
                           있는 기반을 마련함으로써, 개발 과정 자체가 성장과 학습의 경험이 될 수 있도록 노력했습니다.
                         </p>
-                        <p className="text-gray-600 italic pl-4 border-l-4 border-orange-400 text-sm">
+                        <p className="text-gray-600 italic pl-4 border-l-4 border-gray-400 text-sm">
                           이처럼 사용자와 팀을 위한 작은 경험들을 하나씩 쌓아가는 과정이, 결국에는 제품과 조직 모두에
                           긍정적인 기억으로 남고 장기적인 가치를 만들어낸다고 믿습니다.
                         </p>
@@ -415,11 +415,11 @@ export function IntroductionPage() {
             </div>
           </AnimatedElement>
 
-          {/* 업무 철학 - 중앙 정렬 및 width 조정 */}
+          {/* 업무 철학 - neutral 색상으로 변경 */}
           <AnimatedElement animation="slideUp" delay={300} duration={200} className="mb-8">
             <div className="flex justify-center">
               <div className="w-full md:w-3/4">
-                <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:bg-lime-50/30">
+                <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                   <CardContent className="p-6">
                     <header className="text-xl font-bold text-gray-900 mb-4 text-center">업무 철학</header>
 
@@ -445,10 +445,10 @@ export function IntroductionPage() {
                       ].map(({ icon, quote, description }, index) => (
                         <div
                           key={index}
-                          className="group flex flex-col text-center p-4 bg-white/70 backdrop-blur-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full border border-lime-100/50 hover:bg-lime-50"
+                          className="group flex flex-col text-center p-4 bg-white/70 backdrop-blur-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100/50 hover:bg-gray-50"
                         >
-                          <div className="w-12 h-12 bg-gradient-to-br from-lime-100 to-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 shadow-md group-hover:from-lime-200 group-hover:to-orange-200 transition-all duration-300 group-hover:scale-110">
-                            {icon}
+                          <div className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-3 shadow-md group-hover:from-lime-200 group-hover:to-coral-200 transition-all duration-300 group-hover:scale-110">
+                            <div className="text-gray-600 group-hover:text-gray-700 transition-colors">{icon}</div>
                           </div>
 
                           <blockquote className="italic text-gray-800 mb-3 font-medium text-sm">"{quote}"</blockquote>
@@ -477,9 +477,9 @@ export function IntroductionPage() {
                     <div className="space-y-12">
                       {years.map((year, yearIndex) => (
                         <div key={year} className="relative">
-                          {/* 연도 표시 */}
+                          {/* 연도 표시 - neutral 색상으로 변경 */}
                           <div className="flex items-center justify-center mb-8">
-                            <div className="bg-gradient-to-r from-lime-600 to-orange-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
+                            <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
                               {year}
                             </div>
                           </div>
@@ -488,16 +488,16 @@ export function IntroductionPage() {
                           <div className="space-y-8">
                             {projectsByYear[year].map((project, index) => (
                               <div key={project.projectId} className="relative">
-                                {/* 타임라인 포인트 */}
+                                {/* 타임라인 포인트 - neutral 색상으로 변경 */}
                                 <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
-                                  <div className="w-4 h-4 bg-gradient-to-r from-lime-600 to-orange-600 rounded-full border-4 border-white shadow-lg"></div>
+                                  <div className="w-4 h-4 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full border-4 border-white shadow-lg"></div>
                                 </div>
 
                                 {/* 프로젝트 카드 - 가운데 정렬 */}
                                 <div className="flex justify-center">
                                   <div className="w-full">
                                     <Card
-                                      className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:bg-lime-50/30"
+                                      className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:bg-gray-50/30"
                                       onClick={() => handleProjectClick(project)}
                                     >
                                       <CardContent className="p-6">
@@ -524,6 +524,7 @@ export function IntroductionPage() {
 
                                         {/* 프로젝트 정보 */}
                                         <div className="mb-3">
+                                          {/* 프로젝트 제목 hover 색상 변경 */}
                                           <h3 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1">
                                             {project.title}
                                           </h3>
@@ -542,13 +543,13 @@ export function IntroductionPage() {
                                           {project.background.split(".").slice(0, 2).join(". ")}
                                         </p>
 
-                                        {/* 키워드 태그 */}
+                                        {/* 키워드 태그 - neutral 기본, hover에서 lime */}
                                         {project.keywords && (
                                           <div className="flex flex-wrap gap-1 mb-3">
                                             {project.keywords.slice(0, 3).map((keyword, keywordIndex) => (
                                               <span
                                                 key={keywordIndex}
-                                                className="px-2 py-1 bg-lime-100 text-lime-700 text-xs rounded-full shadow-sm border border-lime-200 hover:bg-lime-200 hover:text-lime-800 transition-all duration-300"
+                                                className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-lime-100 hover:text-lime-700 hover:border-lime-200 transition-all duration-300"
                                               >
                                                 {keyword}
                                               </span>
@@ -556,13 +557,13 @@ export function IntroductionPage() {
                                           </div>
                                         )}
 
-                                        {/* 기술 스택 */}
+                                        {/* 기술 스택 - neutral 기본, coral accent */}
                                         <div className="flex flex-wrap gap-1">
                                           {project.technologies.slice(0, 4).map((tech, techIndex) => (
                                             <Badge
                                               key={techIndex}
                                               variant="secondary"
-                                              className="text-xs bg-orange-100 text-orange-700"
+                                              className="text-xs bg-gray-100 text-gray-700 hover:bg-coral-100 hover:text-coral-700 transition-colors"
                                             >
                                               {tech}
                                             </Badge>
@@ -743,9 +744,9 @@ export function IntroductionPage() {
                     <div className="space-y-12">
                       {educationYears.map((year, yearIndex) => (
                         <div key={year} className="relative">
-                          {/* 연도 표시 */}
+                          {/* 연도 표시 - neutral 색상으로 변경 */}
                           <div className="flex items-center justify-center mb-8">
-                            <div className="bg-gradient-to-r from-lime-600 to-orange-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
+                            <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
                               {year}
                             </div>
                           </div>
@@ -786,7 +787,7 @@ export function IntroductionPage() {
 
                               return (
                                 <div key={`${item.type}-${index}`} className="relative">
-                                  {/* 타임라인 포인트 */}
+                                  {/* 타임라인 포인트 - neutral 색상으로 변경 */}
                                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
                                     <div
                                       className={`w-4 h-4 ${config.color} rounded-full border-4 border-white shadow-lg`}
@@ -883,69 +884,93 @@ export function IntroductionPage() {
             </div>
           </AnimatedElement>
 
-          {/* 기술 스택 - 중앙 정렬 및 width 조정 */}
+          {/* 기술 스택 - neutral 색상으로 변경 */}
           <AnimatedElement animation="slideUp" delay={150} duration={200} className="mb-8">
             <div className="flex justify-center">
               <div className="w-full md:w-3/4">
-                <Card className="bg-white/80 backdrop-blur-sm border-lime-200 hover:bg-lime-50/30">
+                <Card className="bg-white/80 backdrop-blur-sm border-gray-200 hover:bg-gray-50/30">
                   <CardContent className="p-5">
-                    <h3 className="text-lg font-bold text-slate-800 mb-4">기술 스택</h3>
+                    <h3 className="text-lg font-bold text-gray-800 mb-4">기술 스택</h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                       <div>
-                        <h4 className="font-semibold text-slate-700 mb-2 text-sm">언어</h4>
+                        <h4 className="font-semibold text-gray-700 mb-2 text-sm">언어</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.languages.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-lime-100 text-lime-700 text-xs">
+                            <Badge
+                              key={skill}
+                              variant="secondary"
+                              className="bg-gray-100 text-gray-700 text-xs hover:bg-lime-100 hover:text-lime-700 transition-colors"
+                            >
                               {skill}
                             </Badge>
                           ))}
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-700 mb-2 text-sm">UI/UX</h4>
+                        <h4 className="font-semibold text-gray-700 mb-2 text-sm">UI/UX</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.ui.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-orange-100 text-orange-700 text-xs">
+                            <Badge
+                              key={skill}
+                              variant="secondary"
+                              className="bg-gray-100 text-gray-700 text-xs hover:bg-coral-100 hover:text-coral-700 transition-colors"
+                            >
                               {skill}
                             </Badge>
                           ))}
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-700 mb-2 text-sm">상태 관리</h4>
+                        <h4 className="font-semibold text-gray-700 mb-2 text-sm">상태 관리</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.stateManagement.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-lime-100 text-lime-700 text-xs">
+                            <Badge
+                              key={skill}
+                              variant="secondary"
+                              className="bg-gray-100 text-gray-700 text-xs hover:bg-lime-100 hover:text-lime-700 transition-colors"
+                            >
                               {skill}
                             </Badge>
                           ))}
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-700 mb-2 text-sm">아키텍처</h4>
+                        <h4 className="font-semibold text-gray-700 mb-2 text-sm">아키텍처</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.architecture.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-orange-100 text-orange-700 text-xs">
+                            <Badge
+                              key={skill}
+                              variant="secondary"
+                              className="bg-gray-100 text-gray-700 text-xs hover:bg-coral-100 hover:text-coral-700 transition-colors"
+                            >
                               {skill}
                             </Badge>
                           ))}
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-700 mb-2 text-sm">개발 도구</h4>
+                        <h4 className="font-semibold text-gray-700 mb-2 text-sm">개발 도구</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.devTools.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-lime-100 text-lime-700 text-xs">
+                            <Badge
+                              key={skill}
+                              variant="secondary"
+                              className="bg-gray-100 text-gray-700 text-xs hover:bg-lime-100 hover:text-lime-700 transition-colors"
+                            >
                               {skill}
                             </Badge>
                           ))}
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-700 mb-2 text-sm">협업 도구</h4>
+                        <h4 className="font-semibold text-gray-700 mb-2 text-sm">협업 도구</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.collaborationTools.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-orange-100 text-orange-700 text-xs">
+                            <Badge
+                              key={skill}
+                              variant="secondary"
+                              className="bg-gray-100 text-gray-700 text-xs hover:bg-coral-100 hover:text-coral-700 transition-colors"
+                            >
                               {skill}
                             </Badge>
                           ))}
@@ -969,7 +994,7 @@ export function IntroductionPage() {
                     {displayedArticles.map((article) => (
                       <Card
                         key={article.id}
-                        className="cursor-pointer hover:shadow-lg transition-all duration-300 group hover:bg-lime-50/30"
+                        className="cursor-pointer hover:shadow-lg transition-all duration-300 group hover:bg-gray-50/30"
                         onClick={() => handleArticleClick(article.notionUrl)}
                       >
                         <CardContent className="p-5">
@@ -982,16 +1007,22 @@ export function IntroductionPage() {
                             </span>
                           </div>
 
+                          {/* 아티클 제목 hover 색상 변경 */}
                           <h3 className="text-base font-semibold text-gray-900 mb-2 group-hover:text-lime-600 transition-colors line-clamp-2">
                             {article.title}
                           </h3>
 
                           <p className="text-gray-600 text-sm mb-3 line-clamp-3">{article.description}</p>
 
+                          {/* 아티클 태그 - neutral 기본, coral accent */}
                           <div className="flex flex-wrap gap-1 mb-3">
                             {article.tags &&
                               article.tags.slice(0, 2).map((tag) => (
-                                <Badge key={tag} variant="secondary" className="text-xs bg-orange-100 text-orange-700">
+                                <Badge
+                                  key={tag}
+                                  variant="secondary"
+                                  className="text-xs bg-gray-100 text-gray-700 hover:bg-coral-100 hover:text-coral-700 transition-colors"
+                                >
                                   {tag}
                                 </Badge>
                               ))}
@@ -999,6 +1030,7 @@ export function IntroductionPage() {
 
                           <div className="flex items-center justify-between">
                             <span className="text-xs text-gray-500">Notion에서 읽기</span>
+                            {/* 아티클 아이콘 색상 변경 */}
                             <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-lime-600 transition-colors" />
                           </div>
                         </CardContent>
@@ -1007,34 +1039,34 @@ export function IntroductionPage() {
                   </div>
 
                   {/* 더보기/접기 버튼 */}
-                  {articles && articles.length > 2 && (
-                    <div className="text-center mt-6">
-                      <Button
-                        variant="outline"
-                        onClick={() => setShowAllArticles(!showAllArticles)}
-                        className="border-lime-500 text-lime-600 hover:bg-lime-50 px-4 py-2 text-sm"
-                      >
-                        {showAllArticles ? (
-                          <>
-                            <ChevronUp className="w-4 h-4 mr-2" />
-                            접기
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDown className="w-4 h-4 mr-2" />
-                            더보기 ({articles.length - 2}개 더)
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  )}
+                  <div className="text-center mt-6">
+                    {/* 더보기 버튼 색상 변경 */}
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowAllArticles(!showAllArticles)}
+                      className="border-gray-300 text-gray-600 hover:bg-lime-50 hover:border-lime-500 hover:text-lime-600 px-4 py-2 text-sm"
+                    >
+                      {showAllArticles ? (
+                        <>
+                          <ChevronUp className="w-4 h-4 mr-2" />
+                          접기
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="w-4 h-4 mr-2" />
+                          더보기 ({articles.length - 2}개 더)
+                        </>
+                      )}
+                    </Button>
+                  </div>
 
                   {/* 아티클 목록 링크 */}
                   <div className="text-center mt-4">
+                    {/* 아티클 목록 링크 색상 변경 */}
                     <Button
                       variant="ghost"
                       onClick={() => router.push("/article")}
-                      className="text-lime-600 hover:text-lime-700 hover:bg-lime-50"
+                      className="text-gray-600 hover:text-lime-700 hover:bg-lime-50"
                     >
                       <BookOpen className="w-4 h-4 mr-2" />
                       전체 아티클 목록 보기
@@ -1056,18 +1088,20 @@ export function IntroductionPage() {
               <div className="w-full md:w-3/4">
                 {/* 미래 비전 */}
                 <div className="space-y-4 mb-8">
+                  {/* 미래 비전 아이콘 색상 변경 */}
                   <h3 className="text-xl font-bold text-center flex items-center justify-center gap-2 text-gray-900">
-                    <Eye className="h-5 w-5 text-lime-600" />
+                    <Eye className="h-5 w-5 text-gray-600" />
                     미래 비전
                   </h3>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {goals.futureVision.map(({ icon, gradient, quote, description }, index) => (
+                      // 미래 비전 카드 - neutral 기본, hover에서 lime/coral
                       <div
                         key={index}
-                        className="group flex flex-col text-center p-5 backdrop-blur-sm bg-white/90 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full border border-lime-100/50 hover:bg-lime-50/30"
+                        className="group flex flex-col text-center p-5 backdrop-blur-sm bg-white/90 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100/50 hover:bg-gray-50/30"
                       >
-                        <div className="w-12 h-12 bg-gradient-to-br from-lime-600 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:from-lime-700 group-hover:to-orange-700 transition-all duration-300 group-hover:scale-110">
+                        <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-700 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:from-lime-600 group-hover:to-coral-600 transition-all duration-300 group-hover:scale-110">
                           <span className="text-white text-lg">{icon}</span>
                         </div>
 
@@ -1079,10 +1113,10 @@ export function IntroductionPage() {
                   </div>
                 </div>
 
-                {/* 궁극적인 비전 */}
-                <div className="mt-6 pt-4 border-t border-lime-200">
+                {/* 궁극적인 비전 - neutral 색상으로 변경 */}
+                <div className="mt-6 pt-4 border-t border-gray-200">
                   <h4 className="text-lg font-bold text-gray-900 mb-3 text-center">궁극적인 비전</h4>
-                  <div className="backdrop-blur-sm bg-white/90 rounded-lg p-5 text-center shadow-xl border border-lime-100/50 hover:bg-lime-50/30">
+                  <div className="backdrop-blur-sm bg-white/90 rounded-lg p-5 text-center shadow-xl border border-gray-100/50 hover:bg-gray-50/30">
                     <p className="text-base text-gray-800 leading-relaxed italic">"{goals.vision.quote}"</p>
                     <p className="text-sm text-gray-600 mt-3 leading-relaxed">{goals.vision.description}</p>
                   </div>
@@ -1093,11 +1127,11 @@ export function IntroductionPage() {
         </article>
       </div>
 
-      {/* 최상단 이동 버튼 */}
+      {/* 최상단 이동 버튼 - neutral 기본, hover에서 lime/coral */}
       {showScrollTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-gradient-to-r from-lime-500 to-orange-500 hover:from-lime-600 hover:to-orange-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
+          className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-gradient-to-r from-gray-600 to-gray-700 hover:from-lime-500 hover:to-coral-500 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
           size="icon"
         >
           <ArrowUp className="h-4 w-4" />
