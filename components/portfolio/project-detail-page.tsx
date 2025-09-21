@@ -99,15 +99,15 @@ export function ProjectDetailPage() {
       case "사용자경험":
         return "bg-lime-100 text-lime-700 border-lime-200"
       case "개발효율성":
-        return "bg-lime-100 text-lime-700 border-lime-200"
+        return "bg-orange-100 text-orange-700 border-orange-200"
       case "성능최적화":
-        return "bg-lime-100 text-lime-700 border-lime-200"
+        return "bg-blue-100 text-blue-700 border-blue-200"
       case "시스템안정성":
-        return "bg-gray-100 text-gray-700 border-gray-200"
+        return "bg-purple-100 text-purple-700 border-purple-200"
       case "협업개선":
-        return "bg-gray-100 text-gray-700 border-gray-200"
+        return "bg-green-100 text-green-700 border-green-200"
       case "품질향상":
-        return "bg-gray-100 text-gray-700 border-gray-200"
+        return "bg-yellow-100 text-yellow-700 border-yellow-200"
       default:
         return "bg-gray-100 text-gray-700 border-gray-200"
     }
@@ -137,7 +137,7 @@ export function ProjectDetailPage() {
             프로젝트 목록으로
           </Button>
 
-          {/* 프로젝트 네비게이션 */}
+          {/* 프로젝트 네비게이션 - 그리드 레이아웃으로 변경 */}
           <div className="mb-8">
             <h3 className="text-sm font-medium text-gray-500 mb-4">프로젝트 네비게이션</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
@@ -216,7 +216,7 @@ export function ProjectDetailPage() {
                       </div>
                       <Progress value={animatedContributions[contribution.category] || 0} className="h-3 bg-gray-200">
                         <div
-                          className="h-full transition-all duration-1000 ease-out rounded-full bg-lime-500"
+                          className="h-full transition-all duration-1000 ease-out rounded-full bg-gradient-to-r from-lime-500 to-orange-500"
                           style={{ width: `${animatedContributions[contribution.category] || 0}%` }}
                         />
                       </Progress>
@@ -253,7 +253,7 @@ export function ProjectDetailPage() {
                   <Badge
                     key={index}
                     variant="outline"
-                    className="border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="border-lime-200 text-lime-700 hover:bg-lime-50 transition-colors"
                   >
                     {state}
                   </Badge>
@@ -370,14 +370,14 @@ export function ProjectDetailPage() {
 
                 {/* 아쉬웠던 부분 */}
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
+                  <h3 className="text-lg font-semibold text-orange-700 mb-4 flex items-center gap-2">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                     아쉬웠던 부분
                   </h3>
                   <div className="space-y-3">
                     {project.retrospective.challenges.map((challenge, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <div className="w-4 h-4 border-2 border-gray-400 rounded-full mt-0.5 flex-shrink-0"></div>
+                        <div className="w-4 h-4 border-2 border-orange-400 rounded-full mt-0.5 flex-shrink-0"></div>
                         <p className="text-gray-700 leading-relaxed text-sm">{challenge}</p>
                       </div>
                     ))}
@@ -394,7 +394,7 @@ export function ProjectDetailPage() {
             variant="outline"
             onClick={handlePrevProject}
             disabled={!prevProject}
-            className="flex items-center gap-2 max-w-xs bg-transparent hover:bg-gray-50 hover:border-gray-300"
+            className="flex items-center gap-2 max-w-xs bg-transparent hover:bg-lime-50 hover:border-lime-300"
           >
             <ChevronLeft className="w-4 h-4" />
             <div className="text-left min-w-0">
@@ -407,7 +407,7 @@ export function ProjectDetailPage() {
             variant="outline"
             onClick={handleNextProject}
             disabled={!nextProject}
-            className="flex items-center gap-2 max-w-xs bg-transparent hover:bg-gray-50 hover:border-gray-300"
+            className="flex items-center gap-2 max-w-xs bg-transparent hover:bg-lime-50 hover:border-lime-300"
           >
             <div className="text-right min-w-0">
               <div className="text-xs text-gray-500">다음 프로젝트</div>
@@ -421,7 +421,7 @@ export function ProjectDetailPage() {
         {showScrollTop && (
           <Button
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-lime-500 hover:bg-lime-600 text-white shadow-lg z-50"
+            className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gradient-to-r from-lime-500 to-orange-500 hover:from-lime-600 hover:to-orange-600 text-white shadow-lg z-50"
             size="icon"
           >
             <ArrowUp className="w-5 h-5" />

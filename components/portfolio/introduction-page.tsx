@@ -230,11 +230,11 @@ export function IntroductionPage() {
 
   return (
     <main className="min-h-screen relative overflow-hidden">
-      {/* 배경 효과 - 중성적인 톤으로 변경 */}
+      {/* 배경 효과 - Lime/Orange 톤으로 변경 */}
       <div className="fixed inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-gray-100/40 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-gray-200/30 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4 h-1/4 bg-gradient-to-r from-gray-50/30 to-gray-100/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-lime-100/40 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-orange-200/30 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/4 h-1/4 bg-gradient-to-r from-lime-50/30 to-orange-100/20 rounded-full blur-2xl"></div>
         <div className="absolute inset-0 bg-white/95"></div>
       </div>
 
@@ -244,23 +244,23 @@ export function IntroductionPage() {
           <AnimatedElement animation="scaleIn" delay={0} duration={200} className="space-y-4">
             <div className="flex justify-center">
               <div className="w-full md:w-3/4">
-                <div className="bg-gradient-to-br from-white via-gray-50/50 to-gray-100/30 rounded-2xl p-6 sm:p-8 shadow-xl border border-gray-200/50 backdrop-blur-sm">
+                <div className="bg-gradient-to-br from-white via-lime-50/50 to-orange-100/30 rounded-2xl p-6 sm:p-8 shadow-xl border border-lime-200/50 backdrop-blur-sm">
                   {/* 포트폴리오 타이틀 */}
                   <div className="text-center space-y-3 mb-6">
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 bg-clip-text text-transparent leading-tight">
-                      {introduction.headline}
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-lime-700 via-orange-600 to-lime-800 bg-clip-text text-transparent leading-tight">
+                      "좋은 경험은 결국 좋은 기억이 된다"
                     </h1>
-                    <p className="text-lg sm:text-xl text-gray-600 font-medium">{introduction.subtitle}</p>
+                    <p className="text-lg sm:text-xl text-gray-600 font-medium">UX·DX 중심 개발자의 여정</p>
                   </div>
 
                   {/* 프로필 섹션 */}
                   <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
                     {/* 아바타 */}
                     <div className="relative flex-shrink-0">
-                      <div className="absolute inset-0 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full blur-xl opacity-20 scale-110"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-lime-300 to-orange-400 rounded-full blur-xl opacity-20 scale-110"></div>
                       <Avatar className="w-32 h-32 sm:w-36 sm:h-36 relative z-10 ring-4 ring-white shadow-xl">
                         <AvatarImage src="/profile.png" alt="Profile" />
-                        <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-gray-600 to-gray-700 text-white">
+                        <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-lime-600 to-orange-700 text-white">
                           {personalInfo?.name?.charAt(0) || "L"}
                         </AvatarFallback>
                       </Avatar>
@@ -270,7 +270,7 @@ export function IntroductionPage() {
                     <div className="flex-1 text-center lg:text-left space-y-4">
                       {/* 이름과 직책 */}
                       <div>
-                        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-700 to-gray-800 bg-clip-text text-transparent mb-1">
+                        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-lime-700 to-orange-800 bg-clip-text text-transparent mb-1">
                           {personalInfo?.name || "개발자"}
                         </h2>
                         <p className="text-lg text-gray-600 font-medium">{personalInfo?.title || "풀스택 개발자"}</p>
@@ -278,7 +278,7 @@ export function IntroductionPage() {
 
                       {/* 연락처 정보 */}
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div className="group bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-gray-300/50">
+                        <div className="group bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-lime-300/50">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
                               <MapPin className="w-5 h-5 text-white" />
@@ -303,21 +303,21 @@ export function IntroductionPage() {
                             <div className="text-left flex-1">
                               <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">이메일</p>
                               <p className="text-sm text-gray-800 font-semibold group-hover:text-lime-700 transition-colors">
-                                {personalInfo?.email || "joblonnie@gmail.com"}
+                                joblonnie@gmail.com
                               </p>
                             </div>
                           </div>
                         </div>
 
-                        <div className="group bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-gray-300/50">
+                        <div className="group bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-orange-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-orange-300/50">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                            <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-orange-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
                               <Phone className="w-5 h-5 text-white" />
                             </div>
                             <div className="text-left flex-1">
                               <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">연락처</p>
-                              <p className="text-sm text-gray-800 font-semibold group-hover:text-gray-900 transition-colors">
-                                {personalInfo?.phone || "010-5054-0121"}
+                              <p className="text-sm text-gray-800 font-semibold group-hover:text-orange-700 transition-colors">
+                                010-5054-0121
                               </p>
                             </div>
                           </div>
@@ -331,7 +331,7 @@ export function IntroductionPage() {
                         </p>
                         <div className="flex gap-3 justify-center lg:justify-start flex-wrap">
                           <a
-                            href={personalInfo?.tistory}
+                            href="https://aosjehdgus.tistory.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-lime-500 hover:text-lime-600 hover:bg-lime-50 transition-all duration-300 shadow-sm hover:shadow-md"
@@ -351,10 +351,10 @@ export function IntroductionPage() {
                           </a>
 
                           <a
-                            href={personalInfo?.github}
+                            href="https://github.com/username"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
+                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-orange-500 hover:text-orange-600 hover:bg-orange-50 transition-all duration-300 shadow-sm hover:shadow-md"
                           >
                             <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
                             <div className="text-left">
@@ -365,10 +365,10 @@ export function IntroductionPage() {
                           </a>
 
                           <a
-                            href={personalInfo?.linkedin}
+                            href="https://www.linkedin.com/in/donghyun-kim-a52b62207/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-gray-500 hover:text-gray-800 hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
+                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-lime-500 hover:text-lime-600 hover:bg-lime-50 transition-all duration-300 shadow-sm hover:shadow-md"
                           >
                             <svg
                               className="w-4 h-4 group-hover:scale-110 transition-transform"
@@ -390,18 +390,22 @@ export function IntroductionPage() {
 
                   {/* 소개 텍스트 */}
                   <div className="mt-6">
-                    <div className="bg-gradient-to-br from-white/95 to-gray-50/70 rounded-xl p-6 shadow-lg border border-gray-200/50 backdrop-blur-sm">
+                    <div className="bg-gradient-to-br from-white/95 to-lime-50/70 rounded-xl p-6 shadow-lg border border-lime-200/50 backdrop-blur-sm">
                       <div className="space-y-4 text-gray-700 leading-relaxed">
                         <p className="text-base font-semibold text-gray-900 border-l-4 border-lime-600 pl-4">
-                          {introduction.description[0]}
+                          저는 사용자와 개발자가 모두 기억할 만한 경험을 만들어가는 데 집중하는 프론트엔드 개발자입니다.
                         </p>
-                        {introduction.description.slice(1, -1).map((desc, index) => (
-                          <p key={index} className="pl-4 text-sm">
-                            {desc}
-                          </p>
-                        ))}
-                        <p className="text-gray-600 italic pl-4 border-l-4 border-gray-400 text-sm">
-                          {introduction.description[introduction.description.length - 1]}
+                        <p className="pl-4 text-sm">
+                          사용자가 의식하지 않아도 편안함을 느낄 수 있도록, 적절한 로딩 시간, 예측 가능한 인터랙션,
+                          그리고 미묘하지만 의미 있는 시각적 디테일 등 '보이지 않는 UX'를 세심하게 설계해왔습니다.
+                        </p>
+                        <p className="pl-4 text-sm">
+                          코드 구조화, 반복 작업의 자동화, 협업 환경 개선 등을 통해 팀이 보다 효율적이고 즐겁게 일할 수
+                          있는 기반을 마련함으로써, 개발 과정 자체가 성장과 학습의 경험이 될 수 있도록 노력했습니다.
+                        </p>
+                        <p className="text-gray-600 italic pl-4 border-l-4 border-orange-400 text-sm">
+                          이처럼 사용자와 팀을 위한 작은 경험들을 하나씩 쌓아가는 과정이, 결국에는 제품과 조직 모두에
+                          긍정적인 기억으로 남고 장기적인 가치를 만들어낸다고 믿습니다.
                         </p>
                       </div>
                     </div>
@@ -415,7 +419,7 @@ export function IntroductionPage() {
           <AnimatedElement animation="slideUp" delay={300} duration={200} className="mb-8">
             <div className="flex justify-center">
               <div className="w-full md:w-3/4">
-                <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:bg-gray-50">
+                <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:bg-lime-50/30">
                   <CardContent className="p-6">
                     <header className="text-xl font-bold text-gray-900 mb-4 text-center">업무 철학</header>
 
@@ -425,16 +429,29 @@ export function IntroductionPage() {
 
                     {/* 상단 2개 철학 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                      {introduction.philosophy.map(({ title, description }, index) => (
+                      {[
+                        {
+                          icon: <Lightbulb className="w-5 h-5" />,
+                          quote: "사용자 중심의 품질과 성능을 추구합니다",
+                          description:
+                            "사용자가 없으면 제품은 없다고 생각합니다. 사용자 경험을 최우선으로 고려하며, 동시에 성능 최적화를 통해 신뢰할 수 있는 제품을 만듭니다. UI/UX 디자이너와의 협업을 통해 사용자의 만족도를 높이는 데 집중합니다.",
+                        },
+                        {
+                          icon: <Users className="w-5 h-5" />,
+                          quote: "협업과 팀워크는 개발의 기반입니다",
+                          description:
+                            "디자이너, 기획자, 백엔드 개발자와의 긴밀한 커뮤니케이션을 통해 문제를 조기에 해결하고, 더 나은 품질을 달성합니다. 또한 팀 내 개발 경험(DX) 개선을 위해 코드 리뷰 문화 정착, 개발 프로세스 최적화, 공통 컴포넌트 라이브러리 구축 등을 통해 팀 전체의 생산성 향상에 기여합니다.",
+                        },
+                      ].map(({ icon, quote, description }, index) => (
                         <div
                           key={index}
-                          className="group flex flex-col text-center p-4 bg-white/70 backdrop-blur-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100/50 hover:bg-gray-50"
+                          className="group flex flex-col text-center p-4 bg-white/70 backdrop-blur-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full border border-lime-100/50 hover:bg-lime-50"
                         >
-                          <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 shadow-md group-hover:bg-gray-200 transition-all duration-300 group-hover:scale-110">
-                            {index === 0 ? <Lightbulb className="w-5 h-5" /> : <Users className="w-5 h-5" />}
+                          <div className="w-12 h-12 bg-gradient-to-br from-lime-100 to-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 shadow-md group-hover:from-lime-200 group-hover:to-orange-200 transition-all duration-300 group-hover:scale-110">
+                            {icon}
                           </div>
 
-                          <blockquote className="italic text-gray-800 mb-3 font-medium text-sm">"{title}"</blockquote>
+                          <blockquote className="italic text-gray-800 mb-3 font-medium text-sm">"{quote}"</blockquote>
 
                           <p className="text-xs text-gray-600 flex-1 leading-relaxed">{description}</p>
                         </div>
@@ -453,119 +470,125 @@ export function IntroductionPage() {
               시간 순서대로 진행했던 프로젝트들의 여정을 확인해보세요.
             </p>
 
-            <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-              <CardContent className="p-6">
-                <div className="space-y-12">
-                  {years.map((year, yearIndex) => (
-                    <div key={year} className="relative">
-                      {/* 연도 표시 */}
-                      <div className="flex items-center justify-center mb-8">
-                        <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
-                          {year}
-                        </div>
-                      </div>
-
-                      {/* 해당 연도의 프로젝트들 */}
-                      <div className="space-y-8">
-                        {projectsByYear[year].map((project, index) => (
-                          <div key={project.projectId} className="relative">
-                            {/* 타임라인 포인트 */}
-                            <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
-                              <div className="w-4 h-4 bg-lime-600 rounded-full border-4 border-white shadow-lg"></div>
-                            </div>
-
-                            {/* 프로젝트 카드 - 가운데 정렬 */}
-                            <div className="flex justify-center">
-                              <div className="w-full md:w-3/4">
-                                <Card
-                                  className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-gray-100/50 shadow-md hover:bg-gray-50"
-                                  onClick={() => handleProjectClick(project)}
-                                >
-                                  <CardContent className="p-6">
-                                    {/* 회사 정보 */}
-                                    <div className="flex items-center gap-2 mb-3">
-                                      <Building className="w-4 h-4 text-gray-500" />
-                                      <span className="text-sm text-gray-600 font-medium">{project.companyName}</span>
-                                      <span className="text-xs text-gray-400">•</span>
-                                      <span className="text-xs text-gray-500">{project.companyPosition}</span>
-                                    </div>
-
-                                    {/* 프로젝트 이미지 */}
-                                    {project.image && (
-                                      <div className="mb-3 p-2 bg-gray-50 rounded-lg">
-                                        <img
-                                          src={project.image || "/placeholder.svg"}
-                                          alt={project.title}
-                                          className="w-full h-16 object-contain rounded-lg"
-                                        />
-                                      </div>
-                                    )}
-
-                                    {/* 프로젝트 정보 */}
-                                    <div className="mb-3">
-                                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1">
-                                        {project.title}
-                                      </h3>
-                                      {project.subtitle && (
-                                        <p className="text-sm text-gray-600 mb-2 font-medium">{project.subtitle}</p>
-                                      )}
-
-                                      {/* 기간 정보 */}
-                                      <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                                        <Clock className="w-4 h-4" />
-                                        <span className="font-medium">{project.period}</span>
-                                      </div>
-                                    </div>
-
-                                    <p className="text-gray-600 mb-3 leading-relaxed text-sm">
-                                      {project.background.split(".").slice(0, 2).join(". ")}
-                                    </p>
-
-                                    {/* 키워드 태그 */}
-                                    {project.keywords && (
-                                      <div className="flex flex-wrap gap-1 mb-3">
-                                        {project.keywords.slice(0, 3).map((keyword, keywordIndex) => (
-                                          <span
-                                            key={keywordIndex}
-                                            className="px-2 py-1 bg-lime-100 text-lime-700 text-xs rounded-full shadow-sm border border-lime-200 hover:bg-lime-200 hover:text-lime-800 transition-all duration-300"
-                                          >
-                                            {keyword}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    )}
-
-                                    {/* 기술 스택 */}
-                                    <div className="flex flex-wrap gap-1">
-                                      {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                                        <Badge
-                                          key={techIndex}
-                                          variant="secondary"
-                                          className="text-xs bg-gray-100 text-gray-700"
-                                        >
-                                          {tech}
-                                        </Badge>
-                                      ))}
-                                    </div>
-                                  </CardContent>
-                                </Card>
-                              </div>
+            <div className="flex justify-center">
+              <div className="w-full md:w-3/4">
+                <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
+                  <CardContent className="p-6">
+                    <div className="space-y-12">
+                      {years.map((year, yearIndex) => (
+                        <div key={year} className="relative">
+                          {/* 연도 표시 */}
+                          <div className="flex items-center justify-center mb-8">
+                            <div className="bg-gradient-to-r from-lime-600 to-orange-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
+                              {year}
                             </div>
                           </div>
-                        ))}
-                      </div>
 
-                      {/* 연도 간 구분선 (마지막 연도가 아닌 경우) */}
-                      {yearIndex < years.length - 1 && (
-                        <div className="flex justify-center mt-12">
-                          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+                          {/* 해당 연도의 프로젝트들 */}
+                          <div className="space-y-8">
+                            {projectsByYear[year].map((project, index) => (
+                              <div key={project.projectId} className="relative">
+                                {/* 타임라인 포인트 */}
+                                <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
+                                  <div className="w-4 h-4 bg-gradient-to-r from-lime-600 to-orange-600 rounded-full border-4 border-white shadow-lg"></div>
+                                </div>
+
+                                {/* 프로젝트 카드 - 가운데 정렬 */}
+                                <div className="flex justify-center">
+                                  <div className="w-full">
+                                    <Card
+                                      className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:bg-lime-50/30"
+                                      onClick={() => handleProjectClick(project)}
+                                    >
+                                      <CardContent className="p-6">
+                                        {/* 회사 정보 */}
+                                        <div className="flex items-center gap-2 mb-3">
+                                          <Building className="w-4 h-4 text-gray-500" />
+                                          <span className="text-sm text-gray-600 font-medium">
+                                            {project.companyName}
+                                          </span>
+                                          <span className="text-xs text-gray-400">•</span>
+                                          <span className="text-xs text-gray-500">{project.companyPosition}</span>
+                                        </div>
+
+                                        {/* 프로젝트 이미지 */}
+                                        {project.image && (
+                                          <div className="mb-3 p-2 bg-gray-50 rounded-lg">
+                                            <img
+                                              src={project.image || "/placeholder.svg"}
+                                              alt={project.title}
+                                              className="w-full h-16 object-contain rounded-lg"
+                                            />
+                                          </div>
+                                        )}
+
+                                        {/* 프로젝트 정보 */}
+                                        <div className="mb-3">
+                                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1">
+                                            {project.title}
+                                          </h3>
+                                          {project.subtitle && (
+                                            <p className="text-sm text-gray-600 mb-2 font-medium">{project.subtitle}</p>
+                                          )}
+
+                                          {/* 기간 정보 */}
+                                          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                                            <Clock className="w-4 h-4" />
+                                            <span className="font-medium">{project.period}</span>
+                                          </div>
+                                        </div>
+
+                                        <p className="text-gray-600 mb-3 leading-relaxed text-sm">
+                                          {project.background.split(".").slice(0, 2).join(". ")}
+                                        </p>
+
+                                        {/* 키워드 태그 */}
+                                        {project.keywords && (
+                                          <div className="flex flex-wrap gap-1 mb-3">
+                                            {project.keywords.slice(0, 3).map((keyword, keywordIndex) => (
+                                              <span
+                                                key={keywordIndex}
+                                                className="px-2 py-1 bg-lime-100 text-lime-700 text-xs rounded-full shadow-sm border border-lime-200 hover:bg-lime-200 hover:text-lime-800 transition-all duration-300"
+                                              >
+                                                {keyword}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        )}
+
+                                        {/* 기술 스택 */}
+                                        <div className="flex flex-wrap gap-1">
+                                          {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                                            <Badge
+                                              key={techIndex}
+                                              variant="secondary"
+                                              className="text-xs bg-orange-100 text-orange-700"
+                                            >
+                                              {tech}
+                                            </Badge>
+                                          ))}
+                                        </div>
+                                      </CardContent>
+                                    </Card>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* 연도 간 구분선 (마지막 연도가 아닌 경우) */}
+                          {yearIndex < years.length - 1 && (
+                            <div className="flex justify-center mt-12">
+                              <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-lime-300 to-transparent"></div>
+                            </div>
+                          )}
                         </div>
-                      )}
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </AnimatedElement>
 
           {/* 사이드 프로젝트 타임라인 */}
@@ -582,7 +605,7 @@ export function IntroductionPage() {
                         <div key={year} className="relative">
                           {/* 연도 표시 */}
                           <div className="flex items-center justify-center mb-8">
-                            <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
+                            <div className="bg-gradient-to-r from-orange-600 to-lime-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
                               {year}
                             </div>
                           </div>
@@ -593,14 +616,14 @@ export function IntroductionPage() {
                               <div key={`${project.title}-${index}`} className="relative">
                                 {/* 타임라인 포인트 */}
                                 <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
-                                  <div className="w-4 h-4 bg-gray-600 rounded-full border-4 border-white shadow-lg"></div>
+                                  <div className="w-4 h-4 bg-gradient-to-r from-orange-600 to-lime-600 rounded-full border-4 border-white shadow-lg"></div>
                                 </div>
 
                                 {/* 사이드 프로젝트 카드 */}
                                 <div className="flex justify-center">
-                                  <div className="w-full">
+                                  <div className="w-full md:w-3/4">
                                     <Card
-                                      className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-gray-100/50 shadow-md hover:bg-gray-50"
+                                      className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-orange-100/50 shadow-md hover:bg-orange-50/30"
                                       onClick={() => handleSideProjectClick(project)}
                                     >
                                       <CardContent className="p-6">
@@ -620,7 +643,7 @@ export function IntroductionPage() {
                                             {/* 프로젝트 정보 */}
                                             <div className="flex items-start justify-between mb-2">
                                               <div>
-                                                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1">
+                                                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-orange-600 transition-colors mb-1">
                                                   {project.title}
                                                 </h3>
                                                 <p className="text-sm text-gray-600 font-medium">
@@ -633,7 +656,7 @@ export function IntroductionPage() {
                                                   className={`text-xs ${
                                                     project.status === "완료"
                                                       ? "border-lime-200 text-lime-700 bg-lime-50"
-                                                      : "border-gray-200 text-gray-700 bg-gray-50"
+                                                      : "border-orange-200 text-orange-700 bg-orange-50"
                                                   }`}
                                                 >
                                                   {project.status}
@@ -658,7 +681,7 @@ export function IntroductionPage() {
                                                   <Badge
                                                     key={techIndex}
                                                     variant="secondary"
-                                                    className="text-xs bg-gray-100 text-gray-700"
+                                                    className="text-xs bg-orange-100 text-orange-700"
                                                   >
                                                     {tech}
                                                   </Badge>
@@ -694,7 +717,7 @@ export function IntroductionPage() {
                           {/* 연도 간 구분선 (마지막 연도가 아닌 경우) */}
                           {yearIndex < sideProjectYears.length - 1 && (
                             <div className="flex justify-center mt-12">
-                              <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+                              <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-orange-300 to-transparent"></div>
                             </div>
                           )}
                         </div>
@@ -722,7 +745,7 @@ export function IntroductionPage() {
                         <div key={year} className="relative">
                           {/* 연도 표시 */}
                           <div className="flex items-center justify-center mb-8">
-                            <div className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
+                            <div className="bg-gradient-to-r from-lime-600 to-orange-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
                               {year}
                             </div>
                           </div>
@@ -746,9 +769,9 @@ export function IntroductionPage() {
                                     }
                                   case "activity":
                                     return {
-                                      color: "bg-gray-600",
+                                      color: "bg-orange-600",
                                       icon: <Activity className="h-4 w-4 text-white" />,
-                                      badge: { bg: "bg-gray-100", text: "text-gray-700", label: "사내활동" },
+                                      badge: { bg: "bg-orange-100", text: "text-orange-700", label: "사내활동" },
                                     }
                                   default:
                                     return {
@@ -772,7 +795,7 @@ export function IntroductionPage() {
 
                                   {/* 카드 - 가운데 정렬 */}
                                   <div className="flex justify-center">
-                                    <div className="w-full">
+                                    <div className="w-full md:w-3/4">
                                       <Card className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 border border-gray-100/50 shadow-md hover:bg-gray-50">
                                         <CardContent className="p-5">
                                           <div className="flex items-center gap-2 mb-3">
@@ -864,7 +887,7 @@ export function IntroductionPage() {
           <AnimatedElement animation="slideUp" delay={150} duration={200} className="mb-8">
             <div className="flex justify-center">
               <div className="w-full md:w-3/4">
-                <Card className="bg-white/80 backdrop-blur-sm border-gray-200 hover:bg-gray-50">
+                <Card className="bg-white/80 backdrop-blur-sm border-lime-200 hover:bg-lime-50/30">
                   <CardContent className="p-5">
                     <h3 className="text-lg font-bold text-slate-800 mb-4">기술 스택</h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -872,7 +895,7 @@ export function IntroductionPage() {
                         <h4 className="font-semibold text-slate-700 mb-2 text-sm">언어</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.languages.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-gray-100 text-gray-700 text-xs">
+                            <Badge key={skill} variant="secondary" className="bg-lime-100 text-lime-700 text-xs">
                               {skill}
                             </Badge>
                           ))}
@@ -882,7 +905,7 @@ export function IntroductionPage() {
                         <h4 className="font-semibold text-slate-700 mb-2 text-sm">UI/UX</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.ui.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-gray-100 text-gray-700 text-xs">
+                            <Badge key={skill} variant="secondary" className="bg-orange-100 text-orange-700 text-xs">
                               {skill}
                             </Badge>
                           ))}
@@ -892,7 +915,7 @@ export function IntroductionPage() {
                         <h4 className="font-semibold text-slate-700 mb-2 text-sm">상태 관리</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.stateManagement.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-gray-100 text-gray-700 text-xs">
+                            <Badge key={skill} variant="secondary" className="bg-lime-100 text-lime-700 text-xs">
                               {skill}
                             </Badge>
                           ))}
@@ -902,7 +925,7 @@ export function IntroductionPage() {
                         <h4 className="font-semibold text-slate-700 mb-2 text-sm">아키텍처</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.architecture.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-gray-100 text-gray-700 text-xs">
+                            <Badge key={skill} variant="secondary" className="bg-orange-100 text-orange-700 text-xs">
                               {skill}
                             </Badge>
                           ))}
@@ -912,7 +935,7 @@ export function IntroductionPage() {
                         <h4 className="font-semibold text-slate-700 mb-2 text-sm">개발 도구</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.devTools.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-gray-100 text-gray-700 text-xs">
+                            <Badge key={skill} variant="secondary" className="bg-lime-100 text-lime-700 text-xs">
                               {skill}
                             </Badge>
                           ))}
@@ -922,7 +945,7 @@ export function IntroductionPage() {
                         <h4 className="font-semibold text-slate-700 mb-2 text-sm">협업 도구</h4>
                         <div className="flex flex-wrap gap-1">
                           {skills.collaborationTools.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="bg-gray-100 text-gray-700 text-xs">
+                            <Badge key={skill} variant="secondary" className="bg-orange-100 text-orange-700 text-xs">
                               {skill}
                             </Badge>
                           ))}
@@ -946,12 +969,12 @@ export function IntroductionPage() {
                     {displayedArticles.map((article) => (
                       <Card
                         key={article.id}
-                        className="cursor-pointer hover:shadow-lg transition-all duration-300 group hover:bg-gray-50"
+                        className="cursor-pointer hover:shadow-lg transition-all duration-300 group hover:bg-lime-50/30"
                         onClick={() => handleArticleClick(article.notionUrl)}
                       >
                         <CardContent className="p-5">
                           <div className="flex items-center gap-2 mb-2">
-                            <BookOpen className="w-4 h-4 text-gray-600" />
+                            <BookOpen className="w-4 h-4 text-lime-600" />
                             <span className="text-xs text-gray-500">{article.category}</span>
                             <span className="text-xs text-gray-400">•</span>
                             <span className="text-xs text-gray-500">
@@ -968,7 +991,7 @@ export function IntroductionPage() {
                           <div className="flex flex-wrap gap-1 mb-3">
                             {article.tags &&
                               article.tags.slice(0, 2).map((tag) => (
-                                <Badge key={tag} variant="secondary" className="text-xs bg-gray-100 text-gray-700">
+                                <Badge key={tag} variant="secondary" className="text-xs bg-orange-100 text-orange-700">
                                   {tag}
                                 </Badge>
                               ))}
@@ -989,7 +1012,7 @@ export function IntroductionPage() {
                       <Button
                         variant="outline"
                         onClick={() => setShowAllArticles(!showAllArticles)}
-                        className="border-gray-500 text-gray-600 hover:bg-gray-50 px-4 py-2 text-sm"
+                        className="border-lime-500 text-lime-600 hover:bg-lime-50 px-4 py-2 text-sm"
                       >
                         {showAllArticles ? (
                           <>
@@ -1034,17 +1057,17 @@ export function IntroductionPage() {
                 {/* 미래 비전 */}
                 <div className="space-y-4 mb-8">
                   <h3 className="text-xl font-bold text-center flex items-center justify-center gap-2 text-gray-900">
-                    <Eye className="h-5 w-5 text-gray-600" />
+                    <Eye className="h-5 w-5 text-lime-600" />
                     미래 비전
                   </h3>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {goals.futureVision.map(({ icon, quote, description }, index) => (
+                    {goals.futureVision.map(({ icon, gradient, quote, description }, index) => (
                       <div
                         key={index}
-                        className="group flex flex-col text-center p-5 backdrop-blur-sm bg-white/90 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100/50 hover:bg-gray-50"
+                        className="group flex flex-col text-center p-5 backdrop-blur-sm bg-white/90 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full border border-lime-100/50 hover:bg-lime-50/30"
                       >
-                        <div className="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:bg-gray-700 transition-all duration-300 group-hover:scale-110">
+                        <div className="w-12 h-12 bg-gradient-to-br from-lime-600 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg group-hover:from-lime-700 group-hover:to-orange-700 transition-all duration-300 group-hover:scale-110">
                           <span className="text-white text-lg">{icon}</span>
                         </div>
 
@@ -1057,9 +1080,9 @@ export function IntroductionPage() {
                 </div>
 
                 {/* 궁극적인 비전 */}
-                <div className="mt-6 pt-4 border-t border-gray-200">
+                <div className="mt-6 pt-4 border-t border-lime-200">
                   <h4 className="text-lg font-bold text-gray-900 mb-3 text-center">궁극적인 비전</h4>
-                  <div className="backdrop-blur-sm bg-white/90 rounded-lg p-5 text-center shadow-xl border border-gray-100/50 hover:bg-gray-50">
+                  <div className="backdrop-blur-sm bg-white/90 rounded-lg p-5 text-center shadow-xl border border-lime-100/50 hover:bg-lime-50/30">
                     <p className="text-base text-gray-800 leading-relaxed italic">"{goals.vision.quote}"</p>
                     <p className="text-sm text-gray-600 mt-3 leading-relaxed">{goals.vision.description}</p>
                   </div>
@@ -1074,7 +1097,7 @@ export function IntroductionPage() {
       {showScrollTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-lime-500 hover:bg-lime-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
+          className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-gradient-to-r from-lime-500 to-orange-500 hover:from-lime-600 hover:to-orange-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
           size="icon"
         >
           <ArrowUp className="h-4 w-4" />

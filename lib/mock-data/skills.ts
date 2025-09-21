@@ -1,8 +1,18 @@
-export const skills = {
-  languages: ["JavaScript", "TypeScript", "HTML", "CSS"],
-  ui: ["React", "Next.js", "Tailwind CSS", "Styled Components", "Material-UI", "Ant Design"],
-  stateManagement: ["Redux", "Zustand", "React Query", "SWR"],
-  architecture: ["Monorepo", "Micro Frontend", "Component Library", "Design System"],
-  devTools: ["Webpack", "Vite", "ESLint", "Prettier", "Storybook", "Jest"],
-  collaborationTools: ["Git", "GitHub", "Jira", "Confluence", "Figma", "Slack"],
+export const skillsData = {
+  languages: ["JavaScript", "TypeScript", "HTML5", "CSS3"],
+  ui: [
+    "React",
+    "MUI",
+    "Ant Design",
+    "Styled Components",
+    "Emotion",
+    "Echarts",
+    "Konva",
+    "Saige Elements Design System",
+    "React Hook Form",
+  ],
+  stateManagement: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "Context API", "MobX"],
+  architecture: ["Nx Monorepo", "Feature-Sliced Design", "Atomic Design"],
+  devTools: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
+  collaborationTools: ["Storybook", "Figma", "Notion", "Jira", "Swagger", "Teams"],
 }

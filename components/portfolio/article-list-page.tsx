@@ -50,7 +50,7 @@ export function ArticleListPage() {
       <div className="max-w-6xl mx-auto p-6">
         {/* 헤더 */}
         <div className="mb-12">
-          <Button variant="ghost" className="mb-6 hover:bg-gray-100" onClick={handleGoBack}>
+          <Button variant="ghost" className="mb-6 hover:bg-lime-100" onClick={handleGoBack}>
             <ArrowLeft className="w-4 h-4 mr-2" />
             홈으로 돌아가기
           </Button>
@@ -65,7 +65,7 @@ export function ArticleListPage() {
 
         {/* 아티클 목차 */}
         <div className="mb-8">
-          <Card className="bg-gradient-to-br from-lime-50 to-gray-50 border-lime-200">
+          <Card className="bg-gradient-to-br from-lime-50 to-orange-50 border-lime-200">
             <CardContent className="p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-lime-600" />
@@ -101,12 +101,12 @@ export function ArticleListPage() {
           {sorted.map((article) => (
             <Card
               key={article.id}
-              className="cursor-pointer hover:shadow-lg transition-all duration-300 group hover:bg-gray-50"
+              className="cursor-pointer hover:shadow-lg transition-all duration-300 group hover:bg-lime-50/30"
               onClick={() => handleNotionClick(article.notionUrl)}
             >
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <BookOpen className="w-4 h-4 text-gray-600" />
+                  <BookOpen className="w-4 h-4 text-lime-600" />
                   <Badge variant="secondary" className="bg-lime-100 text-lime-700">
                     {article.category}
                   </Badge>
@@ -130,7 +130,7 @@ export function ArticleListPage() {
 
                 <div className="flex flex-wrap gap-2 mb-3">
                   {article.tags.map((tag, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs bg-gray-100 text-gray-700">
+                    <Badge key={index} variant="secondary" className="text-xs bg-orange-100 text-orange-700">
                       {tag}
                     </Badge>
                   ))}
