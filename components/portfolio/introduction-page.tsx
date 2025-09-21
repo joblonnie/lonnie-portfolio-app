@@ -12,8 +12,6 @@ import {
   Eye,
   Mail,
   ExternalLink,
-  MapPin,
-  Phone,
   ChevronDown,
   ChevronUp,
   BookOpen,
@@ -51,14 +49,6 @@ export function IntroductionPage() {
     router.push(`/project/${project.projectId}`)
   }
 
-  const handleSideProjectClick = (project: any) => {
-    if (project.demo) {
-      window.open(project.demo, "_blank")
-    } else if (project.github) {
-      window.open(project.github, "_blank")
-    }
-  }
-
   const handleArticleClick = (notionUrl: string) => {
     window.open(notionUrl, "_blank")
   }
@@ -77,7 +67,6 @@ export function IntroductionPage() {
     education,
     certifications,
     activities,
-    sideProjects,
     introduction,
   } = mockPortfolioData
 
@@ -102,54 +91,37 @@ export function IntroductionPage() {
 
   const timelineProjects = getProjectsInTimeOrder()
 
-  // 연도별로 그룹화하는 함수 추가
-  const getProjectsByYear = () => {
-    const projectsByYear: { [key: number]: typeof timelineProjects } = {}
+  // 연도 범위별로 그룹화하는 함수 수정
+  const getProjectsByYearRange = () => {
+    const projectsByRange: { [key: string]: typeof timelineProjects } = {}
 
     timelineProjects.forEach((project) => {
-      if (!projectsByYear[project.startYear]) {
-        projectsByYear[project.startYear] = []
+      // 프로젝트 기간에서 시작년도와 종료년도 추출
+      const [startPart, endPart] = project.period.split(" - ")
+      const startYear = Number.parseInt(startPart.split(".")[0])
+      const endYear = endPart ? Number.parseInt(endPart.split(".")[0]) : startYear
+
+      // 연도 범위 생성 (예: "2023 - 2025")
+      const yearRange = startYear === endYear ? `${startYear}` : `${startYear} - ${endYear}`
+
+      if (!projectsByRange[yearRange]) {
+        projectsByRange[yearRange] = []
       }
-      projectsByYear[project.startYear].push(project)
+      projectsByRange[yearRange].push(project)
     })
 
-    return projectsByYear
+    return projectsByRange
   }
 
-  const projectsByYear = getProjectsByYear()
-  const years = Object.keys(projectsByYear)
-    .map(Number)
-    .sort((a, b) => b - a) // 최신순
+  const projectsByYearRange = getProjectsByYearRange()
+  const yearRanges = Object.keys(projectsByYearRange).sort((a, b) => {
+    // 최신순 정렬을 위해 시작년도 기준으로 정렬
+    const aStart = Number.parseInt(a.split(" - ")[0])
+    const bStart = Number.parseInt(b.split(" - ")[0])
+    return bStart - aStart
+  })
 
-  // 사이드 프로젝트를 연도별로 그룹화하는 함수
-  const getSideProjectsByYear = () => {
-    const sideProjectsWithYear = sideProjects.map((project) => {
-      const startPart = project.period.split(" - ")[0]
-      const year = Number.parseInt(startPart.split(".")[0])
-      return {
-        ...project,
-        startYear: year,
-        startDate: new Date(year, 0),
-      }
-    })
-
-    const sideProjectsByYear: { [key: number]: typeof sideProjectsWithYear } = {}
-    sideProjectsWithYear.forEach((project) => {
-      if (!sideProjectsByYear[project.startYear]) {
-        sideProjectsByYear[project.startYear] = []
-      }
-      sideProjectsByYear[project.startYear].push(project)
-    })
-
-    return sideProjectsByYear
-  }
-
-  const sideProjectsByYear = getSideProjectsByYear()
-  const sideProjectYears = Object.keys(sideProjectsByYear)
-    .map(Number)
-    .sort((a, b) => b - a)
-
-  // 학력·자격·활동을 연도별로 그룹화하는 함수 (사이드 프로젝트 제외)
+  // 학력·자격·활동을 연도별로 그룹화하는 함수
   const getEducationItemsByYear = () => {
     const allItems: Array<{
       type: "education" | "certification" | "activity"
@@ -239,12 +211,12 @@ export function IntroductionPage() {
       </div>
 
       <div className="relative z-10 py-6 px-4 sm:px-6 lg:px-8">
-        <article className="max-w-6xl mx-auto space-y-6">
+        <article className="max-w-7xl mx-auto space-y-6">
           {/* 개인 정보 섹션 - 중앙 정렬 및 width 조정 */}
           <AnimatedElement animation="scaleIn" delay={0} duration={200} className="space-y-4">
             <div className="flex justify-center">
-              <div className="w-full md:w-3/4">
-                <div className="bg-gradient-to-br from-white via-lime-50/50 to-orange-100/30 rounded-2xl p-6 sm:p-8 shadow-xl border border-lime-200/50 backdrop-blur-sm">
+              <div className="w-full md:w-4/5 lg:w-5/6">
+                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl border border-lime-200/50 backdrop-blur-sm">
                   {/* 포트폴리오 타이틀 */}
                   <div className="text-center space-y-3 mb-6">
                     <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
@@ -253,159 +225,122 @@ export function IntroductionPage() {
                     <p className="text-lg sm:text-xl text-gray-600 font-medium">UX·DX 중심 개발자의 여정</p>
                   </div>
 
-                  {/* 프로필 섹션 */}
-                  <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8">
+                  {/* 프로필 섹션 - 간소화 */}
+                  <div className="flex flex-col items-center gap-6">
                     {/* 아바타 */}
-                    <div className="relative flex-shrink-0">
-                      <div className="absolute inset-0 bg-gradient-to-r from-lime-300 to-orange-400 rounded-full blur-xl opacity-20 scale-110"></div>
-                      <Avatar className="w-32 h-32 sm:w-36 sm:h-36 relative z-10 ring-4 ring-white shadow-xl">
+                    <div className="relative">
+                      <Avatar className="w-32 h-32 ring-4 ring-white shadow-xl">
                         <AvatarImage src="/profile.png" alt="Profile" />
-                        <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-lime-600 to-orange-700 text-white">
+                        <AvatarFallback className="text-2xl bg-gradient-to-br from-lime-600 to-orange-700 text-white">
                           {personalInfo?.name?.charAt(0) || "L"}
                         </AvatarFallback>
                       </Avatar>
                     </div>
 
-                    {/* 정보 섹션 */}
-                    <div className="flex-1 text-center lg:text-left space-y-4">
-                      {/* 이름과 직책 */}
-                      <div>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
-                          {personalInfo?.name || "개발자"}
-                        </h2>
-                        <p className="text-lg text-gray-600 font-medium">{personalInfo?.title || "풀스택 개발자"}</p>
-                      </div>
-
-                      {/* 연락처 정보 */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div className="group bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-lime-300/50">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 group-hover:from-lime-600 group-hover:to-lime-700">
-                              <MapPin className="w-5 h-5 text-white" />
-                            </div>
-                            <div className="text-left flex-1 min-w-0">
-                              <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">위치</p>
-                              <p className="text-sm text-gray-800 font-semibold group-hover:text-gray-900 transition-colors truncate">
-                                {personalInfo?.location || "서울"}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div
-                          onClick={handleEmailClick}
-                          className="group bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer hover:border-lime-300/50"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 group-hover:from-lime-600 group-hover:to-lime-700">
-                              <Mail className="w-5 h-5 text-white" />
-                            </div>
-                            <div className="text-left flex-1 min-w-0">
-                              <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">이메일</p>
-                              <p className="text-sm text-gray-800 font-semibold group-hover:text-lime-700 transition-colors truncate">
-                                joblonnie@gmail.com
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="group bg-gradient-to-br from-white to-gray-50/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-coral-300/50 sm:col-span-2 lg:col-span-1">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 group-hover:from-coral-600 group-hover:to-coral-700">
-                              <Phone className="w-5 h-5 text-white" />
-                            </div>
-                            <div className="text-left flex-1 min-w-0">
-                              <p className="text-xs text-gray-500 font-medium uppercase tracking-wide">연락처</p>
-                              <p className="text-sm text-gray-800 font-semibold group-hover:text-coral-700 transition-colors truncate">
-                                010-5054-0121
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* 소셜 링크 - neutral 색상으로 변경 */}
-                      <div className="space-y-3">
-                        <p className="text-sm text-gray-600 text-center lg:text-left font-medium">
-                          개발 여정을 기록하는 공간
-                        </p>
-                        <div className="flex gap-3 justify-center lg:justify-start flex-wrap">
-                          <a
-                            href="https://aosjehdgus.tistory.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-lime-500 hover:text-lime-600 hover:bg-lime-50 transition-all duration-300 shadow-sm hover:shadow-md"
-                          >
-                            <svg
-                              className="w-4 h-4 group-hover:rotate-12 transition-transform"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                            >
-                              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm-1 4v12l8-6-8-6z" />
-                            </svg>
-                            <div className="text-left">
-                              <div className="font-semibold">Tistory</div>
-                              <div className="text-xs text-gray-500">개발 블로그</div>
-                            </div>
-                            <ExternalLink className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                          </a>
-
-                          <a
-                            href="https://github.com/username"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-coral-500 hover:text-coral-600 hover:bg-coral-50 transition-all duration-300 shadow-sm hover:shadow-md"
-                          >
-                            <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                            <div className="text-left">
-                              <div className="font-semibold">GitHub</div>
-                              <div className="text-xs text-gray-500">코드 저장소</div>
-                            </div>
-                            <ExternalLink className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                          </a>
-
-                          <a
-                            href="https://www.linkedin.com/in/donghyun-kim-a52b62207/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:border-lime-500 hover:text-lime-600 hover:bg-lime-50 transition-all duration-300 shadow-sm hover:shadow-md"
-                          >
-                            <svg
-                              className="w-4 h-4 group-hover:scale-110 transition-transform"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                            >
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg>
-                            <div className="text-left">
-                              <div className="font-semibold">LinkedIn</div>
-                              <div className="text-xs text-gray-500">프로필</div>
-                            </div>
-                            <ExternalLink className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                          </a>
-                        </div>
-                      </div>
+                    {/* 기본 정보 */}
+                    <div className="text-center space-y-2">
+                      <h2 className="text-3xl font-bold text-gray-900">{personalInfo?.name || "개발자"}</h2>
+                      <p className="text-lg text-gray-600">{personalInfo?.title || "풀스택 개발자"}</p>
+                      <p className="text-sm text-gray-500">{personalInfo?.location || "서울"}</p>
                     </div>
-                  </div>
 
-                  {/* 소개 텍스트 - neutral 색상으로 변경 */}
-                  <div className="mt-6">
-                    <div className="bg-gradient-to-br from-white/95 to-gray-50/70 rounded-xl p-6 shadow-lg border border-gray-200/50 backdrop-blur-sm">
-                      <div className="space-y-4 text-gray-700 leading-relaxed">
-                        <p className="text-base font-semibold text-gray-900 border-l-4 border-gray-600 pl-4">
+                    {/* 소셜 링크 - 아이콘과 설명 */}
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <a
+                        href={`mailto:${personalInfo?.email}`}
+                        className="flex items-center gap-3 p-3 bg-gray-50 hover:bg-lime-50 rounded-lg transition-colors group"
+                      >
+                        <div className="w-10 h-10 bg-gray-100 group-hover:bg-lime-100 rounded-full flex items-center justify-center transition-colors">
+                          <Mail className="w-5 h-5 text-gray-600 group-hover:text-lime-600" />
+                        </div>
+                        <div>
+                          <div className="font-medium text-gray-900">이메일</div>
+                          <div className="text-xs text-gray-500">{personalInfo?.email}</div>
+                        </div>
+                      </a>
+
+                      <a
+                        href="https://github.com/joblonnie"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-gray-50 hover:bg-gray-800 rounded-lg transition-colors group"
+                      >
+                        <div className="w-10 h-10 bg-gray-100 group-hover:bg-gray-800 rounded-full flex items-center justify-center transition-colors">
+                          <Github className="w-5 h-5 text-gray-600 group-hover:text-white" />
+                        </div>
+                        <div>
+                          <div className="font-medium text-gray-900 group-hover:text-white">GitHub</div>
+                          <div className="text-xs text-gray-500 group-hover:text-gray-300">github.com/joblonnie</div>
+                        </div>
+                      </a>
+
+                      <a
+                        href="https://www.linkedin.com/in/donghyun-kim-a52b62207/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-gray-50 hover:bg-blue-600 rounded-lg transition-colors group"
+                      >
+                        <div className="w-10 h-10 bg-gray-100 group-hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors">
+                          <svg
+                            className="w-5 h-5 text-gray-600 group-hover:text-white"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div className="font-medium text-gray-900 group-hover:text-white">LinkedIn</div>
+                          <div className="text-xs text-gray-500 group-hover:text-gray-300">프로필 보기</div>
+                        </div>
+                      </a>
+
+                      <a
+                        href="https://aosjehdgus.tistory.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 bg-gray-50 hover:bg-orange-500 rounded-lg transition-colors group"
+                      >
+                        <div className="w-10 h-10 bg-gray-100 group-hover:bg-orange-500 rounded-full flex items-center justify-center transition-colors">
+                          <svg
+                            className="w-5 h-5 text-gray-600 group-hover:text-white"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                          >
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm-1 4v12l8-6-8-6z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <div className="font-medium text-gray-900 group-hover:text-white">Tistory</div>
+                          <div className="text-xs text-gray-500 group-hover:text-gray-300">개발 블로그</div>
+                        </div>
+                      </a>
+                    </div>
+
+                    {/* 개발자 소개 - 인용 형태 */}
+                    <div className="mt-8 p-6 bg-gray-50/50 rounded-xl border-l-4 border-lime-500">
+                      <div className="prose prose-gray max-w-none">
+                        <p className="text-gray-700 leading-relaxed text-sm mb-4">
                           저는 사용자와 개발자가 모두 기억할 만한 경험을 만들어가는 데 집중하는 프론트엔드 개발자입니다.
                         </p>
-                        <p className="pl-4 text-sm">
+
+                        <p className="text-gray-700 leading-relaxed text-sm mb-4">
                           사용자가 의식하지 않아도 편안함을 느낄 수 있도록, 적절한 로딩 시간, 예측 가능한 인터랙션,
-                          그리고 미묘하지만 의미 있는 시각적 디테일 등 '보이지 않는 UX'를 세심하게 설계해왔습니다.
+                          그리고 미묘하지만 의미 있는 시각적 디테일 등{" "}
+                          <strong className="text-gray-900">'보이지 않는 UX'</strong>를 세심하게 설계해왔습니다.
                         </p>
-                        <p className="pl-4 text-sm">
+
+                        <p className="text-gray-700 leading-relaxed text-sm mb-4">
                           코드 구조화, 반복 작업의 자동화, 협업 환경 개선 등을 통해 팀이 보다 효율적이고 즐겁게 일할 수
-                          있는 기반을 마련함으로써, 개발 과정 자체가 성장과 학습의 경험이 될 수 있도록 노력했습니다.
+                          있는 기반을 마련함으로써,{" "}
+                          <strong className="text-gray-900">개발 과정 자체가 성장과 학습의 경험</strong>이 될 수 있도록
+                          노력했습니다.
                         </p>
-                        <p className="text-gray-600 italic pl-4 border-l-4 border-gray-400 text-sm">
+
+                        <p className="text-gray-700 leading-relaxed text-sm">
                           이처럼 사용자와 팀을 위한 작은 경험들을 하나씩 쌓아가는 과정이, 결국에는 제품과 조직 모두에
-                          긍정적인 기억으로 남고 장기적인 가치를 만들어낸다고 믿습니다.
+                          긍정적인 기억으로 남고 <strong className="text-gray-900">장기적인 가치를 만들어낸다</strong>고
+                          믿습니다.
                         </p>
                       </div>
                     </div>
@@ -418,7 +353,7 @@ export function IntroductionPage() {
           {/* 업무 철학 - neutral 색상으로 변경 */}
           <AnimatedElement animation="slideUp" delay={300} duration={200} className="mb-8">
             <div className="flex justify-center">
-              <div className="w-full md:w-3/4">
+              <div className="w-full md:w-4/5 lg:w-5/6">
                 <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
                   <CardContent className="p-6">
                     <header className="text-xl font-bold text-gray-900 mb-4 text-center">업무 철학</header>
@@ -463,7 +398,7 @@ export function IntroductionPage() {
             </div>
           </AnimatedElement>
 
-          {/* 프로젝트 타임라인 */}
+          {/* 프로젝트 타임라인 - 연도별로 그룹화 */}
           <AnimatedElement animation="slideUp" delay={100} duration={200} className="mb-8">
             <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">프로젝트 타임라인</h2>
             <p className="text-center text-gray-500 mb-6 text-sm">
@@ -471,114 +406,331 @@ export function IntroductionPage() {
             </p>
 
             <div className="flex justify-center">
-              <div className="w-full md:w-3/4">
+              <div className="w-full max-w-7xl">
                 <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
                   <CardContent className="p-6">
                     <div className="space-y-12">
-                      {years.map((year, yearIndex) => (
-                        <div key={year} className="relative">
-                          {/* 연도 표시 - neutral 색상으로 변경 */}
+                      {yearRanges.map((yearRange, rangeIndex) => (
+                        <div key={yearRange} className="relative">
+                          {/* 연도 범위 표시 */}
                           <div className="flex items-center justify-center mb-8">
                             <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
-                              {year}
+                              {yearRange}
                             </div>
                           </div>
 
-                          {/* 해당 연도의 프로젝트들 */}
+                          {/* 해당 연도 범위의 프로젝트들 */}
                           <div className="space-y-8">
-                            {projectsByYear[year].map((project, index) => (
-                              <div key={project.projectId} className="relative">
-                                {/* 타임라인 포인트 - neutral 색상으로 변경 */}
-                                <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
-                                  <div className="w-4 h-4 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full border-4 border-white shadow-lg"></div>
-                                </div>
+                            {/* 세이지 프로젝트들을 한 줄에 4개 표시 */}
+                            {(() => {
+                              const saigeProjects = projectsByYearRange[yearRange].filter(
+                                (p) => p.companyName === "SAIGE",
+                              )
+                              if (saigeProjects.length > 0) {
+                                return (
+                                  <div className="relative">
+                                    {/* 타임라인 포인트 */}
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
+                                      <div className="w-4 h-4 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full border-4 border-white shadow-lg"></div>
+                                    </div>
 
-                                {/* 프로젝트 카드 - 가운데 정렬 */}
-                                <div className="flex justify-center">
-                                  <div className="w-full">
-                                    <Card
-                                      className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:bg-gray-50/30"
-                                      onClick={() => handleProjectClick(project)}
-                                    >
-                                      <CardContent className="p-6">
-                                        {/* 회사 정보 */}
-                                        <div className="flex items-center gap-2 mb-3">
-                                          <Building className="w-4 h-4 text-gray-500" />
-                                          <span className="text-sm text-gray-600 font-medium">
-                                            {project.companyName}
-                                          </span>
-                                          <span className="text-xs text-gray-400">•</span>
-                                          <span className="text-xs text-gray-500">{project.companyPosition}</span>
-                                        </div>
+                                    {/* 세이지 프로젝트 그룹 카드 */}
+                                    <div className="flex justify-center">
+                                      <div className="w-full">
+                                        <Card className="bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:bg-gray-50/30">
+                                          <CardContent className="p-6">
+                                            {/* 회사 정보 */}
+                                            <div className="flex items-center gap-2 mb-4">
+                                              <Building className="w-4 h-4 text-gray-500" />
+                                              <span className="text-sm text-gray-600 font-medium">SAIGE</span>
+                                              <span className="text-xs text-gray-400">•</span>
+                                              <span className="text-xs text-gray-500">프론트엔드 개발자</span>
+                                            </div>
 
-                                        {/* 프로젝트 이미지 */}
-                                        {project.image && (
-                                          <div className="mb-3 p-2 bg-gray-50 rounded-lg">
-                                            <img
-                                              src={project.image || "/placeholder.svg"}
-                                              alt={project.title}
-                                              className="w-full h-16 object-contain rounded-lg"
-                                            />
+                                            {/* 세이지 프로젝트들을 한 줄에 4개 표시 */}
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                                              {saigeProjects.map((project) => (
+                                                <Card
+                                                  key={project.projectId}
+                                                  className="group cursor-pointer hover:shadow-md transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border border-gray-200"
+                                                  onClick={() => handleProjectClick(project)}
+                                                >
+                                                  <CardContent className="p-3">
+                                                    {/* 프로젝트 이미지 */}
+                                                    {project.image && (
+                                                      <div className="mb-2 p-1 bg-gray-50 rounded-lg">
+                                                        <img
+                                                          src={project.image || "/placeholder.svg"}
+                                                          alt={project.title}
+                                                          className="w-full h-8 object-contain rounded-lg"
+                                                        />
+                                                      </div>
+                                                    )}
+
+                                                    {/* 프로젝트 정보 */}
+                                                    <div className="mb-2">
+                                                      <h3 className="text-sm font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1 line-clamp-2">
+                                                        {project.title}
+                                                      </h3>
+
+                                                      {/* 기간 정보 */}
+                                                      <div className="flex items-center gap-1 text-xs text-gray-500 mb-2">
+                                                        <Clock className="w-3 h-3" />
+                                                        <span className="font-medium">{project.period}</span>
+                                                      </div>
+                                                    </div>
+
+                                                    <p className="text-gray-600 mb-2 leading-relaxed text-xs line-clamp-2">
+                                                      {project.background.split(".").slice(0, 1).join(". ")}
+                                                    </p>
+
+                                                    {/* 키워드 태그 */}
+                                                    {project.keywords && (
+                                                      <div className="flex flex-wrap gap-1 mb-2">
+                                                        {project.keywords.slice(0, 2).map((keyword, keywordIndex) => (
+                                                          <span
+                                                            key={keywordIndex}
+                                                            className="px-1.5 py-0.5 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-lime-100 hover:text-lime-700 hover:border-lime-200 transition-all duration-300"
+                                                          >
+                                                            {keyword}
+                                                          </span>
+                                                        ))}
+                                                      </div>
+                                                    )}
+
+                                                    {/* 기술 스택 */}
+                                                    <div className="flex flex-wrap gap-1">
+                                                      {project.technologies.slice(0, 2).map((tech, techIndex) => (
+                                                        <Badge
+                                                          key={techIndex}
+                                                          variant="secondary"
+                                                          className="text-xs bg-gray-100 text-gray-700 hover:bg-coral-100 hover:text-coral-700 transition-colors"
+                                                        >
+                                                          {tech}
+                                                        </Badge>
+                                                      ))}
+                                                    </div>
+                                                  </CardContent>
+                                                </Card>
+                                              ))}
+                                            </div>
+                                          </CardContent>
+                                        </Card>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              return null
+                            })()}
+
+                            {/* 미디어코퍼스 프로젝트들을 한 줄에 2개 표시 */}
+                            {(() => {
+                              const mediaProjects = projectsByYearRange[yearRange].filter(
+                                (p) => p.companyName === "미디어코퍼스",
+                              )
+                              if (mediaProjects.length > 0) {
+                                return (
+                                  <div className="relative">
+                                    {/* 타임라인 포인트 */}
+                                    <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
+                                      <div className="w-4 h-4 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full border-4 border-white shadow-lg"></div>
+                                    </div>
+
+                                    {/* 미디어코퍼스 프로젝트 그룹 카드 */}
+                                    <div className="flex justify-center">
+                                      <div className="w-full">
+                                        <Card className="bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 hover:bg-gray-50/30">
+                                          <CardContent className="p-6">
+                                            {/* 회사 정보 */}
+                                            <div className="flex items-center gap-2 mb-4">
+                                              <Building className="w-4 h-4 text-gray-500" />
+                                              <span className="text-sm text-gray-600 font-medium">미디어코퍼스</span>
+                                              <span className="text-xs text-gray-400">•</span>
+                                              <span className="text-xs text-gray-500">프론트엔드 개발자</span>
+                                            </div>
+
+                                            {/* 미디어코퍼스 프로젝트들을 한 줄에 2개 표시 */}
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                              {mediaProjects.map((project) => (
+                                                <Card
+                                                  key={project.projectId}
+                                                  className="group cursor-pointer hover:shadow-md transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border border-gray-200"
+                                                  onClick={() => handleProjectClick(project)}
+                                                >
+                                                  <CardContent className="p-4">
+                                                    {/* 프로젝트 이미지 */}
+                                                    {project.image && (
+                                                      <div className="mb-3 p-2 bg-gray-50 rounded-lg">
+                                                        <img
+                                                          src={project.image || "/placeholder.svg"}
+                                                          alt={project.title}
+                                                          className="w-full h-12 object-contain rounded-lg"
+                                                        />
+                                                      </div>
+                                                    )}
+
+                                                    {/* 프로젝트 정보 */}
+                                                    <div className="mb-3">
+                                                      <h3 className="text-base font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1 line-clamp-2">
+                                                        {project.title}
+                                                      </h3>
+                                                      {project.subtitle && (
+                                                        <p className="text-sm text-gray-600 mb-2 font-medium line-clamp-1">
+                                                          {project.subtitle}
+                                                        </p>
+                                                      )}
+
+                                                      {/* 기간 정보 */}
+                                                      <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                                                        <Clock className="w-4 h-4" />
+                                                        <span className="font-medium">{project.period}</span>
+                                                      </div>
+                                                    </div>
+
+                                                    <p className="text-gray-600 mb-3 leading-relaxed text-sm line-clamp-3">
+                                                      {project.background.split(".").slice(0, 2).join(". ")}
+                                                    </p>
+
+                                                    {/* 키워드 태그 */}
+                                                    {project.keywords && (
+                                                      <div className="flex flex-wrap gap-1 mb-3">
+                                                        {project.keywords.slice(0, 3).map((keyword, keywordIndex) => (
+                                                          <span
+                                                            key={keywordIndex}
+                                                            className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-lime-100 hover:text-lime-700 hover:border-lime-200 transition-all duration-300"
+                                                          >
+                                                            {keyword}
+                                                          </span>
+                                                        ))}
+                                                      </div>
+                                                    )}
+
+                                                    {/* 기술 스택 */}
+                                                    <div className="flex flex-wrap gap-1">
+                                                      {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                                                        <Badge
+                                                          key={techIndex}
+                                                          variant="secondary"
+                                                          className="text-xs bg-gray-100 text-gray-700 hover:bg-coral-100 hover:text-coral-700 transition-colors"
+                                                        >
+                                                          {tech}
+                                                        </Badge>
+                                                      ))}
+                                                    </div>
+                                                  </CardContent>
+                                                </Card>
+                                              ))}
+                                            </div>
+                                          </CardContent>
+                                        </Card>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              return null
+                            })()}
+
+                            {/* 세이지와 미디어코퍼스가 아닌 프로젝트들은 개별적으로 표시 */}
+                            {projectsByYearRange[yearRange]
+                              .filter(
+                                (project) => project.companyName !== "SAIGE" && project.companyName !== "미디어코퍼스",
+                              )
+                              .map((project) => (
+                                <div key={project.projectId} className="relative">
+                                  {/* 타임라인 포인트 */}
+                                  <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
+                                    <div className="w-4 h-4 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full border-4 border-white shadow-lg"></div>
+                                  </div>
+
+                                  {/* 프로젝트 카드 - 가운데 정렬 */}
+                                  <div className="flex justify-center">
+                                    <div className="w-full">
+                                      <Card
+                                        className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 hover:bg-gray-50/30"
+                                        onClick={() => handleProjectClick(project)}
+                                      >
+                                        <CardContent className="p-6">
+                                          {/* 회사 정보 */}
+                                          <div className="flex items-center gap-2 mb-3">
+                                            <Building className="w-4 h-4 text-gray-500" />
+                                            <span className="text-sm text-gray-600 font-medium">
+                                              {project.companyName}
+                                            </span>
+                                            <span className="text-xs text-gray-400">•</span>
+                                            <span className="text-xs text-gray-500">{project.companyPosition}</span>
                                           </div>
-                                        )}
 
-                                        {/* 프로젝트 정보 */}
-                                        <div className="mb-3">
-                                          {/* 프로젝트 제목 hover 색상 변경 */}
-                                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1">
-                                            {project.title}
-                                          </h3>
-                                          {project.subtitle && (
-                                            <p className="text-sm text-gray-600 mb-2 font-medium">{project.subtitle}</p>
+                                          {/* 프로젝트 이미지 */}
+                                          {project.image && (
+                                            <div className="mb-3 p-2 bg-gray-50 rounded-lg">
+                                              <img
+                                                src={project.image || "/placeholder.svg"}
+                                                alt={project.title}
+                                                className="w-full h-16 object-contain rounded-lg"
+                                              />
+                                            </div>
                                           )}
 
-                                          {/* 기간 정보 */}
-                                          <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                                            <Clock className="w-4 h-4" />
-                                            <span className="font-medium">{project.period}</span>
+                                          {/* 프로젝트 정보 */}
+                                          <div className="mb-3">
+                                            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-1">
+                                              {project.title}
+                                            </h3>
+                                            {project.subtitle && (
+                                              <p className="text-sm text-gray-600 mb-2 font-medium">
+                                                {project.subtitle}
+                                              </p>
+                                            )}
+
+                                            {/* 기간 정보 */}
+                                            <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                                              <Clock className="w-4 h-4" />
+                                              <span className="font-medium">{project.period}</span>
+                                            </div>
                                           </div>
-                                        </div>
 
-                                        <p className="text-gray-600 mb-3 leading-relaxed text-sm">
-                                          {project.background.split(".").slice(0, 2).join(". ")}
-                                        </p>
+                                          <p className="text-gray-600 mb-3 leading-relaxed text-sm">
+                                            {project.background.split(".").slice(0, 2).join(". ")}
+                                          </p>
 
-                                        {/* 키워드 태그 - neutral 기본, hover에서 lime */}
-                                        {project.keywords && (
-                                          <div className="flex flex-wrap gap-1 mb-3">
-                                            {project.keywords.slice(0, 3).map((keyword, keywordIndex) => (
-                                              <span
-                                                key={keywordIndex}
-                                                className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-lime-100 hover:text-lime-700 hover:border-lime-200 transition-all duration-300"
+                                          {/* 키워드 태그 */}
+                                          {project.keywords && (
+                                            <div className="flex flex-wrap gap-1 mb-3">
+                                              {project.keywords.slice(0, 3).map((keyword, keywordIndex) => (
+                                                <span
+                                                  key={keywordIndex}
+                                                  className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full shadow-sm border border-gray-200 hover:bg-lime-100 hover:text-lime-700 hover:border-lime-200 transition-all duration-300"
+                                                >
+                                                  {keyword}
+                                                </span>
+                                              ))}
+                                            </div>
+                                          )}
+
+                                          {/* 기술 스택 */}
+                                          <div className="flex flex-wrap gap-1">
+                                            {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                                              <Badge
+                                                key={techIndex}
+                                                variant="secondary"
+                                                className="text-xs bg-gray-100 text-gray-700 hover:bg-coral-100 hover:text-coral-700 transition-colors"
                                               >
-                                                {keyword}
-                                              </span>
+                                                {tech}
+                                              </Badge>
                                             ))}
                                           </div>
-                                        )}
-
-                                        {/* 기술 스택 - neutral 기본, coral accent */}
-                                        <div className="flex flex-wrap gap-1">
-                                          {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                                            <Badge
-                                              key={techIndex}
-                                              variant="secondary"
-                                              className="text-xs bg-gray-100 text-gray-700 hover:bg-coral-100 hover:text-coral-700 transition-colors"
-                                            >
-                                              {tech}
-                                            </Badge>
-                                          ))}
-                                        </div>
-                                      </CardContent>
-                                    </Card>
+                                        </CardContent>
+                                      </Card>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
                           </div>
 
-                          {/* 연도 간 구분선 (마지막 연도가 아닌 경우) */}
-                          {yearIndex < years.length - 1 && (
+                          {/* 연도 범위 간 구분선 (마지막 범위가 아닌 경우) */}
+                          {rangeIndex < yearRanges.length - 1 && (
                             <div className="flex justify-center mt-12">
                               <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-lime-300 to-transparent"></div>
                             </div>
@@ -592,145 +744,7 @@ export function IntroductionPage() {
             </div>
           </AnimatedElement>
 
-          {/* 사이드 프로젝트 타임라인 */}
-          <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-8">
-            <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">사이드 프로젝트</h2>
-            <p className="text-center text-gray-500 mb-6 text-sm">개인적으로 진행한 사이드 프로젝트들을 소개합니다.</p>
-
-            <div className="flex justify-center">
-              <div className="w-full md:w-3/4">
-                <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
-                  <CardContent className="p-6">
-                    <div className="space-y-12">
-                      {sideProjectYears.map((year, yearIndex) => (
-                        <div key={year} className="relative">
-                          {/* 연도 표시 */}
-                          <div className="flex items-center justify-center mb-8">
-                            <div className="bg-gradient-to-r from-orange-600 to-lime-700 text-white px-6 py-3 rounded-full shadow-lg font-bold text-lg">
-                              {year}
-                            </div>
-                          </div>
-
-                          {/* 해당 연도의 사이드 프로젝트들 */}
-                          <div className="space-y-8">
-                            {sideProjectsByYear[year].map((project, index) => (
-                              <div key={`${project.title}-${index}`} className="relative">
-                                {/* 타임라인 포인트 */}
-                                <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-6">
-                                  <div className="w-4 h-4 bg-gradient-to-r from-orange-600 to-lime-600 rounded-full border-4 border-white shadow-lg"></div>
-                                </div>
-
-                                {/* 사이드 프로젝트 카드 */}
-                                <div className="flex justify-center">
-                                  <div className="w-full md:w-3/4">
-                                    <Card
-                                      className="group bg-white/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-orange-100/50 shadow-md hover:bg-orange-50/30"
-                                      onClick={() => handleSideProjectClick(project)}
-                                    >
-                                      <CardContent className="p-6">
-                                        <div className="flex items-start gap-4">
-                                          {/* 프로젝트 이미지 */}
-                                          {project.image && (
-                                            <div className="flex-shrink-0 p-2 bg-gray-50 rounded-lg">
-                                              <img
-                                                src={project.image || "/placeholder.svg"}
-                                                alt={project.title}
-                                                className="w-16 h-16 object-contain rounded"
-                                              />
-                                            </div>
-                                          )}
-
-                                          <div className="flex-1">
-                                            {/* 프로젝트 정보 */}
-                                            <div className="flex items-start justify-between mb-2">
-                                              <div>
-                                                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-orange-600 transition-colors mb-1">
-                                                  {project.title}
-                                                </h3>
-                                                <p className="text-sm text-gray-600 font-medium">
-                                                  {project.organization}
-                                                </p>
-                                              </div>
-                                              {project.status && (
-                                                <Badge
-                                                  variant="outline"
-                                                  className={`text-xs ${
-                                                    project.status === "완료"
-                                                      ? "border-lime-200 text-lime-700 bg-lime-50"
-                                                      : "border-orange-200 text-orange-700 bg-orange-50"
-                                                  }`}
-                                                >
-                                                  {project.status}
-                                                </Badge>
-                                              )}
-                                            </div>
-
-                                            {/* 기간 정보 */}
-                                            <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                                              <Clock className="w-4 h-4" />
-                                              <span className="font-medium">{project.period}</span>
-                                            </div>
-
-                                            <p className="text-gray-600 mb-3 leading-relaxed text-sm">
-                                              {project.description}
-                                            </p>
-
-                                            {/* 기술 스택 */}
-                                            {project.technologies && (
-                                              <div className="flex flex-wrap gap-1 mb-3">
-                                                {project.technologies.map((tech, techIndex) => (
-                                                  <Badge
-                                                    key={techIndex}
-                                                    variant="secondary"
-                                                    className="text-xs bg-orange-100 text-orange-700"
-                                                  >
-                                                    {tech}
-                                                  </Badge>
-                                                ))}
-                                              </div>
-                                            )}
-
-                                            {/* 링크 */}
-                                            <div className="flex gap-2 text-xs">
-                                              {project.github && (
-                                                <span className="text-gray-500 flex items-center gap-1">
-                                                  <Github className="w-3 h-3" />
-                                                  GitHub
-                                                </span>
-                                              )}
-                                              {project.demo && (
-                                                <span className="text-gray-500 flex items-center gap-1">
-                                                  <ExternalLink className="w-3 h-3" />
-                                                  Demo
-                                                </span>
-                                              )}
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </CardContent>
-                                    </Card>
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-
-                          {/* 연도 간 구분선 (마지막 연도가 아닌 경우) */}
-                          {yearIndex < sideProjectYears.length - 1 && (
-                            <div className="flex justify-center mt-12">
-                              <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-orange-300 to-transparent"></div>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </AnimatedElement>
-
-          {/* 학력 · 수료 · 활동 - 연도별 타임라인 (사이드 프로젝트 제외) */}
+          {/* 학력 · 수료 · 활동 - 연도별 타임라인 */}
           <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-8">
             <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">학력 · 수료 · 활동</h2>
             <p className="text-center text-gray-500 mb-6 text-sm">
@@ -738,7 +752,7 @@ export function IntroductionPage() {
             </p>
 
             <div className="flex justify-center">
-              <div className="w-full md:w-3/4">
+              <div className="w-full md:w-4/5 lg:w-5/6">
                 <Card className="backdrop-blur-sm bg-white/90 shadow-xl border-0">
                   <CardContent className="p-6">
                     <div className="space-y-12">
@@ -887,7 +901,7 @@ export function IntroductionPage() {
           {/* 기술 스택 - neutral 색상으로 변경 */}
           <AnimatedElement animation="slideUp" delay={150} duration={200} className="mb-8">
             <div className="flex justify-center">
-              <div className="w-full md:w-3/4">
+              <div className="w-full md:w-4/5 lg:w-5/6">
                 <Card className="bg-white/80 backdrop-blur-sm border-gray-200 hover:bg-gray-50/30">
                   <CardContent className="p-5">
                     <h3 className="text-lg font-bold text-gray-800 mb-4">기술 스택</h3>
@@ -989,7 +1003,7 @@ export function IntroductionPage() {
               <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">아티클</h2>
               <p className="text-center text-gray-500 mb-6 text-sm">개발하면서 정리했던 문서들입니다.</p>
               <div className="flex justify-center">
-                <div className="w-full md:w-3/4">
+                <div className="w-full md:w-4/5 lg:w-5/6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {displayedArticles.map((article) => (
                       <Card
@@ -1085,7 +1099,7 @@ export function IntroductionPage() {
             </div>
 
             <div className="flex justify-center">
-              <div className="w-full md:w-3/4">
+              <div className="w-full md:w-4/5 lg:w-5/6">
                 {/* 미래 비전 */}
                 <div className="space-y-4 mb-8">
                   {/* 미래 비전 아이콘 색상 변경 */}
