@@ -4,6 +4,7 @@ export const projectsData: Project[] = [
   {
     projectId: 1,
     companyId: "saige",
+    companyName: "SAIGE",
     title: "영상 기반 결함·이상 동작 실시간 모니터링 시스템",
     subtitle: "사내 제품 - SAIGE VIMS 개발",
     image: "/vims-logo.svg",
@@ -226,6 +227,7 @@ export const projectsData: Project[] = [
   {
     projectId: 2,
     companyId: "saige",
+    companyName: "SAIGE",
     title: "산업 현장 안전 이벤트 실시간 모니터링 시스템",
     subtitle: "사내 제품 - SAIGE SAFETY 개발",
     image: "/safety-logo.svg",
@@ -369,6 +371,7 @@ export const projectsData: Project[] = [
   {
     projectId: 3,
     companyId: "saige",
+    companyName: "SAIGE",
     title: "AI 비전 검사 기반 공정 운영·배치·수율 모니터링 시스템",
     subtitle: "사내 제품 - SAIGE VISION 개발",
     image: "/vision-logo.svg",
@@ -488,6 +491,7 @@ export const projectsData: Project[] = [
   {
     projectId: 6,
     companyId: "saige",
+    companyName: "SAIGE",
     title: "사내 디자인 시스템",
     subtitle: "사내 제품 - SAIGE ELEMENTS 개발",
     image: "/elements-logo.svg",
@@ -644,6 +648,7 @@ export const projectsData: Project[] = [
   {
     projectId: 4,
     companyId: "media-corpus",
+    companyName: "미디어코퍼스",
     title: "텍스트 윤리성 평가 시스템",
     subtitle: "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
     image: "/media-logo-2.png",
@@ -767,6 +772,7 @@ export const projectsData: Project[] = [
   {
     projectId: 5,
     companyId: "media-corpus",
+    companyName: "미디어코퍼스",
     title: "비윤리적 표현 라벨링 시스템",
     subtitle: "국립 국어원 - 말뭉치 언어의 사회적 인식 조사 분류 사업 참여",
     image: "/media-logo-1.png",
