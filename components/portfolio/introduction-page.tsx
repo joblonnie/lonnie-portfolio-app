@@ -70,7 +70,7 @@ export function IntroductionPage() {
     introduction,
   } = mockPortfolioData
 
-  // 프로젝트를 시간순으로 정렬하는 함수 수정
+  // 프로젝트를 시간순으로 정렬하는 함수
   const getProjectsInTimeOrder = () => {
     const projectsWithCompany = projects.map((project) => {
       const company = companies.find((c) => c.id === project.companyId)
@@ -78,7 +78,7 @@ export function IntroductionPage() {
       const [year, month] = startPart.split(".")
       return {
         ...project,
-        companyName: company?.name || "",
+        companyName: company?.name || project.companyName || "",
         companyPosition: company?.position || "",
         startYear: Number.parseInt(year),
         startDate: new Date(Number.parseInt(year), Number.parseInt(month) - 1),
@@ -91,7 +91,7 @@ export function IntroductionPage() {
 
   const timelineProjects = getProjectsInTimeOrder()
 
-  // 연도 범위별로 그룹화하는 함수 수정
+  // 연도 범위별로 그룹화하는 함수
   const getProjectsByYearRange = () => {
     const projectsByRange: { [key: string]: typeof timelineProjects } = {}
 
