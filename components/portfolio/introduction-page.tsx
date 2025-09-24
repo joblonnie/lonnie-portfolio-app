@@ -448,7 +448,7 @@ export function IntroductionPage() {
                 </div>
 
                 {/* 사내활동과 사이드 프로젝트 분리 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
                   {/* 사내활동 */}
                   <Card className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 hover:bg-gray-50">
                     <CardContent className="p-8">
@@ -479,7 +479,7 @@ export function IntroductionPage() {
                     </CardContent>
                   </Card>
 
-                  {/* 사이드 프로젝트 */}
+                  {/* 사이드 프로젝트 
                   <Card className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 hover:bg-gray-50">
                     <CardContent className="p-8">
                       <header className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
@@ -508,6 +508,7 @@ export function IntroductionPage() {
                       </div>
                     </CardContent>
                   </Card>
+                  */}
                 </div>
               </div>
             </div>
