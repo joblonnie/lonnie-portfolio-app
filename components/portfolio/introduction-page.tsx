@@ -197,12 +197,10 @@ export function IntroductionPage() {
                       <div className="bg-gradient-to-br from-white/95 to-gray-50/70 rounded-2xl p-8 shadow-xl border border-gray-200/50 backdrop-blur-sm">
                         <div className="space-y-5 text-gray-700 leading-relaxed">
                           <p className="text-lg font-semibold text-gray-900 border-l-4 border-gray-600 pl-4">
-                            저는 사용자와 개발자가 모두 기억할 만한 경험을 만들어가는 데 집중하는 프론트엔드
-                            개발자입니다.
+                       안녕하세요, 저는 사용자와 개발자가 모두 기억할 만한 경험을 만드는 프론트엔드 개발자입니다.
                           </p>
                           <p className="pl-4">
-                            사용자가 의식하지 않아도 편안함을 느낄 수 있도록, 적절한 로딩 시간, 예측 가능한 인터랙션,
-                            그리고 미묘하지만 의미 있는 시각적 디테일 등 '보이지 않는 UX'를 세심하게 설계해왔습니다.
+                          ‘숨은 배려가 담긴 UX’를 추구하며, 적절한 로딩·예측 가능한 인터랙션·세심한 디테일을 통해 사용자가 편안함을 느끼도록 설계해왔습니다.
                           </p>
                           <p className="pl-4">
                             코드 구조화, 반복 작업의 자동화, 협업 환경 개선 등을 통해 팀이 보다 효율적이고 즐겁게 일할
