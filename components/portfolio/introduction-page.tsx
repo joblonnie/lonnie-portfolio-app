@@ -53,10 +53,6 @@ export function IntroductionPage() {
     window.open(notionUrl, "_blank")
   }
 
-  const handleEmailClick = () => {
-    window.location.href = `mailto:${mockPortfolioData.personalInfo?.email}`
-  }
-
   const {
     personalInfo,
     skills,
@@ -67,15 +63,21 @@ export function IntroductionPage() {
     education,
     certifications,
     activities,
+    sideProjects,
     introduction,
   } = mockPortfolioData
 
   // 아티클 표시 개수 결정
   const displayedArticles = showAllArticles ? articles : articles?.slice(0, 2) || []
 
+  const scrollToContent = () => {
+    const element = document.getElementById("career-section")
+    element?.scrollIntoView({ behavior: "smooth" })
+  }
+
   return (
     <main className="min-h-screen relative overflow-hidden">
-      {/* 배경 효과 - Lime/Orange 톤으로 변경 */}
+      {/* 배경 효과 */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-lime-100/40 to-transparent rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tl from-orange-200/30 to-transparent rounded-full blur-3xl"></div>
@@ -85,7 +87,7 @@ export function IntroductionPage() {
 
       <div className="relative z-10 py-6 px-4 sm:px-6 lg:px-8">
         <article className="max-w-7xl mx-auto space-y-6">
-          {/* 개인 정보 섹션 - 중앙 정렬 및 width 조정 */}
+          {/* 개인 정보 섹션 */}
           <AnimatedElement animation="scaleIn" delay={0} duration={200} className="space-y-4">
             <div className="flex justify-center">
               <div className="w-full md:w-4/5 lg:w-5/6">
@@ -98,7 +100,7 @@ export function IntroductionPage() {
                     <p className="text-lg sm:text-xl text-gray-600 font-medium">UX·DX 중심 개발자의 여정</p>
                   </div>
 
-                  {/* 프로필 섹션 - 간소화 */}
+                  {/* 프로필 섹션 */}
                   <div className="flex flex-col items-center gap-6">
                     {/* 아바타 */}
                     <div className="relative">
@@ -117,7 +119,7 @@ export function IntroductionPage() {
                       <p className="text-sm text-gray-500">{personalInfo?.location || "서울"}</p>
                     </div>
 
-                    {/* 소셜 링크 - 한 줄로 배치 */}
+                    {/* 소셜 링크 */}
                     <div className="flex flex-wrap justify-center gap-3 text-sm max-w-4xl">
                       <a
                         href={`mailto:${personalInfo?.email}`}
@@ -192,15 +194,16 @@ export function IntroductionPage() {
                       </a>
                     </div>
 
-                    {/* 소개 텍스트 - Gray 톤으로 변경 */}
+                    {/* 소개 텍스트 */}
                     <div className="mt-8">
                       <div className="bg-gradient-to-br from-white/95 to-gray-50/70 rounded-2xl p-8 shadow-xl border border-gray-200/50 backdrop-blur-sm">
                         <div className="space-y-5 text-gray-700 leading-relaxed">
                           <p className="text-lg font-semibold text-gray-900 border-l-4 border-gray-600 pl-4">
-                       안녕하세요, 저는 사용자와 개발자가 모두 기억할 만한 경험을 만드는 프론트엔드 개발자입니다.
+                            안녕하세요, 저는 사용자와 개발자가 모두 기억할 만한 경험을 만드는 프론트엔드 개발자입니다.
                           </p>
                           <p className="pl-4">
-                          ‘숨은 배려가 담긴 UX’를 추구하며, 적절한 로딩·예측 가능한 인터랙션·세심한 디테일을 통해 사용자가 편안함을 느끼도록 설계해왔습니다.
+                            '숨은 배려가 담긴 UX'를 추구하며, 적절한 로딩·예측 가능한 인터랙션·세심한 디테일을 통해
+                            사용자가 편안함을 느끼도록 설계해왔습니다.
                           </p>
                           <p className="pl-4">
                             코드 구조화, 반복 작업의 자동화, 협업 환경 개선 등을 통해 팀이 보다 효율적이고 즐겁게 일할
@@ -214,13 +217,23 @@ export function IntroductionPage() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Scroll Down Button */}
+                    <Button
+                      onClick={scrollToContent}
+                      variant="ghost"
+                      className="mx-auto flex items-center gap-2 text-gray-600 hover:text-gray-900 animate-bounce mt-4"
+                    >
+                      <ChevronDown className="h-5 w-5" />
+                      <span>더 알아보기</span>
+                    </Button>
                   </div>
                 </div>
               </div>
             </div>
           </AnimatedElement>
 
-          {/* 업무 철학 - neutral 색상으로 변경 */}
+          {/* 업무 철학 */}
           <AnimatedElement animation="slideUp" delay={300} duration={200} className="mb-8">
             <div className="flex justify-center">
               <div className="w-full md:w-4/5 lg:w-5/6">
@@ -232,7 +245,6 @@ export function IntroductionPage() {
                       다양한 실무 경험을 통해 얻은 개발 철학과 협업 원칙은 다음과 같습니다.
                     </p>
 
-                    {/* 상단 2개 철학 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                       {[
                         {
@@ -269,7 +281,7 @@ export function IntroductionPage() {
           </AnimatedElement>
 
           {/* 경력 및 프로젝트 */}
-          <AnimatedElement animation="slideUp" delay={100} duration={200} className="mb-8">
+          <AnimatedElement animation="slideUp" delay={100} duration={200} className="mb-8" id="career-section">
             <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">경력 및 프로젝트</h2>
             <p className="text-center text-gray-500 mb-6 text-sm">
               지금까지 참여했던 회사와 주요 프로젝트들을 소개합니다.
@@ -308,7 +320,7 @@ export function IntroductionPage() {
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {projects
                               .filter((project) => project.companyId === company.id)
-                              .map((project, projectIndex) => (
+                              .map((project) => (
                                 <Card
                                   key={project.projectId}
                                   className="group bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:-translate-y-1 border border-gray-100/50 shadow-lg hover:bg-gray-50"
@@ -331,7 +343,6 @@ export function IntroductionPage() {
                                         <h5 className="text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-2">
                                           {project.title}
                                         </h5>
-                                        {/* 부제목 추가 */}
                                         {project.subtitle && (
                                           <p className="text-sm text-gray-600 mb-3 font-medium">{project.subtitle}</p>
                                         )}
@@ -447,9 +458,8 @@ export function IntroductionPage() {
                   </Card>
                 </div>
 
-                {/* 사내활동과 사이드 프로젝트 분리 */}
-                <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-                  {/* 사내활동 */}
+                {/* 사내활동 */}
+                <div className="grid grid-cols-1 gap-6">
                   <Card className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 hover:bg-gray-50">
                     <CardContent className="p-8">
                       <header className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
@@ -478,43 +488,12 @@ export function IntroductionPage() {
                       </div>
                     </CardContent>
                   </Card>
-
-                  {/* 사이드 프로젝트 
-                  <Card className="backdrop-blur-sm bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 hover:bg-gray-50">
-                    <CardContent className="p-8">
-                      <header className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                        <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center shadow-lg">
-                          <Activity className="h-5 w-5 text-white" />
-                        </div>
-                        사이드 프로젝트
-                      </header>
-                      <div className="space-y-6">
-                        {mockPortfolioData.sideProjects?.map((project, index) => (
-                          <div
-                            key={index}
-                            className="p-6 bg-white/70 backdrop-blur-sm rounded-xl shadow-lg border border-gray-100/50 hover:bg-gray-50"
-                          >
-                            <div className="flex items-center gap-2 mb-3">
-                              <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-700">
-                                {project.type}
-                              </Badge>
-                              <span className="text-sm text-gray-500">{project.period}</span>
-                            </div>
-                            <h4 className="font-semibold text-gray-900 mb-2">{project.title}</h4>
-                            <p className="text-sm text-gray-600 mb-2">{project.organization}</p>
-                            <p className="text-sm text-gray-600 leading-relaxed">{project.description}</p>
-                          </div>
-                        )) || []}
-                      </div>
-                    </CardContent>
-                  </Card>
-                  */}
                 </div>
               </div>
             </div>
           </AnimatedElement>
 
-          {/* 기술 스택 - neutral 색상으로 변경 */}
+          {/* 기술 스택 */}
           <AnimatedElement animation="slideUp" delay={150} duration={200} className="mb-8">
             <div className="flex justify-center">
               <div className="w-full md:w-4/5 lg:w-5/6">
@@ -613,7 +592,7 @@ export function IntroductionPage() {
             </div>
           </AnimatedElement>
 
-          {/* 아티클 섹션 - 중앙 정렬 및 width 조정 */}
+          {/* 아티클 섹션 */}
           {articles && articles.length > 0 && (
             <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-8">
               <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">아티클</h2>
@@ -637,14 +616,12 @@ export function IntroductionPage() {
                             </span>
                           </div>
 
-                          {/* 아티클 제목 hover 색상 변경 */}
                           <h3 className="text-base font-semibold text-gray-900 mb-2 group-hover:text-lime-600 transition-colors line-clamp-2">
                             {article.title}
                           </h3>
 
                           <p className="text-gray-600 text-sm mb-3 line-clamp-3">{article.description}</p>
 
-                          {/* 아티클 태그 - neutral 기본, coral accent */}
                           <div className="flex flex-wrap gap-1 mb-3">
                             {article.tags &&
                               article.tags.slice(0, 2).map((tag) => (
@@ -660,7 +637,6 @@ export function IntroductionPage() {
 
                           <div className="flex items-center justify-between">
                             <span className="text-xs text-gray-500">Notion에서 읽기</span>
-                            {/* 아티클 아이콘 색상 변경 */}
                             <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-lime-600 transition-colors" />
                           </div>
                         </CardContent>
@@ -668,9 +644,7 @@ export function IntroductionPage() {
                     ))}
                   </div>
 
-                  {/* 더보기/접기 버튼 */}
                   <div className="text-center mt-6">
-                    {/* 더보기 버튼 색상 변경 */}
                     <Button
                       variant="outline"
                       onClick={() => setShowAllArticles(!showAllArticles)}
@@ -690,9 +664,7 @@ export function IntroductionPage() {
                     </Button>
                   </div>
 
-                  {/* 아티클 목록 링크 */}
                   <div className="text-center mt-4">
-                    {/* 아티클 목록 링크 색상 변경 */}
                     <Button
                       variant="ghost"
                       onClick={() => router.push("/article")}
@@ -707,7 +679,7 @@ export function IntroductionPage() {
             </AnimatedElement>
           )}
 
-          {/* 목표 & 비전 - 중앙 정렬 및 width 조정 */}
+          {/* 목표 & 비전 */}
           <AnimatedElement animation="slideUp" delay={50} duration={200} className="mb-8">
             <div className="text-center space-y-3 mb-6">
               <h2 className="text-2xl font-bold text-gray-900">목표 & 비전</h2>
@@ -716,9 +688,7 @@ export function IntroductionPage() {
 
             <div className="flex justify-center">
               <div className="w-full md:w-4/5 lg:w-5/6">
-                {/* 미래 비전 */}
                 <div className="space-y-4 mb-8">
-                  {/* 미래 비전 아이콘 색상 변경 */}
                   <h3 className="text-xl font-bold text-center flex items-center justify-center gap-2 text-gray-900">
                     <Eye className="h-5 w-5 text-gray-600" />
                     미래 비전
@@ -726,7 +696,6 @@ export function IntroductionPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {goals.futureVision.map(({ icon, gradient, quote, description }, index) => (
-                      // 미래 비전 카드 - neutral 기본, hover에서 lime/coral
                       <div
                         key={index}
                         className="group flex flex-col text-center p-5 backdrop-blur-sm bg-white/90 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100/50 hover:bg-gray-50/30"
@@ -743,7 +712,6 @@ export function IntroductionPage() {
                   </div>
                 </div>
 
-                {/* 궁극적인 비전 - neutral 색상으로 변경 */}
                 <div className="mt-6 pt-4 border-t border-gray-200">
                   <h4 className="text-lg font-bold text-gray-900 mb-3 text-center">궁극적인 비전</h4>
                   <div className="backdrop-blur-sm bg-white/90 rounded-lg p-5 text-center shadow-xl border border-gray-100/50 hover:bg-gray-50/30">
@@ -757,7 +725,7 @@ export function IntroductionPage() {
         </article>
       </div>
 
-      {/* 최상단 이동 버튼 - neutral 기본, hover에서 lime/coral */}
+      {/* 최상단 이동 버튼 */}
       {showScrollTop && (
         <Button
           onClick={scrollToTop}

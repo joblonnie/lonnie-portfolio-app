@@ -11,6 +11,19 @@ import { sideProjectsData } from "./mock-data/side-projects"
 import { goalsData } from "./mock-data/goals"
 import { articlesData } from "./mock-data/articles"
 
+// 개별 export 추가
+export const personalInfo = personalInfoData
+export const introduction = introductionData
+export const skills = skillsData
+export const companies = companiesData
+export const projects = projectsData
+export const education = educationData
+export const certifications = certificationsData
+export const activities = activitiesData
+export const sideProjects = sideProjectsData
+export const goals = goalsData
+export const articles = articlesData
+
 export const mockPortfolioData: PortfolioData = {
   personalInfo: personalInfoData,
   introduction: introductionData,
