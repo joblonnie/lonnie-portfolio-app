@@ -323,16 +323,7 @@ export const projectsData: Project[] = [
     role: "프론트엔드 개발",
     frontendDevelopers: 2,
     keywords: ["신규 제품 개발", "MVP 출시", "GS 인증 1등급", "에러 처리 체계", "사용자 VOC 반영"],
-    technologies: [
-      "React",
-      "TypeScript",
-      "X-view-model",
-      "TanStack Query",
-      "Zustand",
-      "WebSocket",
-      "Konva.js",
-      "Webpack",
-    ],
+    technologies: ["React", "TypeScript", "X-view-model", "WebSocket", "Konva.js", "Webpack"],
     codeSnippets: [],
     contributions: [
       {
@@ -502,7 +493,6 @@ export const projectsData: Project[] = [
         "Button/Switch/Banner 등 기본 컴포넌트 라이브러리 구축",
         "Primitive 토큰 기반 Theme 토큰 매핑 시스템으로 개발 환경 활용성 향상",
         "Storybook + Chromatic 기반 문서화 및 QA 프로세스 구축",
-        "Dynamic Subset 적용으로 saige-fonts 번들 사이즈 최적화",
         "피그마 코드 Syntax 제안으로 디자인 토큰 사용성 개선",
         "사내 3개 제품 점진적 도입으로 UI 일관성 향상",
       ],
@@ -558,39 +548,12 @@ export const projectsData: Project[] = [
           },
         ],
       },
-      {
-        title: "폰트 번들 사이즈 개선을 통한 성능 향상 필요",
-        problemDescription:
-          "기존 MinSans 폰트는 한글 11,172자(완성형 한글 전체), 영문, 숫자, 특수문자 등 모든 글리프를 포함하여 woff2 기준 약 850KB의 번들 사이즈를 가지고 있었습니다. 그러나 실제 제품에서는 상용 한글 2,350자와 기본 영문/숫자/특수문자만 사용하는데도 불필요한 8,822자의 한글 글리프가 함께 로딩되어 초기 로딩 시간이 1.8초 정도 소요되었습니다.",
-        categories: ["성능최적화"],
-        solutionList: [
-          {
-            title: "Dynamic Subset을 통한 폰트 최적화",
-            description:
-              "성능 개선을 위해 Dynamic Subset 기술을 적용하여 빌드 시 실제 사용되는 글리프만 추출하고, 서브셋 폰트를 생성하도록 개선했습니다. 상용 한글 2,350자와 필수 글리프만 포함하도록 최적화하여 번들 사이즈를 850KB → 280KB로 67% 감소시키고, 폰트 로딩 시간을 1.8초 → 0.7초로 61% 단축했습니다.",
-          },
-        ],
-        achievementList: [
-          {
-            text: "Dynamic Subset 적용으로 폰트 번들 사이즈 67% 감소 (850KB → 280KB)",
-            category: "성능최적화",
-          },
-          {
-            text: "폰트 로딩 시간 61% 단축 (1.8초 → 0.7초)으로 초기 렌더링 성능 향상",
-            category: "성능최적화",
-          },
-          {
-            text: "불필요한 글리프 제거로 네트워크 대역폭 효율 개선",
-            category: "성능최적화",
-          },
-        ],
-      },
     ],
     period: "2023.05 - 현재",
     role: "디자인 시스템 컨트리뷰터",
     frontendDevelopers: 3,
     keywords: ["디자인 시스템", "컴포넌트 라이브러리", "Storybook", "Chromatic", "UI 일관성"],
-    technologies: ["React", "TypeScript", "Storybook", "Chromatic", "Styled Components", "Rollup"],
+    technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MUI", "Rollup"],
     codeSnippets: [],
     contributions: [
       {
@@ -609,7 +572,7 @@ export const projectsData: Project[] = [
         color: "#9CCC65",
       },
     ],
-    coreStack: ["React", "TypeScript", "Storybook", "Chromatic"],
+    coreStack: ["React", "TypeScript", "MUI", "Storybook", "Chromatic"],
     stateManagement: [],
     teamChanges: [],
     retrospective: {
@@ -617,7 +580,6 @@ export const projectsData: Project[] = [
         "디자인 시스템 구축 과정에서 확장 가능하고 유지보수 가능한 대규모 프로젝트 아키텍처 설계 경험",
         "Storybook과 Chromatic을 활용한 컴포넌트 문서화 및 시각적 테스트 경험",
         "디자이너와의 협업 프로세스 개선을 통해 팀워크와 의사소통 능력 강화",
-        "번들 최적화를 통한 프론트엔드 성능 최적화 기술 적용",
       ],
     },
   },
