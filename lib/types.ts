@@ -115,6 +115,12 @@ export interface Achievement {
 export interface Solution {
   title: string
   description: string
+  technologies?: string[]
+  metrics?: {
+    label: string
+    value: string
+  }[]
+  reflection?: string
 }
 
 export interface Media {
@@ -130,6 +136,10 @@ export interface StructuralContribution {
   solutionList?: Solution[]
   achievementList?: Achievement[]
   media?: Media
+  technologies?: string[]
+  contributionType?: "ux" | "performance" | "architecture" | "collaboration" | "quality"
+  primaryCategory?: "사용자 경험 개선" | "성능 최적화" | "개발 생산성 향상" | "시스템 안정성" | "협업 개선"
+  reflection?: string
 }
 
 export interface Retrospective {
