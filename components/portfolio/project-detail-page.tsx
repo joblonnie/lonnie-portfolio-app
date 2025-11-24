@@ -127,6 +127,14 @@ export function ProjectDetailPage() {
     setIsEditMode(false)
   }
 
+  const updateProjectField = (field: keyof Project, value: any) => {
+    if (!editedProject) return
+    setEditedProject({
+      ...editedProject,
+      [field]: value,
+    })
+  }
+
   const updateContribution = (index: number, field: keyof StructuralContribution, value: any) => {
     if (!editedProject || !editedProject.structuralContributions) return
 
@@ -276,28 +284,86 @@ export function ProjectDetailPage() {
           </div>
 
           <div className="mb-6">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">{project.title}</h1>
-            {project.subtitle && <p className="text-xl text-gray-600 mb-4">{project.subtitle}</p>}
-            <p className="text-lg text-gray-600 leading-relaxed">{project.background}</p>
+            {isEditMode ? (
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">프로젝트 제목</label>
+                  <Input
+                    value={project.title}
+                    onChange={(e) => updateProjectField("title", e.target.value)}
+                    className="text-4xl font-bold"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">부제목</label>
+                  <Input
+                    value={project.subtitle || ""}
+                    onChange={(e) => updateProjectField("subtitle", e.target.value)}
+                    className="text-xl"
+                    placeholder="부제목을 입력하세요 (선택사항)"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 mb-2 block">배경 설명</label>
+                  <Textarea
+                    value={project.background}
+                    onChange={(e) => updateProjectField("background", e.target.value)}
+                    className="text-lg min-h-[100px]"
+                    placeholder="프로젝트 배경을 입력하세요"
+                  />
+                </div>
+              </div>
+            ) : (
+              <>
+                <h1 className="text-4xl font-bold text-gray-900 mb-2">{project.title}</h1>
+                {project.subtitle && <p className="text-xl text-gray-600 mb-4">{project.subtitle}</p>}
+                <p className="text-lg text-gray-600 leading-relaxed">{project.background}</p>
+              </>
+            )}
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <Card className="border-gray-200">
               <CardContent className="p-4">
                 <h3 className="font-semibold text-gray-900 mb-2">프로젝트 기간</h3>
-                <p className="text-gray-700">{project.period}</p>
+                {isEditMode ? (
+                  <Input
+                    value={project.period}
+                    onChange={(e) => updateProjectField("period", e.target.value)}
+                    className="text-sm"
+                  />
+                ) : (
+                  <p className="text-gray-700">{project.period}</p>
+                )}
               </CardContent>
             </Card>
             <Card className="border-gray-200">
               <CardContent className="p-4">
                 <h3 className="font-semibold text-gray-900 mb-2">팀 구성</h3>
-                <p className="text-gray-700">프론트엔드 개발자 {project.frontendDevelopers}명</p>
+                {isEditMode ? (
+                  <Input
+                    type="number"
+                    value={project.frontendDevelopers}
+                    onChange={(e) => updateProjectField("frontendDevelopers", Number(e.target.value))}
+                    className="text-sm"
+                  />
+                ) : (
+                  <p className="text-gray-700">프론트엔드 개발자 {project.frontendDevelopers}명</p>
+                )}
               </CardContent>
             </Card>
             <Card className="border-gray-200">
               <CardContent className="p-4">
                 <h3 className="font-semibold text-gray-900 mb-2">역할</h3>
-                <p className="text-gray-700">{project.role}</p>
+                {isEditMode ? (
+                  <Input
+                    value={project.role}
+                    onChange={(e) => updateProjectField("role", e.target.value)}
+                    className="text-sm"
+                  />
+                ) : (
+                  <p className="text-gray-700">{project.role}</p>
+                )}
               </CardContent>
             </Card>
           </div>
