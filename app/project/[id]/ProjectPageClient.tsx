@@ -6,19 +6,23 @@ import { mockPortfolioData } from "@/lib/mock-data"
 import { notFound } from "next/navigation"
 
 interface ProjectPageProps {
-  params: {
-    id: string
-  }
+  id: string
 }
 
-function ProjectPageContent({ params }: ProjectPageProps) {
-  const projectId = Number.parseInt(params.id)
+function ProjectPageContent({ id }: ProjectPageProps) {
+  const projectId = Number.parseInt(id, 10)
 
-  console.log("[v0] Project ID:", projectId)
+  console.log("[v0] Project ID from URL:", id)
+  console.log("[v0] Parsed Project ID:", projectId)
   console.log(
     "[v0] Available projects:",
     mockPortfolioData.projects.map((p) => p.projectId),
   )
+
+  if (Number.isNaN(projectId)) {
+    console.log("[v0] Invalid project ID:", id)
+    notFound()
+  }
 
   const project = mockPortfolioData.projects.find((p) => p.projectId === projectId)
 
@@ -38,10 +42,10 @@ function LoadingSpinner() {
   )
 }
 
-export function ProjectPageClient({ params }: { params: { id: string } }) {
+export function ProjectPageClient({ id }: { id: string }) {
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <ProjectPageContent params={params} />
+      <ProjectPageContent id={id} />
     </Suspense>
   )
 }
