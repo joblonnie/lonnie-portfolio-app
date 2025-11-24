@@ -1,13 +1,26 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter, useParams } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { ArrowLeft, ArrowUp, ChevronLeft, ChevronRight, AlertCircle, Target, Code2, Zap, Check } from 'lucide-react'
+import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input"
+import {
+  ArrowLeft,
+  ArrowUp,
+  ChevronDown,
+  ChevronUp,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Edit2,
+  Save,
+  X,
+} from "lucide-react"
 import { mockPortfolioData } from "@/lib/mock-data"
+import type { Project, StructuralContribution } from "@/lib/types"
 
 export function ProjectDetailPage() {
   const router = useRouter()
@@ -16,12 +29,28 @@ export function ProjectDetailPage() {
 
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [animatedContributions, setAnimatedContributions] = useState<{ [key: string]: number }>({})
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const [isEditMode, setIsEditMode] = useState(false)
+  const [editedProject, setEditedProject] = useState<Project | null>(null)
 
-  const project = mockPortfolioData.projects.find((p) => p.projectId === projectId)
+  const project = editedProject || mockPortfolioData.projects.find((p) => p.projectId === projectId)
   const projectIndex = mockPortfolioData.projects.findIndex((p) => p.projectId === projectId)
   const prevProject = projectIndex > 0 ? mockPortfolioData.projects[projectIndex - 1] : null
   const nextProject =
     projectIndex < mockPortfolioData.projects.length - 1 ? mockPortfolioData.projects[projectIndex + 1] : null
+
+  useEffect(() => {
+    const foundProject = mockPortfolioData.projects.find((p) => p.projectId === projectId)
+    if (foundProject) {
+      // Load from localStorage if available
+      const saved = localStorage.getItem(`project_${projectId}`)
+      if (saved) {
+        setEditedProject(JSON.parse(saved))
+      } else {
+        setEditedProject(foundProject)
+      }
+    }
+  }, [projectId])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -54,6 +83,19 @@ export function ProjectDetailPage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft" && prevProject) {
+        router.push(`/project/${prevProject.projectId}`)
+      } else if (e.key === "ArrowRight" && nextProject) {
+        router.push(`/project/${nextProject.projectId}`)
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [prevProject, nextProject, router])
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
@@ -62,39 +104,87 @@ export function ProjectDetailPage() {
     router.push("/")
   }
 
-  const handlePrevProject = () => {
-    if (prevProject) {
-      router.push(`/project/${prevProject.projectId}`)
-    }
-  }
-
-  const handleNextProject = () => {
-    if (nextProject) {
-      router.push(`/project/${nextProject.projectId}`)
-    }
-  }
-
   const handleProjectNavClick = (selectedProjectId: number) => {
     router.push(`/project/${selectedProjectId}`)
   }
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "사용자경험":
-        return "bg-purple-100 text-purple-700 border-purple-200 hover:bg-purple-100/70"
-      case "개발효율성":
-        return "bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-100/70"
-      case "성능최적화":
-        return "bg-green-100 text-green-700 border-green-200 hover:bg-green-100/70"
-      case "시스템안정성":
-        return "bg-red-100 text-red-700 border-red-200 hover:bg-red-100/70"
-      case "협업개선":
-        return "bg-indigo-100 text-indigo-700 border-indigo-200 hover:bg-indigo-100/70"
-      case "품질향상":
-        return "bg-yellow-100 text-yellow-700 border-yellow-200 hover:bg-yellow-100/70"
-      default:
-        return "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-100/70"
+  const handleEditMode = () => {
+    setIsEditMode(true)
+  }
+
+  const handleSave = () => {
+    if (editedProject) {
+      localStorage.setItem(`project_${projectId}`, JSON.stringify(editedProject))
+      setIsEditMode(false)
     }
+  }
+
+  const handleCancel = () => {
+    const original = mockPortfolioData.projects.find((p) => p.projectId === projectId)
+    if (original) {
+      setEditedProject({ ...original })
+    }
+    setIsEditMode(false)
+  }
+
+  const updateContribution = (index: number, field: keyof StructuralContribution, value: any) => {
+    if (!editedProject || !editedProject.structuralContributions) return
+
+    const updated = { ...editedProject }
+    updated.structuralContributions = [...updated.structuralContributions]
+    updated.structuralContributions[index] = {
+      ...updated.structuralContributions[index],
+      [field]: value,
+    }
+    setEditedProject(updated)
+  }
+
+  const updateContributionArray = (
+    index: number,
+    field: "problemDescription" | "solutionDescription" | "reflection",
+    itemIndex: number,
+    value: string,
+  ) => {
+    if (!editedProject || !editedProject.structuralContributions) return
+
+    const updated = { ...editedProject }
+    updated.structuralContributions = [...updated.structuralContributions]
+    const contribution = { ...updated.structuralContributions[index] }
+    const array = [...(contribution[field] as string[])]
+    array[itemIndex] = value
+    contribution[field] = array
+    updated.structuralContributions[index] = contribution
+    setEditedProject(updated)
+  }
+
+  const addItemToArray = (index: number, field: "problemDescription" | "solutionDescription" | "reflection") => {
+    if (!editedProject || !editedProject.structuralContributions) return
+
+    const updated = { ...editedProject }
+    updated.structuralContributions = [...updated.structuralContributions]
+    const contribution = { ...updated.structuralContributions[index] }
+    const array = [...(contribution[field] as string[])]
+    array.push("")
+    contribution[field] = array
+    updated.structuralContributions[index] = contribution
+    setEditedProject(updated)
+  }
+
+  const removeItemFromArray = (
+    index: number,
+    field: "problemDescription" | "solutionDescription" | "reflection",
+    itemIndex: number,
+  ) => {
+    if (!editedProject || !editedProject.structuralContributions) return
+
+    const updated = { ...editedProject }
+    updated.structuralContributions = [...updated.structuralContributions]
+    const contribution = { ...updated.structuralContributions[index] }
+    const array = [...(contribution[field] as string[])]
+    array.splice(itemIndex, 1)
+    contribution[field] = array
+    updated.structuralContributions[index] = contribution
+    setEditedProject(updated)
   }
 
   const getPrimaryCategoryColor = (category?: string) => {
@@ -105,67 +195,9 @@ export function ProjectDetailPage() {
         return "bg-green-100 text-green-700 border-green-200"
       case "개발 생산성 향상":
         return "bg-blue-100 text-blue-700 border-blue-200"
-      case "시스템 안정성":
-        return "bg-red-100 text-red-700 border-red-200"
-      case "협업 개선":
-        return "bg-indigo-100 text-indigo-700 border-indigo-200"
       default:
         return "bg-gray-100 text-gray-700 border-gray-200"
     }
-  }
-
-  const groupByPrimaryCategory = (contributions: any[]) => {
-    const grouped: Record<string, any[]> = {}
-
-    const categoryOrder = ["사용자 경험 개선", "성능 최적화", "개발 생산성 향상", "시스템 안정성", "협업 개선"]
-
-    contributions.forEach((contribution) => {
-      const category = contribution.primaryCategory || "기타"
-      if (!grouped[category]) {
-        grouped[category] = []
-      }
-      grouped[category].push(contribution)
-    })
-
-    const sortedGrouped: Record<string, any[]> = {}
-    categoryOrder.forEach((category) => {
-      if (grouped[category]) {
-        sortedGrouped[category] = grouped[category]
-      }
-    })
-
-    return sortedGrouped
-  }
-
-  const getContributionTypeIcon = (type?: string) => {
-    switch (type) {
-      case "ux":
-        return <Zap className="w-5 h-5 text-purple-600" />
-      case "performance":
-        return <Zap className="w-5 h-5 text-green-600" />
-      case "architecture":
-        return <Code2 className="w-5 h-5 text-blue-600" />
-      case "collaboration":
-        return <Zap className="w-5 h-5 text-indigo-600" />
-      case "quality":
-        return <Zap className="w-5 h-5 text-yellow-600" />
-      default:
-        return <Target className="w-5 h-5 text-blue-600" />
-    }
-  }
-
-  const groupByCategory = (achievements: Array<{ text: string; category?: string }>) => {
-    const grouped: Record<string, Array<{ text: string; category?: string }>> = {}
-
-    achievements.forEach((achievement) => {
-      const category = achievement.category || "기타"
-      if (!grouped[category]) {
-        grouped[category] = []
-      }
-      grouped[category].push(achievement)
-    })
-
-    return grouped
   }
 
   if (!project) {
@@ -183,10 +215,31 @@ export function ProjectDetailPage() {
     <div className="min-h-screen bg-white">
       <div className="max-w-5xl mx-auto p-6 space-y-8">
         <div className="mb-8">
-          <Button variant="ghost" className="mb-6 hover:bg-gray-100" onClick={handleGoBack}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            프로젝트 목록으로
-          </Button>
+          <div className="flex items-center justify-between mb-6">
+            <Button variant="ghost" className="hover:bg-gray-100" onClick={handleGoBack}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              프로젝트 목록으로
+            </Button>
+            <div className="flex gap-2">
+              {isEditMode ? (
+                <>
+                  <Button onClick={handleSave} className="bg-lime-600 hover:bg-lime-700 text-white">
+                    <Save className="w-4 h-4 mr-2" />
+                    저장
+                  </Button>
+                  <Button onClick={handleCancel} variant="outline">
+                    <X className="w-4 h-4 mr-2" />
+                    취소
+                  </Button>
+                </>
+              ) : (
+                <Button onClick={handleEditMode} variant="outline">
+                  <Edit2 className="w-4 h-4 mr-2" />
+                  편집
+                </Button>
+              )}
+            </div>
+          </div>
 
           <div className="mb-8">
             <h3 className="text-sm font-medium text-gray-500 mb-4">프로젝트 네비게이션</h3>
@@ -272,27 +325,58 @@ export function ProjectDetailPage() {
         </div>
 
         {project.structuralContributions && project.structuralContributions.length > 0 && (
-          <div className="space-y-16">
-            {Object.entries(groupByPrimaryCategory(project.structuralContributions)).map(
-              ([category, contributions]) => (
-                <div key={category} className="space-y-8">
-                  <div className="text-center space-y-3">
-                    <Badge className={`${getPrimaryCategoryColor(category)} text-lg px-4 py-2`}>{category}</Badge>
-                  </div>
+          <div className="space-y-3">
+            {project.structuralContributions.map((contribution, index) => {
+              const isExpanded = expandedIndex === index
 
-                  <div className="space-y-12">
-                    {contributions.map((contribution, index) => (
-                      <div key={index} className="space-y-6">
-                        <div className="text-center space-y-3">
-                          <h2 className="text-xl font-bold text-gray-900">{contribution.title}</h2>
-
+              return (
+                <div key={index}>
+                  <Card
+                    className="border-gray-200 cursor-pointer hover:shadow-md transition-all"
+                    onClick={() => !isEditMode && setExpandedIndex(isExpanded ? null : index)}
+                  >
+                    <CardContent className="p-5">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <div className="flex items-start justify-between gap-4 mb-3">
+                            <div className="flex items-center gap-3 flex-wrap flex-1">
+                              {isEditMode ? (
+                                <Input
+                                  value={contribution.title}
+                                  onChange={(e) => updateContribution(index, "title", e.target.value)}
+                                  className="text-lg font-semibold"
+                                  onClick={(e) => e.stopPropagation()}
+                                />
+                              ) : (
+                                <h4 className="text-lg font-semibold text-gray-900">{contribution.title}</h4>
+                              )}
+                              {contribution.primaryCategory && (
+                                <Badge
+                                  variant="outline"
+                                  className={`text-xs ${getPrimaryCategoryColor(contribution.primaryCategory)}`}
+                                >
+                                  {contribution.primaryCategory}
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                          {isEditMode ? (
+                            <Textarea
+                              value={contribution.summary}
+                              onChange={(e) => updateContribution(index, "summary", e.target.value)}
+                              className="text-sm mb-3"
+                              onClick={(e) => e.stopPropagation()}
+                            />
+                          ) : (
+                            <p className="text-sm text-gray-600 mb-3">{contribution.summary}</p>
+                          )}
                           {contribution.technologies && contribution.technologies.length > 0 && (
-                            <div className="flex flex-wrap gap-2 justify-center">
+                            <div className="flex flex-wrap gap-2">
                               {contribution.technologies.map((tech, techIndex) => (
                                 <Badge
                                   key={techIndex}
                                   variant="outline"
-                                  className="bg-gray-50 text-gray-700 border-gray-300 text-xs"
+                                  className="bg-gray-50 text-gray-600 border-gray-300 text-xs"
                                 >
                                   {tech}
                                 </Badge>
@@ -300,124 +384,184 @@ export function ProjectDetailPage() {
                             </div>
                           )}
                         </div>
-
-                        <div className="grid md:grid-cols-2 gap-6">
-                          {/* Left column: Image or Placeholder */}
-                          <div className="flex items-center justify-center">
-                            {contribution.media ? (
-                              <div className="w-full">
-                                <img
-                                  src={contribution.media.url || "/placeholder.svg?height=400&width=600"}
-                                  alt={contribution.media.alt}
-                                  className="w-full rounded-lg border shadow-sm"
-                                />
-                                {contribution.media.caption && (
-                                  <p className="text-sm text-gray-500 mt-3">{contribution.media.caption}</p>
-                                )}
-                              </div>
+                        {!isEditMode && (
+                          <div className="flex-shrink-0">
+                            {isExpanded ? (
+                              <ChevronUp className="w-5 h-5 text-gray-500" />
                             ) : (
-                              <div className="w-full aspect-[3/2] bg-gray-100 rounded-lg border border-gray-300 flex items-center justify-center">
-                                <div className="text-center text-gray-400">
-                                  <Code2 className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                                  <p className="text-sm">이미지 준비 중</p>
-                                </div>
-                              </div>
+                              <ChevronDown className="w-5 h-5 text-gray-500" />
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {(isExpanded || isEditMode) && (
+                    <div className="mt-4 ml-4 space-y-6 border-l-2 border-gray-200 pl-6">
+                      <div className={`grid ${contribution.media ? "md:grid-cols-2" : "grid-cols-1"} gap-6`}>
+                        {contribution.media && (
+                          <div className="flex items-center justify-center">
+                            <div className="w-full">
+                              <img
+                                src={contribution.media.url || "/placeholder.svg?height=400&width=600"}
+                                alt={contribution.media.alt}
+                                className="w-full rounded-lg border shadow-sm"
+                              />
+                              {contribution.media.caption && (
+                                <p className="text-sm text-gray-500 mt-3">{contribution.media.caption}</p>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="space-y-6 flex flex-col justify-center">
+                          <div>
+                            <h4 className="text-sm font-semibold text-gray-900 mb-2">문제 상황</h4>
+                            <ul className="space-y-2">
+                              {Array.isArray(contribution.problemDescription) &&
+                                contribution.problemDescription.map((item, idx) => (
+                                  <li key={idx} className="flex gap-2">
+                                    <span className="text-gray-400 flex-shrink-0">•</span>
+                                    {isEditMode ? (
+                                      <div className="flex-1 flex gap-2">
+                                        <Textarea
+                                          value={item}
+                                          onChange={(e) =>
+                                            updateContributionArray(index, "problemDescription", idx, e.target.value)
+                                          }
+                                          className="text-sm flex-1"
+                                          rows={2}
+                                        />
+                                        <Button
+                                          size="sm"
+                                          variant="ghost"
+                                          onClick={() => removeItemFromArray(index, "problemDescription", idx)}
+                                        >
+                                          <X className="w-4 h-4" />
+                                        </Button>
+                                      </div>
+                                    ) : (
+                                      <span className="text-sm text-gray-700 leading-relaxed">{item}</span>
+                                    )}
+                                  </li>
+                                ))}
+                            </ul>
+                            {isEditMode && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => addItemToArray(index, "problemDescription")}
+                                className="mt-2"
+                              >
+                                + 항목 추가
+                              </Button>
                             )}
                           </div>
 
-                          {/* Right column: Problem, Solutions, Reflection */}
-                          <div className="space-y-6 flex flex-col justify-center">
-                            <Card className="border-gray-200 hover:shadow-md transition-shadow">
-                              <CardContent className="p-6">
-                                <div className="flex items-center gap-3 mb-4">
-                                  <div className="bg-red-100 p-2 rounded-lg">
-                                    <AlertCircle className="w-5 h-5 text-red-600" />
-                                  </div>
-                                  <h3 className="text-lg font-semibold text-gray-900">문제 상황</h3>
-                                </div>
-                                <div className="space-y-3">
-                                  <p className="text-gray-700 leading-relaxed text-sm">
-                                    {contribution.problemDescription || contribution.title}
-                                  </p>
-                                </div>
-                              </CardContent>
-                            </Card>
-
-                            <Card className="border-gray-200 hover:shadow-md transition-shadow">
-                              <CardContent className="p-6">
-                                <div className="flex items-center gap-3 mb-4">
-                                  <div className="bg-blue-100 p-2 rounded-lg">
-                                    <Target className="w-5 h-5 text-blue-600" />
-                                  </div>
-                                  <h3 className="text-lg font-semibold text-gray-900">해결 방안</h3>
-                                </div>
-                                <div className="space-y-4">
-                                  {contribution.solutionList && contribution.solutionList.length > 0 ? (
-                                    contribution.solutionList.map((solution, solutionIndex) => (
-                                      <div key={solutionIndex} className="space-y-2">
-                                        {contribution.solutionList.length > 1 && (
-                                          <div className="flex items-center gap-2">
-                                            <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-xs font-semibold text-blue-700">
-                                              {solutionIndex + 1}
-                                            </div>
-                                            <h4 className="font-medium text-gray-900 text-sm">{solution.title}</h4>
-                                          </div>
-                                        )}
-                                        <p className="text-gray-700 text-sm leading-relaxed pl-8">
-                                          {solution.description}
-                                        </p>
-                                        {solutionIndex < contribution.solutionList.length - 1 && (
-                                          <div className="border-t border-gray-200 my-3"></div>
-                                        )}
+                          <div>
+                            <h4 className="text-sm font-semibold text-gray-900 mb-2">해결 방안</h4>
+                            <ul className="space-y-2">
+                              {Array.isArray(contribution.solutionDescription) &&
+                                contribution.solutionDescription.map((item, idx) => (
+                                  <li key={idx} className="flex gap-2">
+                                    <span className="text-gray-400 flex-shrink-0">•</span>
+                                    {isEditMode ? (
+                                      <div className="flex-1 flex gap-2">
+                                        <Textarea
+                                          value={item}
+                                          onChange={(e) =>
+                                            updateContributionArray(index, "solutionDescription", idx, e.target.value)
+                                          }
+                                          className="text-sm flex-1"
+                                          rows={2}
+                                        />
+                                        <Button
+                                          size="sm"
+                                          variant="ghost"
+                                          onClick={() => removeItemFromArray(index, "solutionDescription", idx)}
+                                        >
+                                          <X className="w-4 h-4" />
+                                        </Button>
                                       </div>
-                                    ))
-                                  ) : (
-                                    <p className="text-gray-700 leading-relaxed text-sm">
-                                      체계적인 해결 방안을 수립하고 실행했습니다.
-                                    </p>
-                                  )}
-                                </div>
-                              </CardContent>
-                            </Card>
+                                    ) : (
+                                      <span className="text-sm text-gray-700 leading-relaxed">{item}</span>
+                                    )}
+                                  </li>
+                                ))}
+                            </ul>
+                            {isEditMode && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => addItemToArray(index, "solutionDescription")}
+                                className="mt-2"
+                              >
+                                + 항목 추가
+                              </Button>
+                            )}
+                          </div>
 
-                            {contribution.reflection && (
-                              <Card className="border-gray-200 hover:shadow-md transition-shadow">
-                                <CardContent className="p-6">
-                                  <div className="flex items-center gap-3 mb-4">
-                                    <div className="bg-green-100 p-2 rounded-lg">
-                                      <Check className="w-5 h-5 text-green-600" />
-                                    </div>
-                                    <h3 className="text-lg font-semibold text-gray-900">회고</h3>
-                                  </div>
-                                  <div className="space-y-3">
-                                    <p className="text-gray-700 leading-relaxed text-sm">{contribution.reflection}</p>
-                                  </div>
-                                </CardContent>
-                              </Card>
+                          <div>
+                            <h4 className="text-sm font-semibold text-gray-900 mb-2">회고</h4>
+                            <ul className="space-y-2">
+                              {Array.isArray(contribution.reflection) &&
+                                contribution.reflection.map((item, idx) => (
+                                  <li key={idx} className="flex gap-2">
+                                    <span className="text-gray-400 flex-shrink-0">•</span>
+                                    {isEditMode ? (
+                                      <div className="flex-1 flex gap-2">
+                                        <Textarea
+                                          value={item}
+                                          onChange={(e) =>
+                                            updateContributionArray(index, "reflection", idx, e.target.value)
+                                          }
+                                          className="text-sm flex-1"
+                                          rows={2}
+                                        />
+                                        <Button
+                                          size="sm"
+                                          variant="ghost"
+                                          onClick={() => removeItemFromArray(index, "reflection", idx)}
+                                        >
+                                          <X className="w-4 h-4" />
+                                        </Button>
+                                      </div>
+                                    ) : (
+                                      <span className="text-sm text-gray-700 leading-relaxed">{item}</span>
+                                    )}
+                                  </li>
+                                ))}
+                            </ul>
+                            {isEditMode && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => addItemToArray(index, "reflection")}
+                                className="mt-2"
+                              >
+                                + 항목 추가
+                              </Button>
                             )}
                           </div>
                         </div>
-
-                        {index < contributions.length - 1 && <div className="border-t border-gray-200 pt-6"></div>}
                       </div>
-                    ))}
-                  </div>
-
-                  <div className="border-t-2 border-gray-300 pt-8"></div>
+                    </div>
+                  )}
                 </div>
-              ),
-            )}
+              )
+            })}
           </div>
         )}
 
         <div className="flex justify-between items-center pt-8 border-t">
           <Button
             variant="outline"
-            onClick={handlePrevProject}
+            onClick={() => router.push(prevProject ? `/project/${prevProject.projectId}` : "/")}
             disabled={!prevProject}
             className="flex items-center gap-2 max-w-xs bg-transparent hover:bg-lime-50 hover:border-lime-300"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeftIcon className="w-4 h-4" />
             <div className="text-left min-w-0">
               <div className="text-xs text-gray-500">이전 프로젝트</div>
               <div className="font-medium truncate">{prevProject?.title || "없음"}</div>
@@ -426,7 +570,7 @@ export function ProjectDetailPage() {
 
           <Button
             variant="outline"
-            onClick={handleNextProject}
+            onClick={() => router.push(nextProject ? `/project/${nextProject.projectId}` : "/")}
             disabled={!nextProject}
             className="flex items-center gap-2 max-w-xs bg-transparent hover:bg-lime-50 hover:border-lime-300"
           >
@@ -434,14 +578,14 @@ export function ProjectDetailPage() {
               <div className="text-xs text-gray-500">다음 프로젝트</div>
               <div className="font-medium truncate">{nextProject?.title || "없음"}</div>
             </div>
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRightIcon className="w-4 h-4" />
           </Button>
         </div>
 
         {showScrollTop && (
           <Button
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-gray-600 hover:bg-gradient-to-r hover:from-lime-500 hover:to-orange-500 text-white shadow-lg z-50 transition-all duration-300"
+            className="fixed bottom-8 right-8 rounded-full w-12 h-12 shadow-lg bg-gray-900 hover:bg-gray-800 text-white"
             size="icon"
           >
             <ArrowUp className="w-5 h-5" />
