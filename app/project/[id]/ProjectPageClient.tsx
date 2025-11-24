@@ -13,9 +13,17 @@ interface ProjectPageProps {
 
 function ProjectPageContent({ params }: ProjectPageProps) {
   const projectId = Number.parseInt(params.id)
+
+  console.log("[v0] Project ID:", projectId)
+  console.log(
+    "[v0] Available projects:",
+    mockPortfolioData.projects.map((p) => p.projectId),
+  )
+
   const project = mockPortfolioData.projects.find((p) => p.projectId === projectId)
 
   if (!project) {
+    console.log("[v0] Project not found for ID:", projectId)
     notFound()
   }
 
