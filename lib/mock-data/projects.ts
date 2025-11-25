@@ -1,10 +1,9 @@
-import type { Project } from "../types"
+import type { Project } from "../types";
 
 export const projectsData: Project[] = [
   {
     projectId: 1,
     companyId: "saige",
-    companyName: "SAIGE",
     title: "영상 기반 결함·이상 동작 실시간 모니터링 시스템",
     subtitle: "사내 제품 - SAIGE VIMS 개발",
     image: "/vims-logo.svg",
@@ -20,7 +19,8 @@ export const projectsData: Project[] = [
     },
     structuralContributions: [
       {
-        title: "고객사별 앱을 통합 관리하기 위한 NX 기반 모노레포 아키텍처 구축",
+        title:
+          "고객사별 앱을 통합 관리하기 위한 NX 기반 모노레포 아키텍처 구축",
         summary:
           "단일 VIMS 앱에서 출발해 고객사별 요구가 증가하는 과정에서 공통 기능이 중복되는 문제를 해결하기 위해 NX 기반 모노레포 아키텍처를 구축했습니다. VIMS 공통 기능을 별도 패키지로 분리해 모든 앱에서 조립해 사용하는 구조로 재설계했고, 이를 통해 반복 개발과 유지보수 비용을 크게 줄였습니다.",
         primaryCategory: "개발 생산성 향상",
@@ -42,10 +42,11 @@ export const projectsData: Project[] = [
           "공통 패키지를 중심으로 앱을 조립하는 방식으로 유지보수 비용을 크게 줄임",
           "모노레포 환경에서 의존성 관리와 앱 간 독립성을 유지하는 아키텍처 설계 경험 확보",
         ],
-        technologies: ["NX", "pnpm workspace", "Shared Packages"],
+        technologies: ["NX Monorepo", "공통 패키지", "앱별 커스터마이징"],
       },
       {
-        title: "비즈니스 도메인 혼재로 인한 복잡성을 Feature-Sliced Design 기반 재구조화로 개선",
+        title:
+          "비즈니스 도메인 혼재로 인한 복잡성을 Feature-Sliced Design 기반 재구조화로 개선",
         summary:
           "기존 Feature-based 구조에서는 도메인이 뒤섞이고 의존성이 복잡해져 유지보수가 점점 어려워졌습니다. 이를 해결하기 위해 도메인 중심의 계층화된 Feature-Sliced Design(FSD)을 도입해 구조를 명확히 재정비했습니다. 그 결과, 기능 간 경계가 분명해지고 확장성과 안정성이 크게 향상되며 팀 전체 개발 효율이 높아졌습니다.",
         primaryCategory: "개발 생산성 향상",
@@ -85,7 +86,12 @@ export const projectsData: Project[] = [
           "단순히 증상을 완화하는 것이 아니라, 메모리 프로파일링을 통해 문제의 본질을 이해하고 체계적으로 접근",
           "단순히 '증상 완화'가 아니라, 문제 원인을 구조적으로 해부하고 개선하는 방식의 성능 최적화 접근법을 체득",
         ],
-        technologies: ["WebSocket", "Blob API", "URL.revokeObjectURL", "Chrome DevTools Memory Profiler"],
+        technologies: [
+          "WebSocket",
+          "Blob API",
+          "URL.revokeObjectURL",
+          "Chrome DevTools Memory Profiler",
+        ],
         media: {
           url: "/memory-profiling.png",
           alt: "Chrome DevTools Memory 탭 분석 결과",
@@ -93,9 +99,10 @@ export const projectsData: Project[] = [
         },
       },
       {
-        title: "대용량 알람 데이터 렌더링 지연 문제를 커서 기반 무한 스크롤 구현으로 개선",
+        title:
+          "대용량 알람 데이터 렌더링 지연 문제를 커서 기반 무한 스크롤 구현으로 개선",
         summary:
-          "TanStack Query의 useInfiniteQuery 활용한 커서 기반 무한 스크롤 도입으로 초기 렌더링 지연 제거 및 실시간 알람 인지 UX 개선",
+          "대량의 알람 히스토리(수십만 건)를 효율적으로 탐색할 수 있도록 커서 기반 무한 스크롤과 가상 스크롤 구조로 재설계하고, 실시간 알람 도착 시 시각적 피드백을 제공하여 최신 알람 인지율과 사용성을 크게 향상시켰습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "한 달 단위로 쌓이는 알람 히스토리가 수십만 건까지 증가하면서 대량 데이터 렌더링 시 UI 지연과 스크롤 버벅임 발생",
@@ -113,17 +120,23 @@ export const projectsData: Project[] = [
           "대규모 데이터 처리 구조를 커서 기반으로 재설계해 무결성을 보장",
           "기술적 해결과 사용자 경험 개선을 균형 있게 달성한 의미 있는 경험",
         ],
-        technologies: ["TanStack Query", "useInfiniteQuery", "react-window", "Cursor-based Pagination"],
+        technologies: [
+          "TanStack Query",
+          "useInfiniteQuery",
+          "react-window",
+          "Cursor-based Pagination",
+        ],
         media: {
           url: "/notification.svg?height=150&width=250&text=실시간+알람+UI+최적화",
           alt: "실시간 알람 UI 최적화 화면",
-          caption: "TanStack Query와 가상 스크롤이 적용된 실시간 알람 인터페이스",
+          caption:
+            "TanStack Query와 가상 스크롤이 적용된 실시간 알람 인터페이스",
         },
       },
       {
         title: "결함 인지 경험 개선을 위한 이미지 검수 UX 재설계",
         summary:
-          "알람 이벤트 발생 시 첨부된 이미지에서 실제 결함이나 이상 상황을 육안으로 찾기 어려워 검수 정확도 저하",
+          "알람 이미지에서 결함 위치를 찾기 어려운 문제를 해결하기 위해 이미지 컨트롤러 다이얼로그를 통해 확대·축소·이동이 가능한 내비게이션 UI를 구현했습니다. 추가로 사용자의 실제 검수 흐름을 기반으로 ‘원클릭 결함 찾기’ 기능을 제안하고 적용하여 자동으로 결함 좌표로 이동·하이라이트되도록 개선했습니다. 이 구조는 검수 시간을 줄이고 결함 인지 정확도를 높였으며, VIMS뿐 아니라 SAFETY 제품에도 확장 적용되었습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "알람 이벤트 발생 시 첨부된 이미지에서 실제 결함이나 이상 상황을 육안으로 찾기 어려워 검수 정확도 저하",
@@ -142,10 +155,16 @@ export const projectsData: Project[] = [
           "UX 개선 아이디어를 기획·디자인과 긴밀히 협업하여 제품 전반으로 확장되는 기능을 만들어낸 점이 의미 있었음",
           "제품 신뢰도, 검수 정확도, 사용자 만족도에 직접적인 영향을 준 개선 사례로 자리 잡음",
         ],
-        technologies: ["Canvas API", "Bounding Box", "Image Zoom/Pan", "Dialog UI"],
+        technologies: [
+          "Canvas API",
+          "Bounding Box",
+          "Image Zoom/Pan",
+          "Dialog UI",
+        ],
       },
       {
-        title: "웹소켓 기반 오프라인 영상 검수 기능을 위한 커스텀 플레이어 및 Seek 시스템 구현",
+        title:
+          "웹소켓 기반 오프라인 영상 검수 기능을 위한 커스텀 플레이어 및 Seek 시스템 구현",
         summary:
           "업로드된 영상을 웹소켓 기반 프레임 스트림으로 처리해야 하는 구조에서 일반 비디오 플레이어를 사용할 수 없는 문제를 해결하기 위해 커스텀 영상 플레이어를 구현했습니다. 사용자가 원하는 시점으로 이동할 수 있도록 seek position을 비디오 프로세서와 동기화하는 구조를 설계하고, 상대 이동(±5초) 및 타임라인 제어 기능을 추가해 오프라인 영상 검수의 사용성을 크게 개선했습니다.",
         primaryCategory: "사용자 경험 개선",
@@ -162,14 +181,33 @@ export const projectsData: Project[] = [
           "일반적인 동영상 플레이어를 사용할 수 없는 환경에서, 웹소켓 기반 스트리밍 구조에 맞춘 커스텀 플레이어를 직접 설계해야 했던 경험이었음",
           "사용자의 실제 검수 흐름에 맞게 '특정 시점부터 검사 시작', '몇 초 단위 탐색' 등의 기능을 제공해 오프라인 영상 검수의 편의성과 활용도를 크게 높인 개선이었음",
         ],
-        technologies: ["WebSocket", "Canvas API", "Custom Video Player", "Seekbar UI"],
+        technologies: [
+          "WebSocket",
+          "Canvas API",
+          "Custom Video Player",
+          "Seekbar UI",
+        ],
       },
     ],
-    period: "2025.01 - 진행중",
+    period: "2025.01 - 진행 중",
     role: "프론트엔드 개발",
     frontendDevelopers: 2,
-    keywords: ["NX Monorepo", "Feature-Sliced Design", "실시간 데이터 처리", "성능 최적화"],
-    technologies: ["React", "TypeScript", "NX", "Zustand", "TanStack Query", "ECharts", "WebSocket", "Vite"],
+    keywords: [
+      "NX Monorepo",
+      "Feature-Sliced Design",
+      "실시간 데이터 처리",
+      "성능 최적화",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "NX",
+      "Zustand",
+      "TanStack Query",
+      "ECharts",
+      "WebSocket",
+      "Vite",
+    ],
     codeSnippets: [],
     contributions: [
       {
@@ -191,18 +229,10 @@ export const projectsData: Project[] = [
     coreStack: ["React", "TypeScript", "NX Monorepo", "ECharts", "WebSocket"],
     stateManagement: ["Zustand", "TanStack Query"],
     teamChanges: [],
-    retrospective: {
-      growth: [
-        "모노레포 아키텍처 설계 경험을 통해 대규모 프로젝트의 확장성과 유지보수성을 동시에 고려하는 시스템 설계 역량 확보",
-        "실시간 데이터 처리와 메모리 최적화 문제 해결을 통해 프론트엔드 성능 튜닝 전문성 강화",
-        "복잡한 비즈니스 요구사항을 직관적인 UI로 변환하는 과정에서 사용자 중심 사고와 UX 설계 능력 향상",
-      ],
-    },
   },
   {
     projectId: 2,
     companyId: "saige",
-    companyName: "SAIGE",
     title: "산업 현장 안전 이벤트 실시간 모니터링 시스템",
     subtitle: "사내 제품 - SAIGE SAFETY 개발",
     image: "/safety-logo.svg",
@@ -220,7 +250,8 @@ export const projectsData: Project[] = [
     structuralContributions: [
       {
         title: "산발적 에러 처리로 인한 시스템 불안정성을 계층화된 구조로 개선",
-        summary: "전역 에러 바운더리와 API 레벨 에러 핸들러를 구축하여 예상치 못한 에러도 안정적으로 처리",
+        summary:
+          "전역 에러 바운더리와 API 레벨 에러 핸들러를 구축하여 예상치 못한 에러도 안정적으로 처리",
         primaryCategory: "성능 최적화",
         problemDescription: [
           "MVP 단계에서는 에러 처리가 각 컴포넌트별로 산발적으로 이루어져 일관성이 없음",
@@ -239,11 +270,18 @@ export const projectsData: Project[] = [
           "단순히 프론트엔드만의 문제가 아니라 전체 시스템의 안정성을 고려한 설계가 중요",
           "체계적인 에러 핸들링이 사용자 신뢰도와 직결됨을 체감",
         ],
-        technologies: ["React", "TypeScript", "Error Boundary", "Toast Notification", "API Error Handling"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Error Boundary",
+          "Toast Notification",
+          "API Error Handling",
+        ],
       },
       {
         title: "안전 이벤트 중요도 구분 부재를 중대/일반 알림 분류로 개선",
-        summary: "중대/일반 알림 분류 시스템 구현으로 안전 이벤트 우선순위 명확화 및 신속한 대응 지원",
+        summary:
+          "중대/일반 알림 분류 시스템 구현으로 안전 이벤트 우선순위 명확화 및 신속한 대응 지원",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "모든 안전 이벤트가 동일한 방식으로 알림 처리되어 중대한 안전사고와 일반적인 이벤트를 구분하기 어려움",
@@ -260,11 +298,18 @@ export const projectsData: Project[] = [
           "단순히 알림을 표시하는 것을 넘어, 현장에서 정말 중요한 것이 무엇인지 파악하고 그에 맞는 UI 설계",
           "사용자의 안전과 직결되는 기능이라는 책임감을 느낀 프로젝트",
         ],
-        technologies: ["React", "TypeScript", "WebSocket", "Material UI", "Toast Notification"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "WebSocket",
+          "Material UI",
+          "Toast Notification",
+        ],
       },
       {
         title: "고정된 모니터링 화면의 한계를 드래그 앤 드롭 기능으로 개선",
-        summary: "드래그 앤 드롭 기반 카메라 위치 조정 기능 제안 및 구현으로 사용자 편의성 향상",
+        summary:
+          "드래그 앤 드롭 기반 카메라 위치 조정 기능 제안 및 구현으로 사용자 편의성 향상",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "카메라 표시 대수 변경은 가능했으나, 레이아웃 내 개별 카메라 위치가 고정",
@@ -282,14 +327,33 @@ export const projectsData: Project[] = [
           "사용자의 실제 니즈를 파악하고 능동적으로 해결책을 제시한 경험이 특히 의미 있었음",
           "작은 개선이 사용자 경험에 큰 영향을 미칠 수 있다는 것을 배움",
         ],
-        technologies: ["React", "TypeScript", "Konva.js", "Drag and Drop API", "WebSocket"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Konva.js",
+          "Drag and Drop API",
+          "WebSocket",
+        ],
       },
     ],
     period: "2023.05 - 2024.12",
     role: "프론트엔드 개발",
     frontendDevelopers: 2,
-    keywords: ["신규 제품 개발", "MVP 출시", "GS 인증 1등급", "에러 처리 체계", "사용자 VOC 반영"],
-    technologies: ["React", "TypeScript", "X-view-model", "WebSocket", "Konva.js", "Webpack"],
+    keywords: [
+      "신규 제품 개발",
+      "MVP 출시",
+      "GS 인증 1등급",
+      "에러 처리 체계",
+      "사용자 VOC 반영",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "X-view-model",
+      "WebSocket",
+      "Konva.js",
+      "Webpack",
+    ],
     codeSnippets: [],
     contributions: [
       {
@@ -311,18 +375,10 @@ export const projectsData: Project[] = [
     coreStack: ["React", "TypeScript", "Material UI", "WebSocket"],
     stateManagement: ["X-view-model"],
     teamChanges: [],
-    retrospective: {
-      growth: [
-        "MVP부터 제품 출시까지 전체 개발 라이프사이클을 경험하며 제품 기획부터 운영까지의 전 과정에 대한 이해도 향상",
-        "GS 인증 대응 과정에서 보안, 접근성, 품질 기준에 대한 깊이 있는 학습과 실무 적용 경험 축적",
-        "체계적인 에러 핸들링 구축을 통해 안정적이고 확장 가능한 시스템 설계 능력 확보",
-      ],
-    },
   },
   {
     projectId: 3,
     companyId: "saige",
-    companyName: "SAIGE",
     title: "AI 비전 검사 기반 공정 운영·배치·수율 모니터링 시스템",
     subtitle: "사내 제품 - SAIGE VISION 개발",
     image: "/vision-logo.svg",
@@ -357,7 +413,13 @@ export const projectsData: Project[] = [
           "너무 추상화하면 사용하기 어렵고, 너무 구체적이면 재사용성이 떨어지는 균형점을 찾는 것이 중요",
           "팀 전체의 개발 생산성에 직접적인 영향을 미치는 인프라성 컴포넌트를 만든 경험",
         ],
-        technologies: ["React", "TypeScript", "ECharts", "Custom Legend", "Reusable Components"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "ECharts",
+          "Custom Legend",
+          "Reusable Components",
+        ],
         media: {
           url: "/monitoring.svg?height=120&width=200&text=리소스+모니터링+UI",
           alt: "리소스 모니터링 UI 화면",
@@ -365,8 +427,10 @@ export const projectsData: Project[] = [
         },
       },
       {
-        title: "실시간 데이터 업데이트의 불필요한 렌더링을 리소스별 커스텀 훅으로 최적화",
-        summary: "리소스별 커스텀 훅 설계로 불필요한 렌더링 80% 감소 및 실시간 성능 향상",
+        title:
+          "실시간 데이터 업데이트의 불필요한 렌더링을 리소스별 커스텀 훅으로 최적화",
+        summary:
+          "리소스별 커스텀 훅 설계로 불필요한 렌더링 80% 감소 및 실시간 성능 향상",
         primaryCategory: "성능 최적화",
         problemDescription: [
           "CPU, GPU, 메모리, 네트워크 등 다양한 리소스 데이터가 실시간으로 업데이트되면서 모든 컴포넌트가 불필요하게 리렌더링되어 성능 저하",
@@ -384,11 +448,20 @@ export const projectsData: Project[] = [
           "단순히 기능을 구현하는 것을 넘어, 사용자 경험을 위해 성능을 고려한 설계가 얼마나 중요한지 배움",
           "실시간 데이터 처리에서 관심사 분리와 상태 관리 최적화의 중요성 이해",
         ],
-        technologies: ["React", "TypeScript", "TanStack Query", "React.memo", "useMemo", "Custom Hooks"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "TanStack Query",
+          "React.memo",
+          "useMemo",
+          "Custom Hooks",
+        ],
       },
       {
-        title: "복잡한 차트 데이터 시각화를 직관적인 디자인과 인터랙션으로 개선",
-        summary: "직관적인 차트 디자인 및 인터랙션 개선으로 정보 인식 속도 향상",
+        title:
+          "복잡한 차트 데이터 시각화를 직관적인 디자인과 인터랙션으로 개선",
+        summary:
+          "직관적인 차트 디자인 및 인터랙션 개선으로 정보 인식 속도 향상",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "다양한 리소스 데이터를 차트로 시각화하면서 사용자가 중요한 정보를 빠르게 파악하기 어려움",
@@ -404,14 +477,33 @@ export const projectsData: Project[] = [
           "데이터 시각화에서 단순히 데이터를 표시하는 것을 넘어, 사용자가 정보를 빠르게 이해할 수 있도록 디자인하는 것이 중요",
           "색상, 레이블, 인터랙션 등 세부적인 요소들이 전체 사용자 경험에 큰 영향을 미침",
         ],
-        technologies: ["React", "TypeScript", "ECharts", "Custom Legend", "Data Visualization"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "ECharts",
+          "Custom Legend",
+          "Data Visualization",
+        ],
       },
     ],
     period: "2022.11 - 2023.01",
     role: "프론트엔드 개발",
     frontendDevelopers: 4,
-    keywords: ["실시간 모니터링", "ECharts 시각화", "성능 최적화", "차트 라이브러리", "데이터 대시보드"],
-    technologies: ["React", "TypeScript", "TanStack Query", "ECharts", "Prometheus", "Vite"],
+    keywords: [
+      "실시간 모니터링",
+      "ECharts 시각화",
+      "성능 최적화",
+      "차트 라이브러리",
+      "데이터 대시보드",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "TanStack Query",
+      "ECharts",
+      "Prometheus",
+      "Vite",
+    ],
     codeSnippets: [],
     contributions: [
       {
@@ -433,18 +525,10 @@ export const projectsData: Project[] = [
     coreStack: ["React", "TypeScript", "ECharts"],
     stateManagement: ["Recoil", "TanStack Query"],
     teamChanges: [],
-    retrospective: {
-      growth: [
-        "재사용 가능한 컴포넌트 설계 경험을 통해 모듈화 아키텍처와 추상화 레벨 설정에 대한 이해도 향상",
-        "ECharts 라이브러리 심화 활용과 커스터마이징을 통해 복잡한 데이터 시각화 기술 적용",
-        "실시간 데이터 시각화 최적화 과정에서 React 렌더링 최적화 기법과 메모이제이션 전략 적용",
-      ],
-    },
   },
   {
     projectId: 6,
     companyId: "saige",
-    companyName: "SAIGE",
     title: "사내 디자인 시스템",
     subtitle: "사내 제품 - SAIGE ELEMENTS 개발",
     image: "/elements-logo.svg",
@@ -460,8 +544,10 @@ export const projectsData: Project[] = [
     },
     structuralContributions: [
       {
-        title: "제품 간 UI 일관성 부족과 중복 개발을 디자인 시스템 구축으로 개선",
-        summary: "재사용 가능한 컴포넌트 라이브러리 구축으로 UI 일관성 및 개발 효율성 향상",
+        title:
+          "제품 간 UI 일관성 부족과 중복 개발을 디자인 시스템 구축으로 개선",
+        summary:
+          "재사용 가능한 컴포넌트 라이브러리 구축으로 UI 일관성 및 개발 효율성 향상",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
           "VIMS, SAFETY, VISION 3개 제품에서 각각 다른 스타일의 버튼, 폼, 모달 등을 개발하면서 UI 일관성 저하",
@@ -480,11 +566,21 @@ export const projectsData: Project[] = [
           "디자이너와 개발자 간의 소통을 원활하게 하는 것이 핵심",
           "장기적인 관점에서 팀의 생산성을 높이는 인프라 구축의 중요성 이해",
         ],
-        technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MUI", "Rollup", "Design Tokens"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Storybook",
+          "Chromatic",
+          "MUI",
+          "Rollup",
+          "Design Tokens",
+        ],
       },
       {
-        title: "디자인 토큰 체계 부족을 디자이너와 협업하여 카테고라이징으로 개선",
-        summary: "디자이너-개발자 협업을 통한 체계적인 토큰 분류로 협업 효율성 향상",
+        title:
+          "디자인 토큰 체계 부족을 디자이너와 협업하여 카테고라이징으로 개선",
+        summary:
+          "디자이너-개발자 협업을 통한 체계적인 토큰 분류로 협업 효율성 향상",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
           "디자인 토큰은 관리되고 있었지만, 토큰의 카테고라이징이 명확하지 않아 개발자와 디자이너 간 소통에 어려움",
@@ -502,11 +598,18 @@ export const projectsData: Project[] = [
           "디자이너와 개발자가 같은 언어로 소통할 수 있게 하는 것이 디자인 시스템의 핵심",
           "체계적인 분류와 명명 규칙이 협업 효율성에 직접적인 영향을 미침",
         ],
-        technologies: ["React", "TypeScript", "Design Tokens", "Figma", "Theme System"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Design Tokens",
+          "Figma",
+          "Theme System",
+        ],
       },
       {
         title: "디자인 시스템 도입 시 학습 비용을 Storybook 문서화로 최소화",
-        summary: "Storybook 기반 인터랙티브 문서화 시스템 구축으로 개발자 학습 비용 감소",
+        summary:
+          "Storybook 기반 인터랙티브 문서화 시스템 구축으로 개발자 학습 비용 감소",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "디자인 시스템을 처음 도입하면서 개발자들이 새로운 컴포넌트와 디자인 토큰을 학습하는 데 시간이 오래 걸림",
@@ -523,11 +626,19 @@ export const projectsData: Project[] = [
           "단순히 컴포넌트를 만드는 것을 넘어, 사용자(개발자)가 쉽게 이해하고 적용할 수 있도록 돕는 것이 핵심",
           "인터랙티브한 문서가 학습 비용을 크게 줄일 수 있음을 경험",
         ],
-        technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MDX", "Documentation"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Storybook",
+          "Chromatic",
+          "MDX",
+          "Documentation",
+        ],
       },
       {
         title: "디자인 시스템 번들 크기 문제를 Tree Shaking으로 최적화",
-        summary: "Tree Shaking 및 개별 컴포넌트 import 지원으로 번들 크기 최적화",
+        summary:
+          "Tree Shaking 및 개별 컴포넌트 import 지원으로 번들 크기 최적화",
         primaryCategory: "성능 최적화",
         problemDescription: [
           "디자인 시스템 라이브러리의 번들 크기가 커지면서 각 제품의 초기 로딩 시간 증가",
@@ -543,14 +654,33 @@ export const projectsData: Project[] = [
           "사용자(개발자)의 프로젝트 성능에 직접적인 영향을 미치기 때문에 최적화가 필수",
           "Tree Shaking과 모듈 분리를 통한 성능 최적화 경험",
         ],
-        technologies: ["React", "TypeScript", "Rollup", "Tree Shaking", "Code Splitting"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Rollup",
+          "Tree Shaking",
+          "Code Splitting",
+        ],
       },
     ],
-    period: "2023.05 - 현재",
+    period: "2023.05 - 진행 중",
     role: "디자인 시스템 컨트리뷰터",
     frontendDevelopers: 3,
-    keywords: ["디자인 시스템", "컴포넌트 라이브러리", "Storybook", "Chromatic", "UI 일관성"],
-    technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MUI", "Rollup"],
+    keywords: [
+      "디자인 시스템",
+      "컴포넌트 라이브러리",
+      "Storybook",
+      "Chromatic",
+      "UI 일관성",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Storybook",
+      "Chromatic",
+      "MUI",
+      "Rollup",
+    ],
     codeSnippets: [],
     contributions: [
       {
@@ -572,20 +702,13 @@ export const projectsData: Project[] = [
     coreStack: ["React", "TypeScript", "MUI", "Storybook", "Chromatic"],
     stateManagement: [],
     teamChanges: [],
-    retrospective: {
-      growth: [
-        "디자인 시스템 구축 과정에서 확장 가능하고 유지보수 가능한 대규모 프로젝트 아키텍처 설계 경험",
-        "Storybook과 Chromatic을 활용한 컴포넌트 문서화 및 시각적 테스트 경험",
-        "디자이너와의 협업 프로세스 개선을 통해 팀워크와 의사소통 능력 강화",
-      ],
-    },
   },
   {
     projectId: 4,
     companyId: "media-corpus",
-    companyName: "미디어코퍼스",
     title: "텍스트 윤리성 평가 시스템",
-    subtitle: "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
+    subtitle:
+      "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
     image: "/media-logo-2.png",
     background:
       "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템 개발 프로젝트입니다.",
@@ -600,7 +723,8 @@ export const projectsData: Project[] = [
     structuralContributions: [
       {
         title: "복잡한 텍스트 윤리성 평가 업무를 3단 UI 구조로 단순화",
-        summary: "3단 UI 구조 설계 및 직관적인 정보 계층 구조로 평가 효율성 향상",
+        summary:
+          "3단 UI 구조 설계 및 직관적인 정보 계층 구조로 평가 효율성 향상",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "텍스트 윤리성 평가는 문단 전체를 읽고, 특정 문장을 찾아, 윤리성을 판단하는 복잡한 과정으로 사용자 혼란",
@@ -618,7 +742,13 @@ export const projectsData: Project[] = [
           "복잡한 작업을 단순하고 명확한 단계로 나누는 것이 사용자 경험에 얼마나 큰 영향을 미치는지 배움",
           "100명 규모의 사용자 테스트를 통해 실제 사용자 피드백을 반영한 UI 개선 경험",
         ],
-        technologies: ["React", "JavaScript", "Redux", "Ant Design", "3-tier UI Architecture"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "Redux",
+          "Ant Design",
+          "3-tier UI Architecture",
+        ],
         media: {
           url: "/media-logo-2.png",
           alt: "평가 시스템 UI 화면",
@@ -627,7 +757,8 @@ export const projectsData: Project[] = [
       },
       {
         title: "단독 개발의 코드 복잡성을 Feature-based 아키텍처로 개선",
-        summary: "Feature-based 모듈 구조로 상태 관리 구조를 개선하여 코드 응집도 강화",
+        summary:
+          "Feature-based 모듈 구조로 상태 관리 구조를 개선하여 코드 응집도 강화",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
           "단독 개발 프로젝트로 진행하면서 초기에는 컴포넌트와 상태 관리가 한 곳에 섞여있어 코드 구조가 복잡",
@@ -646,7 +777,13 @@ export const projectsData: Project[] = [
           "초기에 시간을 들여 구조를 잘 설계하면 나중에 기능을 추가할 때 훨씬 효율적",
           "코드 리뷰 없이도 일관성을 유지하기 위해 명확한 패턴과 규칙을 수립하는 것이 중요",
         ],
-        technologies: ["React", "JavaScript", "Redux Toolkit", "Duck Pattern", "Feature-based Architecture"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "Redux Toolkit",
+          "Duck Pattern",
+          "Feature-based Architecture",
+        ],
       },
       {
         title: "대량 평가 데이터의 성능 저하를 페이지네이션으로 개선",
@@ -666,13 +803,25 @@ export const projectsData: Project[] = [
           "모든 것을 프론트엔드에서 처리하려고 하지 않고, 적절히 백엔드에 위임하는 것이 성능 최적화의 핵심",
           "페이지네이션과 지연 로딩을 통한 성능 최적화 경험",
         ],
-        technologies: ["React", "JavaScript", "Redux", "Pagination", "Lazy Loading"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "Redux",
+          "Pagination",
+          "Lazy Loading",
+        ],
       },
     ],
     period: "2021.12 - 2022.04",
     role: "프론트엔드 개발 (단독)",
     frontendDevelopers: 1,
-    keywords: ["사용자 테스트 주도", "대량 데이터 수집", "3단 UI 구조", "평가 시스템", "단독 개발"],
+    keywords: [
+      "사용자 테스트 주도",
+      "대량 데이터 수집",
+      "3단 UI 구조",
+      "평가 시스템",
+      "단독 개발",
+    ],
     technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
     codeSnippets: [],
     contributions: [
@@ -695,18 +844,10 @@ export const projectsData: Project[] = [
     coreStack: ["React", "JavaScript", "Ant Design"],
     stateManagement: ["Redux"],
     teamChanges: [],
-    retrospective: {
-      growth: [
-        "대규모 사용자 테스트 설계 및 운영 경험을 통해 사용자 중심 설계와 UX 리서치 방법론에 대한 실무 역량 확보",
-        "단독 개발 프로젝트 완수를 통해 기획부터 배포까지 전체 개발 프로세스에 대한 종합적 이해도 향상",
-        "복잡한 데이터 수집 시스템 설계 경험으로 비즈니스 요구사항을 기술적 솔루션으로 변환하는 시스템 아키텍처 설계 능력 강화",
-      ],
-    },
   },
   {
     projectId: 5,
     companyId: "media-corpus",
-    companyName: "미디어코퍼스",
     title: "비윤리적 표현 라벨링 시스템",
     subtitle: "국립 국어원 - 말뭉치 언어의 사회적 인식 조사 분류 사업 참여",
     image: "/media-logo-1.png",
@@ -723,7 +864,8 @@ export const projectsData: Project[] = [
     structuralContributions: [
       {
         title: "복잡한 텍스트 라벨링 작업을 드래그 기반 시스템으로 단순화",
-        summary: "드래그 기반 라벨링 시스템 구축으로 작업 효율 개선 및 라벨링 정확도 향상",
+        summary:
+          "드래그 기반 라벨링 시스템 구축으로 작업 효율 개선 및 라벨링 정확도 향상",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "텍스트 내에서 원하는 영역을 직접 선택하고 라벨 값을 저장할 수 있는 기능 필요",
@@ -741,7 +883,13 @@ export const projectsData: Project[] = [
           "드래그라는 익숙한 동작을 활용하여 복잡한 라벨링 작업을 단순화한 것이 사용자 만족도를 크게 향상",
           "Web API를 활용한 네이티브 인터랙션 구현 경험",
         ],
-        technologies: ["React", "JavaScript", "window.getSelection API", "Context Menu", "Visual Feedback"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "window.getSelection API",
+          "Context Menu",
+          "Visual Feedback",
+        ],
         media: {
           url: "/media-logo-1.png",
           alt: "드래그 기반 라벨링 UI 화면",
@@ -750,7 +898,8 @@ export const projectsData: Project[] = [
       },
       {
         title: "400,000건 대용량 데이터 렌더링 문제를 무한 스크롤로 개선",
-        summary: "IntersectionObserver 기반 무한 스크롤을 구현하여 대용량 데이터 렌더링 문제 해결",
+        summary:
+          "IntersectionObserver 기반 무한 스크롤을 구현하여 대용량 데이터 렌더링 문제 해결",
         primaryCategory: "성능 최적화",
         problemDescription: [
           "400,000건의 텍스트 데이터를 한 번에 렌더링하면 브라우저가 멈추거나 매우 느려지는 문제",
@@ -768,7 +917,13 @@ export const projectsData: Project[] = [
           "사용자는 데이터가 얼마나 많은지 신경 쓰지 않고, 단지 빠르고 부드러운 경험을 원함",
           "IntersectionObserver와 가상 스크롤링을 활용하여 이를 해결한 경험이 특히 의미 있었음",
         ],
-        technologies: ["React", "JavaScript", "IntersectionObserver", "Virtual Scrolling", "Lazy Loading"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "IntersectionObserver",
+          "Virtual Scrolling",
+          "Lazy Loading",
+        ],
       },
       {
         title: "라벨링 품질 관리 부재를 실시간 모니터링 대시보드로 개선",
@@ -789,13 +944,25 @@ export const projectsData: Project[] = [
           "실시간 모니터링을 통해 문제를 조기에 발견하고 해결할 수 있음",
           "데이터 수집 프로젝트에서 품질 관리가 최종 결과물에 미치는 영향이 큼",
         ],
-        technologies: ["React", "JavaScript", "Redux", "Dashboard", "Quality Management"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "Redux",
+          "Dashboard",
+          "Quality Management",
+        ],
       },
     ],
     period: "2021.06 - 2021.10",
     role: "프론트엔드 개발 (단독)",
     frontendDevelopers: 1,
-    keywords: ["대용량 데이터 처리", "드래그 라벨링", "무한 스크롤", "품질 관리", "단독 개발"],
+    keywords: [
+      "대용량 데이터 처리",
+      "드래그 라벨링",
+      "무한 스크롤",
+      "품질 관리",
+      "단독 개발",
+    ],
     technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
     codeSnippets: [],
     contributions: [
@@ -818,14 +985,7 @@ export const projectsData: Project[] = [
     coreStack: ["React", "JavaScript", "Ant Design"],
     stateManagement: ["Redux"],
     teamChanges: [],
-    retrospective: {
-      growth: [
-        "대용량 데이터 처리와 성능 최적화 경험을 통해 프론트엔드 성능 튜닝 전문성 강화",
-        "직관적인 UX 설계와 드래그 기반 인터랙션 구현 경험으로 사용자 중심 개발 역량 향상",
-        "단독 개발 프로젝트를 성공적으로 완수하며 문제 해결 능력과 자기 주도적 학습 능력 향상",
-      ],
-    },
   },
-]
+];
 
-export default projectsData
+export default projectsData;
