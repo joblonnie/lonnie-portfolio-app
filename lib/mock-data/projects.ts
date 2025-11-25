@@ -1,4 +1,4 @@
-import type { Project } from "../types"
+import type { Project } from "../types";
 
 export const projectsData: Project[] = [
   {
@@ -32,7 +32,8 @@ export const projectsData: Project[] = [
     },
     structuralContributions: [
       {
-        title: "고객사별 앱을 통합 관리하기 위한 NX 기반 모노레포 아키텍처 구축",
+        title:
+          "고객사별 앱을 통합 관리하기 위한 NX 기반 모노레포 아키텍처 구축",
         summary:
           "5개 고객사 앱의 공통 기능을 @saige/vims 패키지로 분리하고, 고객사별 커스터마이징이 용이한 모노레포 아키텍처를 구축했습니다.",
         primaryCategory: "개발 생산성 향상",
@@ -48,11 +49,18 @@ export const projectsData: Project[] = [
           "컴포넌트는 공통 뼈대를 @saige/vims 패키지에서 가져와 각 앱에서 확장하는 구조로 설계",
           "커스터마이징된 컴포넌트·훅에는 고객사 이름을 prefix로 활용해 유지보수 용이성 확보",
         ],
-        technologies: ["NX Monorepo", "@saige/vims 공통 패키지", "Generic Types", "pnpm workspace"],
+        technologies: [
+          "NX Monorepo",
+          "@saige/vims 공통 패키지",
+          "Generic Types",
+          "pnpm workspace",
+        ],
       },
       {
-        title: "비즈니스 도메인 혼재로 인한 복잡성을 Feature-Sliced Design 기반 재구조화로 개선",
-        summary: "도메인 중심의 Feature-Sliced Design을 도입해 기능 간 경계를 명확히 하고 확장성을 향상시켰습니다.",
+        title:
+          "비즈니스 도메인 혼재로 인한 복잡성을 Feature-Sliced Design 기반 재구조화로 개선",
+        summary:
+          "도메인 중심의 Feature-Sliced Design을 도입해 기능 간 경계를 명확히 하고 확장성을 향상시켰습니다.",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
           "기존 Feature-based Architecture에서 모니터링, 알람, 설정 등 여러 도메인이 뒤섞이며 구조적 복잡도 증가",
@@ -80,7 +88,12 @@ export const projectsData: Project[] = [
           "Chrome DevTools를 활용한 메모리 프로파일링으로 누수 원인 분석",
           "이미지 사용 종료 직후 URL.revokeObjectURL() 호출로 즉시 메모리 해제",
         ],
-        technologies: ["WebSocket", "Blob API", "URL.revokeObjectURL", "Chrome DevTools Memory Profiler"],
+        technologies: [
+          "WebSocket",
+          "Blob API",
+          "URL.revokeObjectURL",
+          "Chrome DevTools Memory Profiler",
+        ],
         media: {
           url: "/memory-profiling.png",
           alt: "Chrome DevTools Memory 탭 분석 결과",
@@ -88,7 +101,8 @@ export const projectsData: Project[] = [
         },
       },
       {
-        title: "대용량 알람 데이터 렌더링 지연 문제를 커서 기반 무한 스크롤 구현으로 개선",
+        title:
+          "대용량 알람 데이터 렌더링 지연 문제를 커서 기반 무한 스크롤 구현으로 개선",
         summary:
           "TanStack Query의 useInfiniteQuery와 가상 스크롤을 적용해 수십만 건의 알람 히스토리를 효율적으로 처리했습니다.",
         primaryCategory: "사용자 경험 개선",
@@ -103,11 +117,17 @@ export const projectsData: Project[] = [
           "react-window 기반 가상 스크롤로 DOM 렌더링 부하 감소",
           "펄스 효과와 '최신 알람으로 이동' 버튼 제안 및 구현",
         ],
-        technologies: ["TanStack Query", "useInfiniteQuery", "react-window", "Cursor-based Pagination"],
+        technologies: [
+          "TanStack Query",
+          "useInfiniteQuery",
+          "react-window",
+          "Cursor-based Pagination",
+        ],
       },
       {
         title: "결함 인지 경험 개선을 위한 이미지 검수 UX 재설계",
-        summary: "이미지 컨트롤러와 '원클릭 결함 찾기' 기능을 제안·구현하여 검수 시간을 단축하고 정확도를 높였습니다.",
+        summary:
+          "이미지 컨트롤러와 '원클릭 결함 찾기' 기능을 제안·구현하여 검수 시간을 단축하고 정확도를 높였습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "알람 이미지에서 결함이나 이상 상황을 육안으로 찾기 어려워 검수 정확도 저하",
@@ -120,11 +140,18 @@ export const projectsData: Project[] = [
           "버튼 클릭 → 결함 좌표로 자동 이동/하이라이트 UX 구현",
           "VIMS → SAFETY 제품에도 기능 확대 적용",
         ],
-        technologies: ["Canvas API", "Bounding Box", "Image Zoom/Pan", "Dialog UI"],
+        technologies: [
+          "Canvas API",
+          "Bounding Box",
+          "Image Zoom/Pan",
+          "Dialog UI",
+        ],
       },
       {
-        title: "웹소켓 기반 오프라인 영상 검수 기능을 위한 커스텀 플레이어 및 Seek 시스템 구현",
-        summary: "웹소켓 기반 프레임 스트림 구조에서 커스텀 영상 플레이어와 seek 시스템을 구현했습니다.",
+        title:
+          "웹소켓 기반 오프라인 영상 검수 기능을 위한 커스텀 플레이어 및 Seek 시스템 구현",
+        summary:
+          "웹소켓 기반 프레임 스트림 구조에서 커스텀 영상 플레이어와 seek 시스템을 구현했습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "업로드 영상이 웹소켓으로 프레임 단위 전달되어 일반 <video> 플레이어 사용 불가",
@@ -134,7 +161,12 @@ export const projectsData: Project[] = [
           "커스텀 플레이어 UI 직접 구현",
           "현재 재생 위치 기준 seek position을 비디오 프로세서에 전달하는 탐색 기능 구현",
         ],
-        technologies: ["WebSocket", "Canvas API", "Custom Video Player", "Seekbar UI"],
+        technologies: [
+          "WebSocket",
+          "Canvas API",
+          "Custom Video Player",
+          "Seekbar UI",
+        ],
       },
     ],
     period: "2025.01 - 진행 중",
@@ -144,8 +176,22 @@ export const projectsData: Project[] = [
     qaDevelopers: 1,
     productDesigners: 1,
     aiResearchers: "n",
-    keywords: ["NX Monorepo", "Feature-Sliced Design", "실시간 데이터 처리", "성능 최적화"],
-    technologies: ["React", "TypeScript", "NX", "Zustand", "TanStack Query", "ECharts", "WebSocket", "Vite"],
+    keywords: [
+      "NX Monorepo",
+      "Feature-Sliced Design",
+      "실시간 데이터 처리",
+      "성능 최적화",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "NX",
+      "Zustand",
+      "TanStack Query",
+      "ECharts",
+      "WebSocket",
+      "Vite",
+    ],
     codeSnippets: [],
     contributions: [
       { category: "사용자 경험 개선", percentage: 90, color: "#9CCC65" },
@@ -162,7 +208,6 @@ export const projectsData: Project[] = [
     title: "중대재해 예방을 위한 AI 안전 모니터링 시스템",
     subtitle: "실시간 안전 이벤트 감지 및 알림 시스템",
     image: "/safety-logo.svg",
-    representativeImage: "/safety-ai---------------.jpg",
     period: "2023.06 - 2024.12",
     background:
       "작업자 안전모 미착용, 위험 구역 침입, 화재/연기 감지 등 산업 현장의 안전 이벤트를 AI로 실시간 감지하고 알림을 제공하는 시스템입니다. 신사업 MVP 개발부터 GS 인증 1등급 취득까지 전체 프론트엔드 개발을 담당했습니다.",
@@ -195,10 +240,16 @@ export const projectsData: Project[] = [
           "와이어프레임을 기반으로 사용자 흐름을 고려한 UI 직접 설계 및 구현",
           "2명이서 역할 분담을 명확히 하고 집중 개발하여 일정 내 완료",
         ],
-        technologies: ["React", "TypeScript", "X-view-model (MVVM)", "Material UI"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "X-view-model (MVVM)",
+          "Material UI",
+        ],
       },
       {
-        title: "원본 좌표 기반 이벤트 바운딩 박스의 반응형 좌표 계산 시스템 구현",
+        title:
+          "원본 좌표 기반 이벤트 바운딩 박스의 반응형 좌표 계산 시스템 구현",
         summary:
           "Konva.js로 바운딩 박스를 구현하고, 화면 비율에 맞는 동적 좌표 계산으로 리사이징 환경에서도 정확한 표시를 보장했습니다.",
         primaryCategory: "사용자 경험 개선",
@@ -213,10 +264,17 @@ export const projectsData: Project[] = [
           "ResizeObserver를 활용해 화면 크기 변경 감지 및 실시간 좌표 재계산",
           "이벤트 타입별(화재: 빨강, 연기: 주황, 안전모 미착용: 노랑) 색상 구분 적용",
         ],
-        technologies: ["React", "TypeScript", "Konva.js", "ResizeObserver", "Canvas API"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Konva.js",
+          "ResizeObserver",
+          "Canvas API",
+        ],
       },
       {
-        title: "GS 인증 1등급을 위한 유효성 검사 체계 구축 및 에러 핸들링 고도화",
+        title:
+          "GS 인증 1등급을 위한 유효성 검사 체계 구축 및 에러 핸들링 고도화",
         summary:
           "react-hook-form과 zod 기반 유효성 검사 체계를 도입하고, Error Boundary로 에러 핸들링을 강화하여 GS 인증 1등급 취득에 기여했습니다.",
         primaryCategory: "사용자 경험 개선",
@@ -232,18 +290,37 @@ export const projectsData: Project[] = [
           "Error Boundary를 정의하고 적절한 scope에서 에러를 catch하여 toast 피드백 제공",
           "사용자 액션에 따른 banner 표시로 상태 변경 알림 체계 구축",
         ],
-        technologies: ["React", "TypeScript", "react-hook-form", "zod", "Error Boundary"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "react-hook-form",
+          "zod",
+          "Error Boundary",
+        ],
       },
     ],
-    period: "2023.06 - 진행 중",
     role: "프론트엔드 개발",
     frontendDevelopers: 2,
     backendDevelopers: 4,
     qaDevelopers: 1,
     productDesigners: 1,
     aiResearchers: "n",
-    keywords: ["신규 제품 개발", "MVP 출시", "GS 인증 1등급", "에러 처리 체계", "사용자 VOC 반영"],
-    technologies: ["React", "TypeScript", "X-view-model", "WebSocket", "Konva.js", "Webpack", "ResizeObserver"],
+    keywords: [
+      "신규 제품 개발",
+      "MVP 출시",
+      "GS 인증 1등급",
+      "에러 처리 체계",
+      "사용자 VOC 반영",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "X-view-model",
+      "WebSocket",
+      "Konva.js",
+      "Webpack",
+      "ResizeObserver",
+    ],
     codeSnippets: [],
     contributions: [
       { category: "사용자 경험 개선", percentage: 85, color: "#9CCC65" },
@@ -260,7 +337,8 @@ export const projectsData: Project[] = [
     title: "AI 비전 검사 기반 공정 운영·배치·수율 모니터링 시스템",
     subtitle: "사내 제품 - SAIGE VISION 개발",
     image: "/vision-logo.svg",
-    background: "생산 라인의 Vision 검사 결과 및 리소스 상태를 실시간으로 시각화하는 대시보드 웹 애플리케이션입니다.",
+    background:
+      "생산 라인의 Vision 검사 결과 및 리소스 상태를 실시간으로 시각화하는 대시보드 웹 애플리케이션입니다.",
     projectReflection:
       "재사용 가능한 차트 컴포넌트를 설계하면서 추상화 레벨의 균형점을 찾는 것이 중요함을 배웠고, React의 렌더링 최적화 기법을 실전에서 적용하며 성능 개선의 중요성을 체감했습니다.",
     detailedDescription: {
@@ -274,7 +352,8 @@ export const projectsData: Project[] = [
     structuralContributions: [
       {
         title: "여러 페이지의 차트 중복 코드를 BaseChart 컴포넌트로 모듈화",
-        summary: "ECharts 기반 BaseChart 컴포넌트를 개발하여 차트 중복 코드를 제거하고 모듈화했습니다.",
+        summary:
+          "ECharts 기반 BaseChart 컴포넌트를 개발하여 차트 중복 코드를 제거하고 모듈화했습니다.",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
           "여러 페이지에서 라인차트, 파이차트, 게이지차트를 각각 개별적으로 구현하면서 중복 코드 발생",
@@ -285,11 +364,19 @@ export const projectsData: Project[] = [
           "디자이너 요구사항을 반영하기 위해 Legend를 별도 컴포넌트화",
           "ECharts 인스턴스를 직접 참조하여 커스터마이징이 가능하도록 설계",
         ],
-        technologies: ["React", "TypeScript", "ECharts", "Custom Legend", "Reusable Components"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "ECharts",
+          "Custom Legend",
+          "Reusable Components",
+        ],
       },
       {
-        title: "실시간 데이터 업데이트의 불필요한 렌더링을 리소스별 커스텀 훅으로 최적화",
-        summary: "리소스별 커스텀 훅 설계로 불필요한 렌더링을 줄이고 실시간 성능을 향상시켰습니다.",
+        title:
+          "실시간 데이터 업데이트의 불필요한 렌더링을 리소스별 커스텀 훅으로 최적화",
+        summary:
+          "리소스별 커스텀 훅 설계로 불필요한 렌더링을 줄이고 실시간 성능을 향상시켰습니다.",
         primaryCategory: "성능 최적화",
         problemDescription: [
           "CPU, GPU, 메모리, 네트워크 등 다양한 리소스 데이터가 실시간 업데이트되면서 모든 컴포넌트가 불필요하게 리렌더링",
@@ -299,11 +386,20 @@ export const projectsData: Project[] = [
           "리소스별 커스텀 훅을 설계하여 각 훅은 해당 리소스 데이터만 구독",
           "React.memo와 useMemo를 활용하여 컴포넌트 레벨에서도 최적화 적용",
         ],
-        technologies: ["React", "TypeScript", "TanStack Query", "React.memo", "useMemo", "Custom Hooks"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "TanStack Query",
+          "React.memo",
+          "useMemo",
+          "Custom Hooks",
+        ],
       },
       {
-        title: "복잡한 차트 데이터 시각화를 직관적인 디자인과 인터랙션으로 개선",
-        summary: "직관적인 차트 디자인 및 인터랙션 개선으로 정보 인식 속도를 향상시켰습니다.",
+        title:
+          "복잡한 차트 데이터 시각화를 직관적인 디자인과 인터랙션으로 개선",
+        summary:
+          "직관적인 차트 디자인 및 인터랙션 개선으로 정보 인식 속도를 향상시켰습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "다양한 리소스 데이터를 차트로 시각화하면서 사용자가 중요한 정보를 빠르게 파악하기 어려움",
@@ -314,7 +410,13 @@ export const projectsData: Project[] = [
           "호버 시 상세 정보를 표시하는 인터랙션 추가",
           "Legend를 커스터마이징하여 데이터 계열을 명확히 구분",
         ],
-        technologies: ["React", "TypeScript", "ECharts", "Custom Legend", "Data Visualization"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "ECharts",
+          "Custom Legend",
+          "Data Visualization",
+        ],
       },
     ],
     period: "2022.11 - 2023.01",
@@ -324,8 +426,20 @@ export const projectsData: Project[] = [
     qaDevelopers: 1,
     productDesigners: 1,
     aiResearchers: "n",
-    keywords: ["실시간 모니터링", "ECharts 시각화", "BaseChart 컴포넌트", "리소스별 데이터 구독"],
-    technologies: ["React", "TypeScript", "TanStack Query", "ECharts", "Prometheus", "Vite"],
+    keywords: [
+      "실시간 모니터링",
+      "ECharts 시각화",
+      "BaseChart 컴포넌트",
+      "리소스별 데이터 구독",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "TanStack Query",
+      "ECharts",
+      "Prometheus",
+      "Vite",
+    ],
     codeSnippets: [],
     contributions: [
       { category: "사용자 경험 개선", percentage: 75, color: "#9CCC65" },
@@ -342,7 +456,8 @@ export const projectsData: Project[] = [
     title: "사내 디자인 시스템",
     subtitle: "사내 제품 - SAIGE ELEMENTS 개발",
     image: "/elements-logo.svg",
-    background: "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 구축한 React 기반 디자인 시스템입니다.",
+    background:
+      "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 구축한 React 기반 디자인 시스템입니다.",
     projectReflection:
       "디자인 시스템은 단순히 컴포넌트를 만드는 것이 아니라, 팀 전체의 개발 문화와 협업 방식을 개선하는 것임을 배웠습니다. 디자이너와 개발자가 같은 언어로 소통할 수 있게 하는 것이 핵심이며, 장기적인 관점에서 팀의 생산성을 높이는 인프라 구축의 중요성을 이해했습니다.",
     detailedDescription: {
@@ -355,7 +470,8 @@ export const projectsData: Project[] = [
     },
     structuralContributions: [
       {
-        title: "제품 간 UI 일관성 부족과 중복 개발을 디자인 시스템 구축으로 개선",
+        title:
+          "제품 간 UI 일관성 부족과 중복 개발을 디자인 시스템 구축으로 개선",
         summary:
           "재사용 가능한 컴포넌트 라이브러리를 구축하여 사내 3개 제품의 UI 일관성과 개발 효율성을 향상시켰습니다.",
         primaryCategory: "개발 생산성 향상",
@@ -368,11 +484,21 @@ export const projectsData: Project[] = [
           "props 인터페이스를 명확히 정의하고, 다양한 variant와 size 옵션 제공",
           "Storybook을 활용하여 컴포넌트 문서화와 시각적 테스트 진행",
         ],
-        technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MUI", "Rollup", "Design Tokens"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Storybook",
+          "Chromatic",
+          "MUI",
+          "Rollup",
+          "Design Tokens",
+        ],
       },
       {
-        title: "디자인 토큰 체계 부족을 디자이너와 협업하여 카테고라이징으로 개선",
-        summary: "디자이너-개발자 협업을 통한 체계적인 토큰 분류로 협업 효율성을 향상시켰습니다.",
+        title:
+          "디자인 토큰 체계 부족을 디자이너와 협업하여 카테고라이징으로 개선",
+        summary:
+          "디자이너-개발자 협업을 통한 체계적인 토큰 분류로 협업 효율성을 향상시켰습니다.",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
           "디자인 토큰의 카테고라이징이 명확하지 않아 개발자와 디자이너 간 소통에 어려움",
@@ -383,11 +509,18 @@ export const projectsData: Project[] = [
           "Primitive 토큰과 Theme 토큰을 분리하여 테마 변경과 다크모드 지원 용이하도록 설계",
           "Figma에서 사용하는 토큰 네이밍과 코드에서 사용하는 토큰 네이밍을 일치",
         ],
-        technologies: ["React", "TypeScript", "Design Tokens", "Figma", "Theme System"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Design Tokens",
+          "Figma",
+          "Theme System",
+        ],
       },
       {
         title: "디자인 시스템 도입 시 학습 비용을 Storybook 문서화로 최소화",
-        summary: "Storybook 기반 인터랙티브 문서화 시스템을 구축하여 개발자 학습 비용을 감소시켰습니다.",
+        summary:
+          "Storybook 기반 인터랙티브 문서화 시스템을 구축하여 개발자 학습 비용을 감소시켰습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "디자인 시스템을 처음 도입하면서 개발자들이 새로운 컴포넌트와 디자인 토큰을 학습하는 데 시간이 오래 걸림",
@@ -398,11 +531,19 @@ export const projectsData: Project[] = [
           "실제 사용 예시와 코드 스니펫 제공",
           "Chromatic을 통해 시각적 회귀 테스트 자동화",
         ],
-        technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MDX", "Documentation"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Storybook",
+          "Chromatic",
+          "MDX",
+          "Documentation",
+        ],
       },
       {
         title: "디자인 시스템 번들 크기 문제를 Tree Shaking으로 최적화",
-        summary: "Tree Shaking 및 개별 컴포넌트 import 지원으로 번들 크기를 최적화했습니다.",
+        summary:
+          "Tree Shaking 및 개별 컴포넌트 import 지원으로 번들 크기를 최적화했습니다.",
         primaryCategory: "성능 최적화",
         problemDescription: [
           "디자인 시스템 라이브러리의 번들 크기가 커지면서 각 제품의 초기 로딩 시간 증가",
@@ -412,7 +553,13 @@ export const projectsData: Project[] = [
           "Rollup을 활용하여 각 컴포넌트를 개별 모듈로 빌드",
           "Tree Shaking을 지원하여 사용하지 않는 컴포넌트는 번들에 포함되지 않도록 최적화",
         ],
-        technologies: ["React", "TypeScript", "Rollup", "Tree Shaking", "Code Splitting"],
+        technologies: [
+          "React",
+          "TypeScript",
+          "Rollup",
+          "Tree Shaking",
+          "Code Splitting",
+        ],
       },
     ],
     period: "2023.05 - 진행 중",
@@ -422,8 +569,21 @@ export const projectsData: Project[] = [
     qaDevelopers: 0,
     productDesigners: 0,
     aiResearchers: 0,
-    keywords: ["디자인 시스템", "컴포넌트 라이브러리", "Storybook", "Chromatic", "UI 일관성"],
-    technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MUI", "Rollup"],
+    keywords: [
+      "디자인 시스템",
+      "컴포넌트 라이브러리",
+      "Storybook",
+      "Chromatic",
+      "UI 일관성",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Storybook",
+      "Chromatic",
+      "MUI",
+      "Rollup",
+    ],
     codeSnippets: [],
     contributions: [
       { category: "사용자 경험 개선", percentage: 70, color: "#9CCC65" },
@@ -438,7 +598,8 @@ export const projectsData: Project[] = [
     projectId: 4,
     companyId: "media-corpus",
     title: "텍스트 윤리성 평가 시스템",
-    subtitle: "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
+    subtitle:
+      "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
     image: "/media-logo-2.png",
     background:
       "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템입니다.",
@@ -455,7 +616,8 @@ export const projectsData: Project[] = [
     structuralContributions: [
       {
         title: "복잡한 텍스트 윤리성 평가 업무를 3단 UI 구조로 단순화",
-        summary: "3단 UI 구조 설계로 복잡한 평가 업무를 단순화하고 평가 효율성을 향상시켰습니다.",
+        summary:
+          "3단 UI 구조 설계로 복잡한 평가 업무를 단순화하고 평가 효율성을 향상시켰습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "텍스트 윤리성 평가는 문단 전체를 읽고, 특정 문장을 찾아, 윤리성을 판단하는 복잡한 과정으로 사용자 혼란",
@@ -466,11 +628,18 @@ export const projectsData: Project[] = [
           "평가 대상 문장은 볼록 처리하고 키워드는 색상으로 강조",
           "좌우 영역을 정보 탐색과 입력 동작으로 분리",
         ],
-        technologies: ["React", "JavaScript", "Redux", "Ant Design", "3-tier UI Architecture"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "Redux",
+          "Ant Design",
+          "3-tier UI Architecture",
+        ],
       },
       {
         title: "단독 개발의 코드 복잡성을 Feature-based 아키텍처로 개선",
-        summary: "Feature-based 모듈 구조로 상태 관리 구조를 개선하여 코드 응집도를 강화했습니다.",
+        summary:
+          "Feature-based 모듈 구조로 상태 관리 구조를 개선하여 코드 응집도를 강화했습니다.",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
           "단독 개발 프로젝트로 진행하면서 초기에는 컴포넌트와 상태 관리가 한 곳에 섞여있어 코드 구조가 복잡",
@@ -480,11 +649,18 @@ export const projectsData: Project[] = [
           "Redux Toolkit + Duck Pattern 기반으로 상태 관리 구조를 개선",
           "Feature 단위로 컴포넌트/상태/API를 모듈화하여 명확히 분리",
         ],
-        technologies: ["React", "JavaScript", "Redux Toolkit", "Duck Pattern", "Feature-based Architecture"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "Redux Toolkit",
+          "Duck Pattern",
+          "Feature-based Architecture",
+        ],
       },
       {
         title: "대량 평가 데이터의 성능 저하를 페이지네이션으로 개선",
-        summary: "페이지네이션 및 지연 로딩 적용으로 초기 로딩 시간을 단축했습니다.",
+        summary:
+          "페이지네이션 및 지연 로딩 적용으로 초기 로딩 시간을 단축했습니다.",
         primaryCategory: "성능 최적화",
         problemDescription: [
           "150,000건 이상의 평가 데이터를 처리하면서 데이터 로딩과 렌더링 성능 저하",
@@ -495,7 +671,13 @@ export const projectsData: Project[] = [
           "통계 계산은 백엔드에서 처리하고 프론트엔드에서는 결과만 표시",
           "지연 로딩을 적용하여 사용자가 스크롤할 때 데이터를 점진적으로 로드",
         ],
-        technologies: ["React", "JavaScript", "Redux", "Pagination", "Lazy Loading"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "Redux",
+          "Pagination",
+          "Lazy Loading",
+        ],
       },
     ],
     period: "2021.12 - 2022.04",
@@ -505,7 +687,13 @@ export const projectsData: Project[] = [
     qaDevelopers: 0,
     productDesigners: 0,
     aiResearchers: 0,
-    keywords: ["사용자 테스트 주도", "대량 데이터 수집", "3단 UI 구조", "평가 시스템", "단독 개발"],
+    keywords: [
+      "사용자 테스트 주도",
+      "대량 데이터 수집",
+      "3단 UI 구조",
+      "평가 시스템",
+      "단독 개발",
+    ],
     technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
     codeSnippets: [],
     contributions: [
@@ -523,7 +711,8 @@ export const projectsData: Project[] = [
     title: "비윤리적 표현 라벨링 시스템",
     subtitle: "국립 국어원 - 말뭉치 언어의 사회적 인식 조사 분류 사업 참여",
     image: "/media-logo-1.png",
-    background: "400,000건 이상의 대용량 라벨링 데이터를 효율적으로 수집·운영하기 위한 웹 라벨링/검수 시스템입니다.",
+    background:
+      "400,000건 이상의 대용량 라벨링 데이터를 효율적으로 수집·운영하기 위한 웹 라벨링/검수 시스템입니다.",
     projectReflection:
       "사용자가 자연스럽게 느끼는 인터랙션을 구현하는 것이 얼마나 중요한지 배웠습니다. 드래그라는 익숙한 동작을 활용하여 복잡한 라벨링 작업을 단순화한 것이 사용자 만족도를 크게 향상시켰고, 대용량 데이터 처리에서 성능 최적화의 중요성을 체감했습니다.",
     detailedDescription: {
@@ -537,7 +726,8 @@ export const projectsData: Project[] = [
     structuralContributions: [
       {
         title: "복잡한 텍스트 라벨링 작업을 드래그 기반 시스템으로 단순화",
-        summary: "드래그 기반 라벨링 시스템을 구축하여 작업 효율과 라벨링 정확도를 향상시켰습니다.",
+        summary:
+          "드래그 기반 라벨링 시스템을 구축하여 작업 효율과 라벨링 정확도를 향상시켰습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
           "텍스트 내에서 원하는 영역을 직접 선택하고 라벨 값을 저장할 수 있는 기능 필요",
@@ -547,11 +737,18 @@ export const projectsData: Project[] = [
           "window.getSelection API를 활용하여 텍스트 드래그 범위를 인식한 후 컨텍스트 메뉴를 통해 라벨링 가능하도록 구현",
           "드래그 영역에 실시간 시각적 피드백을 제공하여 라벨링 정확도 향상",
         ],
-        technologies: ["React", "JavaScript", "window.getSelection API", "Context Menu", "Visual Feedback"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "window.getSelection API",
+          "Context Menu",
+          "Visual Feedback",
+        ],
       },
       {
         title: "400,000건 대용량 데이터 렌더링 문제를 무한 스크롤로 개선",
-        summary: "IntersectionObserver 기반 무한 스크롤을 구현하여 대용량 데이터 렌더링 문제를 해결했습니다.",
+        summary:
+          "IntersectionObserver 기반 무한 스크롤을 구현하여 대용량 데이터 렌더링 문제를 해결했습니다.",
         primaryCategory: "성능 최적화",
         problemDescription: [
           "400,000건의 텍스트 데이터를 한 번에 렌더링하면 브라우저가 멈추거나 매우 느려지는 문제",
@@ -562,11 +759,18 @@ export const projectsData: Project[] = [
           "초기 30개 문장만 렌더링하고 스크롤 시 점진적 로딩으로 성능 부담 최소화",
           "가상 스크롤링 기법을 적용하여 DOM 노드 수를 일정하게 유지",
         ],
-        technologies: ["React", "JavaScript", "IntersectionObserver", "Virtual Scrolling", "Lazy Loading"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "IntersectionObserver",
+          "Virtual Scrolling",
+          "Lazy Loading",
+        ],
       },
       {
         title: "라벨링 품질 관리 부재를 실시간 모니터링 대시보드로 개선",
-        summary: "실시간 품질 관리 대시보드를 구축하여 프로젝트 전체 품질을 향상시켰습니다.",
+        summary:
+          "실시간 품질 관리 대시보드를 구축하여 프로젝트 전체 품질을 향상시켰습니다.",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
           "대량의 라벨링 작업을 진행하면서 작업 품질을 관리하고 검수하는 체계가 부족",
@@ -576,7 +780,13 @@ export const projectsData: Project[] = [
           "작업자별 진행 상황, 라벨링 품질, 오류율 등을 실시간으로 모니터링할 수 있는 대시보드 구축",
           "검수자가 작업 결과를 빠르게 확인하고 피드백을 제공할 수 있는 워크플로우 설계",
         ],
-        technologies: ["React", "JavaScript", "Redux", "Dashboard", "Quality Management"],
+        technologies: [
+          "React",
+          "JavaScript",
+          "Redux",
+          "Dashboard",
+          "Quality Management",
+        ],
       },
     ],
     period: "2021.06 - 2021.10",
@@ -586,7 +796,13 @@ export const projectsData: Project[] = [
     qaDevelopers: 0,
     productDesigners: 0,
     aiResearchers: 0,
-    keywords: ["대용량 데이터 처리", "드래그 라벨링", "무한 스크롤", "품질 관리", "단독 개발"],
+    keywords: [
+      "대용량 데이터 처리",
+      "드래그 라벨링",
+      "무한 스크롤",
+      "품질 관리",
+      "단독 개발",
+    ],
     technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
     codeSnippets: [],
     contributions: [
@@ -598,6 +814,6 @@ export const projectsData: Project[] = [
     stateManagement: ["Redux"],
     teamChanges: [],
   },
-]
+];
 
-export default projectsData
+export default projectsData;
