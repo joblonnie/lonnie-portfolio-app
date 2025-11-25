@@ -45,6 +45,7 @@ export function ProjectDetailPage() {
       // Load from localStorage if available
       const saved = localStorage.getItem(`project_${projectId}`)
       if (saved) {
+        console.log("[v0] Saved localStorage data for project", projectId, ":", saved)
         setEditedProject(JSON.parse(saved))
       } else {
         setEditedProject(foundProject)
