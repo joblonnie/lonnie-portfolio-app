@@ -555,6 +555,13 @@ export function IntroductionPage() {
                         </div>
                       ))}
                     </div>
+
+                    {selectedProject.projectReflection && (
+                      <div className="mt-6 pt-4 border-t border-gray-200">
+                        <h4 className="text-sm font-bold text-gray-900 mb-2">프로젝트 회고</h4>
+                        <p className="text-xs text-gray-600 leading-relaxed">{selectedProject.projectReflection}</p>
+                      </div>
+                    )}
                   </motion.div>
                 )}
 

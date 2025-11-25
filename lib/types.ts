@@ -111,7 +111,7 @@ export interface StructuralContribution {
   summary: string
   problemDescription: string[]
   solutionDescription: string[]
-  reflection: string[]
+  reflection?: string[]
   technologies: string[]
   media?: Media
   primaryCategory?: "사용자 경험 개선" | "성능 최적화" | "개발 생산성 향상"
@@ -128,9 +128,14 @@ export interface Project {
   title: string
   subtitle?: string
   image?: string
+  representativeImage?: string
   background: string
+  projectReflection?: string
   detailedDescription?: {
+    overview?: string
+    role?: string
     results: string[]
+    implementedPages?: string[]
   }
   structuralContributions?: StructuralContribution[]
   period: string
