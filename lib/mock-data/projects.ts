@@ -12,10 +12,10 @@ export const projectsData: Project[] = [
       "산업용 AI 기반 검사·모니터링 시스템을 통합 관리하는 웹 플랫폼으로, 초기 설계부터 개발을 주도하고 고객사별 맞춤 요구와 VOC를 반영해 실시간 데이터 처리·시각화 기능을 구현한 프로젝트입니다.",
     detailedDescription: {
       results: [
-        "NX Monorepo 도입으로 5개 앱 통합 개발 환경 구축",
-        "Feature-Sliced Design 아키텍처 적용으로 비즈니스 도메인별 모듈 분리",
-        "WebSocket 기반 이미지 스트리밍 최적화로 메모리 누수 방지",
-        "커서 기반 무한 스크롤 + 가상 스크롤 적용으로 대용량 알람 데이터 처리",
+        "NX Monorepo 기반 5개 앱 통합 관리 환경 구축",
+        "Feature-Sliced Design 기반 도메인 중심 아키텍처로 재구조화",
+        "WebSocket 기반 이미지 스트리밍 메모리 누수 분석 및 최적화",
+        "커서 기반 무한 스크롤 + 가상 스크롤을 통한 대용량 알람 데이터 처리",
       ],
     },
     structuralContributions: [
@@ -42,7 +42,7 @@ export const projectsData: Project[] = [
           "공통 패키지를 중심으로 앱을 조립하는 방식으로 유지보수 비용을 크게 줄임",
           "모노레포 환경에서 의존성 관리와 앱 간 독립성을 유지하는 아키텍처 설계 경험 확보",
         ],
-        technologies: ["NX", "Monorepo", "pnpm workspace", "Module Federation", "Shared Packages"],
+        technologies: ["NX", "pnpm workspace", "Shared Packages"],
       },
       {
         title: "비즈니스 도메인 혼재로 인한 복잡성을 Feature-Sliced Design 기반 재구조화로 개선",
@@ -58,13 +58,13 @@ export const projectsData: Project[] = [
         solutionDescription: [
           "Feature-Sliced Design(FSD)을 도입하여 기능 단위에서 도메인 중심·계층화된 구조로 재정비",
           "각 feature 내부에 UI, API, 상태관리, 모델을 응집도 있게 배치해 독립성을 높임",
-          "SD의 의존성 규칙(위는 아래에만 의존)을 적용해 도메인 간 의존 방향을 통제하고 구조적 안정성 확보",
+          "FSD의 의존성 규칙(위는 아래에만 의존)을 적용해 도메인 간 의존 방향을 통제하고 구조적 안정성 확보",
         ],
         reflection: [
           "이론적으로 알고 있던 아키텍처 패턴을 실제 프로젝트에 적용하면서 실무 환경에서의 제약·팀 규모·개발 문화가 아키텍처 선택에 큰 영향을 미친다는 점을 체감",
           "팀원들과 구조 변경의 필요성을 논의하고 설득하는 과정에서 아키텍처의 가치(일관성·확장성)를 함께 이해하는 경험을 하며 협업·커뮤니케이션 역량 또한 향상됨",
         ],
-        technologies: ["Feature-Sliced Design", "Layered Architecture", "Domain-Driven Design"],
+        technologies: ["Feature-Sliced Design", "Layered Architecture"],
       },
       {
         title: "실시간 스트리밍 환경 메모리 누수 해결 및 이미지 처리 구조 개선",
@@ -78,14 +78,14 @@ export const projectsData: Project[] = [
         ],
         solutionDescription: [
           "Chrome DevTools를 활용한 메모리 프로파일링을 통해 누수의 근본 원인을 정량적으로 분석하고 해결한 경험",
-          "Base64 → Blob → ObjectURL 변환 과정에서 발생하는 메모리 잔존 문제를 특정하고,이미지 사용 종료 직후 URL.revokeObjectURL()을 호출하여 즉시 메모리 해제하도록 로직 개선",
+          "Base64 → Blob → ObjectURL 변환 과정에서 발생하는 메모리 잔존 문제를 특정하고, 이미지 사용 종료 직후 URL.revokeObjectURL()을 호출하여 즉시 메모리 해제하도록 로직 개선",
         ],
         reflection: [
           "Chrome DevTools를 활용하여 메모리 누수의 근본 원인을 정확히 파악하고 개선한 경험",
           "단순히 증상을 완화하는 것이 아니라, 메모리 프로파일링을 통해 문제의 본질을 이해하고 체계적으로 접근",
-          "단순히 “증상 완화”가 아니라, 문제 원인을 구조적으로 해부하고 개선하는 방식의 성능 최적화 접근법을 체득",
+          "단순히 '증상 완화'가 아니라, 문제 원인을 구조적으로 해부하고 개선하는 방식의 성능 최적화 접근법을 체득",
         ],
-        technologies: ["WebSocket", "Blob API", "URL.revokeObjectURL", "LRU Cache", "Chrome DevTools Memory Profiler"],
+        technologies: ["WebSocket", "Blob API", "URL.revokeObjectURL", "Chrome DevTools Memory Profiler"],
         media: {
           url: "/memory-profiling.png",
           alt: "Chrome DevTools Memory 탭 분석 결과",
@@ -113,7 +113,7 @@ export const projectsData: Project[] = [
           "대규모 데이터 처리 구조를 커서 기반으로 재설계해 무결성을 보장",
           "기술적 해결과 사용자 경험 개선을 균형 있게 달성한 의미 있는 경험",
         ],
-        technologies: ["TanStack Query", "useInfiniteQuery", "fetchNextPage", "queryTime", "react-window"],
+        technologies: ["TanStack Query", "useInfiniteQuery", "react-window", "Cursor-based Pagination"],
         media: {
           url: "/notification.svg?height=150&width=250&text=실시간+알람+UI+최적화",
           alt: "실시간 알람 UI 최적화 화면",
@@ -142,7 +142,7 @@ export const projectsData: Project[] = [
           "UX 개선 아이디어를 기획·디자인과 긴밀히 협업하여 제품 전반으로 확장되는 기능을 만들어낸 점이 의미 있었음",
           "제품 신뢰도, 검수 정확도, 사용자 만족도에 직접적인 영향을 준 개선 사례로 자리 잡음",
         ],
-        technologies: ["Pinch-to-Zoom", "Bounding Box", "Canvas API", "Image Manipulation"],
+        technologies: ["Canvas API", "Bounding Box", "Image Zoom/Pan", "Dialog UI"],
       },
       {
         title: "웹소켓 기반 오프라인 영상 검수 기능을 위한 커스텀 플레이어 및 Seek 시스템 구현",
@@ -152,17 +152,17 @@ export const projectsData: Project[] = [
         problemDescription: [
           "실시간 모니터링뿐 아니라, 기존에 보유한 영상이나 녹화 데이터를 업로드해 오프라인 검수를 진행하고 싶다는 사용자 니즈가 존재함",
           "사용자가 업로드한 동영상은 웹소켓으로 이미지 프레임 단위로 받아 표시하는 구조였기 때문에, 일반적인 <video> 플레이어의 기본 재생/seek 기능을 사용할 수 없음",
-          "특정 시점부터 검수를 시작하거나, 몇 초 이전/이후로 탐색하는 기능 등이 필요했음",
+          "특정 시점부터 검수를 시작하거나 '5초 이전', '10초 이후' 등 상대 이동 기능 등이 필요했음",
         ],
         solutionDescription: [
           "웹소켓 기반 스트림 구조에서 <video> 태그 기반 플레이어를 사용할 수 없는 문제를 해결하기 위해 커스텀 플레이어 UI를 직접 구현",
-          "특정 시점부터 검수를 시작하거나 “5초 이전”, “10초 이후” 등 상대 이동 기능을 지원하기 위해 현재 재생 위치를 기준으로 계산된 seek position을 비디오 프로세서에 전달하는 방식으로 탐색 기능 구현",
+          "특정 시점부터 검수를 시작하거나 '5초 이전', '10초 이후' 등 상대 이동 기능을 지원하기 위해 현재 재생 위치를 기준으로 계산된 seek position을 비디오 프로세서에 전달하는 방식으로 탐색 기능 구현",
         ],
         reflection: [
           "일반적인 동영상 플레이어를 사용할 수 없는 환경에서, 웹소켓 기반 스트리밍 구조에 맞춘 커스텀 플레이어를 직접 설계해야 했던 경험이었음",
-          "사용자의 실제 검수 흐름에 맞게 “특정 시점부터 검사 시작”, “몇 초 단위 탐색” 등의 기능을 제공해 오프라인 영상 검수의 편의성과 활용도를 크게 높인 개선이었음",
+          "사용자의 실제 검수 흐름에 맞게 '특정 시점부터 검사 시작', '몇 초 단위 탐색' 등의 기능을 제공해 오프라인 영상 검수의 편의성과 활용도를 크게 높인 개선이었음",
         ],
-        technologies: ["Custom Video Player", "Canvas API", "WebSocket", "Seekbar"],
+        technologies: ["WebSocket", "Canvas API", "Custom Video Player", "Seekbar UI"],
       },
     ],
     period: "2025.01 - 진행중",
