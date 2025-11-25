@@ -49,29 +49,6 @@ export interface Certification {
   description?: string
 }
 
-export interface Activity {
-  id: string
-  name: string
-  organization: string
-  period: string
-  description: string
-  achievements?: string[]
-}
-
-export interface SideProject {
-  id: string
-  title: string
-  description: string
-  period: string
-  technologies: string[]
-  achievements: string[]
-  links?: {
-    github?: string
-    demo?: string
-    blog?: string
-  }
-}
-
 export interface Goal {
   category: string
   items: string[]
@@ -159,6 +136,10 @@ export interface Project {
   period: string
   role: string
   frontendDevelopers: number
+  backendDevelopers?: number
+  qaDevelopers?: number
+  productDesigners?: number
+  aiResearchers?: number | string
   keywords: string[]
   technologies: string[]
   codeSnippets?: CodeSnippet[]
@@ -177,8 +158,6 @@ export interface PortfolioData {
   projects: Project[]
   education: Education[]
   certifications: Certification[]
-  activities: Activity[]
-  sideProjects: SideProject[]
   goals: Goal[]
   articles: Article[]
 }

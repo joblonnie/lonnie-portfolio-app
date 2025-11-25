@@ -8,31 +8,20 @@ import {
   Mail,
   Github,
   Linkedin,
-  ExternalLink,
-  Target,
-  Rocket,
   PlayCircle,
   GraduationCap,
   Award,
+  ExternalLink,
   Lightbulb,
   Users,
+  Target,
+  Rocket,
 } from "lucide-react"
 import { mockPortfolioData } from "@/lib/mock-data"
 import type { Project, StructuralContribution } from "@/lib/types"
 
 export function IntroductionPage() {
-  const {
-    personalInfo,
-    skills,
-    companies,
-    projects,
-    education,
-    certifications,
-    activities,
-    sideProjects,
-    goals,
-    articles,
-  } = mockPortfolioData
+  const { personalInfo, skills, companies, projects, education, certifications, goals, articles } = mockPortfolioData
 
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null)
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
@@ -217,7 +206,7 @@ export function IntroductionPage() {
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="flex items-start gap-6">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-lg flex-shrink-0">
-                <img src="/professional-korean-male-developer-portrait.jpg" alt={personalInfo.name} className="w-full h-full object-cover" />
+                <img src="/profile.png" alt={personalInfo.name} className="w-full h-full object-cover" />
               </div>
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">{personalInfo.name}</h1>
@@ -341,216 +330,243 @@ export function IntroductionPage() {
         </motion.section>
 
         {/* 경력 및 프로젝트 섹션 */}
-        <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">경력 및 프로젝트</h2>
+        <section id="projects" className="py-8 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-6">
+              <h2 className="text-xl font-bold text-gray-900">경력 및 프로젝트</h2>
+              <p className="text-gray-600 text-sm mt-1">실무 경험과 주요 프로젝트를 소개합니다.</p>
+            </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* 좌측: 회사 및 프로젝트 목록 */}
-            <div className="lg:col-span-1 space-y-6">
-              {companies.map((company) => {
-                const companyProjects = projects.filter((p) => p.companyId === company.id)
-                return (
-                  <div key={company.id} className="bg-white rounded-lg border border-gray-200 p-4">
-                    {/* 회사 헤더 */}
-                    <div className="flex items-center gap-3 mb-3">
-                      {company.logo && (
-                        <img
-                          src={company.logo || "/placeholder.svg"}
-                          alt={company.name}
-                          className="w-10 h-10 object-contain rounded-lg border p-1"
-                        />
-                      )}
-                      <div>
-                        <h3 className="text-sm font-bold text-gray-900">{company.name}</h3>
-                        <p className="text-xs text-gray-500">{company.period}</p>
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+              {/* 좌측: 회사 및 프로젝트 목록 */}
+              <div className="lg:col-span-2 space-y-6">
+                {companies.map((company) => {
+                  const companyProjects = projects.filter((p) => p.companyId === company.id)
+                  return (
+                    <div key={company.id} className="bg-white rounded-lg border border-gray-200 p-4">
+                      {/* 회사 헤더 */}
+                      <div className="flex items-center gap-3 mb-3">
+                        {company.logo && (
+                          <img
+                            src={company.logo || "/placeholder.svg"}
+                            alt={company.name}
+                            className="w-10 h-10 object-contain rounded-lg border p-1"
+                          />
+                        )}
+                        <div>
+                          <h3 className="text-sm font-bold text-gray-900">{company.name}</h3>
+                          <p className="text-xs text-gray-500">{company.period}</p>
+                        </div>
+                      </div>
+
+                      {/* 프로젝트 목록 */}
+                      <div className="space-y-2">
+                        {companyProjects.map((proj) => (
+                          <div
+                            key={proj.projectId}
+                            className={`cursor-pointer rounded-lg border p-2.5 transition-all hover:shadow-sm ${
+                              proj.projectId === selectedProjectId
+                                ? "border-lime-500 bg-lime-50 ring-1 ring-lime-200"
+                                : "border-gray-100 bg-gray-50 hover:border-gray-200"
+                            }`}
+                            onClick={() => handleProjectSelect(proj.projectId)}
+                          >
+                            <div className="flex items-center gap-2">
+                              {proj.image && (
+                                <img
+                                  src={proj.image || "/placeholder.svg"}
+                                  alt={proj.title}
+                                  className="w-6 h-6 object-contain rounded flex-shrink-0"
+                                />
+                              )}
+                              <p className="text-xs font-medium text-gray-900 leading-tight flex-1">{proj.title}</p>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
+                  )
+                })}
+              </div>
 
-                    {/* 프로젝트 목록 */}
-                    <div className="space-y-2">
-                      {companyProjects.map((proj) => (
-                        <div
-                          key={proj.projectId}
-                          className={`cursor-pointer rounded-lg border p-2.5 transition-all hover:shadow-sm ${
-                            proj.projectId === selectedProjectId
-                              ? "border-lime-500 bg-lime-50 ring-1 ring-lime-200"
-                              : "border-gray-100 bg-gray-50 hover:border-gray-200"
-                          }`}
-                          onClick={() => handleProjectSelect(proj.projectId)}
-                        >
-                          <div className="flex items-center gap-2">
-                            {proj.image && (
-                              <img
-                                src={proj.image || "/placeholder.svg"}
-                                alt={proj.title}
-                                className="w-6 h-6 object-contain rounded"
-                              />
+              {/* 우측: 선택된 프로젝트 상세 */}
+              <div className="lg:col-span-3">
+                {selectedProject && (
+                  <motion.div
+                    key={selectedProject.projectId}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white rounded-lg border border-gray-200 p-6 sticky top-4"
+                  >
+                    {/* 프로젝트 헤더 */}
+                    <div className="mb-6">
+                      <div className="flex items-start gap-4 mb-3">
+                        {selectedProject.image && (
+                          <img
+                            src={selectedProject.image || "/placeholder.svg"}
+                            alt={selectedProject.title}
+                            className="w-12 h-12 object-contain rounded-lg border p-1"
+                          />
+                        )}
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-900 mb-1">{selectedProject.title}</h3>
+                          {selectedProject.subtitle && (
+                            <p className="text-sm text-gray-600 mb-2">{selectedProject.subtitle}</p>
+                          )}
+                          <div className="flex flex-wrap gap-2 text-xs text-gray-500">
+                            <span>{selectedProject.period}</span>
+                            {selectedProject.role && (
+                              <>
+                                <span>•</span>
+                                <span>{selectedProject.role}</span>
+                              </>
                             )}
-                            <p className="text-xs font-medium text-gray-900 leading-tight line-clamp-2 flex-1">
-                              {proj.title}
-                            </p>
+                            {selectedProject.frontendDevelopers > 0 && (
+                              <>
+                                <span>•</span>
+                                <span>FE {selectedProject.frontendDevelopers}명</span>
+                              </>
+                            )}
+                            {selectedProject.backendDevelopers && selectedProject.backendDevelopers > 0 && (
+                              <>
+                                <span>•</span>
+                                <span>BE {selectedProject.backendDevelopers}명</span>
+                              </>
+                            )}
+                            {selectedProject.qaDevelopers && selectedProject.qaDevelopers > 0 && (
+                              <>
+                                <span>•</span>
+                                <span>QA {selectedProject.qaDevelopers}명</span>
+                              </>
+                            )}
+                            {selectedProject.productDesigners && selectedProject.productDesigners > 0 && (
+                              <>
+                                <span>•</span>
+                                <span>PD {selectedProject.productDesigners}명</span>
+                              </>
+                            )}
+                            {selectedProject.aiResearchers && (
+                              <>
+                                <span>•</span>
+                                <span>AI 연구원 {selectedProject.aiResearchers}명</span>
+                              </>
+                            )}
                           </div>
+                        </div>
+                      </div>
+
+                      {selectedProject.background && (
+                        <p className="text-sm text-gray-600 leading-relaxed">{selectedProject.background}</p>
+                      )}
+                    </div>
+
+                    {/* 기여 사항 목록 */}
+                    <div className="space-y-4">
+                      <h4 className="text-sm font-bold text-gray-900">주요 기여</h4>
+                      {selectedProject.structuralContributions?.map((contribution, idx) => (
+                        <div key={idx} className="border-l-2 border-lime-400 pl-4">
+                          <div className="flex items-start justify-between gap-2 mb-2">
+                            <h5 className="text-sm font-semibold text-gray-900">{contribution.title}</h5>
+                            <span
+                              className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
+                                contribution.primaryCategory === "사용자 경험 개선"
+                                  ? "bg-blue-100 text-blue-700"
+                                  : contribution.primaryCategory === "성능 최적화"
+                                    ? "bg-green-100 text-green-700"
+                                    : "bg-purple-100 text-purple-700"
+                              }`}
+                            >
+                              {contribution.primaryCategory}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 mb-2">{contribution.summary}</p>
+
+                          {/* 기술 스택 */}
+                          {contribution.technologies && contribution.technologies.length > 0 && (
+                            <div className="flex flex-wrap gap-1 mb-2">
+                              {contribution.technologies.map((tech, techIdx) => (
+                                <span key={techIdx} className="text-xs px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* 펼치기/접기 버튼 */}
+                          <button
+                            onClick={() => setExpandedIndex(expandedIndex === idx ? null : idx)}
+                            className="text-xs text-lime-600 hover:text-lime-700 font-medium"
+                          >
+                            {expandedIndex === idx ? "접기" : "상세 보기"}
+                          </button>
+
+                          {/* 상세 내용 */}
+                          {expandedIndex === idx && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="mt-3 space-y-3"
+                            >
+                              {contribution.problemDescription && contribution.problemDescription.length > 0 && (
+                                <div>
+                                  <h6 className="text-xs font-semibold text-gray-700 mb-1">문제 상황</h6>
+                                  <ul className="text-xs text-gray-600 space-y-1">
+                                    {contribution.problemDescription.map((problem, pIdx) => (
+                                      <li key={pIdx} className="flex gap-2">
+                                        <span className="text-gray-400">•</span>
+                                        <span>{problem}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+
+                              {contribution.solutionDescription && contribution.solutionDescription.length > 0 && (
+                                <div>
+                                  <h6 className="text-xs font-semibold text-gray-700 mb-1">해결 방안</h6>
+                                  <ul className="text-xs text-gray-600 space-y-1">
+                                    {contribution.solutionDescription.map((solution, sIdx) => (
+                                      <li key={sIdx} className="flex gap-2">
+                                        <span className="text-gray-400">•</span>
+                                        <span>{solution}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+
+                              {contribution.reflection && contribution.reflection.length > 0 && (
+                                <div>
+                                  <h6 className="text-xs font-semibold text-gray-700 mb-1">회고</h6>
+                                  <ul className="text-xs text-gray-600 space-y-1">
+                                    {contribution.reflection.map((ref, rIdx) => (
+                                      <li key={rIdx} className="flex gap-2">
+                                        <span className="text-gray-400">•</span>
+                                        <span>{ref}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
+                            </motion.div>
+                          )}
                         </div>
                       ))}
                     </div>
+                  </motion.div>
+                )}
+
+                {!selectedProject && (
+                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-8 flex items-center justify-center h-full min-h-[300px]">
+                    <p className="text-gray-500 text-sm">좌측에서 프로젝트를 선택해주세요</p>
                   </div>
-                )
-              })}
-            </div>
-
-            {/* 우측: 선택된 프로젝트 상세 */}
-            <div className="lg:col-span-2">
-              {selectedProject && (
-                <motion.div
-                  key={selectedProject.projectId}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-white rounded-lg border border-gray-200 p-6 sticky top-4"
-                >
-                  {/* 프로젝트 헤더 */}
-                  <div className="mb-6">
-                    <div className="flex items-start gap-4 mb-3">
-                      {selectedProject.image && (
-                        <img
-                          src={selectedProject.image || "/placeholder.svg"}
-                          alt={selectedProject.title}
-                          className="w-12 h-12 object-contain rounded-lg border p-1"
-                        />
-                      )}
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-900 mb-1">{selectedProject.title}</h3>
-                        {selectedProject.subtitle && (
-                          <p className="text-sm text-gray-600 mb-2">{selectedProject.subtitle}</p>
-                        )}
-                        <div className="flex flex-wrap gap-2 text-xs text-gray-500">
-                          <span>{selectedProject.period}</span>
-                          {selectedProject.role && (
-                            <>
-                              <span>•</span>
-                              <span>{selectedProject.role}</span>
-                            </>
-                          )}
-                          {selectedProject.frontendDevelopers && (
-                            <>
-                              <span>•</span>
-                              <span>FE {selectedProject.frontendDevelopers}명</span>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {selectedProject.background && (
-                      <p className="text-sm text-gray-600 leading-relaxed">{selectedProject.background}</p>
-                    )}
-                  </div>
-
-                  {/* 기여 사항 목록 */}
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-bold text-gray-900">주요 기여</h4>
-                    {selectedProject.structuralContributions?.map((contribution, idx) => (
-                      <div key={idx} className="border-l-2 border-lime-400 pl-4">
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <h5 className="text-sm font-semibold text-gray-900">{contribution.title}</h5>
-                          <span
-                            className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
-                              contribution.primaryCategory === "사용자 경험 개선"
-                                ? "bg-blue-100 text-blue-700"
-                                : contribution.primaryCategory === "성능 최적화"
-                                  ? "bg-green-100 text-green-700"
-                                  : "bg-purple-100 text-purple-700"
-                            }`}
-                          >
-                            {contribution.primaryCategory}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-600 mb-2">{contribution.summary}</p>
-
-                        {/* 기술 스택 */}
-                        {contribution.technologies && contribution.technologies.length > 0 && (
-                          <div className="flex flex-wrap gap-1 mb-2">
-                            {contribution.technologies.map((tech, techIdx) => (
-                              <span key={techIdx} className="text-xs px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded">
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* 펼치기/접기 버튼 */}
-                        <button
-                          onClick={() => setExpandedIndex(expandedIndex === idx ? null : idx)}
-                          className="text-xs text-lime-600 hover:text-lime-700 font-medium"
-                        >
-                          {expandedIndex === idx ? "접기" : "상세 보기"}
-                        </button>
-
-                        {/* 상세 내용 */}
-                        {expandedIndex === idx && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="mt-3 space-y-3"
-                          >
-                            {contribution.problemDescription && contribution.problemDescription.length > 0 && (
-                              <div>
-                                <h6 className="text-xs font-semibold text-gray-700 mb-1">문제 상황</h6>
-                                <ul className="text-xs text-gray-600 space-y-1">
-                                  {contribution.problemDescription.map((problem, pIdx) => (
-                                    <li key={pIdx} className="flex gap-2">
-                                      <span className="text-gray-400">•</span>
-                                      <span>{problem}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-
-                            {contribution.solutionDescription && contribution.solutionDescription.length > 0 && (
-                              <div>
-                                <h6 className="text-xs font-semibold text-gray-700 mb-1">해결 방안</h6>
-                                <ul className="text-xs text-gray-600 space-y-1">
-                                  {contribution.solutionDescription.map((solution, sIdx) => (
-                                    <li key={sIdx} className="flex gap-2">
-                                      <span className="text-gray-400">•</span>
-                                      <span>{solution}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-
-                            {contribution.reflection && contribution.reflection.length > 0 && (
-                              <div>
-                                <h6 className="text-xs font-semibold text-gray-700 mb-1">회고</h6>
-                                <ul className="text-xs text-gray-600 space-y-1">
-                                  {contribution.reflection.map((ref, rIdx) => (
-                                    <li key={rIdx} className="flex gap-2">
-                                      <span className="text-gray-400">•</span>
-                                      <span>{ref}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </motion.div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {!selectedProject && (
-                <div className="bg-gray-50 rounded-lg border border-gray-200 p-8 flex items-center justify-center h-full min-h-[300px]">
-                  <p className="text-gray-500 text-sm">좌측에서 프로젝트를 선택해주세요</p>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 학력 · 자격 · 활동 섹션 */}
         <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>

@@ -6,8 +6,6 @@ import { companiesData } from "./mock-data/companies"
 import { projectsData } from "./mock-data/projects"
 import { educationData } from "./mock-data/education"
 import { certificationsData } from "./mock-data/certifications"
-import { activitiesData } from "./mock-data/activities"
-import { sideProjectsData } from "./mock-data/side-projects"
 import { goalsData } from "./mock-data/goals"
 import { articlesData } from "./mock-data/articles"
 
@@ -19,8 +17,6 @@ export const companies = companiesData
 export const projects = projectsData
 export const education = educationData
 export const certifications = certificationsData
-export const activities = activitiesData
-export const sideProjects = sideProjectsData
 export const goals = goalsData
 export const articles = articlesData
 
@@ -32,8 +28,6 @@ export const mockPortfolioData: PortfolioData = {
   projects: projectsData,
   education: educationData,
   certifications: certificationsData,
-  activities: activitiesData,
-  sideProjects: sideProjectsData,
   goals: goalsData,
   articles: articlesData,
 }
