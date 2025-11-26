@@ -319,21 +319,15 @@ export const projectsData: Project[] = [
           "ECharts 기반 BaseChart 컴포넌트를 개발하여 차트 중복 코드를 제거하고 모듈화했습니다.",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
-          "여러 페이지에서 라인차트, 파이차트, 게이지차트를 각각 개별적으로 구현하면서 중복 코드 발생",
-          "같은 기능의 차트라도 페이지마다 다른 스타일과 옵션을 가지고 있어 디자인 일관성 저하",
+          "여러 페이지에서 라인·파이·게이지 차트를 개별 구현하면서 중복 코드 증가",
+          "동일 기능 차트라도 페이지별 스타일·옵션이 달라 디자인 일관성 저하",
         ],
         solutionDescription: [
-          "ECharts 기반의 BaseChart 컴포넌트를 개발하여 모듈화",
-          "디자이너 요구사항을 반영하기 위해 Legend를 별도 컴포넌트화",
-          "ECharts 인스턴스를 직접 참조하여 커스터마이징이 가능하도록 설계",
+          "ECharts 기반 BaseChart 컴포넌트 모듈화로 중복 코드 축소와 유지보수 범위 통일",
+          "Legend를 별도 컴포넌트화해 디자이너 요구 반영 용이성과 차트 UI 일관성 확보",
+          "ECharts 인스턴스 직접 참조 구조로 페이지별 커스터마이징 유연성 확보",
         ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "ECharts",
-          "Custom Legend",
-          "Reusable Components",
-        ],
+        technologies: ["ECharts", "Custom Legend", "Reusable Components"],
       },
       {
         title:
@@ -342,67 +336,33 @@ export const projectsData: Project[] = [
           "리소스별 커스텀 훅 설계로 불필요한 렌더링을 줄이고 실시간 성능을 향상시켰습니다.",
         primaryCategory: "성능 최적화",
         problemDescription: [
-          "CPU, GPU, 메모리, 네트워크 등 다양한 리소스 데이터가 실시간 업데이트되면서 모든 컴포넌트가 불필요하게 리렌더링",
-          "하나의 리소스 데이터가 변경되어도 전체 대시보드가 리렌더링되면서 차트 애니메이션이 끊김",
+          "CPU·GPU·메모리·네트워크 등 다양한 리소스 데이터가 실시간 업데이트되며 전체 컴포넌트가 불필요하게 리렌더링",
+          "단일 리소스 변경에도 대시보드 전체가 리렌더링되어 차트 애니메이션 끊김 발생",
         ],
         solutionDescription: [
-          "리소스별 커스텀 훅을 설계하여 각 훅은 해당 리소스 데이터만 구독",
-          "React.memo와 useMemo를 활용하여 컴포넌트 레벨에서도 최적화 적용",
+          "리소스별 커스텀 훅 설계로 필요한 리소스만 구독하도록 분리해 불필요한 렌더 범위 축소",
+          "React.memo와 useMemo 적용으로 컴포넌트 단위 렌더링 최소화 및 실시간 차트의 프레임 안정성 확보",
         ],
         technologies: [
-          "React",
-          "TypeScript",
           "TanStack Query",
           "React.memo",
           "useMemo",
           "Custom Hooks",
         ],
       },
-      {
-        title:
-          "복잡한 차트 데이터 시각화를 직관적인 디자인과 인터랙션으로 개선",
-        summary:
-          "직관적인 차트 디자인 및 인터랙션 개선으로 정보 인식 속도를 향상시켰습니다.",
-        primaryCategory: "사용자 경험 개선",
-        problemDescription: [
-          "다양한 리소스 데이터를 차트로 시각화하면서 사용자가 중요한 정보를 빠르게 파악하기 어려움",
-          "여러 차트가 동시에 표시될 때 어떤 정보가 중요한지 구분하기 어려움",
-        ],
-        solutionDescription: [
-          "사용자가 중요한 정보를 빠르게 파악할 수 있도록 차트 디자인 개선",
-          "호버 시 상세 정보를 표시하는 인터랙션 추가",
-          "Legend를 커스터마이징하여 데이터 계열을 명확히 구분",
-        ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "ECharts",
-          "Custom Legend",
-          "Data Visualization",
-        ],
-      },
     ],
     period: "2022.11 - 2023.01",
     role: "프론트엔드 개발",
     frontendDevelopers: 4,
-    backendDevelopers: 4,
-    qaDevelopers: 1,
+    backendDevelopers: 2,
     productDesigners: 1,
-    aiResearchers: "n",
     keywords: [
       "실시간 모니터링",
       "ECharts 시각화",
       "BaseChart 컴포넌트",
       "리소스별 데이터 구독",
     ],
-    technologies: [
-      "React",
-      "TypeScript",
-      "TanStack Query",
-      "ECharts",
-      "Prometheus",
-      "Vite",
-    ],
+    technologies: ["React", "TypeScript", "TanStack Query", "ECharts"],
     codeSnippets: [],
     contributions: [
       { category: "사용자 경험 개선", percentage: 75, color: "#9CCC65" },
@@ -433,105 +393,42 @@ export const projectsData: Project[] = [
     },
     structuralContributions: [
       {
-        title:
-          "제품 간 UI 일관성 부족과 중복 개발을 디자인 시스템 구축으로 개선",
+        title: "사내 디자인 시스템 기여 및 문서화·리뷰 체계 정비",
         summary:
-          "재사용 가능한 컴포넌트 라이브러리를 구축하여 사내 3개 제품의 UI 일관성과 개발 효율성을 향상시켰습니다.",
+          "공통 사용 UI 컴포넌트 개발과 Storybook·Chromatic 기반 문서화·리뷰 체계를 구축하여 UI 일관성과 개발자·디자이너 협업 효율을 개선",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
-          "VIMS, SAFETY, VISION 3개 제품에서 각각 다른 스타일의 버튼, 폼, 모달 등을 개발하면서 UI 일관성 저하",
-          "중복 개발로 인한 비효율 발생",
+          "동일 UI 요소가 제품별로 따로 구현되며 재사용성과 일관성 저하",
+          "문서화가 부족해 컴포넌트 사용법 파악 시 코드 직접 탐색 필요",
+          "디자이너가 UI 변경 사항을 확인할 수 있는 리뷰 흐름이 명확하지 않음",
         ],
         solutionDescription: [
-          "Button, Switch, Banner 등의 기본 컴포넌트부터 복합 컴포넌트까지 체계적으로 설계",
-          "props 인터페이스를 명확히 정의하고, 다양한 variant와 size 옵션 제공",
-          "Storybook을 활용하여 컴포넌트 문서화와 시각적 테스트 진행",
+          "Button·Switch 등 공통 UI 컴포넌트를 제품 간 공유 가능한 구조로 정비",
+          "담당 컴포넌트 중심으로 Storybook 문서화를 작성해 사용법과 예시를 쉽게 확인할 수 있도록 개선",
+          "Chromatic을 활용해 시각적 Diff 기반의 디자이너 리뷰 흐름 마련",
         ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "Storybook",
-          "Chromatic",
-          "MUI",
-          "Rollup",
-          "Design Tokens",
-        ],
+        technologies: ["Storybook", "Chromatic", "MUI", "Design Tokens", "MDX"],
       },
       {
-        title:
-          "디자인 토큰 체계 부족을 디자이너와 협업하여 카테고라이징으로 개선",
+        title: "초기 디자인 토큰 정의의 불일치를 역할 기반 토큰 체계로 재정의",
         summary:
-          "디자이너-개발자 협업을 통한 체계적인 토큰 분류로 협업 효율성을 향상시켰습니다.",
+          "초기 토큰 정의 과정에서 발생한 디자이너·개발자 간 간극을 해소하고 역할 기반 디자인 토큰 재정의로 협업 효율성과 UI 일관성 강화",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
-          "디자인 토큰의 카테고라이징이 명확하지 않아 개발자와 디자이너 간 소통에 어려움",
-          "어떤 토큰을 언제 사용해야 하는지 판단하기 어려움",
+          "초기 디자인 토큰 정의 시 디자이너와 개발자의 기준이 달라 동일 요소에 다른 토큰을 사용하는 기술부채 발생",
+          "토큰 역할이 명확하지 않아 어떤 상황에서 어떤 토큰을 적용해야 하는지 판단 어려움",
         ],
         solutionDescription: [
-          "디자이너와 협업하여 디자인 토큰의 카테고라이징을 체계화",
-          "Primitive 토큰과 Theme 토큰을 분리하여 테마 변경과 다크모드 지원 용이하도록 설계",
-          "Figma에서 사용하는 토큰 네이밍과 코드에서 사용하는 토큰 네이밍을 일치",
+          "디자이너와 공동으로 기존 토큰을 재검토해 역할 기반(Primitive·Semantic·Component) 토큰 체계로 재정의하며 사용 기준 일관성 확보",
+          "Primitive와 Theme 토큰을 분리해 테마 확장성과 다크모드 대응을 용이하게 구성",
+          "Figma와 코드의 토큰 네이밍을 통일해 협업 시 불필요한 커뮤니케이션 비용 제거 및 변경 추적 용이성 향상",
         ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "Design Tokens",
-          "Figma",
-          "Theme System",
-        ],
-      },
-      {
-        title: "디자인 시스템 도입 시 학습 비용을 Storybook 문서화로 최소화",
-        summary:
-          "Storybook 기반 인터랙티브 문서화 시스템을 구축하여 개발자 학습 비용을 감소시켰습니다.",
-        primaryCategory: "사용자 경험 개선",
-        problemDescription: [
-          "디자인 시스템을 처음 도입하면서 개발자들이 새로운 컴포넌트와 디자인 토큰을 학습하는 데 시간이 오래 걸림",
-          "문서화가 부족하여 컴포넌트의 사용법을 파악하기 위해 코드를 직접 읽어야 하는 불편함",
-        ],
-        solutionDescription: [
-          "Storybook을 활용하여 각 컴포넌트의 사용법, props, 다양한 variant를 인터랙티브하게 확인할 수 있는 문서화 시스템 구축",
-          "실제 사용 예시와 코드 스니펫 제공",
-          "Chromatic을 통해 시각적 회귀 테스트 자동화",
-        ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "Storybook",
-          "Chromatic",
-          "MDX",
-          "Documentation",
-        ],
-      },
-      {
-        title: "디자인 시스템 번들 크기 문제를 Tree Shaking으로 최적화",
-        summary:
-          "Tree Shaking 및 개별 컴포넌트 import 지원으로 번들 크기를 최적화했습니다.",
-        primaryCategory: "성능 최적화",
-        problemDescription: [
-          "디자인 시스템 라이브러리의 번들 크기가 커지면서 각 제품의 초기 로딩 시간 증가",
-          "모든 컴포넌트를 한 번에 import하면 사용하지 않는 컴포넌트까지 번들에 포함",
-        ],
-        solutionDescription: [
-          "Rollup을 활용하여 각 컴포넌트를 개별 모듈로 빌드",
-          "Tree Shaking을 지원하여 사용하지 않는 컴포넌트는 번들에 포함되지 않도록 최적화",
-        ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "Rollup",
-          "Tree Shaking",
-          "Code Splitting",
-        ],
+        technologies: ["Design Tokens", "Figma", "Theme System"],
       },
     ],
     period: "2023.05 - 진행 중",
     role: "디자인 시스템 컨트리뷰터",
-    frontendDevelopers: 3,
-    backendDevelopers: 0,
-    qaDevelopers: 0,
-    productDesigners: 0,
-    aiResearchers: 0,
+    frontendDevelopers: 7,
     keywords: [
       "디자인 시스템",
       "컴포넌트 라이브러리",
@@ -580,41 +477,33 @@ export const projectsData: Project[] = [
       {
         title: "복잡한 텍스트 윤리성 평가 업무를 3단 UI 구조로 단순화",
         summary:
-          "3단 UI 구조 설계로 복잡한 평가 업무를 단순화하고 평가 효율성을 향상시켰습니다.",
+          "문단·문장·평가 폼을 구분하는 3단 UI 구조를 설계해 평가 과정의 혼란을 줄이고 작업 효율을 개선",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
-          "텍스트 윤리성 평가는 문단 전체를 읽고, 특정 문장을 찾아, 윤리성을 판단하는 복잡한 과정으로 사용자 혼란",
-          "평가 대상 문장과 일반 문장을 구분하기 어려워 작업자가 잘못된 문장을 평가하는 경우 빈번",
+          "문단 전체를 읽고 대상 문장을 찾아 평가해야 하는 복잡한 흐름으로 작업자가 단계별로 혼란을 겪음",
+          "평가 대상 문장과 일반 문장의 시각적 구분이 부족해 잘못된 문장을 평가하는 오류 발생",
         ],
         solutionDescription: [
-          "3단 UI 구조(문단/문장/평가 폼)를 설계하고 단계별 UX 흐름 구현",
-          "평가 대상 문장은 볼록 처리하고 키워드는 색상으로 강조",
-          "좌우 영역을 정보 탐색과 입력 동작으로 분리",
+          "문단/문장/평가 폼을 단계별로 분리한 3단 UI 구조 설계로 작업 흐름을 명확히 분리",
+          "평가 대상 문장에 볼록 처리와 색상 강조 적용해 시각적 구분 강화",
+          "좌우 영역을 정보 탐색 영역과 입력 영역으로 나누어 평가 과정의 집중도 향상",
         ],
-        technologies: [
-          "React",
-          "JavaScript",
-          "Redux",
-          "Ant Design",
-          "3-tier UI Architecture",
-        ],
+        technologies: ["React", "JavaScript", "Ant Design"],
       },
       {
-        title: "단독 개발의 코드 복잡성을 Feature-based 아키텍처로 개선",
+        title: "단독 개발 환경의 코드 복잡성을 Feature 기반 구조로 정리",
         summary:
-          "Feature-based 모듈 구조로 상태 관리 구조를 개선하여 코드 응집도를 강화했습니다.",
+          "Redux Toolkit과 Feature 단위 모듈화를 적용해 컴포넌트·상태·API를 분리하고 코드 응집도를 개선",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
-          "단독 개발 프로젝트로 진행하면서 초기에는 컴포넌트와 상태 관리가 한 곳에 섞여있어 코드 구조가 복잡",
-          "기능이 추가될수록 유지보수가 어려워지는 상황",
+          "단독 개발 프로젝트 특성상 컴포넌트·상태 관리·API 로직이 한 파일·한 위치에 섞여 구조가 복잡해짐",
+          "기능이 늘어날수록 코드 흐름 파악과 유지보수가 어려워지는 상황",
         ],
         solutionDescription: [
-          "Redux Toolkit + Duck Pattern 기반으로 상태 관리 구조를 개선",
-          "Feature 단위로 컴포넌트/상태/API를 모듈화하여 명확히 분리",
+          "Redux Toolkit과 Duck Pattern을 적용해 상태 로직을 명확히 분리하고 관리 구조 단순화",
+          "컴포넌트·상태·API를 Feature 단위로 모듈화해 기능별 응집도와 유지보수 편의성 향상",
         ],
         technologies: [
-          "React",
-          "JavaScript",
           "Redux Toolkit",
           "Duck Pattern",
           "Feature-based Architecture",
@@ -623,33 +512,23 @@ export const projectsData: Project[] = [
       {
         title: "대량 평가 데이터의 성능 저하를 페이지네이션으로 개선",
         summary:
-          "페이지네이션 및 지연 로딩 적용으로 초기 로딩 시간을 단축했습니다.",
+          "페이지네이션과 지연 로딩을 적용해 초기 로딩 부하를 줄이고 데이터 탐색 성능을 개선",
         primaryCategory: "성능 최적화",
         problemDescription: [
-          "150,000건 이상의 평가 데이터를 처리하면서 데이터 로딩과 렌더링 성능 저하",
-          "평가 진행 상황을 표시하거나 통계를 계산할 때 브라우저가 느려지는 현상 발생",
+          "150,000건 이상의 평가 데이터를 한 번에 처리하면서 초기 로딩과 렌더링 성능 저하 발생",
+          "평가 진행률 표시나 통계 계산 과정에서 브라우저가 느려지는 문제",
         ],
         solutionDescription: [
-          "페이지네이션을 적용하여 필요한 데이터만 로딩",
-          "통계 계산은 백엔드에서 처리하고 프론트엔드에서는 결과만 표시",
-          "지연 로딩을 적용하여 사용자가 스크롤할 때 데이터를 점진적으로 로드",
+          "페이지네이션을 적용해 필요한 구간만 요청하도록 구성하여 초기 로딩 부담 완화",
+          "지연 로딩을 적용해 스크롤 시 데이터를 점진적으로 로드하도록 개선",
         ],
-        technologies: [
-          "React",
-          "JavaScript",
-          "Redux",
-          "Pagination",
-          "Lazy Loading",
-        ],
+        technologies: ["Pagination", "Lazy Loading"],
       },
     ],
     period: "2021.12 - 2022.04",
     role: "프론트엔드 개발 (단독)",
     frontendDevelopers: 1,
-    backendDevelopers: 0,
-    qaDevelopers: 0,
-    productDesigners: 0,
-    aiResearchers: 0,
+    backendDevelopers: 1,
     keywords: [
       "사용자 테스트 주도",
       "대량 데이터 수집",
@@ -690,19 +569,17 @@ export const projectsData: Project[] = [
       {
         title: "복잡한 텍스트 라벨링 작업을 드래그 기반 시스템으로 단순화",
         summary:
-          "드래그 기반 라벨링 시스템을 구축하여 작업 효율과 라벨링 정확도를 향상시켰습니다.",
+          "드래그 기반 라벨링 기능을 구현해 원하는 영역을 빠르게 지정하고 라벨링 정확도를 개선",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
-          "텍스트 내에서 원하는 영역을 직접 선택하고 라벨 값을 저장할 수 있는 기능 필요",
-          "기존의 클릭 기반 라벨링 방식은 정확한 범위 지정이 어렵고, 여러 단계를 거쳐야 하는 불편함",
+          "사용자가 텍스트 내 특정 영역을 직접 선택해 라벨링할 수 있는 기능 필요",
+          "기존 클릭 기반 방식은 정확한 범위 지정이 어렵고 조작 단계가 많아 작업 효율 저하",
         ],
         solutionDescription: [
-          "window.getSelection API를 활용하여 텍스트 드래그 범위를 인식한 후 컨텍스트 메뉴를 통해 라벨링 가능하도록 구현",
-          "드래그 영역에 실시간 시각적 피드백을 제공하여 라벨링 정확도 향상",
+          "window.getSelection API로 드래그 영역을 감지하고 컨텍스트 메뉴를 통해 라벨링하도록 구현",
+          "드래그 영역에 실시간 시각적 피드백을 제공해 라벨링 범위 오차 감소",
         ],
         technologies: [
-          "React",
-          "JavaScript",
           "window.getSelection API",
           "Context Menu",
           "Visual Feedback",
@@ -711,37 +588,31 @@ export const projectsData: Project[] = [
       {
         title: "400,000건 대용량 데이터 렌더링 문제를 무한 스크롤로 개선",
         summary:
-          "IntersectionObserver 기반 무한 스크롤을 구현하여 대용량 데이터 렌더링 문제를 해결했습니다.",
+          "IntersectionObserver 기반 무한 스크롤과 가상 스크롤링으로 대용량 데이터 렌더링 성능을 개선",
         primaryCategory: "성능 최적화",
         problemDescription: [
-          "400,000건의 텍스트 데이터를 한 번에 렌더링하면 브라우저가 멈추거나 매우 느려지는 문제",
-          "초기 로딩 시간이 30초 이상 걸리고, 메모리 사용량이 급격히 증가",
+          "400,000건 텍스트 데이터를 한 번에 렌더링할 경우 브라우저 멈춤 현상 발생",
+          "초기 로딩 시간이 길고 메모리 사용량이 불필요하게 증가",
         ],
         solutionDescription: [
-          "IntersectionObserver 기반 무한 스크롤을 구현하여 대용량 데이터 렌더링 문제 해결",
-          "초기 30개 문장만 렌더링하고 스크롤 시 점진적 로딩으로 성능 부담 최소화",
-          "가상 스크롤링 기법을 적용하여 DOM 노드 수를 일정하게 유지",
+          "IntersectionObserver 기반 무한 스크롤을 적용해 필요한 데이터만 점진적으로 로드",
+          "초기 소량(약 30개)만 렌더링하고 스크롤에 따라 추가 로딩하도록 구성",
+          "가상 스크롤링을 적용해 DOM 노드 수를 일정하게 유지해 렌더링 부담 완화",
         ],
-        technologies: [
-          "React",
-          "JavaScript",
-          "IntersectionObserver",
-          "Virtual Scrolling",
-          "Lazy Loading",
-        ],
+        technologies: ["IntersectionObserver", "Virtual Scrolling"],
       },
       {
         title: "라벨링 품질 관리 부재를 실시간 모니터링 대시보드로 개선",
         summary:
-          "실시간 품질 관리 대시보드를 구축하여 프로젝트 전체 품질을 향상시켰습니다.",
+          "작업 진행률과 오류율을 확인할 수 있는 실시간 대시보드를 구축해 라벨링 품질 관리 효율 향상",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
-          "대량의 라벨링 작업을 진행하면서 작업 품질을 관리하고 검수하는 체계가 부족",
-          "작업자별 진행 상황과 품질을 실시간으로 모니터링할 수 없어 프로젝트 관리 어려움",
+          "대규모 라벨링 작업에서 작업자별 진행 상황과 품질 상태를 한눈에 파악하기 어려움",
+          "검수자와 작업자 간 피드백 흐름이 없어 품질 관리 공백 존재",
         ],
         solutionDescription: [
-          "작업자별 진행 상황, 라벨링 품질, 오류율 등을 실시간으로 모니터링할 수 있는 대시보드 구축",
-          "검수자가 작업 결과를 빠르게 확인하고 피드백을 제공할 수 있는 워크플로우 설계",
+          "작업자별 진행률·품질 지표·오류율을 실시간으로 조회할 수 있는 대시보드 구성",
+          "검수자가 작업 결과를 바로 확인하고 피드백을 줄 수 있는 워크플로우 설계",
         ],
         technologies: [
           "React",
@@ -755,10 +626,7 @@ export const projectsData: Project[] = [
     period: "2021.06 - 2021.10",
     role: "프론트엔드 개발 (단독)",
     frontendDevelopers: 1,
-    backendDevelopers: 0,
-    qaDevelopers: 0,
-    productDesigners: 0,
-    aiResearchers: 0,
+    backendDevelopers: 1,
     keywords: [
       "대용량 데이터 처리",
       "드래그 라벨링",
