@@ -19,42 +19,27 @@ export const projectsData: Project[] = [
         "커서 기반 무한 스크롤 + 가상 스크롤을 통한 대용량 알람 데이터 처리",
         "모니터링, 리포트, 카메라/그룹/알림/기관 관리 등 핵심 페이지 전담 개발",
       ],
-      implementedPages: [
-        "모니터링 페이지 (드래그앤드랍 카메라 배치, 전체 화면 지원)",
-        "모니터링 상세 페이지 (검사 정보 확인, 파라미터 설정, 결과 오버레이, 실시간 데이터그리드, Score 차트)",
-        "리포트 페이지 (이벤트 리스트, 엑셀/CSV 다운로드, 이미지 컨트롤러)",
-        "리포트 상세 페이지",
-        "카메라 관리 페이지",
-        "그룹 관리 페이지 (그룹별 카메라 할당)",
-        "알림 관리 페이지 (이벤트 타입별 팝업/배너 설정, Sound On/Off, 알림 사용/미사용)",
-        "기관 관리 페이지 (서버 리스트, 데이터 보관기간 관리)",
-      ],
     },
     structuralContributions: [
       {
         title:
           "고객사별 앱을 통합 관리하기 위한 NX 기반 모노레포 아키텍처 구축",
         summary:
-          "5개 고객사 앱의 공통 기능을 @saige/vims 패키지로 분리하고, 고객사별 커스터마이징이 용이한 모노레포 아키텍처를 구축했습니다.",
+          "5개 고객사 앱의 공통 기능을 @saige/vims 패키지로 분리하여 재사용성을 극대화하고, 고객사별 커스터마이징을 빠르게 대응할 수 있는 모노레포 아키텍처를 구축했습니다.",
         primaryCategory: "개발 생산성 향상",
         problemDescription: [
-          "고객사별 POC를 빠르게 대응해야 하는 상황에서, 프로젝트마다 공통 기능이 중복 구현됨",
-          "코드가 개별 앱에 분산되어 있어 확장성·재사용성이 떨어지고 유지보수가 어려움",
-          "커스터마이징된 컴포넌트명이 동일하면 앱 간 트래킹이 어렵고 혼란 발생",
+          "고객사별 POC 요구가 증가하면서 프로젝트마다 공통 기능이 반복적으로 구현됨 → 개발 리소스 낭비",
+          "코드가 각 앱에 흩어져 있어 기능 확장·버그 수정 시 수정 범위 파악이 어려움",
+          "고객사 커스터마이징이 섞여 컴포넌트 추적이 어렵고 유지보수 비용 증가",
         ],
         solutionDescription: [
-          "NX Monorepo 도입으로 5개 고객사 앱을 하나의 워크스페이스에서 통합 관리",
-          "VIMS 공통 기능(모니터링, 알람, 설정, 공통 타입, API 등)을 @saige/vims 패키지로 통합",
-          "동일한 endpoint에서 response만 다른 API에 제네릭 타입을 적용해 코드 중복 최소화",
-          "컴포넌트는 공통 뼈대를 @saige/vims 패키지에서 가져와 각 앱에서 확장하는 구조로 설계",
-          "커스터마이징된 컴포넌트·훅에는 고객사 이름을 prefix로 활용해 유지보수 용이성 확보",
+          "NX Monorepo 도입으로 5개 고객사 앱을 하나의 워크스페이스에서 통합 관리하여 구조적 일관성 확보",
+          "모니터링/알람/설정/타입/API 등 공통 기능을 '@saige/vims' 패키지로 모듈화 → 재사용률 크게 증가",
+          "동일 endpoint지만 고객사마다 response가 다른 API에 제네릭 타입 적용 → 중복 코드 제거 및 변경 용이성 확보",
+          "컴포넌트는 공통 레이어(@saige/vims)에서 가져오고, 각 고객사 앱에서 확장하는 구조로 설계해 유지보수 비용 절감",
+          "고객사별 커스터마이징 컴포넌트·훅에 prefix를 도입하여 변경 추적 및 디버깅 속도 향상",
         ],
-        technologies: [
-          "NX Monorepo",
-          "@saige/vims 공통 패키지",
-          "Generic Types",
-          "pnpm workspace",
-        ],
+        technologies: ["NX Monorepo", "@saige/vims 공통 패키지"],
       },
       {
         title:
@@ -72,7 +57,7 @@ export const projectsData: Project[] = [
           "각 feature 내부에 UI, API, 상태관리, 모델을 응집도 있게 배치",
           "FSD의 의존성 규칙을 적용해 도메인 간 의존 방향을 통제",
         ],
-        technologies: ["Feature-Sliced Design", "Layered Architecture"],
+        technologies: ["Feature-Sliced Design"],
       },
       {
         title: "실시간 스트리밍 환경 메모리 누수 해결 및 이미지 처리 구조 개선",
@@ -88,12 +73,7 @@ export const projectsData: Project[] = [
           "Chrome DevTools를 활용한 메모리 프로파일링으로 누수 원인 분석",
           "이미지 사용 종료 직후 URL.revokeObjectURL() 호출로 즉시 메모리 해제",
         ],
-        technologies: [
-          "WebSocket",
-          "Blob API",
-          "URL.revokeObjectURL",
-          "Chrome DevTools Memory Profiler",
-        ],
+        technologies: ["WebSocket", "Chrome DevTools Memory Profiler"],
         media: {
           url: "/memory-profiling.png",
           alt: "Chrome DevTools Memory 탭 분석 결과",
@@ -226,18 +206,18 @@ export const projectsData: Project[] = [
     },
     structuralContributions: [
       {
-        title: "신사업 MVP 2-3주 출시를 위한 UI 설계 및 구현 전담",
+        title: "신사업 MVP UI 설계·구현 전담 (2–3주 내 고객사 시연 성공)",
         summary:
           "와이어프레임 기반으로 타팀 디자인을 참고해 UX 일관성을 유지하며 UI를 직접 설계하고 구현하여 고객사 시연에 성공했습니다.",
         primaryCategory: "사용자 경험 개선",
         problemDescription: [
-          "신사업으로 시작된 프로젝트로 2명의 개발자가 2-3주 내 MVP를 개발해야 하는 상황",
-          "PM으로부터 간단한 와이어프레임만 전달받아 UI를 직접 구현해야 했음",
-          "기존 세이지 제품들과 UX 일관성을 유지해야 하는 요구사항 존재",
+          "신사업으로 빠르게 MVP를 만들어야 했으며, 디자이너 없이 UI/UX를 구성해야 하는 상황",
+          "기존 SAIGE 라인업과 UX·인터랙션의 일관성을 맞춰야 하는 요구사항 존재",
+          "고객사 데모가 확정된 상태라 2–3주 내 완성이 필수",
         ],
         solutionDescription: [
-          "타팀(VISION)의 디자인 시스템과 UI 패턴을 참고하여 UX 일관성 확보",
-          "와이어프레임을 기반으로 사용자 흐름을 고려한 UI 직접 설계 및 구현",
+          "타팀 디자인 시스템을 분석하여 아키텍처·인터랙션 패턴을 차용, 신규 프로젝트에 맞게 재해석",
+          "PM의 간단한 와이어프레임을 기반으로 UI 구성·컴포넌트 구조를 직접 설계",
           "2명이서 역할 분담을 명확히 하고 집중 개발하여 일정 내 완료",
         ],
         technologies: [
@@ -264,13 +244,7 @@ export const projectsData: Project[] = [
           "ResizeObserver를 활용해 화면 크기 변경 감지 및 실시간 좌표 재계산",
           "이벤트 타입별(화재: 빨강, 연기: 주황, 안전모 미착용: 노랑) 색상 구분 적용",
         ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "Konva.js",
-          "ResizeObserver",
-          "Canvas API",
-        ],
+        technologies: ["Konva.js", "ResizeObserver", "Canvas API"],
       },
       {
         title:
@@ -290,13 +264,7 @@ export const projectsData: Project[] = [
           "Error Boundary를 정의하고 적절한 scope에서 에러를 catch하여 toast 피드백 제공",
           "사용자 액션에 따른 banner 표시로 상태 변경 알림 체계 구축",
         ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "react-hook-form",
-          "zod",
-          "Error Boundary",
-        ],
+        technologies: ["Error Boundary", "react-hook-form", "zod"],
       },
     ],
     role: "프론트엔드 개발",

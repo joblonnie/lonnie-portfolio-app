@@ -4,33 +4,28 @@ export const skillsData = [
     items: ["JavaScript", "TypeScript", "HTML5", "CSS3"],
   },
   {
-    category: "UI Framework & Library",
-    items: [
-      "React",
-      "MUI",
-      "Ant Design",
-      "Styled Components",
-      "Emotion",
-      "Echarts",
-      "Konva",
-      "Saige Elements Design System",
-      "React Hook Form",
-    ],
+    category: "Frameworks & UI",
+    items: ["React", "MUI", "Ant Design", "Emotion", "Echarts", "Konva"],
   },
   {
-    category: "State Management",
-    items: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "Context API", "MobX"],
+    category: "State & Server State",
+    items: ["Zustand", "TanStack Query", "Redux", "Redux Toolkit", "MobX"],
   },
   {
-    category: "Architecture",
-    items: ["Nx Monorepo", "Feature-Sliced Design", "Atomic Design"],
+    category: "Build & Development Tools",
+    items: ["Nx Monorepo", "Webpack", "Vite", "Babel", "ESLint", "Prettier"],
   },
   {
-    category: "Dev Tools",
-    items: ["Webpack", "Vite", "Babel", "ESLint", "Prettier"],
+    category: "Form & Validation",
+    items: ["React Hook Form", "Zod"],
   },
   {
-    category: "Collaboration",
+    category: "Internationalization",
+    items: ["react-i18next", "Tolgee"],
+  },
+
+  {
+    category: "Collaboration & Workflow",
     items: ["Storybook", "Figma", "Notion", "Jira", "Swagger", "Teams"],
   },
-]
+];
