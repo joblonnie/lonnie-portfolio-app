@@ -65,18 +65,7 @@ export interface Article {
   thumbnail?: string;
 }
 
-export interface CodeSnippet {
-  title: string;
-  language: string;
-  code: string;
-  description: string;
-}
-
-export interface TeamChange {
-  period: string;
-  change: string;
-  reason: string;
-}
+// Removed unused CodeSnippet and TeamChange types to simplify Project structure
 
 export interface Contribution {
   category: string;
@@ -100,21 +89,16 @@ export interface Solution {
   reflection?: string;
 }
 
-export interface Media {
-  url: string;
-  alt: string;
-  caption?: string;
-}
-
 export interface StructuralContribution {
   title: string;
   summary: string;
   problemDescription: string[];
   solutionDescription: string[];
+  businessImpact?: string[];
   reflection?: string[];
   technologies: string[];
-  media?: Media;
-  primaryCategory?: "사용자 경험 개선" | "성능 최적화" | "개발 생산성 향상";
+  // Allow flexible categorization beyond three fixed values
+  primaryCategory?: string;
 }
 
 export interface Retrospective {
@@ -128,14 +112,8 @@ export interface Project {
   title: string;
   subtitle?: string;
   image?: string;
-  representativeImage?: string;
   background: string;
   projectReflection?: string;
-  detailedDescription?: {
-    overview?: string;
-    role?: string;
-    results: string[];
-  };
   structuralContributions?: StructuralContribution[];
   period: string;
   role: string;
@@ -144,13 +122,8 @@ export interface Project {
   qaDevelopers?: number;
   productDesigners?: number;
   aiResearchers?: number | string;
-  keywords: string[];
   technologies: string[];
-  codeSnippets?: CodeSnippet[];
   contributions?: Contribution[];
-  coreStack: string[];
-  stateManagement: string[];
-  teamChanges: TeamChange[];
   retrospective?: Retrospective;
 }
 

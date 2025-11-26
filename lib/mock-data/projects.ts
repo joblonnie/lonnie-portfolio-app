@@ -11,15 +11,6 @@ export const projectsData: Project[] = [
       "산업용 AI 기반 영상 검사·모니터링 시스템을 통합 관리하는 웹 플랫폼입니다. NX Monorepo 기반으로 5개 고객사 앱을 운영하며, 실시간 모니터링부터 리포트, 알림, 설정 관리까지 전반적인 기능을 제공합니다.",
     projectReflection:
       "초기 설계부터 개발을 주도하며 모노레포 아키텍처, FSD 구조 도입, 실시간 성능 최적화 등 프론트엔드 전반의 기술적 의사결정을 경험했습니다. 특히 고객사별 요구사항과 VOC를 반영하면서 사용자 중심 개발의 중요성을 깊이 이해하게 되었고, 기술적 해결과 UX 개선을 균형 있게 달성하는 방법을 체득했습니다.",
-    detailedDescription: {
-      results: [
-        "NX Monorepo 기반 5개 고객사 앱 통합 관리 환경 구축",
-        "Feature-Sliced Design 기반 도메인 중심 아키텍처로 재구조화",
-        "WebSocket 기반 이미지 스트리밍 메모리 누수 분석 및 최적화",
-        "커서 기반 무한 스크롤 + 가상 스크롤을 통한 대용량 알람 데이터 처리",
-        "모니터링, 리포트, 카메라/그룹/알림/기관 관리 등 핵심 페이지 전담 개발",
-      ],
-    },
     structuralContributions: [
       {
         title:
@@ -74,11 +65,6 @@ export const projectsData: Project[] = [
           "이미지 사용 종료 시 URL.revokeObjectURL() 즉시 호출로 메모리 잔존 제거와 장시간 사용 안정성 확보",
         ],
         technologies: ["WebSocket", "Chrome DevTools Memory Profiler"],
-        media: {
-          url: "/memory-profiling.png",
-          alt: "Chrome DevTools Memory 탭 분석 결과",
-          caption: "Heap Snapshot을 통한 메모리 누수 분석",
-        },
       },
       {
         title:
@@ -151,31 +137,19 @@ export const projectsData: Project[] = [
     qaDevelopers: 2,
     productDesigners: 1,
     aiResearchers: 5,
-    keywords: [
-      "NX Monorepo",
-      "Feature-Sliced Design",
-      "실시간 데이터 처리",
-      "성능 최적화",
-    ],
     technologies: [
       "React",
       "TypeScript",
       "NX",
       "Zustand",
       "TanStack Query",
-      "ECharts",
       "WebSocket",
-      "Vite",
     ],
-    codeSnippets: [],
     contributions: [
       { category: "사용자 경험 개선", percentage: 90, color: "#9CCC65" },
       { category: "성능 최적화", percentage: 85, color: "#FF7043" },
       { category: "개발 생산성 향상", percentage: 80, color: "#42A5F5" },
     ],
-    coreStack: ["React", "TypeScript", "NX Monorepo", "ECharts", "WebSocket"],
-    stateManagement: ["Zustand", "TanStack Query"],
-    teamChanges: [],
   },
   {
     projectId: 2,
@@ -188,17 +162,6 @@ export const projectsData: Project[] = [
       "작업자 안전모 미착용, 위험 구역 침입, 화재/연기 감지 등 산업 현장의 안전 이벤트를 AI로 실시간 감지하고 알림을 제공하는 시스템입니다. 신사업 MVP 개발부터 GS 인증 1등급 취득까지 전체 프론트엔드 개발을 담당했습니다.",
     projectReflection:
       "촉박한 일정 속에서 적절한 기술 스택 선택이 프로젝트 성공에 결정적임을 체감했고, MVP에서 GS 인증까지 장기 프로젝트를 주도하며 제품의 성장 과정 전체를 경험했습니다. 안전과 직결되는 기능을 개발하면서 책임감 있는 개발의 중요성을 깊이 이해하게 되었습니다.",
-    detailedDescription: {
-      overview:
-        "작업자 안전모 미착용, 위험 구역 침입, 화재/연기 감지 등 산업 현장의 안전 이벤트를 AI로 실시간 감지하고 즉각적인 알림을 제공하는 시스템입니다.",
-      role: "2-3주 내 MVP 개발부터 GS 인증 1등급 취득까지 전체 프론트엔드 개발을 담당했습니다.",
-      results: [
-        "2-3주 내 MVP 개발 완료 및 고객사 시연 성공",
-        "X-view-model(MVVM) 적용으로 러닝 커브 최소화",
-        "GS 인증 1등급 취득 기여",
-        "중대/일반 알림 분류로 현장 대응 효율성 향상",
-      ],
-    },
     structuralContributions: [
       {
         title: "신사업 MVP UI 설계·구현 전담 (2–3주 내 고객사 시연 성공)",
@@ -215,12 +178,7 @@ export const projectsData: Project[] = [
           "PM 제공 와이어프레임을 기반으로 UI 흐름·컴포넌트 구조를 직접 설계해 기획 공백 최소화",
           "2인 개발 체계에서 역할을 명확히 분리해 개발 속도 확보 및 데모 일정 내 안정적인 MVP 완성",
         ],
-        technologies: [
-          "React",
-          "TypeScript",
-          "X-view-model (MVVM)",
-          "Material UI",
-        ],
+        technologies: ["X-view-model (MVVM)", "Material UI"],
       },
       {
         title:
@@ -268,31 +226,12 @@ export const projectsData: Project[] = [
     qaDevelopers: 1,
     productDesigners: 1,
     aiResearchers: 3,
-    keywords: [
-      "신규 제품 개발",
-      "MVP 출시",
-      "GS 인증 1등급",
-      "에러 처리 체계",
-      "사용자 VOC 반영",
-    ],
-    technologies: [
-      "React",
-      "TypeScript",
-      "X-view-model",
-      "WebSocket",
-      "Konva.js",
-      "Webpack",
-      "ResizeObserver",
-    ],
-    codeSnippets: [],
+    technologies: ["React", "TypeScript", "X-view-model (MVVM)", "WebSocket"],
     contributions: [
       { category: "사용자 경험 개선", percentage: 85, color: "#9CCC65" },
       { category: "성능 최적화", percentage: 75, color: "#FF7043" },
       { category: "개발 생산성 향상", percentage: 70, color: "#42A5F5" },
     ],
-    coreStack: ["React", "TypeScript", "Material UI", "WebSocket"],
-    stateManagement: ["X-view-model"],
-    teamChanges: [],
   },
   {
     projectId: 3,
@@ -304,14 +243,6 @@ export const projectsData: Project[] = [
       "생산 라인의 Vision 검사 결과 및 리소스 상태를 실시간으로 시각화하는 대시보드 웹 애플리케이션입니다.",
     projectReflection:
       "재사용 가능한 차트 컴포넌트를 설계하면서 추상화 레벨의 균형점을 찾는 것이 중요함을 배웠고, React의 렌더링 최적화 기법을 실전에서 적용하며 성능 개선의 중요성을 체감했습니다.",
-    detailedDescription: {
-      results: [
-        "ECharts 기반 BaseChart 컴포넌트 모듈화로 라인/파이/게이지 차트 재사용 가능",
-        "Legend 컴포넌트 분리 설계로 디자이너 요구사항 반영 속도 향상",
-        "CPU/GPU/메모리/네트워크별 독립 커스텀 훅 설계로 관심사 분리",
-        "리소스별 데이터 구독 최적화로 필요 컴포넌트만 리렌더링",
-      ],
-    },
     structuralContributions: [
       {
         title: "여러 페이지의 차트 중복 코드를 BaseChart 컴포넌트로 모듈화",
@@ -356,22 +287,12 @@ export const projectsData: Project[] = [
     frontendDevelopers: 4,
     backendDevelopers: 2,
     productDesigners: 1,
-    keywords: [
-      "실시간 모니터링",
-      "ECharts 시각화",
-      "BaseChart 컴포넌트",
-      "리소스별 데이터 구독",
-    ],
     technologies: ["React", "TypeScript", "TanStack Query", "ECharts"],
-    codeSnippets: [],
     contributions: [
       { category: "사용자 경험 개선", percentage: 75, color: "#9CCC65" },
       { category: "성능 최적화", percentage: 85, color: "#FF7043" },
       { category: "개발 생산성 향상", percentage: 90, color: "#42A5F5" },
     ],
-    coreStack: ["React", "TypeScript", "ECharts"],
-    stateManagement: ["Recoil", "TanStack Query"],
-    teamChanges: [],
   },
   {
     projectId: 6,
@@ -383,14 +304,6 @@ export const projectsData: Project[] = [
       "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 구축한 React 기반 디자인 시스템입니다.",
     projectReflection:
       "디자인 시스템은 단순히 컴포넌트를 만드는 것이 아니라, 팀 전체의 개발 문화와 협업 방식을 개선하는 것임을 배웠습니다. 디자이너와 개발자가 같은 언어로 소통할 수 있게 하는 것이 핵심이며, 장기적인 관점에서 팀의 생산성을 높이는 인프라 구축의 중요성을 이해했습니다.",
-    detailedDescription: {
-      results: [
-        "Button/Switch/Banner 등 기본 컴포넌트 라이브러리 구축",
-        "Primitive 토큰 기반 Theme 토큰 매핑 시스템으로 개발 환경 활용성 향상",
-        "Storybook + Chromatic 기반 문서화 및 QA 프로세스 구축",
-        "사내 3개 제품 점진적 도입으로 UI 일관성 향상",
-      ],
-    },
     structuralContributions: [
       {
         title: "사내 디자인 시스템 기여 및 문서화·리뷰 체계 정비",
@@ -429,30 +342,12 @@ export const projectsData: Project[] = [
     period: "2023.05 - 진행 중",
     role: "디자인 시스템 컨트리뷰터",
     frontendDevelopers: 7,
-    keywords: [
-      "디자인 시스템",
-      "컴포넌트 라이브러리",
-      "Storybook",
-      "Chromatic",
-      "UI 일관성",
-    ],
-    technologies: [
-      "React",
-      "TypeScript",
-      "Storybook",
-      "Chromatic",
-      "MUI",
-      "Rollup",
-    ],
-    codeSnippets: [],
+    technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MUI"],
     contributions: [
       { category: "사용자 경험 개선", percentage: 70, color: "#9CCC65" },
       { category: "성능 최적화", percentage: 65, color: "#FF7043" },
       { category: "개발 생산성 향상", percentage: 90, color: "#42A5F5" },
     ],
-    coreStack: ["React", "TypeScript", "MUI", "Storybook", "Chromatic"],
-    stateManagement: [],
-    teamChanges: [],
   },
   {
     projectId: 4,
@@ -465,14 +360,6 @@ export const projectsData: Project[] = [
       "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템입니다.",
     projectReflection:
       "비개발자 사용자를 위한 직관적인 UI를 설계하면서 사용자 중심 사고의 중요성을 깊이 이해했고, 단독 개발이지만 확장 가능한 아키텍처를 설계하는 것의 중요성을 배웠습니다. 초기에 시간을 들여 구조를 잘 설계하면 나중에 기능을 추가할 때 훨씬 효율적임을 체감했습니다.",
-    detailedDescription: {
-      results: [
-        "3단 UI 구조(문단/문장/평가 폼) 설계로 복잡한 평가 업무 단순화",
-        "평가 대상 문장 볼록 처리 + 키워드 색상 강조로 정보 인식 속도 개선",
-        "Redux Toolkit + Duck Pattern 기반 Feature 모듈화로 코드 응집도 향상",
-        "150,000건 윤리성 평가 데이터 수집 완료, 평가 정확도 및 일관성 확보",
-      ],
-    },
     structuralContributions: [
       {
         title: "복잡한 텍스트 윤리성 평가 업무를 3단 UI 구조로 단순화",
@@ -529,23 +416,12 @@ export const projectsData: Project[] = [
     role: "프론트엔드 개발 (단독)",
     frontendDevelopers: 1,
     backendDevelopers: 1,
-    keywords: [
-      "사용자 테스트 주도",
-      "대량 데이터 수집",
-      "3단 UI 구조",
-      "평가 시스템",
-      "단독 개발",
-    ],
-    technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
-    codeSnippets: [],
+    technologies: ["React", "JavaScript", "Redux", "Ant Design"],
     contributions: [
       { category: "사용자 경험 개선", percentage: 90, color: "#9CCC65" },
       { category: "성능 최적화", percentage: 70, color: "#FF7043" },
       { category: "개발 생산성 향상", percentage: 80, color: "#42A5F5" },
     ],
-    coreStack: ["React", "JavaScript", "Ant Design"],
-    stateManagement: ["Redux"],
-    teamChanges: [],
   },
   {
     projectId: 5,
@@ -557,14 +433,6 @@ export const projectsData: Project[] = [
       "400,000건 이상의 대용량 라벨링 데이터를 효율적으로 수집·운영하기 위한 웹 라벨링/검수 시스템입니다.",
     projectReflection:
       "사용자가 자연스럽게 느끼는 인터랙션을 구현하는 것이 얼마나 중요한지 배웠습니다. 드래그라는 익숙한 동작을 활용하여 복잡한 라벨링 작업을 단순화한 것이 사용자 만족도를 크게 향상시켰고, 대용량 데이터 처리에서 성능 최적화의 중요성을 체감했습니다.",
-    detailedDescription: {
-      results: [
-        "window.getSelection API 활용 드래그 라벨링으로 직관적 사용자 경험 제공",
-        "실시간 시각적 피드백 시스템으로 라벨링 정확도 향상",
-        "IntersectionObserver 기반 무한 스크롤로 400,000건 대용량 데이터 렌더링 문제 해결",
-        "메모리 사용량 최적화 및 렌더링 부하 분산으로 장시간 작업 연속성 보장",
-      ],
-    },
     structuralContributions: [
       {
         title: "복잡한 텍스트 라벨링 작업을 드래그 기반 시스템으로 단순화",
@@ -627,23 +495,12 @@ export const projectsData: Project[] = [
     role: "프론트엔드 개발 (단독)",
     frontendDevelopers: 1,
     backendDevelopers: 1,
-    keywords: [
-      "대용량 데이터 처리",
-      "드래그 라벨링",
-      "무한 스크롤",
-      "품질 관리",
-      "단독 개발",
-    ],
-    technologies: ["React", "JavaScript", "Redux", "Ant Design", "Webpack"],
-    codeSnippets: [],
+    technologies: ["React", "JavaScript", "Redux", "Ant Design"],
     contributions: [
       { category: "사용자 경험 개선", percentage: 90, color: "#9CCC65" },
       { category: "성능 최적화", percentage: 85, color: "#FF7043" },
       { category: "개발 생산성 향상", percentage: 75, color: "#42A5F5" },
     ],
-    coreStack: ["React", "JavaScript", "Ant Design"],
-    stateManagement: ["Redux"],
-    teamChanges: [],
   },
 ];
 

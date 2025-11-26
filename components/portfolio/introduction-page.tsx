@@ -204,16 +204,14 @@ export function IntroductionPage() {
   };
 
   const getPrimaryCategoryColor = (category?: string) => {
-    switch (category) {
-      case "사용자 경험 개선":
-        return "bg-purple-100 text-purple-700 border-purple-200";
-      case "성능 최적화":
-        return "bg-green-100 text-green-700 border-green-200";
-      case "개발 생산성 향상":
-        return "bg-blue-100 text-blue-700 border-blue-200";
-      default:
-        return "bg-gray-100 text-gray-700 border-gray-200";
-    }
+    if (!category) return "bg-gray-100 text-gray-700 border-gray-200";
+    if (category.includes("사용자"))
+      return "bg-blue-100 text-blue-700 border-blue-200";
+    if (category.includes("성능"))
+      return "bg-green-100 text-green-700 border-green-200";
+    if (category.includes("생산"))
+      return "bg-purple-100 text-purple-700 border-purple-200";
+    return "bg-gray-100 text-gray-700 border-gray-200";
   };
 
   const currentProjectIndex = selectedProjectId
@@ -569,9 +567,26 @@ export function IntroductionPage() {
                       </div>
 
                       {selectedProject.background && (
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          {selectedProject.background}
-                        </p>
+                        <div className="space-y-2">
+                          <p className="text-sm text-gray-600 leading-relaxed">
+                            {selectedProject.background}
+                          </p>
+                          {selectedProject.technologies &&
+                            selectedProject.technologies.length > 0 && (
+                              <div className="flex flex-wrap items-center gap-1 pt-1">
+                                {selectedProject.technologies.map(
+                                  (tech, tIdx) => (
+                                    <span
+                                      key={tIdx}
+                                      className="text-xs px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded"
+                                    >
+                                      {tech}
+                                    </span>
+                                  )
+                                )}
+                              </div>
+                            )}
+                        </div>
                       )}
                     </div>
 
@@ -591,15 +606,9 @@ export function IntroductionPage() {
                                 {contribution.title}
                               </h5>
                               <span
-                                className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${
-                                  contribution.primaryCategory ===
-                                  "사용자 경험 개선"
-                                    ? "bg-blue-100 text-blue-700"
-                                    : contribution.primaryCategory ===
-                                      "성능 최적화"
-                                    ? "bg-green-100 text-green-700"
-                                    : "bg-purple-100 text-purple-700"
-                                }`}
+                                className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${getPrimaryCategoryColor(
+                                  contribution.primaryCategory
+                                )}`}
                               >
                                 {contribution.primaryCategory}
                               </span>
