@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +17,8 @@ import {
   Target,
   Rocket,
   ArrowUp,
+  ArrowLeft,
+  ArrowRight,
 } from "lucide-react";
 import { mockPortfolioData } from "@/lib/mock-data";
 import type { Project, StructuralContribution } from "@/lib/types";
@@ -37,13 +39,11 @@ export function IntroductionPage() {
     null
   );
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [isEditMode, setIsEditMode] = useState(false);
   const [editedProject, setEditedProject] = useState<Project | null>(null);
-  const [animatedContributions, setAnimatedContributions] = useState<{
-    [key: string]: number;
-  }>({});
+
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [showSectionNav, setShowSectionNav] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("profile");
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   const scrollToId = (id: string) => {
     const el = document.getElementById(id);
@@ -53,6 +53,94 @@ export function IntroductionPage() {
   const selectedProject = selectedProjectId
     ? editedProject || projects.find((p) => p.projectId === selectedProjectId)
     : null;
+
+  // 총 경력(동적) 계산: 각 회사 period를 기준으로 합산
+  const totalExperience = useMemo(() => {
+    try {
+      let months = 0;
+      companies.forEach((c: any) => {
+        if (c?.period && typeof c.period === "string") {
+          const [start, end] = c.period
+            .split(" - ")
+            .map((s: string) => s.trim());
+          const [sy, sm] = (start || "")
+            .split(".")
+            .map((n: string) => parseInt(n));
+          let ey: number, em: number;
+          if (end === "재직 중") {
+            const now = new Date();
+            ey = now.getFullYear();
+            em = now.getMonth() + 1;
+          } else {
+            const [eyRaw, emRaw] = (end || "").split(".");
+            ey = parseInt(eyRaw);
+            em = parseInt(emRaw);
+          }
+          if (
+            !Number.isNaN(sy) &&
+            !Number.isNaN(sm) &&
+            !Number.isNaN(ey) &&
+            !Number.isNaN(em)
+          ) {
+            months += (ey - sy) * 12 + (em - sm) + 1;
+          }
+        }
+      });
+      const years = Math.floor(months / 12);
+      const remain = months % 12;
+      const label = `${years > 0 ? `${years}년` : ""}${
+        remain > 0 ? ` ${remain}개월` : years === 0 ? ` ${remain}개월` : ""
+      }`.trim();
+      return { years, months, label };
+    } catch {
+      return { years: 0, months: 0, label: "" };
+    }
+  }, [companies]);
+
+  // 회사별 재직 기간(동적) 계산
+  const companyDurations = useMemo(() => {
+    const map: {
+      [id: string]: { years: number; months: number; label: string };
+    } = {};
+    companies.forEach((c: any) => {
+      if (c?.id && c?.period && typeof c.period === "string") {
+        const [start, end] = c.period.split(" - ").map((s: string) => s.trim());
+        const [sy, sm] = (start || "")
+          .split(".")
+          .map((n: string) => parseInt(n));
+        let ey: number, em: number;
+        if (end === "재직 중") {
+          const now = new Date();
+          ey = now.getFullYear();
+          em = now.getMonth() + 1;
+        } else {
+          const [eyRaw, emRaw] = (end || "").split(".");
+          ey = parseInt(eyRaw);
+          em = parseInt(emRaw);
+        }
+        if (
+          !Number.isNaN(sy) &&
+          !Number.isNaN(sm) &&
+          !Number.isNaN(ey) &&
+          !Number.isNaN(em)
+        ) {
+          const months = (ey - sy) * 12 + (em - sm) + 1;
+          const years = Math.floor(months / 12);
+          const remain = months % 12;
+          const label = `${years > 0 ? `${years}년` : ""}${
+            remain > 0 ? ` ${remain}개월` : years === 0 ? ` ${remain}개월` : ""
+          }`.trim();
+          map[c.id] = { years, months, label };
+        }
+      }
+    });
+    return map;
+  }, [companies]);
+
+  // 총 경력 기준 n년차 계산 (ex. 4년 8개월 => 5년차)
+  const nthYear = useMemo(() => {
+    return totalExperience.months > 0 ? totalExperience.years + 1 : 0;
+  }, [totalExperience]);
 
   useEffect(() => {
     if (!selectedProjectId && companies.length > 0) {
@@ -64,6 +152,43 @@ export function IntroductionPage() {
       }
     }
   }, []);
+
+  // Observe sections to highlight current item in right-side nav
+  useEffect(() => {
+    const ids = [
+      "profile",
+      "philosophy",
+      "skills",
+      "projects",
+      "education",
+      "articles",
+      "goals",
+    ];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length === 0) return;
+        const mostVisible = visible.reduce((a, b) =>
+          a.intersectionRatio >= b.intersectionRatio ? a : b
+        );
+        const rawId = (mostVisible.target as HTMLElement).id;
+        const id = rawId === "philosophy" ? "profile" : rawId;
+        if (id) setActiveSection(id);
+      },
+      { root: null, rootMargin: "0px 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const getNavBtnClass = (id: string) =>
+    `px-3 py-1.5 rounded-full border text-xs shadow-sm transition-colors ` +
+    (activeSection === id
+      ? `bg-orange-100 text-orange-700 border-orange-300`
+      : `bg-white/90 text-gray-700 border-gray-200 hover:bg-gray-100`);
 
   useEffect(() => {
     if (selectedProjectId) {
@@ -86,25 +211,43 @@ export function IntroductionPage() {
       const y = window.scrollY || document.documentElement.scrollTop;
       setShowScrollTop(y > 400);
       setShowSectionNav(y > 200);
+
+      // Determine active section by marker line approach
+      const ids = [
+        "profile",
+        "philosophy",
+        "skills",
+        "projects",
+        "education",
+        "articles",
+        "goals",
+      ];
+      const marker = Math.round(window.innerHeight * 0.3); // 30% from top
+      let nextActive = activeSection;
+      let matched = false;
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= marker && rect.bottom >= marker) {
+          nextActive = id === "philosophy" ? "profile" : id;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        if (y < 120) nextActive = "profile";
+        const bottomReached =
+          Math.ceil(window.innerHeight + y) >=
+          Math.floor(document.documentElement.scrollHeight - 2);
+        if (bottomReached) nextActive = "goals";
+      }
+      if (nextActive !== activeSection) setActiveSection(nextActive);
     };
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    if (selectedProject?.contributions) {
-      setAnimatedContributions({});
-      selectedProject.contributions.forEach((contribution, index) => {
-        setTimeout(() => {
-          setAnimatedContributions((prev) => ({
-            ...prev,
-            [contribution.category]: contribution.percentage,
-          }));
-        }, index * 200 + 500);
-      });
-    }
-  }, [selectedProject]);
+  }, [activeSection]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -128,98 +271,10 @@ export function IntroductionPage() {
     if (selectedProjectId === projectId) {
       setSelectedProjectId(null);
       setExpandedIndex(null);
-      setIsEditMode(false);
     } else {
       setSelectedProjectId(projectId);
       setExpandedIndex(null);
-      setIsEditMode(false);
     }
-  };
-
-  const handleEditMode = () => setIsEditMode(true);
-
-  const handleSave = () => {
-    if (editedProject && selectedProjectId) {
-      localStorage.setItem(
-        `project_${selectedProjectId}`,
-        JSON.stringify(editedProject)
-      );
-      setIsEditMode(false);
-    }
-  };
-
-  const handleCancel = () => {
-    const original = projects.find((p) => p.projectId === selectedProjectId);
-    if (original) setEditedProject({ ...original });
-    setIsEditMode(false);
-  };
-
-  const updateProjectField = (field: keyof Project, value: any) => {
-    if (!editedProject) return;
-    setEditedProject({ ...editedProject, [field]: value });
-  };
-
-  const updateContribution = (
-    index: number,
-    field: keyof StructuralContribution,
-    value: any
-  ) => {
-    if (!editedProject?.structuralContributions) return;
-    const updated = { ...editedProject };
-    updated.structuralContributions = [...updated.structuralContributions];
-    updated.structuralContributions[index] = {
-      ...updated.structuralContributions[index],
-      [field]: value,
-    };
-    setEditedProject(updated);
-  };
-
-  const updateContributionArray = (
-    index: number,
-    field: "problemDescription" | "solutionDescription" | "reflection",
-    itemIndex: number,
-    value: string
-  ) => {
-    if (!editedProject?.structuralContributions) return;
-    const updated = { ...editedProject };
-    updated.structuralContributions = [...updated.structuralContributions];
-    const contribution = { ...updated.structuralContributions[index] };
-    const array = [...(contribution[field] as string[])];
-    array[itemIndex] = value;
-    contribution[field] = array;
-    updated.structuralContributions[index] = contribution;
-    setEditedProject(updated);
-  };
-
-  const addItemToArray = (
-    index: number,
-    field: "problemDescription" | "solutionDescription" | "reflection"
-  ) => {
-    if (!editedProject?.structuralContributions) return;
-    const updated = { ...editedProject };
-    updated.structuralContributions = [...updated.structuralContributions];
-    const contribution = { ...updated.structuralContributions[index] };
-    const array = [...(contribution[field] as string[])];
-    array.push("");
-    contribution[field] = array;
-    updated.structuralContributions[index] = contribution;
-    setEditedProject(updated);
-  };
-
-  const removeItemFromArray = (
-    index: number,
-    field: "problemDescription" | "solutionDescription" | "reflection",
-    itemIndex: number
-  ) => {
-    if (!editedProject?.structuralContributions) return;
-    const updated = { ...editedProject };
-    updated.structuralContributions = [...updated.structuralContributions];
-    const contribution = { ...updated.structuralContributions[index] };
-    const array = [...(contribution[field] as string[])];
-    array.splice(itemIndex, 1);
-    contribution[field] = array;
-    updated.structuralContributions[index] = contribution;
-    setEditedProject(updated);
   };
 
   const getPrimaryCategoryColor = (category?: string) => {
@@ -242,120 +297,89 @@ export function IntroductionPage() {
 
     if (isUX) return "bg-blue-100 text-blue-700 border-blue-200";
     if (isPerf) return "bg-green-100 text-green-700 border-green-200";
-    if (isProductivity) return "bg-purple-100 text-purple-700 border-purple-200";
+    if (isProductivity)
+      return "bg-purple-100 text-purple-700 border-purple-200";
     return "bg-gray-100 text-gray-700 border-gray-200";
-  };
-
-  const currentProjectIndex = selectedProjectId
-    ? projects.findIndex((p) => p.projectId === selectedProjectId)
-    : -1;
-  const prevProject =
-    currentProjectIndex > 0 ? projects[currentProjectIndex - 1] : null;
-  const nextProject =
-    currentProjectIndex < projects.length - 1
-      ? projects[currentProjectIndex + 1]
-      : null;
-
-  const handleSaveProject = () => {
-    if (editedProject && selectedProjectId) {
-      localStorage.setItem(
-        `project_${selectedProjectId}`,
-        JSON.stringify(editedProject)
-      );
-      setIsEditMode(false);
-    }
   };
 
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-6xl mx-auto p-4 md:p-8 space-y-16">
         {/* 개인 정보 섹션 */}
-        <motion.section
+        <motion.section id="profile"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="relative mb-12"
         >
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-            <div className="flex items-start gap-6">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-lg flex-shrink-0">
-                <img
-                  src="/profile.png"
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                  {personalInfo.name}
-                </h1>
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-lg">
+              <img
+                src="/profile.png"
+                alt={personalInfo.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+              {personalInfo.name}
+            </h1>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <a
-                    href={`mailto:${personalInfo.email}`}
-                    className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
-                  >
-                    <Mail className="w-5 h-5 text-gray-500" />
-                    <div>
-                      <p className="font-medium text-gray-900 text-sm">
-                        이메일
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        {personalInfo.email}
-                      </p>
-                    </div>
-                  </a>
-                  {personalInfo.github && (
-                    <a
-                      href={personalInfo.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
-                    >
-                      <Github className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium text-gray-900 text-sm">
-                          GitHub
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          github.com/joblonnie
-                        </p>
-                      </div>
-                    </a>
-                  )}
-                  {personalInfo.linkedin && (
-                    <a
-                      href={personalInfo.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
-                    >
-                      <Linkedin className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium text-gray-900 text-sm">
-                          LinkedIn
-                        </p>
-                        <p className="text-xs text-gray-500">프로필 보기</p>
-                      </div>
-                    </a>
-                  )}
-                  {personalInfo.tistory && (
-                    <a
-                      href={personalInfo.tistory}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
-                    >
-                      <PlayCircle className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium text-gray-900 text-sm">
-                          Tistory
-                        </p>
-                        <p className="text-xs text-gray-500">개발 블로그</p>
-                      </div>
-                    </a>
-                  )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-4xl mt-2">
+              <a
+                href={`mailto:${personalInfo.email}`}
+                className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
+              >
+                <Mail className="w-5 h-5 text-gray-500" />
+                <div>
+                  <p className="font-medium text-gray-900 text-sm">이메일</p>
+                  <p className="text-xs text-gray-500">{personalInfo.email}</p>
                 </div>
-              </div>
+              </a>
+              {personalInfo.github && (
+                <a
+                  href={personalInfo.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
+                >
+                  <Github className="w-5 h-5 text-gray-500" />
+                  <div>
+                    <p className="font-medium text-gray-900 text-sm">GitHub</p>
+                    <p className="text-xs text-gray-500">
+                      github.com/joblonnie
+                    </p>
+                  </div>
+                </a>
+              )}
+              {personalInfo.linkedin && (
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
+                >
+                  <Linkedin className="w-5 h-5 text-gray-500" />
+                  <div>
+                    <p className="font-medium text-gray-900 text-sm">
+                      LinkedIn
+                    </p>
+                    <p className="text-xs text-gray-500">프로필 보기</p>
+                  </div>
+                </a>
+              )}
+              {personalInfo.tistory && (
+                <a
+                  href={personalInfo.tistory}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors border border-gray-200"
+                >
+                  <PlayCircle className="w-5 h-5 text-gray-500" />
+                  <div>
+                    <p className="font-medium text-gray-900 text-sm">Tistory</p>
+                    <p className="text-xs text-gray-500">개발 블로그</p>
+                  </div>
+                </a>
+              )}
             </div>
           </div>
 
@@ -377,7 +401,7 @@ export function IntroductionPage() {
                   </div>
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-4">
-                  "사용자 중심의 품질과 성능을 추구합니다"
+                  사용자 중심의 품질과 성능을 추구합니다
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   사용자가 없으면 제품은 없다고 생각합니다. 사용자 경험을
@@ -394,7 +418,7 @@ export function IntroductionPage() {
                   </div>
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-4">
-                  "협업과 팀워크는 개발의 기반입니다"
+                  협업과 팀워크는 개발의 기반입니다
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   디자이너, 기획자, 백엔드 개발자와의 긴밀한 커뮤니케이션을 통해
@@ -409,7 +433,8 @@ export function IntroductionPage() {
         </motion.section>
 
         {/* 기술 스택 섹션 */}
-        <motion.section id="skills"
+        <motion.section
+          id="skills"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -449,10 +474,36 @@ export function IntroductionPage() {
               <p className="text-gray-600 text-sm mt-1">
                 실무 경험과 주요 프로젝트를 소개합니다.
               </p>
+              {totalExperience.label && (
+                <div className="mt-2">
+                  <span className="inline-flex items-center gap-2 text-xs md:text-sm px-3 py-1.5 rounded-full border border-lime-200 bg-lime-50 text-lime-700">
+                    <Rocket className="w-4 h-4" />
+                    <span className="font-medium">총 경력</span>
+                    <span className="font-semibold">
+                      {totalExperience.label}
+                    </span>
+                    {nthYear > 0 && (
+                      <span className="text-lime-600">({nthYear}년차)</span>
+                    )}
+                  </span>
+                </div>
+              )}
+              <p
+                id="projects-keyboard-hint"
+                className="text-xs text-gray-500 mt-2 flex items-center justify-center gap-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                좌우 화살표 키로 프로젝트 이동
+                <ArrowRight className="w-4 h-4" />
+                <span className="sr-only">
+                  키보드로 프로젝트를 탐색하려면 왼쪽/오른쪽 화살표 키를 사용하세요.
+                </span>
+              </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
               {/* 좌측: 회사 및 프로젝트 목록 */}
+
               <div className="lg:col-span-2 space-y-6">
                 {companies.map((company) => {
                   const companyProjects = projects.filter(
@@ -477,7 +528,10 @@ export function IntroductionPage() {
                             {company.name}
                           </h3>
                           <p className="text-xs text-gray-500">
-                            {company.period}
+                            {company.period} (
+                            {companyDurations[company.id]?.label &&
+                              companyDurations[company.id].label}
+                            )
                           </p>
                         </div>
                       </div>
@@ -523,6 +577,11 @@ export function IntroductionPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
                     className="bg-white rounded-lg border border-gray-200 p-6 sticky top-4"
+                    role="region"
+                    aria-label="프로젝트 상세"
+                    aria-describedby="projects-keyboard-hint"
+                    aria-keyshortcuts="ArrowLeft ArrowRight"
+                    tabIndex={0}
                   >
                     {/* 프로젝트 헤더 */}
                     <div className="mb-6">
@@ -543,69 +602,67 @@ export function IntroductionPage() {
                               {selectedProject.subtitle}
                             </p>
                           )}
-                          <div className="flex flex-wrap gap-2 text-xs text-gray-500">
-                            <span>{selectedProject.period}</span>
-                            {selectedProject.role && (
-                              <>
-                                <span>•</span>
+                          <div className="flex-1 gap-4 text-xs text-gray-500">
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-500 mb-2">
+                              <span>{selectedProject.period}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-500">
+                              {selectedProject.role && (
                                 <span>{selectedProject.role}</span>
-                              </>
-                            )}
-                            {selectedProject.frontendDevelopers > 0 && (
-                              <>
-                                <span>•</span>
-                                <span>
-                                  FE {selectedProject.frontendDevelopers}명
-                                </span>
-                              </>
-                            )}
-                            {selectedProject.backendDevelopers &&
-                              selectedProject.backendDevelopers > 0 && (
+                              )}
+                              {selectedProject.frontendDevelopers > 0 && (
                                 <>
                                   <span>•</span>
                                   <span>
-                                    BE {selectedProject.backendDevelopers}명
+                                    FE {selectedProject.frontendDevelopers}명
                                   </span>
                                 </>
                               )}
-                            {selectedProject.qaDevelopers &&
-                              selectedProject.qaDevelopers > 0 && (
+                              {selectedProject.backendDevelopers &&
+                                selectedProject.backendDevelopers > 0 && (
+                                  <>
+                                    <span>•</span>
+                                    <span>
+                                      BE {selectedProject.backendDevelopers}명
+                                    </span>
+                                  </>
+                                )}
+                              {selectedProject.qaDevelopers &&
+                                selectedProject.qaDevelopers > 0 && (
+                                  <>
+                                    <span>•</span>
+                                    <span>
+                                      QA {selectedProject.qaDevelopers}명
+                                    </span>
+                                  </>
+                                )}
+                              {selectedProject.productDesigners &&
+                                selectedProject.productDesigners > 0 && (
+                                  <>
+                                    <span>•</span>
+                                    <span>
+                                      PD {selectedProject.productDesigners}명
+                                    </span>
+                                  </>
+                                )}
+                              {selectedProject.aiResearchers && (
                                 <>
                                   <span>•</span>
                                   <span>
-                                    QA {selectedProject.qaDevelopers}명
+                                    AI 연구원 {selectedProject.aiResearchers}명
                                   </span>
                                 </>
                               )}
-                            {selectedProject.productDesigners &&
-                              selectedProject.productDesigners > 0 && (
-                                <>
-                                  <span>•</span>
-                                  <span>
-                                    PD {selectedProject.productDesigners}명
-                                  </span>
-                                </>
-                              )}
-                            {selectedProject.aiResearchers && (
-                              <>
-                                <span>•</span>
-                                <span>
-                                  AI 연구원 {selectedProject.aiResearchers}명
-                                </span>
-                              </>
-                            )}
+                            </div>
                           </div>
                         </div>
                       </div>
 
                       {selectedProject.background && (
                         <div className="space-y-2">
-                          <p className="text-sm text-gray-600 leading-relaxed">
-                            {selectedProject.background}
-                          </p>
                           {selectedProject.technologies &&
                             selectedProject.technologies.length > 0 && (
-                              <div className="flex flex-wrap items-center gap-1 pt-1">
+                              <div className="flex flex-wrap items-center gap-1 pb-1">
                                 {selectedProject.technologies.map(
                                   (tech, tIdx) => (
                                     <span
@@ -618,6 +675,9 @@ export function IntroductionPage() {
                                 )}
                               </div>
                             )}
+                          <p className="text-sm text-gray-600 leading-relaxed">
+                            {selectedProject.background}
+                          </p>
                         </div>
                       )}
                     </div>
@@ -792,7 +852,8 @@ export function IntroductionPage() {
         </section>
 
         {/* 학력 · 자격 · 활동 섹션 */}
-        <motion.section id="education"
+        <motion.section
+          id="education"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -871,7 +932,8 @@ export function IntroductionPage() {
         </motion.section>
 
         {articles && articles.length > 0 && (
-          <motion.section id="articles"
+          <motion.section
+            id="articles"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
@@ -924,7 +986,8 @@ export function IntroductionPage() {
         )}
 
         {goals && goals.futureVision && goals.futureVision.length > 0 && (
-          <motion.section id="goals"
+          <motion.section
+            id="goals"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -969,7 +1032,7 @@ export function IntroductionPage() {
                 </CardContent>
               </Card>
             )}
-      </motion.section>
+          </motion.section>
         )}
 
         {/* 우측 섹션 네비게이션 (스크롤 시 표시) */}
@@ -979,60 +1042,72 @@ export function IntroductionPage() {
             className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-2"
           >
             <button
-              onClick={() => scrollToId("philosophy")}
-              title="업무 철학"
-              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+              onClick={() => scrollToId("profile")}
+              title="프로필 · 업무 철학"
+              className={getNavBtnClass("profile")}
             >
-              업무 철학
+              프로필
             </button>
+            {/* 업무 철학은 프로필 네비게이션에 포함 */}
             <button
               onClick={() => scrollToId("skills")}
               title="기술 스택"
-              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+              className={getNavBtnClass("skills")}
             >
               기술 스택
             </button>
             <button
               onClick={() => scrollToId("projects")}
-              title="경력 · 프로젝트"
-              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+              title="경력 및 프로젝트"
+              className={getNavBtnClass("projects")}
             >
-              경력 · 프로젝트
+              경력 및 프로젝트
             </button>
             <button
               onClick={() => scrollToId("education")}
               title="학력 · 자격 · 활동"
-              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+              className={getNavBtnClass("education")}
             >
               학력 · 자격 · 활동
             </button>
             <button
               onClick={() => scrollToId("articles")}
               title="아티클"
-              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+              className={getNavBtnClass("articles")}
             >
               아티클
             </button>
             <button
               onClick={() => scrollToId("goals")}
               title="목표 및 비전"
-              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+              className={getNavBtnClass("goals")}
             >
               목표 및 비전
             </button>
           </nav>
         )}
 
-        {/* 상단으로 이동 버튼 */}
+        {/* 상단으로 이동 버튼 (FAB) + 커스텀 툴팁 */}
         {showScrollTop && (
-          <button
-            onClick={scrollToTop}
-            title="상단으로 이동"
-            aria-label="상단으로 이동"
-            className="fixed bottom-6 right-6 h-11 w-11 rounded-full bg-lime-500 text-white shadow-lg hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-300 flex items-center justify-center"
-          >
-            <ArrowUp className="w-5 h-5" />
-          </button>
+          <div className="fixed bottom-6 right-6 z-50 group">
+            <button
+              onClick={scrollToTop}
+              title="상단으로 이동"
+              aria-label="상단으로 이동"
+              aria-describedby="tooltip-scrolltop"
+              className="h-11 w-11 rounded-full bg-lime-500 text-white shadow-lg hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-300 flex items-center justify-center"
+            >
+              <ArrowUp className="w-5 h-5" />
+            </button>
+            <div
+              id="tooltip-scrolltop"
+              role="tooltip"
+              className="pointer-events-none absolute -top-2 right-0 translate-y-[-100%] whitespace-nowrap rounded-md bg-gray-800/90 px-2 py-1 text-xs text-white opacity-0 shadow transition-opacity duration-150 group-hover:opacity-100"
+            >
+              상단으로 이동
+              <div className="absolute -bottom-1 right-3 h-2 w-2 rotate-45 bg-gray-800/90"></div>
+            </div>
+          </div>
         )}
       </div>
     </div>

@@ -3,7 +3,7 @@ export const companiesData = [
     id: "saige",
     name: "(주) 세이지",
     position: "프론트엔드 개발자",
-    period: "2022.06 - 현재",
+    period: "2022.06 - 재직 중",
     duration: "3년 3개월",
     achievementList: [
       "React 기반 AI 모니터링 시스템 및 안전 관리 솔루션 개발",
@@ -22,4 +22,4 @@ export const companiesData = [
       "사용자 테스트 기반 UI/UX 개선으로 작업 효율성 향상",
     ],
   },
-]
+];
