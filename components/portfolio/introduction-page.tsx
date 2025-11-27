@@ -205,12 +205,25 @@ export function IntroductionPage() {
 
   const getPrimaryCategoryColor = (category?: string) => {
     if (!category) return "bg-gray-100 text-gray-700 border-gray-200";
-    if (category.includes("사용자"))
-      return "bg-blue-100 text-blue-700 border-blue-200";
-    if (category.includes("성능"))
-      return "bg-green-100 text-green-700 border-green-200";
-    if (category.includes("생산"))
-      return "bg-purple-100 text-purple-700 border-purple-200";
+    const isUX = ["UX", "시각화", "플레이어", "검수"].some((k) =>
+      category.includes(k)
+    );
+    const isPerf = ["최적화", "성능", "무한 스크롤"].some((k) =>
+      category.includes(k)
+    );
+    const isProductivity = [
+      "아키텍처",
+      "모듈화",
+      "문서화",
+      "토큰",
+      "검증",
+      "대시보드",
+      "관리",
+    ].some((k) => category.includes(k));
+
+    if (isUX) return "bg-blue-100 text-blue-700 border-blue-200";
+    if (isPerf) return "bg-green-100 text-green-700 border-green-200";
+    if (isProductivity) return "bg-purple-100 text-purple-700 border-purple-200";
     return "bg-gray-100 text-gray-700 border-gray-200";
   };
 
