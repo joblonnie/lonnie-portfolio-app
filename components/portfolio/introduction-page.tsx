@@ -16,6 +16,7 @@ import {
   Users,
   Target,
   Rocket,
+  ArrowUp,
 } from "lucide-react";
 import { mockPortfolioData } from "@/lib/mock-data";
 import type { Project, StructuralContribution } from "@/lib/types";
@@ -41,6 +42,13 @@ export function IntroductionPage() {
   const [animatedContributions, setAnimatedContributions] = useState<{
     [key: string]: number;
   }>({});
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showSectionNav, setShowSectionNav] = useState(false);
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToId = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const selectedProject = selectedProjectId
     ? editedProject || projects.find((p) => p.projectId === selectedProjectId)
@@ -72,6 +80,17 @@ export function IntroductionPage() {
       }
     }
   }, [selectedProjectId]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      setShowScrollTop(y > 400);
+      setShowSectionNav(y > 200);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (selectedProject?.contributions) {
@@ -341,7 +360,7 @@ export function IntroductionPage() {
           </div>
 
           {/* 업무 철학 섹션 추가 */}
-          <div className="mt-12">
+          <div id="philosophy" className="mt-12">
             <h2 className="text-2xl font-bold text-center text-gray-900 mb-3">
               업무 철학
             </h2>
@@ -390,7 +409,7 @@ export function IntroductionPage() {
         </motion.section>
 
         {/* 기술 스택 섹션 */}
-        <motion.section
+        <motion.section id="skills"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -773,7 +792,7 @@ export function IntroductionPage() {
         </section>
 
         {/* 학력 · 자격 · 활동 섹션 */}
-        <motion.section
+        <motion.section id="education"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -852,7 +871,7 @@ export function IntroductionPage() {
         </motion.section>
 
         {articles && articles.length > 0 && (
-          <motion.section
+          <motion.section id="articles"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
@@ -905,7 +924,7 @@ export function IntroductionPage() {
         )}
 
         {goals && goals.futureVision && goals.futureVision.length > 0 && (
-          <motion.section
+          <motion.section id="goals"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -950,7 +969,70 @@ export function IntroductionPage() {
                 </CardContent>
               </Card>
             )}
-          </motion.section>
+      </motion.section>
+        )}
+
+        {/* 우측 섹션 네비게이션 (스크롤 시 표시) */}
+        {showSectionNav && (
+          <nav
+            aria-label="섹션 네비게이션"
+            className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-2"
+          >
+            <button
+              onClick={() => scrollToId("philosophy")}
+              title="업무 철학"
+              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+            >
+              업무 철학
+            </button>
+            <button
+              onClick={() => scrollToId("skills")}
+              title="기술 스택"
+              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+            >
+              기술 스택
+            </button>
+            <button
+              onClick={() => scrollToId("projects")}
+              title="경력 · 프로젝트"
+              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+            >
+              경력 · 프로젝트
+            </button>
+            <button
+              onClick={() => scrollToId("education")}
+              title="학력 · 자격 · 활동"
+              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+            >
+              학력 · 자격 · 활동
+            </button>
+            <button
+              onClick={() => scrollToId("articles")}
+              title="아티클"
+              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+            >
+              아티클
+            </button>
+            <button
+              onClick={() => scrollToId("goals")}
+              title="목표 및 비전"
+              className="px-3 py-1.5 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-xs text-gray-700 shadow-sm"
+            >
+              목표 및 비전
+            </button>
+          </nav>
+        )}
+
+        {/* 상단으로 이동 버튼 */}
+        {showScrollTop && (
+          <button
+            onClick={scrollToTop}
+            title="상단으로 이동"
+            aria-label="상단으로 이동"
+            className="fixed bottom-6 right-6 h-11 w-11 rounded-full bg-lime-500 text-white shadow-lg hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-lime-300 flex items-center justify-center"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </button>
         )}
       </div>
     </div>
