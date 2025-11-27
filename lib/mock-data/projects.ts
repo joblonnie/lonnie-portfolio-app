@@ -155,7 +155,7 @@ export const projectsData: Project[] = [
     projectId: 2,
     companyId: "saige",
     title: "중대재해 예방을 위한 AI 안전 모니터링 시스템",
-    subtitle: "실시간 안전 이벤트 감지 및 알림 시스템",
+    subtitle: "사내 제품 - SAIGE SAFETY 개발",
     image: "/safety-logo.svg",
     period: "2023.06 - 2024.12",
     background:
