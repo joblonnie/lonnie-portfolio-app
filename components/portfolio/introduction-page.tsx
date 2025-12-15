@@ -175,7 +175,11 @@ export function IntroductionPage() {
         const id = rawId === "philosophy" ? "profile" : rawId;
         if (id) setActiveSection(id);
       },
-      { root: null, rootMargin: "0px 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+      {
+        root: null,
+        rootMargin: "0px 0px -50% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
     );
     ids.forEach((id) => {
       const el = document.getElementById(id);
@@ -306,7 +310,8 @@ export function IntroductionPage() {
     <div className="min-h-screen bg-white">
       <div className="max-w-6xl mx-auto p-4 md:p-8 space-y-16">
         {/* 개인 정보 섹션 */}
-        <motion.section id="profile"
+        <motion.section
+          id="profile"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="relative mb-12"
@@ -496,7 +501,8 @@ export function IntroductionPage() {
                 좌우 화살표 키로 프로젝트 이동
                 <ArrowRight className="w-4 h-4" />
                 <span className="sr-only">
-                  키보드로 프로젝트를 탐색하려면 왼쪽/오른쪽 화살표 키를 사용하세요.
+                  키보드로 프로젝트를 탐색하려면 왼쪽/오른쪽 화살표 키를
+                  사용하세요.
                 </span>
               </p>
             </div>
@@ -959,7 +965,7 @@ export function IntroductionPage() {
                       <h3 className="font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-2 line-clamp-2">
                         {article.title}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                      <p className="text-sm text-gray-600 mb-3 line-clamp-3">
                         {article.description}
                       </p>
                       <div className="flex items-center justify-between">
@@ -967,7 +973,7 @@ export function IntroductionPage() {
                         <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-lime-500" />
                       </div>
                       <div className="flex flex-wrap gap-1 mt-2">
-                        {article.tags?.slice(0, 3).map((tag, idx) => (
+                        {article.tags?.slice(0, 4).map((tag, idx) => (
                           <Badge
                             key={idx}
                             variant="outline"

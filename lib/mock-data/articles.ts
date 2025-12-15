@@ -1,5 +1,16 @@
 export const articlesData = [
   {
+    id: "repaint-report",
+    title: "WebSocket 기반 스트리밍 카드의 과도한 Repaint 문제 해결 리포트",
+    description:
+      "실시간 WebSocket 스트리밍 환경에서 과도한 Repaint를 유발하는 문제를 진단하고, GPU 합성 친화적인 방식으로 전환해 렌더링 병목을 해소한 과정을 정리했습니다.",
+    date: "2025-12-11",
+    category: "성능 최적화",
+    tags: ["Repaint", "GPU 합성", "성능 최적화"],
+    notionUrl:
+      "https://www.notion.so/WebSocket-Repaint-2c54c99a0f8180d89b96d40c315de060?source=copy_link",
+  },
+  {
     id: "notification-refactor",
     title: "이상 감지 알림 표시 정책 개선 작업 회고",
     description:
