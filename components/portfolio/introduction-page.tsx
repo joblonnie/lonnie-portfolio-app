@@ -35,8 +35,11 @@ export function IntroductionPage() {
     articles,
   } = mockPortfolioData;
 
+  const [selectedCompanyId, setSelectedCompanyId] = useState<string>(
+    companies[0]?.id || ""
+  );
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
-    null
+    projects.find((p) => p.companyId === companies[0]?.id)?.projectId || null
   );
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [editedProject, setEditedProject] = useState<Project | null>(null);
@@ -482,193 +485,183 @@ export function IntroductionPage() {
         {/* 경력 및 프로젝트 섹션 */}
         <section id="projects">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
+            <div className="text-center mb-6">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
                 경력 및 프로젝트
               </h2>
               <p className="text-gray-600 text-sm mt-2">
                 실무 경험과 주요 프로젝트를 소개합니다.
               </p>
-              {totalExperience.label && (
-                <div className="mt-4">
-                  <span className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full border-2 border-gray-300 bg-white/80 backdrop-blur-sm text-gray-700">
-                    <Rocket className="w-4 h-4" />
-                    <span className="font-medium">총 경력</span>
-                    <span className="font-semibold">
-                      {totalExperience.label}
-                    </span>
-                    {nthYear > 0 && (
-                      <span className="text-gray-600">({nthYear}년차)</span>
-                    )}
-                  </span>
-                </div>
-              )}
-              <p className="text-xs text-gray-500 mt-3 flex items-center justify-center gap-2">
-                <ArrowLeft className="w-4 h-4" />
-                좌우 화살표 키로 프로젝트 이동
-                <ArrowRight className="w-4 h-4" />
-              </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-              {/* 좌측: 회사 및 프로젝트 목록 */}
-              <div className="lg:col-span-2 space-y-6">
-                {companies.map((company) => {
-                  const companyProjects = projects.filter(
-                    (p) => p.companyId === company.id
-                  );
-                  return (
-                    <div
-                      key={company.id}
-                      className="glass-card rounded-2xl p-6"
-                    >
-                      {/* 회사 헤더 */}
-                      <div className="flex items-center gap-3 mb-4">
-                        {company.logo && (
-                          <img
-                            src={company.logo || "/placeholder.svg"}
-                            alt={company.name}
-                            className="w-12 h-12 object-contain rounded-lg border border-white/50 bg-white/50 p-2"
-                          />
-                        )}
-                        <div>
-                          <h3 className="text-base font-bold text-gray-900">
-                            {company.name}
-                          </h3>
-                          <p className="text-xs text-gray-600">
-                            {company.period}
-                            {companyDurations[company.id]?.label &&
-                              ` (${companyDurations[company.id].label})`}
-                          </p>
-                        </div>
-                      </div>
+            {/* 총 경력 + 회사 탭 (한 줄로 배치) */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 glass-card rounded-2xl p-4">
+              {/* 총 경력 */}
+              {totalExperience.label && (
+                <div className="flex items-center gap-2 text-sm px-4 py-2 rounded-full border-2 border-gray-300 bg-white/80 backdrop-blur-sm text-gray-700 whitespace-nowrap">
+                  <Rocket className="w-4 h-4" />
+                  <span className="font-medium">총 경력</span>
+                  <span className="font-semibold">{totalExperience.label}</span>
+                  {nthYear > 0 && (
+                    <span className="text-gray-600">({nthYear}년차)</span>
+                  )}
+                </div>
+              )}
 
-                      {/* 프로젝트 목록 */}
-                      <div className="space-y-3">
-                        {companyProjects.map((project) => (
+              {/* 회사 탭 */}
+              <div className="flex flex-wrap gap-2">
+                {companies.map((company) => (
+                  <button
+                    key={company.id}
+                    onClick={() => {
+                      setSelectedCompanyId(company.id);
+                      const firstProject = projects.find(
+                        (p) => p.companyId === company.id
+                      );
+                      setSelectedProjectId(firstProject?.projectId || null);
+                      setExpandedIndex(null);
+                    }}
+                    className={cn(
+                      "flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 hover:scale-[1.02]",
+                      selectedCompanyId === company.id
+                        ? "bg-orange-100 border-2 border-orange-400 shadow-md"
+                        : "bg-white/60 border border-gray-200/50 hover:bg-white/80"
+                    )}
+                  >
+                    {company.logo && (
+                      <img
+                        src={company.logo || "/placeholder.svg"}
+                        alt={company.name}
+                        className="w-6 h-6 object-contain rounded"
+                      />
+                    )}
+                    <div className="text-left">
+                      <h3 className="text-xs font-bold text-gray-900 leading-tight">
+                        {company.name}
+                      </h3>
+                      <p className="text-[10px] text-gray-500 leading-tight">
+                        {companyDurations[company.id]?.label || ""}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 선택된 회사의 프로젝트 - 좌우 분할 레이아웃 */}
+            {(() => {
+              const companyProjects = projects.filter(
+                (p) => p.companyId === selectedCompanyId
+              );
+              return (
+                <div className=" grid grid-cols-1 lg:grid-cols-12 gap-6 ">
+                  {/* 좌측: 프로젝트 카드 슬라이더 */}
+                  <div className="lg:col-span-3">
+                    <div className="sticky top-24 space-y-3 max-h-[calc(100vh-7rem)] overflow-y-auto scrollbar-hide">
+                      {companyProjects.map((project) => {
+                        const isSelected =
+                          selectedProjectId === project.projectId;
+                        return (
                           <button
                             key={project.projectId}
-                            onClick={() =>
-                              handleProjectSelect(project.projectId)
-                            }
+                            onClick={() => {
+                              setSelectedProjectId(project.projectId);
+                              setExpandedIndex(null);
+                              // 프로젝트 섹션으로 스크롤
+                              const projectsSection =
+                                document.getElementById("projects");
+                              if (projectsSection) {
+                                projectsSection.scrollIntoView({
+                                  behavior: "smooth",
+                                  block: "start",
+                                });
+                              }
+                            }}
                             className={cn(
-                              "w-full text-left p-4 rounded-xl transition-all duration-200",
-                              selectedProjectId === project.projectId
-                                ? "bg-lime-100/80 border-2 border-lime-400 shadow-md scale-[1.02] font-medium"
-                                : "bg-white/50 backdrop-blur-sm hover:bg-white/70 border border-white/50 hover:scale-[1.01]"
+                              "w-full rounded-2xl p-3 text-left transition-all duration-200 backdrop-blur-sm",
+                              isSelected
+                                ? "bg-lime-100/80 border-2 border-lime-400 "
+                                : "hover:bg-white/85 border border-gray-6 "
                             )}
                           >
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-start gap-2 p-1">
                               {project.image && (
                                 <img
                                   src={project.image || "/placeholder.svg"}
                                   alt={project.title}
-                                  className="w-8 h-8 object-contain rounded flex-shrink-0"
+                                  className="w-8 h-8 object-contain rounded-lg flex-shrink-0 "
                                 />
                               )}
-                              <p className="text-sm font-medium text-gray-900 leading-snug flex-1">
+                              <h4 className="text-xs font-bold text-gray-900 flex-1 leading-snug">
                                 {project.title}
-                              </p>
+                              </h4>
                             </div>
                           </button>
-                        ))}
-                      </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
 
-              {/* 우측: 선택된 프로젝트 상세 */}
-              {selectedProject && (
-                <div className="lg:col-span-3 lg:sticky lg:top-24 space-y-6">
-                  <div className="glass-card rounded-2xl p-8">
-                    {/* 프로젝트 헤더 */}
-                    <div className="mb-6">
-                      <div className="flex items-start gap-4 mb-4">
-                        {selectedProject.image && (
-                          <img
-                            src={selectedProject.image || "/placeholder.svg"}
-                            alt={selectedProject.title}
-                            className="w-16 h-16 object-contain rounded-xl border border-white/50 bg-white/50 p-2"
-                          />
-                        )}
-                        <div className="flex-1">
-                          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  {/* 우측: 선택된 프로젝트 상세 */}
+                  <div className="lg:col-span-9">
+                    {selectedProject ? (
+                      <motion.div
+                        key={selectedProjectId}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="glass-card rounded-2xl p-8"
+                      >
+                        {/* 프로젝트 헤더 - Hero Section */}
+                        <div className="mb-8 pb-6 border-b-2 border-gray-200">
+                          <h3 className="text-3xl font-bold text-gray-900 mb-4">
                             {selectedProject.title}
                           </h3>
                           {selectedProject.subtitle && (
-                            <p className="text-sm text-gray-600 mb-3">
+                            <p className="text-base text-gray-700 mb-6 leading-relaxed">
                               {selectedProject.subtitle}
                             </p>
                           )}
-                          <div className="space-y-2 text-xs text-gray-600">
-                            <div className="flex flex-wrap gap-2">
-                              <span className="font-medium">
+
+                          {/* 핵심 지표 3개 */}
+                          <div className="grid grid-cols-3 gap-4 mb-6">
+                            <div className="glass-card rounded-xl p-4">
+                              <p className="text-xs text-gray-600 font-medium mb-1">
+                                기간
+                              </p>
+                              <p className="text-sm font-bold text-gray-900">
                                 {selectedProject.period}
-                              </span>
+                              </p>
                             </div>
-                            <div className="flex flex-wrap gap-2">
-                              {selectedProject.role && (
-                                <span>{selectedProject.role}</span>
-                              )}
-                              {selectedProject.frontendDevelopers > 0 && (
-                                <>
-                                  <span>•</span>
-                                  <span>
-                                    FE {selectedProject.frontendDevelopers}명
-                                  </span>
-                                </>
-                              )}
-                              {selectedProject.backendDevelopers &&
-                                selectedProject.backendDevelopers > 0 && (
-                                  <>
-                                    <span>•</span>
-                                    <span>
-                                      BE {selectedProject.backendDevelopers}명
-                                    </span>
-                                  </>
-                                )}
-                              {selectedProject.qaDevelopers &&
-                                selectedProject.qaDevelopers > 0 && (
-                                  <>
-                                    <span>•</span>
-                                    <span>
-                                      QA {selectedProject.qaDevelopers}명
-                                    </span>
-                                  </>
-                                )}
-                              {selectedProject.productDesigners &&
-                                selectedProject.productDesigners > 0 && (
-                                  <>
-                                    <span>•</span>
-                                    <span>
-                                      PD {selectedProject.productDesigners}명
-                                    </span>
-                                  </>
-                                )}
-                              {selectedProject.aiResearchers && (
-                                <>
-                                  <span>•</span>
-                                  <span>
-                                    AI 연구원 {selectedProject.aiResearchers}명
-                                  </span>
-                                </>
-                              )}
+                            <div className="glass-card rounded-xl p-4">
+                              <p className="text-xs text-gray-600 font-medium mb-1">
+                                역할
+                              </p>
+                              <p className="text-sm font-bold text-gray-900">
+                                {selectedProject.role}
+                              </p>
+                            </div>
+                            <div className="glass-card rounded-xl p-4">
+                              <p className="text-xs text-gray-600 font-medium mb-1">
+                                팀 구성
+                              </p>
+                              <p className="text-sm font-bold text-gray-900">
+                                FE {selectedProject.frontendDevelopers}
+                                {selectedProject.backendDevelopers &&
+                                  ` · BE ${selectedProject.backendDevelopers}`}
+                              </p>
                             </div>
                           </div>
-                        </div>
-                      </div>
 
-                      {selectedProject.background && (
-                        <div className="space-y-3">
+                          {/* 기술 스택 */}
                           {selectedProject.technologies &&
                             selectedProject.technologies.length > 0 && (
-                              <div className="flex flex-wrap items-center gap-2">
+                              <div className="flex flex-wrap gap-2 mb-4">
                                 {selectedProject.technologies.map(
                                   (tech, tIdx) => (
                                     <span
                                       key={tIdx}
-                                      className="text-xs px-2.5 py-1 bg-white/70 text-gray-700 rounded-full border border-gray-200/50"
+                                      className="text-xs px-3 py-1.5 bg-gray-100 text-gray-800 rounded-full font-medium border border-gray-300"
                                     >
                                       {tech}
                                     </span>
@@ -676,178 +669,187 @@ export function IntroductionPage() {
                                 )}
                               </div>
                             )}
-                          <p className="text-sm text-gray-700 leading-relaxed">
-                            {selectedProject.background}
-                          </p>
-                        </div>
-                      )}
-                    </div>
 
-                    {/* 기여 사항 목록 */}
-                    <div className="space-y-5">
-                      <h4 className="text-base font-bold text-gray-900">
-                        주요 기여
-                      </h4>
-                      {selectedProject.structuralContributions?.map(
-                        (contribution, idx) => (
-                          <div
-                            key={idx}
-                            className="border-l-4 border-gray-300 pl-5 py-2"
-                          >
-                            <div className="flex items-start justify-between gap-3 mb-2">
-                              <h5 className="text-sm font-semibold text-gray-900 flex-1">
-                                {contribution.title}
-                              </h5>
-                              {contribution.category && (
-                                <span className="text-xs px-3 py-1 rounded-full whitespace-nowrap bg-white/80 text-gray-700 font-medium border border-gray-200">
-                                  {contribution.category}
-                                </span>
-                              )}
+                          {/* 프로젝트 배경 */}
+                          {selectedProject.background && (
+                            <div className="glass-card rounded-xl p-4">
+                              <h4 className="text-sm font-bold text-gray-900 mb-2">
+                                📌 프로젝트 배경
+                              </h4>
+                              <p className="text-sm text-gray-700 leading-relaxed">
+                                {selectedProject.background}
+                              </p>
                             </div>
-                            <p className="text-xs text-gray-600 mb-3 leading-relaxed">
-                              {contribution.summary}
-                            </p>
+                          )}
+                        </div>
 
-                            {/* 기술 스택 */}
-                            {contribution.technologies &&
-                              contribution.technologies.length > 0 && (
-                                <div className="flex flex-wrap gap-2 mb-3">
-                                  {contribution.technologies.map(
-                                    (tech, techIdx) => (
-                                      <span
-                                        key={techIdx}
-                                        className="text-xs px-2 py-0.5 bg-white/70 text-gray-600 rounded-full border border-gray-200/50"
+                        {/* 기여 사항 목록 - 스크롤 제거, 케이스 스터디 형태 */}
+                        <div className="space-y-8">
+                          <h4 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                            주요 기여
+                          </h4>
+                          {selectedProject.structuralContributions?.map(
+                            (contribution, idx) => (
+                              <article
+                                key={idx}
+                                id={`contribution-${idx}`}
+                                className="glass-card rounded-2xl p-6 transition-all duration-300"
+                              >
+                                {/* 제목과 카테고리 */}
+                                <div className="flex items-start justify-between gap-4 mb-4">
+                                  <div className="flex items-center gap-2 flex-1">
+                                    <h5 className="text-lg font-bold text-gray-900">
+                                      {contribution.title}
+                                    </h5>
+                                    {contribution.articleUrl && (
+                                      <a
+                                        href={contribution.articleUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-lime-600 hover:text-lime-700 transition-colors"
+                                        title="아티클 보기"
                                       >
-                                        {tech}
-                                      </span>
-                                    )
+                                        <ExternalLink className="w-5 h-5" />
+                                      </a>
+                                    )}
+                                  </div>
+                                  {contribution.category && (
+                                    <span className="text-xs px-3 py-1.5 rounded-full whitespace-nowrap bg-lime-100 text-lime-900 font-bold border-2 border-lime-400">
+                                      {contribution.category}
+                                    </span>
                                   )}
                                 </div>
-                              )}
 
-                            {/* 펼치기/접기 버튼 */}
-                            <button
-                              onClick={() =>
-                                setExpandedIndex(
-                                  expandedIndex === idx ? null : idx
-                                )
-                              }
-                              className="text-xs text-gray-600 hover:text-gray-900 font-medium hover:underline"
-                            >
-                              {expandedIndex === idx ? "접기" : "상세 보기"}
-                            </button>
+                                {/* 요약 */}
+                                <p className="text-sm text-gray-700 mb-5 leading-relaxed bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                  {contribution.summary}
+                                </p>
 
-                            {/* 상세 내용 */}
-                            {expandedIndex === idx && (
-                              <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                className="mt-4 space-y-4"
-                              >
-                                {contribution.problemDescription &&
-                                  contribution.problemDescription.length >
-                                    0 && (
-                                    <div>
-                                      <h6 className="text-xs font-semibold text-gray-700 mb-2">
-                                        문제 상황
-                                      </h6>
-                                      <ul className="text-xs text-gray-600 space-y-1.5">
-                                        {contribution.problemDescription.map(
-                                          (problem, pIdx) => (
-                                            <li
-                                              key={pIdx}
-                                              className="flex gap-2"
-                                            >
-                                              <span className="text-gray-400">
-                                                •
-                                              </span>
-                                              <span>{problem}</span>
-                                            </li>
-                                          )
-                                        )}
-                                      </ul>
-                                    </div>
-                                  )}
+                                {/* Problem → Action → Result 섹션 */}
+                                <div className="space-y-4">
+                                  {/* Problem */}
+                                  {contribution.problemDescription &&
+                                    contribution.problemDescription.length >
+                                      0 && (
+                                      <div className="bg-white/40">
+                                        <h6 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                          <span className="w-6 h-6 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                                            P
+                                          </span>
+                                          Problem: 문제 상황
+                                        </h6>
+                                        <ul className="text-sm text-gray-700 space-y-2">
+                                          {contribution.problemDescription.map(
+                                            (problem, pIdx) => (
+                                              <li
+                                                key={pIdx}
+                                                className="flex gap-3"
+                                              >
+                                                <span className="text-gray-500 font-bold mt-0.5">
+                                                  ▸
+                                                </span>
+                                                <span className="flex-1">
+                                                  {problem}
+                                                </span>
+                                              </li>
+                                            )
+                                          )}
+                                        </ul>
+                                      </div>
+                                    )}
 
-                                {contribution.solutionDescription &&
-                                  contribution.solutionDescription.length >
-                                    0 && (
-                                    <div>
-                                      <h6 className="text-xs font-semibold text-gray-700 mb-2">
-                                        해결 방안
-                                      </h6>
-                                      <ul className="text-xs text-gray-600 space-y-1.5">
-                                        {contribution.solutionDescription.map(
-                                          (solution, sIdx) => (
-                                            <li
-                                              key={sIdx}
-                                              className="flex gap-2"
-                                            >
-                                              <span className="text-gray-400">
-                                                •
-                                              </span>
-                                              <span>{solution}</span>
-                                            </li>
-                                          )
-                                        )}
-                                      </ul>
-                                    </div>
-                                  )}
+                                  {/* Action */}
+                                  {contribution.solutionDescription &&
+                                    contribution.solutionDescription.length >
+                                      0 && (
+                                      <div className="bg-white/40">
+                                        <h6 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                          <span className="w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                                            A
+                                          </span>
+                                          Action: 해결 방안
+                                        </h6>
+                                        <ul className="text-sm text-gray-700 space-y-2">
+                                          {contribution.solutionDescription.map(
+                                            (solution, sIdx) => (
+                                              <li
+                                                key={sIdx}
+                                                className="flex gap-3"
+                                              >
+                                                <span className="text-orange-500 font-bold mt-0.5">
+                                                  ▸
+                                                </span>
+                                                <span className="flex-1">
+                                                  {solution}
+                                                </span>
+                                              </li>
+                                            )
+                                          )}
+                                        </ul>
+                                      </div>
+                                    )}
 
-                                {contribution.reflection &&
-                                  contribution.reflection.length > 0 && (
-                                    <div>
-                                      <h6 className="text-xs font-semibold text-gray-700 mb-2">
-                                        회고
-                                      </h6>
-                                      <ul className="text-xs text-gray-600 space-y-1.5">
-                                        {contribution.reflection.map(
-                                          (ref, rIdx) => (
-                                            <li
-                                              key={rIdx}
-                                              className="flex gap-2"
-                                            >
-                                              <span className="text-gray-400">
-                                                •
-                                              </span>
-                                              <span>{ref}</span>
-                                            </li>
-                                          )
-                                        )}
-                                      </ul>
-                                    </div>
-                                  )}
-                              </motion.div>
-                            )}
-                          </div>
-                        )
-                      )}
-                    </div>
+                                  {/* Result */}
+                                  {contribution.reflection &&
+                                    contribution.reflection.length > 0 && (
+                                      <div className="bg-white/40 rounded-xl p-5 border-l-4 border-lime-400">
+                                        <h6 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                          <span className="w-6 h-6 rounded-full bg-lime-500 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                                            R
+                                          </span>
+                                          Result: 성과 및 회고
+                                        </h6>
+                                        <ul className="text-sm text-gray-700 space-y-2">
+                                          {contribution.reflection.map(
+                                            (ref, rIdx) => (
+                                              <li
+                                                key={rIdx}
+                                                className="flex gap-3"
+                                              >
+                                                <span className="text-lime-500 font-bold mt-0.5">
+                                                  ▸
+                                                </span>
+                                                <span className="flex-1">
+                                                  {ref}
+                                                </span>
+                                              </li>
+                                            )
+                                          )}
+                                        </ul>
+                                      </div>
+                                    )}
+                                </div>
+                              </article>
+                            )
+                          )}
+
+                          {/* 프로젝트 회고 */}
+                          {selectedProject.projectReflection && (
+                            <div className="mt-8 pt-6 border-t-2 border-gray-200">
+                              <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                                <span className="w-1 h-6 bg-gray-400 rounded-full"></span>
+                                프로젝트 회고
+                              </h4>
+                              <div className="glass-card rounded-xl p-6">
+                                <p className="text-sm text-gray-700 leading-relaxed">
+                                  {selectedProject.projectReflection}
+                                </p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <div className="glass-card rounded-2xl p-8 flex items-center justify-center min-h-[400px]">
+                        <p className="text-gray-500 text-sm">
+                          좌측에서 프로젝트를 선택해주세요
+                        </p>
+                      </div>
+                    )}
                   </div>
-
-                  {/* 프로젝트 회고 */}
-                  {selectedProject.projectReflection && (
-                    <div className="glass-card rounded-2xl p-6">
-                      <h4 className="text-sm font-bold text-gray-900 mb-3">
-                        프로젝트 회고
-                      </h4>
-                      <p className="text-xs text-gray-600 leading-relaxed">
-                        {selectedProject.projectReflection}
-                      </p>
-                    </div>
-                  )}
                 </div>
-              )}
-
-              {!selectedProject && (
-                <div className="lg:col-span-3 glass-card rounded-2xl p-8 flex items-center justify-center min-h-[400px]">
-                  <p className="text-gray-500 text-sm">
-                    좌측에서 프로젝트를 선택해주세요
-                  </p>
-                </div>
-              )}
-            </div>
+              );
+            })()}
           </div>
         </section>
 
