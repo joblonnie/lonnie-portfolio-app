@@ -1,5 +1,17 @@
 export const articlesData = [
   {
+    id: "konva-report",
+    title:
+      "Konva 기반 실시간 스트리밍 오버레이 렌더링 성능·메모리 최적화 리포트",
+    description:
+      "실시간 스트리밍 Konva 오버레이 렌더링에서 불필요한 redraw와 리소스 누적을 줄여 성능·메모리 문제를 개선한 과정을 정리했습니다.",
+    date: "2025-12-15",
+    category: "성능 최적화",
+    tags: ["Konva", "Canvas", "오버레이", "메모리 최적화"],
+    notionUrl:
+      "https://www.notion.so/Konva-2c74c99a0f8180189089e0dd994fd0fa?source=copy_link",
+  },
+  {
     id: "webworker-report",
     title: "Web Worker 도입을 통한 메인 스레드 CPU 과부하 해결 리포트",
     description:
