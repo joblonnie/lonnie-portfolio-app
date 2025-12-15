@@ -90,4 +90,70 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
+
+  /* Adding colored glass morphism variants for lime and orange */
+  .glass-card-lime {
+    background: rgba(217, 249, 157, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(217, 249, 157, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(132, 204, 22, 0.15), inset 0 1px 0 rgba(217, 249, 157, 0.4);
+  }
+
+  .glass-card-lime:hover {
+    background: rgba(217, 249, 157, 0.35);
+    box-shadow: 0 12px 40px 0 rgba(132, 204, 22, 0.2), inset 0 1px 0 rgba(217, 249, 157, 0.5);
+  }
+
+  .glass-card-orange {
+    background: rgba(254, 215, 170, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(254, 215, 170, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(249, 115, 22, 0.15), inset 0 1px 0 rgba(254, 215, 170, 0.4);
+  }
+
+  .glass-card-orange:hover {
+    background: rgba(254, 215, 170, 0.35);
+    box-shadow: 0 12px 40px 0 rgba(249, 115, 22, 0.2), inset 0 1px 0 rgba(254, 215, 170, 0.5);
+  }
+
+  .glass-card-blue {
+    background: rgba(191, 219, 254, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(191, 219, 254, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(191, 219, 254, 0.4);
+  }
+
+  .glass-card-blue:hover {
+    background: rgba(191, 219, 254, 0.35);
+    box-shadow: 0 12px 40px 0 rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(191, 219, 254, 0.5);
+  }
+
+  .glass-card-purple {
+    background: rgba(221, 214, 254, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(221, 214, 254, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(147, 51, 234, 0.15), inset 0 1px 0 rgba(221, 214, 254, 0.4);
+  }
+
+  .glass-card-purple:hover {
+    background: rgba(221, 214, 254, 0.35);
+    box-shadow: 0 12px 40px 0 rgba(147, 51, 234, 0.2), inset 0 1px 0 rgba(221, 214, 254, 0.5);
+  }
+
+  .glass-card-green {
+    background: rgba(187, 247, 208, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(187, 247, 208, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(34, 197, 94, 0.15), inset 0 1px 0 rgba(187, 247, 208, 0.4);
+  }
+
+  .glass-card-green:hover {
+    background: rgba(187, 247, 208, 0.35);
+    box-shadow: 0 12px 40px 0 rgba(34, 197, 94, 0.2), inset 0 1px 0 rgba(187, 247, 208, 0.5);
+  }
 }
