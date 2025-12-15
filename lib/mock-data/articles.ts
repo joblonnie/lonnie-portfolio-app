@@ -1,5 +1,16 @@
 export const articlesData = [
   {
+    id: "webworker-report",
+    title: "Web Worker 도입을 통한 메인 스레드 CPU 과부하 해결 리포트",
+    description:
+      "실시간 WebSocket 스트리밍의 프레임 처리 로직을 Worker로 분리해, 메인 스레드 CPU 병목, UI 지연을 줄이고 메모리/GC 부담을 완화한 과정을 정리했습니다.",
+    date: "2025-12-11",
+    category: "성능 최적화",
+    tags: ["Web Worker", "CPU 과부하", "성능 최적화"],
+    notionUrl:
+      "https://www.notion.so/Web-Worker-CPU-2c54c99a0f81802aad55e05b2137a19f?source=copy_link",
+  },
+  {
     id: "repaint-report",
     title: "WebSocket 기반 스트리밍 카드의 과도한 Repaint 문제 해결 리포트",
     description:
