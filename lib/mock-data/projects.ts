@@ -271,26 +271,6 @@ export const projectsData: Project[] = [
       },
       {
         title:
-          "원본 좌표 기반 이벤트 바운딩 박스의 반응형 좌표 계산 시스템 구현",
-        summary:
-          "Konva.js로 바운딩 박스를 구현하고, 화면 비율에 맞는 동적 좌표 계산으로 리사이징 환경에서도 정확한 표시를 보장했습니다.",
-        category: "UX 개선",
-        primaryCategory: "이벤트 시각화",
-        problemDescription: [
-          "AI 연구소에서 전달받는 바운딩 박스 좌표가 원본 이미지 기준으로 전달됨",
-          "모니터링 화면 크기가 원본과 다르기 때문에 좌표를 그대로 사용할 수 없음",
-          "브라우저 창 크기가 동적으로 변경될 때마다 바운딩 박스 위치가 어긋남",
-        ],
-        solutionDescription: [
-          "Konva.js 기반 캔버스 오버레이 시스템 구현으로 동적 좌표 렌더링 환경 확보",
-          "원본 대비 현재 화면 비율을 계산하는 좌표 변환 로직 적용으로 확대·축소 환경에서도 정확한 위치 유지",
-          "ResizeObserver로 화면 크기 변화를 실시간 감지해 바운딩 박스 위치 오차 최소화",
-          "이벤트 유형별 색상 구분 적용으로 위험 요소 인지 속도 향상 및 모니터링 가독성 개선",
-        ],
-        technologies: ["Konva.js", "ResizeObserver", "Canvas API"],
-      },
-      {
-        title:
           "GS 인증 1등급을 위한 유효성 검사 체계 구축 및 에러 핸들링 고도화",
         summary:
           "react-hook-form과 zod 기반 유효성 검사 체계를 도입하고, Error Boundary로 에러 핸들링을 강화하여 GS 인증 1등급 취득에 기여했습니다.",
@@ -309,6 +289,27 @@ export const projectsData: Project[] = [
           "사용자 액션 기반 banner 표출로 상태 변화 인지성 향상과 주요 작업의 확인 가능성 확보",
         ],
         technologies: ["Error Boundary", "react-hook-form", "zod"],
+        articleUrl: "https://www.notion.so/23d4c99a0f81809f9961f86932c67d03",
+      },
+      {
+        title:
+          "원본 좌표 기반 이벤트 바운딩 박스의 반응형 좌표 계산 시스템 구현",
+        summary:
+          "Konva.js로 바운딩 박스를 구현하고, 화면 비율에 맞는 동적 좌표 계산으로 리사이징 환경에서도 정확한 표시를 보장했습니다.",
+        category: "UX 개선",
+        primaryCategory: "이벤트 시각화",
+        problemDescription: [
+          "AI 연구소에서 전달받는 바운딩 박스 좌표가 원본 이미지 기준으로 전달됨",
+          "모니터링 화면 크기가 원본과 다르기 때문에 좌표를 그대로 사용할 수 없음",
+          "브라우저 창 크기가 동적으로 변경될 때마다 바운딩 박스 위치가 어긋남",
+        ],
+        solutionDescription: [
+          "Konva.js 기반 캔버스 오버레이 시스템 구현으로 동적 좌표 렌더링 환경 확보",
+          "원본 대비 현재 화면 비율을 계산하는 좌표 변환 로직 적용으로 확대·축소 환경에서도 정확한 위치 유지",
+          "ResizeObserver로 화면 크기 변화를 실시간 감지해 바운딩 박스 위치 오차 최소화",
+          "이벤트 유형별 색상 구분 적용으로 위험 요소 인지 속도 향상 및 모니터링 가독성 개선",
+        ],
+        technologies: ["Konva.js", "ResizeObserver", "Canvas API"],
       },
     ],
     role: "프론트엔드 개발",
