@@ -23,7 +23,6 @@ export interface Skill {
 export interface Company {
   id: string;
   name: string;
-  logo: string;
   period: string;
   position: string;
   description: string;
@@ -77,12 +76,6 @@ export interface Article {
 
 // Removed unused CodeSnippet and TeamChange types to simplify Project structure
 
-export interface Contribution {
-  category: string;
-  percentage: number;
-  color: string;
-}
-
 export interface Achievement {
   text: string;
   category?: string;
@@ -134,14 +127,9 @@ export interface Project {
   structuralContributions?: StructuralContribution[];
   period: string;
   role: string;
-  frontendDevelopers: number;
-  backendDevelopers?: number;
-  qaDevelopers?: number;
-  productDesigners?: number;
-  aiResearchers?: number | string;
+  totalFeDevelopers: number; // 전체 FE 개발자 수
+  feContribution: number; // FE 기여도 (%)
   technologies: string[];
-  contributions?: Contribution[];
-  retrospective?: any; // Placeholder for Retrospective type
 }
 
 export interface PortfolioData {

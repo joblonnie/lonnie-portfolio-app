@@ -8,7 +8,7 @@ export const projectsData: Project[] = [
     subtitle: "사내 제품 - SAIGE VIMS 개발",
     image: "/vims-logo.svg",
     background:
-      "산업용 AI 기반 영상 검사·모니터링 시스템을 통합 관리하는 웹 플랫폼입니다. NX Monorepo 기반으로 5개 고객사 앱을 운영하며, 실시간 모니터링부터 리포트, 알림, 설정 관리까지 전반적인 기능을 제공합니다.",
+      "산업용 AI 기반 영상 검사·모니터링 시스템을 통합 관리하는 웹 플랫폼입니다. NX Monorepo로 5개 고객사 앱을 운영하며, 모노레포 아키텍처 구축, FSD 기반 도메인 구조화, 실시간 WebSocket 스트리밍 환경의 렌더링·메모리 최적화, 대용량 알람 데이터 처리, 그리고 결함 검수 UX 개선까지 프론트엔드 전반의 기술적 도전을 수행했습니다.",
     projectReflection:
       "초기 설계부터 개발을 주도하며 모노레포 아키텍처, FSD 구조 도입, 실시간 성능 최적화 등 프론트엔드 전반의 기술적 의사결정을 경험했습니다. 특히 고객사별 요구사항과 VOC를 반영하면서 사용자 중심 개발의 중요성을 깊이 이해하게 되었고, 기술적 해결과 UX 개선을 균형 있게 달성하는 방법을 체득했습니다.",
     structuralContributions: [
@@ -139,9 +139,9 @@ export const projectsData: Project[] = [
         category: "메모리 최적화",
         primaryCategory: "메모리 최적화",
         problemDescription: [
-          "실시간 고해상도 이미지 스트리밍(FHD/QHD)으로 메모리 사용량이 지속 증가",
-          "장시간 사용 시 브라우저 Heap 메모리 증가로 성능 저하 및 OOM 발생",
-          "Heap Snapshot 분석 결과, Blob → ObjectURL이 해제되지 않고 잔존하는 문제 확인",
+          "실시간 고해상도(FHD/QHD) 이미지 스트리밍으로 메모리 사용량이 지속 증가",
+          "장시간 사용 시 Heap 누적으로 성능 저하 및 OOM 위험/발생",
+          "Heap Snapshot 분석에서 해제되지 않은 Blob/ObjectURL 잔존(미정리) 문제 확인",
         ],
         solutionDescription: [
           "Chrome DevTools 메모리 프로파일링으로 누수 지점을 식별해 원인 분석 정확도 향상",
@@ -162,10 +162,10 @@ export const projectsData: Project[] = [
           "히스토리 탐색 중 새 알람 도착 시 변화 인지 어려움",
         ],
         solutionDescription: [
-          "TanStack Query의 useInfiniteQuery 기반 커서 방식 무한 스크롤 도입으로 대량 데이터 조회 성능 개선",
-          "마지막 조회 알람의 queryTime을 커서로 사용해 중복 호출 제거와 API 효율 향상",
-          "react-window 가상 스크롤 적용으로 DOM 렌더링 부하 감소 및 스크롤 반응성 향상",
-          "펄스 효과와 '최신 알람으로 이동' 버튼 구현으로 실시간 알람 도착 인지성 강화",
+          "TanStack Query(useInfiniteQuery) 기반 커서형 무한 스크롤로 대량 히스토리 조회/추가 로딩 성능 개선",
+          "마지막으로 조회한 알람의 queryTime을 커서로 사용해 페이지 경계 흔들림을 제거하고 중복 조회/호출 방지",
+          "react-window 가상 스크롤로 렌더링 범위를 제한해 DOM 부하를 줄이고 스크롤 반응성 향상",
+          "신규 알람 도착 시 펄스 하이라이트 + '최신 알람으로 이동' CTA를 제공해 변화 인지 및 즉시 전환 UX 강화",
         ],
         technologies: [
           "TanStack Query",
@@ -218,13 +218,10 @@ export const projectsData: Project[] = [
         technologies: ["WebSocket", "Custom Video Player", "Seekbar UI"],
       },
     ],
-    period: "2025.01 - 진행 중",
+    period: "2025.01 - 2025.12",
     role: "프론트엔드 개발",
-    frontendDevelopers: 2,
-    backendDevelopers: 4,
-    qaDevelopers: 2,
-    productDesigners: 1,
-    aiResearchers: 5,
+    totalFeDevelopers: 2,
+    feContribution: 95,
     technologies: [
       "React",
       "TypeScript",
@@ -232,11 +229,6 @@ export const projectsData: Project[] = [
       "Zustand",
       "TanStack Query",
       "WebSocket",
-    ],
-    contributions: [
-      { category: "사용자 경험 개선", percentage: 90, color: "#9CCC65" },
-      { category: "성능 최적화", percentage: 85, color: "#FF7043" },
-      { category: "개발 생산성 향상", percentage: 80, color: "#42A5F5" },
     ],
   },
   {
@@ -247,7 +239,7 @@ export const projectsData: Project[] = [
     image: "/safety-logo.svg",
     period: "2023.06 - 2024.12",
     background:
-      "작업자 안전모 미착용, 위험 구역 침입, 화재/연기 감지 등 산업 현장의 안전 이벤트를 AI로 실시간 감지하고 알림을 제공하는 시스템입니다. 신사업 MVP 개발부터 GS 인증 1등급 취득까지 전체 프론트엔드 개발을 담당했습니다.",
+      "작업자 안전모 미착용, 위험 구역 침입, 화재/연기 감지 등 산업 현장의 안전 이벤트를 AI로 실시간 감지하고 알림하는 시스템입니다. 신사업 MVP를 2~3주 내 완성하여 고객사 시연에 성공했고, 이후 react-hook-form·zod 기반 입력 검증 체계 구축, Error Boundary 도입, Konva 기반 바운딩 박스 시각화 등을 통해 GS 인증 1등급 취득까지 주도했습니다.",
     projectReflection:
       "촉박한 일정 속에서 적절한 기술 스택 선택이 프로젝트 성공에 결정적임을 체감했고, MVP에서 GS 인증까지 장기 프로젝트를 주도하며 제품의 성장 과정 전체를 경험했습니다. 안전과 직결되는 기능을 개발하면서 책임감 있는 개발의 중요성을 깊이 이해하게 되었습니다.",
     structuralContributions: [
@@ -313,17 +305,9 @@ export const projectsData: Project[] = [
       },
     ],
     role: "프론트엔드 개발",
-    frontendDevelopers: 2,
-    backendDevelopers: 2,
-    qaDevelopers: 1,
-    productDesigners: 1,
-    aiResearchers: 3,
+    totalFeDevelopers: 2,
+    feContribution: 60,
     technologies: ["React", "TypeScript", "X-view-model (MVVM)", "WebSocket"],
-    contributions: [
-      { category: "사용자 경험 개선", percentage: 85, color: "#9CCC65" },
-      { category: "성능 최적화", percentage: 75, color: "#FF7043" },
-      { category: "개발 생산성 향상", percentage: 70, color: "#42A5F5" },
-    ],
   },
   {
     projectId: 3,
@@ -332,7 +316,7 @@ export const projectsData: Project[] = [
     subtitle: "사내 제품 - SAIGE VISION 개발",
     image: "/vision-logo.svg",
     background:
-      "생산 라인의 Vision 검사 결과 및 리소스 상태를 실시간으로 시각화하는 대시보드 웹 애플리케이션입니다.",
+      "생산 라인의 Vision 검사 결과와 리소스 상태를 실시간으로 시각화하는 대시보드 웹 애플리케이션입니다. ECharts 기반 BaseChart 컴포넌트를 설계하여 여러 페이지의 차트 중복 코드를 제거하고, Storybook·MDX로 문서화하여 팀 내 재사용성을 높였습니다. 또한 리소스별 커스텀 훅과 React.memo·useMemo를 활용해 실시간 데이터 갱신 시 불필요한 렌더링을 최소화했습니다.",
     projectReflection:
       "재사용 가능한 차트 컴포넌트를 설계하면서 추상화 레벨의 균형점을 찾는 것이 중요함을 배웠고, React의 렌더링 최적화 기법을 실전에서 적용하며 성능 개선의 중요성을 체감했습니다.",
     structuralContributions: [
@@ -379,15 +363,9 @@ export const projectsData: Project[] = [
     ],
     period: "2022.11 - 2023.01",
     role: "프론트엔드 개발",
-    frontendDevelopers: 4,
-    backendDevelopers: 2,
-    productDesigners: 1,
+    totalFeDevelopers: 4,
+    feContribution: 30,
     technologies: ["React", "TypeScript", "TanStack Query", "ECharts"],
-    contributions: [
-      { category: "사용자 경험 개선", percentage: 75, color: "#9CCC65" },
-      { category: "성능 최적화", percentage: 85, color: "#FF7043" },
-      { category: "개발 생산성 향상", percentage: 90, color: "#42A5F5" },
-    ],
   },
   {
     projectId: 6,
@@ -396,7 +374,7 @@ export const projectsData: Project[] = [
     subtitle: "사내 제품 - SAIGE ELEMENTS 개발",
     image: "/elements-logo.svg",
     background:
-      "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 구축한 React 기반 디자인 시스템입니다.",
+      "사내 제품 간 일관된 UI/UX 경험 제공과 개발 효율성 향상을 위해 구축한 React 기반 디자인 시스템입니다. Button·Switch 등 공통 UI 컴포넌트를 개발하고 Storybook·Chromatic 기반 문서화·리뷰 체계를 구축했으며, 디자이너와 협업하여 역할 기반(Primitive·Semantic·Component) 디자인 토큰 체계를 재정의하여 팀 내 협업 효율을 개선했습니다.",
     projectReflection:
       "디자인 시스템은 단순히 컴포넌트를 만드는 것이 아니라, 팀 전체의 개발 문화와 협업 방식을 개선하는 것임을 배웠습니다. 디자이너와 개발자가 같은 언어로 소통할 수 있게 하는 것이 핵심이며, 장기적인 관점에서 팀의 생산성을 높이는 인프라 구축의 중요성을 이해했습니다.",
     structuralContributions: [
@@ -438,13 +416,9 @@ export const projectsData: Project[] = [
     ],
     period: "2023.05 - 진행 중",
     role: "디자인 시스템 컨트리뷰터",
-    frontendDevelopers: 7,
+    totalFeDevelopers: 7,
+    feContribution: 15,
     technologies: ["React", "TypeScript", "Storybook", "Chromatic", "MUI"],
-    contributions: [
-      { category: "사용자 경험 개선", percentage: 70, color: "#9CCC65" },
-      { category: "성능 최적화", percentage: 65, color: "#FF7043" },
-      { category: "개발 생산성 향상", percentage: 90, color: "#42A5F5" },
-    ],
   },
   {
     projectId: 4,
@@ -454,7 +428,7 @@ export const projectsData: Project[] = [
       "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
     image: "/media-logo-2.png",
     background:
-      "100명 규모의 사용자 테스트를 주도하며, 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템입니다.",
+      "100명 규모의 사용자 테스트를 주도하며 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템입니다. 복잡한 텍스트 평가 업무를 문단·문장·평가 폼으로 구분하는 3단 UI 구조로 단순화하여 작업 효율을 개선했고, Redux Toolkit과 Feature 기반 모듈화를 적용하여 단독 개발 환경에서도 유지보수 가능한 구조를 확립했습니다. 또한 페이지네이션과 지연 로딩으로 대량 데이터 렌더링 성능을 최적화했습니다.",
     projectReflection:
       "비개발자 사용자를 위한 직관적인 UI를 설계하면서 사용자 중심 사고의 중요성을 깊이 이해했고, 단독 개발이지만 확장 가능한 아키텍처를 설계하는 것의 중요성을 배웠습니다. 초기에 시간을 들여 구조를 잘 설계하면 나중에 기능을 추가할 때 훨씬 효율적임을 체감했습니다.",
     structuralContributions: [
@@ -514,14 +488,9 @@ export const projectsData: Project[] = [
     ],
     period: "2021.12 - 2022.04",
     role: "프론트엔드 개발 (단독)",
-    frontendDevelopers: 1,
-    backendDevelopers: 1,
+    totalFeDevelopers: 1,
+    feContribution: 100,
     technologies: ["React", "JavaScript", "Redux Toolkit", "Ant Design"],
-    contributions: [
-      { category: "사용자 경험 개선", percentage: 90, color: "#9CCC65" },
-      { category: "성능 최적화", percentage: 70, color: "#FF7043" },
-      { category: "개발 생산성 향상", percentage: 80, color: "#42A5F5" },
-    ],
   },
   {
     projectId: 5,
@@ -530,7 +499,7 @@ export const projectsData: Project[] = [
     subtitle: "국립 국어원 - 말뭉치 언어의 사회적 인식 조사 분류 사업 참여",
     image: "/media-logo-1.png",
     background:
-      "400,000건 이상의 대용량 라벨링 데이터를 효율적으로 수집·운영하기 위한 웹 라벨링/검수 시스템입니다.",
+      "400,000건 이상의 대용량 라벨링 데이터를 효율적으로 수집·운영하기 위한 웹 라벨링/검수 시스템입니다. window.getSelection API로 드래그 기반 라벨링 기능을 구현해 복잡한 텍스트 작업을 단순화했고, IntersectionObserver 기반 무한 스크롤과 가상 스크롤링으로 대용량 데이터 렌더링 성능을 최적화했습니다. 또한 작업 진행률과 품질을 실시간으로 모니터링할 수 있는 대시보드를 구축하여 라벨링 품질 관리 효율을 개선했습니다.",
     projectReflection:
       "사용자가 자연스럽게 느끼는 인터랙션을 구현하는 것이 얼마나 중요한지 배웠습니다. 드래그라는 익숙한 동작을 활용하여 복잡한 라벨링 작업을 단순화한 것이 사용자 만족도를 크게 향상시켰고, 대용량 데이터 처리에서 성능 최적화의 중요성을 체감했습니다.",
     structuralContributions: [
@@ -588,14 +557,9 @@ export const projectsData: Project[] = [
     ],
     period: "2021.06 - 2021.10",
     role: "프론트엔드 개발 (단독)",
-    frontendDevelopers: 1,
-    backendDevelopers: 1,
+    totalFeDevelopers: 1,
+    feContribution: 100,
     technologies: ["React", "JavaScript", "Redux", "Ant Design"],
-    contributions: [
-      { category: "사용자 경험 개선", percentage: 90, color: "#9CCC65" },
-      { category: "성능 최적화", percentage: 85, color: "#FF7043" },
-      { category: "개발 생산성 향상", percentage: 75, color: "#42A5F5" },
-    ],
   },
 ];
 

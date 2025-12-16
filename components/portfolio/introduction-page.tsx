@@ -643,12 +643,11 @@ export function IntroductionPage() {
                             </div>
                             <div className="glass-card rounded-xl p-4">
                               <p className="text-xs text-gray-600 font-medium mb-1">
-                                팀 구성
+                                FE 기여도
                               </p>
                               <p className="text-sm font-bold text-gray-900">
-                                FE {selectedProject.frontendDevelopers}
-                                {selectedProject.backendDevelopers &&
-                                  ` · BE ${selectedProject.backendDevelopers}`}
+                                FE {selectedProject.totalFeDevelopers}명 중{" "}
+                                {selectedProject.feContribution}%
                               </p>
                             </div>
                           </div>
