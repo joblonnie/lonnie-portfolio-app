@@ -528,13 +528,6 @@ export function IntroductionPage() {
                         : "bg-white/60 border border-gray-200/50 hover:bg-white/80"
                     )}
                   >
-                    {company.logo && (
-                      <img
-                        src={company.logo || "/placeholder.svg"}
-                        alt={company.name}
-                        className="w-6 h-6 object-contain rounded"
-                      />
-                    )}
                     <div className="text-left">
                       <h3 className="text-xs font-bold text-gray-900 leading-tight">
                         {company.name}
@@ -657,7 +650,7 @@ export function IntroductionPage() {
                             selectedProject.technologies.length > 0 && (
                               <div className="flex flex-wrap gap-2 mb-4">
                                 {selectedProject.technologies.map(
-                                  (tech, tIdx) => (
+                                  (tech: string, tIdx: number) => (
                                     <span
                                       key={tIdx}
                                       className="text-xs px-3 py-1.5 bg-gray-100 text-gray-800 rounded-full font-medium border border-gray-300"
@@ -688,7 +681,7 @@ export function IntroductionPage() {
                             주요 기여
                           </h4>
                           {selectedProject.structuralContributions?.map(
-                            (contribution, idx) => (
+                            (contribution: any, idx: number) => (
                               <article
                                 key={idx}
                                 id={`contribution-${idx}`}
@@ -739,7 +732,7 @@ export function IntroductionPage() {
                                         </h6>
                                         <ul className="text-sm text-gray-700 space-y-2">
                                           {contribution.problemDescription.map(
-                                            (problem, pIdx) => (
+                                            (problem: string, pIdx: number) => (
                                               <li
                                                 key={pIdx}
                                                 className="flex gap-3"
@@ -770,7 +763,10 @@ export function IntroductionPage() {
                                         </h6>
                                         <ul className="text-sm text-gray-700 space-y-2">
                                           {contribution.solutionDescription.map(
-                                            (solution, sIdx) => (
+                                            (
+                                              solution: string,
+                                              sIdx: number
+                                            ) => (
                                               <li
                                                 key={sIdx}
                                                 className="flex gap-3"
@@ -800,7 +796,7 @@ export function IntroductionPage() {
                                         </h6>
                                         <ul className="text-sm text-gray-700 space-y-2">
                                           {contribution.reflection.map(
-                                            (ref, rIdx) => (
+                                            (ref: string, rIdx: number) => (
                                               <li
                                                 key={rIdx}
                                                 className="flex gap-3"
