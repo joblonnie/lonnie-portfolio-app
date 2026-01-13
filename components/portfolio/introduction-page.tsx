@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import { mockPortfolioData } from "@/lib/mock-data"
 import { cn } from "@/lib/utils"
+import React from "react"
 
 export function IntroductionPage() {
   const { personalInfo, skills, companies, projects, education, certifications, goals, articles } = mockPortfolioData
@@ -192,6 +193,40 @@ export function IntroductionPage() {
     return "bg-gray-100 text-gray-700 border-gray-200"
   }
 
+  const [canScrollLeft, setCanScrollLeft] = React.useState(false)
+  const [canScrollRight, setCanScrollRight] = React.useState(false)
+  const projectNavRef = React.useRef<HTMLDivElement>(null)
+
+  const updateScrollButtons = React.useCallback(() => {
+    if (projectNavRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = projectNavRef.current
+      setCanScrollLeft(scrollLeft > 0)
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
+    }
+  }, [])
+
+  const scrollProjects = (direction: "left" | "right") => {
+    if (projectNavRef.current) {
+      const scrollAmount = 300
+      const newScrollLeft = projectNavRef.current.scrollLeft + (direction === "right" ? scrollAmount : -scrollAmount)
+      projectNavRef.current.scrollTo({ left: newScrollLeft, behavior: "smooth" })
+      setTimeout(updateScrollButtons, 300)
+    }
+  }
+
+  React.useEffect(() => {
+    const navElement = projectNavRef.current
+    if (navElement) {
+      updateScrollButtons()
+      navElement.addEventListener("scroll", updateScrollButtons)
+      window.addEventListener("resize", updateScrollButtons)
+      return () => {
+        navElement.removeEventListener("scroll", updateScrollButtons)
+        window.removeEventListener("resize", updateScrollButtons)
+      }
+    }
+  }, [updateScrollButtons, selectedCompanyId])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <div className="max-w-6xl mx-auto p-4 md:p-8 space-y-12">
@@ -339,62 +374,66 @@ export function IntroductionPage() {
         </motion.section>
 
         {/* 경력 및 프로젝트 섹션 */}
-        <section id="projects">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-6">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">경력 및 프로젝트</h2>
-              <p className="text-gray-600 text-sm mt-2">실무 경험과 주요 프로젝트를 소개합니다.</p>
-            </div>
-
-            {/* 총 경력 + 회사 탭 (한 줄로 배치) */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 glass-card rounded-2xl p-4">
-              {/* 총 경력 */}
-              {totalExperience.label && (
-                <div className="flex items-center gap-2 text-sm px-4 py-2 rounded-full border-2 border-gray-300 bg-white/80 backdrop-blur-sm text-gray-700 whitespace-nowrap">
-                  <Rocket className="w-4 h-4" />
-                  <span className="font-medium">총 경력</span>
-                  <span className="font-semibold">{totalExperience.label}</span>
-                  {nthYear > 0 && <span className="text-gray-600">({nthYear}년차)</span>}
-                </div>
-              )}
-
-              {/* 회사 탭 */}
-              <div className="flex flex-wrap gap-2">
-                {companies.map((company) => (
-                  <button
-                    key={company.id}
-                    onClick={() => {
-                      setSelectedCompanyId(company.id)
-                      const firstProject = projects.find((p) => p.companyId === company.id)
-                      setSelectedProjectId(firstProject?.projectId || null)
-                      setExpandedIndex(null)
-                    }}
-                    className={cn(
-                      "flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 hover:scale-[1.02]",
-                      selectedCompanyId === company.id
-                        ? "bg-orange-100 border-2 border-orange-400 shadow-md"
-                        : "bg-white/60 border border-gray-200/50 hover:bg-white/80",
-                    )}
-                  >
-                    <div className="text-left">
-                      <h3 className="text-xs font-bold text-gray-900 leading-tight">{company.name}</h3>
-                      <p className="text-[10px] text-gray-500 leading-tight">
-                        {companyDurations[company.id]?.label || ""}
-                      </p>
-                    </div>
-                  </button>
-                ))}
+        {selectedCompanyId && (
+          <motion.section
+            id="projects"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="space-y-8"
+          >
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-6">
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">경력 및 프로젝트</h2>
+                <p className="text-gray-600 text-sm mt-2">실무 경험과 주요 프로젝트를 소개합니다.</p>
               </div>
-            </div>
 
-            {/* 선택된 회사의 프로젝트 - 좌우 분할 레이아웃 */}
-            {(() => {
-              const companyProjects = projects.filter((p) => p.companyId === selectedCompanyId)
-              return (
-                <div className=" grid grid-cols-1 lg:grid-cols-12 gap-6 ">
-                  {/* 좌측: 프로젝트 카드 슬라이더 */}
-                  <div className="lg:col-span-3">
-                    <div className="sticky top-24 space-y-3 max-h-[calc(100vh-7rem)] overflow-y-auto scrollbar-hide">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 glass-card rounded-2xl p-4">
+                {/* 총 경력 */}
+                {totalExperience.label && (
+                  <div className="flex items-center gap-2 text-sm px-4 py-2 rounded-full border-2 border-gray-300 bg-white/80 backdrop-blur-sm text-gray-700 whitespace-nowrap">
+                    <Rocket className="w-4 h-4" />
+                    <span className="font-medium">총 경력</span>
+                    <span className="font-semibold">{totalExperience.label}</span>
+                    {nthYear > 0 && <span className="text-gray-600">({nthYear}년차)</span>}
+                  </div>
+                )}
+
+                {/* 회사 탭 */}
+                <div className="flex flex-wrap gap-2">
+                  {companies.map((company) => (
+                    <button
+                      key={company.id}
+                      onClick={() => {
+                        setSelectedCompanyId(company.id)
+                        const firstProject = projects.find((p) => p.companyId === company.id)
+                        setSelectedProjectId(firstProject?.projectId || null)
+                        setExpandedIndex(null)
+                      }}
+                      className={cn(
+                        "flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 hover:scale-[1.02]",
+                        selectedCompanyId === company.id
+                          ? "bg-orange-100 border-2 border-orange-400 shadow-md"
+                          : "bg-white/60 border border-gray-200/50 hover:bg-white/80",
+                      )}
+                    >
+                      <div className="text-left">
+                        <h3 className="text-xs font-bold text-gray-900 leading-tight">{company.name}</h3>
+                        <p className="text-[10px] text-gray-500 leading-tight">
+                          {companyDurations[company.id]?.label || ""}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {(() => {
+                const companyProjects = projects.filter((p) => p.companyId === selectedCompanyId)
+                return (
+                  <div className="space-y-6">
+                    {/* 상단: 프로젝트 네비게이션 (수평 스크롤) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {companyProjects.map((project) => {
                         const isSelected = selectedProjectId === project.projectId
                         return (
@@ -403,57 +442,68 @@ export function IntroductionPage() {
                             onClick={() => {
                               setSelectedProjectId(project.projectId)
                               setExpandedIndex(null)
-                              // 프로젝트 섹션으로 스크롤
-                              const projectsSection = document.getElementById("projects")
-                              if (projectsSection) {
-                                projectsSection.scrollIntoView({
-                                  behavior: "smooth",
-                                  block: "start",
-                                })
-                              }
                             }}
                             className={cn(
-                              "w-full rounded-2xl p-3 text-left transition-all duration-200 backdrop-blur-sm",
-                              isSelected
-                                ? "bg-lime-100/80 border-2 border-lime-400 "
-                                : "hover:bg-white/85 border border-gray-6 ",
+                              "glass-card rounded-xl p-5 text-left transition-all duration-200 hover:scale-[1.02] group",
+                              isSelected ? "ring-2 ring-lime-400 bg-lime-50/80" : "hover:bg-white/90",
                             )}
                           >
-                            <div className="flex items-start gap-2 p-1">
+                            <div className="flex gap-4">
                               {project.image && (
-                                <img
-                                  src={project.image || "/placeholder.svg"}
-                                  alt={project.title}
-                                  className="w-8 h-8 object-contain rounded-lg flex-shrink-0 "
-                                />
+                                <div className="flex-shrink-0">
+                                  <img
+                                    src={project.image || "/placeholder.svg"}
+                                    alt={project.title}
+                                    className="w-16 h-16 rounded-lg object-contain bg-white p-2"
+                                  />
+                                </div>
                               )}
-                              <h4 className="text-xs font-bold text-gray-900 flex-1 leading-snug">{project.title}</h4>
+                              <div className="flex-1 min-w-0">
+                                <h3
+                                  className={cn(
+                                    "text-base font-bold mb-2 line-clamp-2",
+                                    isSelected ? "text-lime-900" : "text-gray-900",
+                                  )}
+                                >
+                                  {project.title}
+                                </h3>
+                                <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">{project.summary}</p>
+                                <div className="flex flex-wrap gap-2 mt-3">
+                                  {project.period && (
+                                    <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
+                                      {project.period}
+                                    </span>
+                                  )}
+                                  {project.team?.frontendDevelopers && (
+                                    <span className="text-xs px-2 py-1 rounded-full bg-blue-50 text-blue-700">
+                                      FE {project.team.frontendDevelopers}명
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
                             </div>
                           </button>
                         )
                       })}
                     </div>
-                  </div>
 
-                  {/* 우측: 선택된 프로젝트 상세 */}
-                  <div className="lg:col-span-9">
+                    {/* 하단: 선택된 프로젝트 상세 (전체 width) */}
                     {selectedProject ? (
                       <motion.div
                         key={selectedProjectId}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3 }}
                         className="glass-card rounded-2xl p-8"
                       >
-                        {/* 프로젝트 헤더 - Hero Section */}
+                        {/* 프로젝트 헤더 */}
                         <div className="mb-8 pb-6 border-b-2 border-gray-200">
                           <h3 className="text-3xl font-bold text-gray-900 mb-4">{selectedProject.title}</h3>
                           {selectedProject.subtitle && (
                             <p className="text-base text-gray-700 mb-6 leading-relaxed">{selectedProject.subtitle}</p>
                           )}
 
-                          {/* 핵심 지표 3개 */}
-                          <div className="grid grid-cols-3 gap-4 mb-6">
+                          <div className="grid grid-cols-2 gap-4 mb-6">
                             <div className="glass-card rounded-xl p-4">
                               <p className="text-xs text-gray-600 font-medium mb-1">기간</p>
                               <p className="text-sm font-bold text-gray-900">{selectedProject.period}</p>
@@ -462,18 +512,11 @@ export function IntroductionPage() {
                               <p className="text-xs text-gray-600 font-medium mb-1">역할</p>
                               <p className="text-sm font-bold text-gray-900">{selectedProject.role}</p>
                             </div>
-                            <div className="glass-card rounded-xl p-4">
-                              <p className="text-xs text-gray-600 font-medium mb-1">FE 기여도</p>
-                              <p className="text-sm font-bold text-gray-900">
-                                FE {selectedProject.totalFeDevelopers}명 중 {selectedProject.feContribution}%
-                              </p>
-                            </div>
                           </div>
 
-                          {/* 기술 스택 */}
-                          {selectedProject.technologies && selectedProject.technologies.length > 0 && (
+                          {selectedProject.coreTechnologies && selectedProject.coreTechnologies.length > 0 && (
                             <div className="flex flex-wrap gap-2 mb-4">
-                              {selectedProject.technologies.map((tech: string, tIdx: number) => (
+                              {selectedProject.coreTechnologies.map((tech: string, tIdx: number) => (
                                 <span
                                   key={tIdx}
                                   className="text-xs px-3 py-1.5 bg-gray-100 text-gray-800 rounded-full font-medium border border-gray-300"
@@ -484,7 +527,6 @@ export function IntroductionPage() {
                             </div>
                           )}
 
-                          {/* 프로젝트 배경 */}
                           {selectedProject.background && (
                             <div className="glass-card rounded-xl p-4">
                               <h4 className="text-sm font-bold text-gray-900 mb-2">📌 프로젝트 배경</h4>
@@ -493,7 +535,7 @@ export function IntroductionPage() {
                           )}
                         </div>
 
-                        {/* 기여 사항 목록 - 스크롤 제거, 케이스 스터디 형태 */}
+                        {/* 주요 기여 */}
                         <div className="space-y-8">
                           <h4 className="text-2xl font-bold text-gray-900 flex items-center gap-3">주요 기여</h4>
                           {selectedProject.structuralContributions?.map((contribution: any, idx: number) => (
@@ -503,8 +545,11 @@ export function IntroductionPage() {
                               className="glass-card rounded-2xl p-6 transition-all duration-300"
                             >
                               {/* 제목과 카테고리 */}
-                              <div className="flex items-start justify-between gap-4 mb-4">
-                                <div className="flex items-center gap-2 flex-1">
+                              <div className="flex items-start gap-4 mb-4">
+                                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                                  <Target className="w-7 h-7 text-gray-600" />
+                                </div>
+                                <div>
                                   <h5 className="text-lg font-bold text-gray-900">{contribution.title}</h5>
                                   {contribution.articleUrl && (
                                     <a
@@ -518,11 +563,6 @@ export function IntroductionPage() {
                                     </a>
                                   )}
                                 </div>
-                                {contribution.category && (
-                                  <span className="text-xs px-3 py-1.5 rounded-full whitespace-nowrap bg-lime-100 text-lime-900 font-bold border-2 border-lime-400">
-                                    {contribution.category}
-                                  </span>
-                                )}
                               </div>
 
                               {/* 요약 */}
@@ -530,98 +570,160 @@ export function IntroductionPage() {
                                 {contribution.summary}
                               </p>
 
-                              {/* Problem → Action → Result 섹션 */}
-                              <div className="space-y-4">
-                                {/* Problem */}
-                                {contribution.problemDescription && contribution.problemDescription.length > 0 && (
-                                  <div className="bg-white/40">
-                                    <h6 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                      <span className="w-6 h-6 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">
-                                        P
-                                      </span>
-                                      Problem: 문제 상황
-                                    </h6>
-                                    <ul className="text-sm text-gray-700 space-y-2">
-                                      {contribution.problemDescription.map((problem: string, pIdx: number) => (
-                                        <li key={pIdx} className="flex gap-3">
-                                          <span className="text-gray-500 font-bold mt-0.5">▸</span>
-                                          <span className="flex-1">{problem}</span>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
+                              {/* 사용 기술 */}
+                              {contribution.technologies && contribution.technologies.length > 0 && (
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                  {contribution.technologies.map((tech: string, tIdx: number) => (
+                                    <span
+                                      key={tIdx}
+                                      className="text-xs px-2.5 py-1 bg-orange-100 text-orange-800 rounded-full font-medium border border-orange-200"
+                                    >
+                                      {tech}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
 
-                                {/* Action */}
-                                {contribution.solutionDescription && contribution.solutionDescription.length > 0 && (
-                                  <div className="bg-white/40">
-                                    <h6 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                      <span className="w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-bold shadow-sm">
-                                        A
-                                      </span>
-                                      Action: 해결 방안
-                                    </h6>
-                                    <ul className="text-sm text-gray-700 space-y-2">
-                                      {contribution.solutionDescription.map((solution: string, sIdx: number) => (
-                                        <li key={sIdx} className="flex gap-3">
-                                          <span className="text-orange-500 font-bold mt-0.5">▸</span>
-                                          <span className="flex-1">{solution}</span>
-                                        </li>
-                                      ))}
-                                    </ul>
+                              {contribution.why && contribution.how && (
+                                <div className="space-y-6 mt-6">
+                                  {/* Headers in a single row */}
+                                  <div className="grid grid-cols-2 gap-8 pb-4 border-b border-gray-200">
+                                    <div className="flex items-center gap-3">
+                                      <div className="w-10 h-10 rounded-lg bg-gray-800 text-white flex items-center justify-center font-bold shadow-sm">
+                                        Why
+                                      </div>
+                                      <h6 className="text-lg font-bold text-gray-800">배경</h6>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                      <div className="w-10 h-10 rounded-lg bg-gray-600 text-white flex items-center justify-center font-bold shadow-sm">
+                                        How
+                                      </div>
+                                      <h6 className="text-lg font-bold text-gray-700">해결</h6>
+                                    </div>
                                   </div>
-                                )}
 
-                                {/* Result */}
-                                {contribution.reflection && contribution.reflection.length > 0 && (
-                                  <div className="bg-white/40 rounded-xl p-5 border-l-4 border-lime-400">
-                                    <h6 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                      <span className="w-6 h-6 rounded-full bg-lime-500 text-white flex items-center justify-center text-xs font-bold shadow-sm">
-                                        R
-                                      </span>
-                                      Result: 성과 및 회고
-                                    </h6>
-                                    <ul className="text-sm text-gray-700 space-y-2">
-                                      {contribution.reflection.map((ref: string, rIdx: number) => (
-                                        <li key={rIdx} className="flex gap-3">
-                                          <span className="text-lime-500 font-bold mt-0.5">▸</span>
-                                          <span className="flex-1">{ref}</span>
-                                        </li>
-                                      ))}
-                                    </ul>
+                                  {/* Content pairs with connecting lines */}
+                                  <div className="space-y-6">
+                                    {contribution.why.map((why: string, wIdx: number) => (
+                                      <div key={wIdx} className="relative">
+                                        <div className="grid grid-cols-2 gap-8">
+                                          {/* Why */}
+                                          <div className="pr-4 border-r border-gray-200">
+                                            <p className="text-sm text-gray-700 leading-relaxed">{why}</p>
+                                          </div>
+
+                                          {/* How */}
+                                          {contribution.how[wIdx] && (
+                                            <div className="pl-4">
+                                              <p className="text-sm text-gray-700 leading-relaxed">
+                                                {contribution.how[wIdx]}
+                                              </p>
+                                            </div>
+                                          )}
+                                        </div>
+
+                                        {/* Connecting arrow */}
+                                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center shadow-sm">
+                                          <svg
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            className="text-gray-500"
+                                          >
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    ))}
+
+                                    {/* Additional How items (if any) */}
+                                    {contribution.how.length > contribution.why.length &&
+                                      contribution.how
+                                        .slice(contribution.why.length)
+                                        .map((how: string, hIdx: number) => (
+                                          <div key={`extra-${hIdx}`} className="relative">
+                                            <div className="grid grid-cols-2 gap-8">
+                                              <div className="pr-4 border-r border-gray-200"></div>
+                                              <div className="pl-4">
+                                                <p className="text-sm text-gray-700 leading-relaxed">{how}</p>
+                                              </div>
+                                            </div>
+
+                                            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center shadow-sm">
+                                              <svg
+                                                width="16"
+                                                height="16"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="text-gray-500"
+                                              >
+                                                <path d="M5 12h14M12 5l7 7-7 7" />
+                                              </svg>
+                                            </div>
+                                          </div>
+                                        ))}
                                   </div>
-                                )}
-                              </div>
+                                </div>
+                              )}
+
+                              {/* Image/Video Media */}
+                              {contribution.media && contribution.media.length > 0 && (
+                                <div className="space-y-4 mt-6">
+                                  {contribution.media.map((item: any, mIdx: number) => (
+                                    <div key={mIdx} className="glass-card rounded-xl p-4">
+                                      {item.type === "image" ? (
+                                        <img
+                                          src={item.url || "/placeholder.svg"}
+                                          alt={item.caption || `Contribution Image ${mIdx + 1}`}
+                                          className="w-full rounded-lg shadow-lg"
+                                        />
+                                      ) : (
+                                        <video src={item.url} controls className="w-full rounded-lg shadow-lg" />
+                                      )}
+                                      {item.caption && (
+                                        <p className="text-xs text-gray-600 mt-2 text-center">{item.caption}</p>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+
+                              {/* Reflection */}
+                              {contribution.reflection && (
+                                <div className="bg-lime-50/50 rounded-xl p-5 border-l-4 border-lime-400 mt-6">
+                                  <h6 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                                    <span className="w-6 h-6 rounded-full bg-lime-500 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                                      R
+                                    </span>
+                                    Reflection: What I learned
+                                  </h6>
+                                  <p className="text-sm text-gray-700 leading-relaxed">{contribution.reflection}</p>
+                                </div>
+                              )}
                             </article>
                           ))}
-
-                          {/* 프로젝트 회고 */}
-                          {selectedProject.projectReflection && (
-                            <div className="mt-8 pt-6 border-t-2 border-gray-200">
-                              <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                                <span className="w-1 h-6 bg-gray-400 rounded-full"></span>
-                                프로젝트 회고
-                              </h4>
-                              <div className="glass-card rounded-xl p-6">
-                                <p className="text-sm text-gray-700 leading-relaxed">
-                                  {selectedProject.projectReflection}
-                                </p>
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </motion.div>
                     ) : (
                       <div className="glass-card rounded-2xl p-8 flex items-center justify-center min-h-[400px]">
-                        <p className="text-gray-500 text-sm">좌측에서 프로젝트를 선택해주세요</p>
+                        <p className="text-gray-500 text-sm">프로젝트를 선택해주세요</p>
                       </div>
                     )}
                   </div>
-                </div>
-              )
-            })()}
-          </div>
-        </section>
+                )
+              })()}
+            </div>
+          </motion.section>
+        )}
 
         {articles && articles.length > 0 && (
           <motion.section
