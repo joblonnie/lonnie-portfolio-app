@@ -98,13 +98,7 @@ export interface StructuralContribution {
   background: string // Previously why array - now single narrative paragraph
   solution: string // Previously how array - now single narrative paragraph
   businessImpact?: string[]
-  reflection?: string
   technologies: string[]
-  media?: {
-    type: "image" | "video"
-    url: string
-    caption?: string
-  }[]
   primaryCategory?: string
   category?: ContributionCategory
   articleUrl?: string

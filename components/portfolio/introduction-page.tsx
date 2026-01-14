@@ -11,8 +11,6 @@ import {
   GraduationCap,
   Award,
   ExternalLink,
-  Lightbulb,
-  Users,
   Target,
   Rocket,
   ArrowUp,
@@ -242,6 +240,9 @@ export function IntroductionPage() {
               <img src="/profile.png" alt={personalInfo.name} className="w-full h-full object-cover" />
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{personalInfo.name}</h1>
+            <p className="text-lg md:text-xl text-gray-600 font-medium">
+              실시간으로 성능/UX 개선하는 프론트엔드 엔지니어
+            </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mt-4">
               <a
@@ -297,79 +298,6 @@ export function IntroductionPage() {
                 </a>
               )}
             </div>
-          </div>
-
-          {/* 업무 철학 섹션 */}
-          <section id="philosophy" className="mt-16">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">업무 철학</h2>
-              <p className="text-gray-600">다양한 실무 경험을 통해 얻은 개발 철학과 협업 원칙은 다음과 같습니다.</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="glass-card p-8 text-center rounded-2xl hover:scale-[1.02] transition-transform duration-200">
-                <div className="flex justify-center mb-4">
-                  <div className="w-14 h-14 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                    <Lightbulb className="w-7 h-7 text-gray-600" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">사용자 중심의 품질과 성능을 추구합니다</h3>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  사용자가 없으면 제품은 없다고 생각합니다. 사용자 경험을 최우선으로 고려하며, 동시에 성능 최적화를 통해
-                  신뢰할 수 있는 제품을 만듭니다. UI/UX 디자이너와의 협업을 통해 사용자의 만족도를 높이는 데 집중합니다.
-                </p>
-              </div>
-
-              <div className="glass-card p-8 text-center rounded-2xl hover:scale-[1.02] transition-transform duration-200">
-                <div className="flex justify-center mb-4">
-                  <div className="w-14 h-14 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                    <Users className="w-7 h-7 text-gray-600" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">협업과 팀워크는 개발의 기반입니다</h3>
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  디자이너, 기획자, 백엔드 개발자와의 긴밀한 커뮤니케이션을 통해 문제를 조기에 해결하고, 더 나은 품질을
-                  달성합니다. 또한 팀 내 개발 경험(DX) 개선을 위해 코드 리뷰 문화 정착, 개발 프로세스 최적화, 공통
-                  컴포넌트 라이브러리 구축 등을 통해 팀 전체의 생산성 향상에 기여합니다.
-                </p>
-              </div>
-            </div>
-          </section>
-        </motion.section>
-
-        {/* 기술 스택 섹션 */}
-        <motion.section
-          id="skills"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="space-y-8"
-        >
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">기술 스택</h2>
-            <p className="text-gray-600">다양한 프로젝트 경험을 통해 습득한 기술들입니다.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map((skillGroup, index) => (
-              <div
-                key={index}
-                className="glass-card rounded-2xl p-6 hover:scale-[1.02] transition-transform duration-200"
-              >
-                <h3 className="font-semibold text-gray-900 mb-4">{skillGroup.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((skill, skillIndex) => (
-                    <Badge
-                      key={skillIndex}
-                      variant="secondary"
-                      className="text-xs bg-white/70 text-gray-700 backdrop-blur-sm border border-gray-200/50"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            ))}
           </div>
         </motion.section>
 
@@ -545,21 +473,18 @@ export function IntroductionPage() {
                               className="glass-card rounded-2xl p-6 transition-all duration-300"
                             >
                               {/* 제목과 카테고리 */}
-                              <div className="flex items-start gap-4 mb-4">
-                                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                                  <Target className="w-7 h-7 text-gray-600" />
-                                </div>
-                                <div>
-                                  <h5 className="text-lg font-bold text-gray-900">{contribution.title}</h5>
+                              <div className="flex items-start justify-between gap-4 mb-4">
+                                <div className="flex-1">
+                                  <h5 className="text-lg font-bold text-gray-900 mb-1">{contribution.title}</h5>
                                   {contribution.articleUrl && (
                                     <a
                                       href={contribution.articleUrl}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="text-lime-600 hover:text-lime-700 transition-colors"
-                                      title="아티클 보기"
+                                      className="inline-flex items-center gap-1.5 text-sm text-lime-600 hover:text-lime-700 transition-colors font-medium"
                                     >
-                                      <ExternalLink className="w-5 h-5" />
+                                      <ExternalLink className="w-4 h-4" />
+                                      <span>→ 기술 아티클 읽기</span>
                                     </a>
                                   )}
                                 </div>
@@ -584,73 +509,27 @@ export function IntroductionPage() {
                                 </div>
                               )}
 
-                              {/* Background and Solution sections */}
-                              {(contribution.background || contribution.solution) && (
-                                <div className="space-y-6 mt-6">
-                                  {/* Background */}
-                                  {contribution.background && (
-                                    <div className="space-y-3">
-                                      <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                                          <span className="text-sm font-bold text-gray-700">배경</span>
-                                        </div>
-                                      </div>
-                                      <p className="text-sm text-gray-700 leading-relaxed pl-10">
-                                        {contribution.background}
-                                      </p>
+                              <div className="space-y-6">
+                                {/* 배경 */}
+                                {contribution.background && (
+                                  <div>
+                                    <div className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-bold rounded-md mb-3">
+                                      배경
                                     </div>
-                                  )}
+                                    <p className="text-sm text-gray-700 leading-relaxed">{contribution.background}</p>
+                                  </div>
+                                )}
 
-                                  {/* Solution */}
-                                  {contribution.solution && (
-                                    <div className="space-y-3">
-                                      <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center">
-                                          <span className="text-sm font-bold text-white">해결</span>
-                                        </div>
-                                      </div>
-                                      <p className="text-sm text-gray-700 leading-relaxed pl-10">
-                                        {contribution.solution}
-                                      </p>
+                                {/* 해결 */}
+                                {contribution.solution && (
+                                  <div>
+                                    <div className="inline-block px-3 py-1 bg-gray-900 text-white text-xs font-bold rounded-md mb-3">
+                                      해결
                                     </div>
-                                  )}
-
-                                  {/* Media positioned after background/solution narrative */}
-                                  {contribution.media && contribution.media.length > 0 && (
-                                    <div className="space-y-4 mt-6 pl-10">
-                                      {contribution.media.map((item: any, mIdx: number) => (
-                                        <div key={mIdx} className="glass-card rounded-xl p-4">
-                                          {item.type === "image" ? (
-                                            <img
-                                              src={item.url || "/placeholder.svg"}
-                                              alt={item.caption || `Contribution Image ${mIdx + 1}`}
-                                              className="w-full rounded-lg shadow-lg"
-                                            />
-                                          ) : (
-                                            <video src={item.url} controls className="w-full rounded-lg shadow-lg" />
-                                          )}
-                                          {item.caption && (
-                                            <p className="text-xs text-gray-600 mt-2 text-center">{item.caption}</p>
-                                          )}
-                                        </div>
-                                      ))}
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-
-                              {/* Reflection */}
-                              {contribution.reflection && (
-                                <div className="bg-lime-50/50 rounded-xl p-5 border-l-4 border-lime-400 mt-6">
-                                  <h6 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                    <span className="w-6 h-6 rounded-full bg-lime-500 text-white flex items-center justify-center text-xs font-bold shadow-sm">
-                                      R
-                                    </span>
-                                    Reflection: What I learned
-                                  </h6>
-                                  <p className="text-sm text-gray-700 leading-relaxed">{contribution.reflection}</p>
-                                </div>
-                              )}
+                                    <p className="text-sm text-gray-700 leading-relaxed">{contribution.solution}</p>
+                                  </div>
+                                )}
+                              </div>
                             </article>
                           ))}
                         </div>
@@ -667,53 +546,92 @@ export function IntroductionPage() {
           </motion.section>
         )}
 
-        {articles && articles.length > 0 && (
-          <motion.section
-            id="articles"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-8"
-          >
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">기술 아티클</h2>
-              <p className="text-gray-600">개발 경험과 문제 해결 과정을 공유합니다.</p>
-            </div>
+        {/* 기술 아티클 섹션 */}
+        <motion.section
+          id="articles"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="space-y-8"
+        >
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">기술 아티클</h2>
+            <p className="text-gray-600">개발 경험과 문제 해결 과정을 공유합니다.</p>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {articles.map((article) => (
-                <div
-                  key={article.id}
-                  className="glass-card rounded-2xl p-6 hover:scale-[1.02] hover:shadow-xl transition-all duration-200 cursor-pointer group"
-                  onClick={() => window.open(article.notionUrl, "_blank")}
-                >
-                  <Badge variant="secondary" className="text-xs mb-3 bg-white/80 text-gray-700 border border-gray-200">
-                    {article.category}
-                  </Badge>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-lime-600 transition-colors mb-2 line-clamp-2">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-3 leading-relaxed">{article.description}</p>
-                  <div className="flex items-center justify-between mb-3">
-                    <p className="text-xs text-gray-500">{article.date}</p>
-                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-lime-600" />
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {article.tags?.slice(0, 4).map((tag, idx) => (
-                      <Badge
-                        key={idx}
-                        variant="outline"
-                        className="text-xs bg-white/60 text-gray-600 border-gray-200/50"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.map((article) => (
+              <div
+                key={article.id}
+                className="glass-card rounded-2xl p-6 hover:scale-[1.02] hover:shadow-xl transition-all duration-200 group"
+              >
+                <Badge variant="secondary" className="text-xs mb-3 bg-white/80 text-gray-700 border border-gray-200">
+                  {article.category}
+                </Badge>
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <h3 className="font-semibold text-gray-900 line-clamp-2 flex-1">{article.title}</h3>
+                  <a
+                    href={article.notionUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex-shrink-0 text-lime-600 hover:text-lime-700 transition-colors"
+                    title="아티클 읽기"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
                 </div>
-              ))}
-            </div>
-          </motion.section>
-        )}
+                <p className="text-sm text-gray-600 mb-3 line-clamp-3 leading-relaxed">{article.description}</p>
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-xs text-gray-500">{article.date}</p>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {article.tags?.slice(0, 4).map((tag, idx) => (
+                    <Badge key={idx} variant="outline" className="text-xs bg-white/60 text-gray-600 border-gray-200/50">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* 기술 스택 섹션 */}
+        <motion.section
+          id="skills"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="space-y-8"
+        >
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">기술 스택</h2>
+            <p className="text-gray-600">다양한 프로젝트 경험을 통해 습득한 기술들입니다.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skills.map((skillGroup, index) => (
+              <div
+                key={index}
+                className="glass-card rounded-2xl p-6 hover:scale-[1.02] transition-transform duration-200"
+              >
+                <h3 className="font-semibold text-gray-900 mb-4">{skillGroup.category}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {skillGroup.items.map((skill, skillIndex) => (
+                    <Badge
+                      key={skillIndex}
+                      variant="secondary"
+                      className="text-xs bg-white/70 text-gray-700 backdrop-blur-sm border border-gray-200/50"
+                    >
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.section>
 
         {/* 학력 · 자격 · 활동 섹션 */}
         <motion.section
@@ -765,46 +683,45 @@ export function IntroductionPage() {
           </div>
         </motion.section>
 
-        {goals && goals.futureVision && goals.futureVision.length > 0 && (
-          <motion.section
-            id="goals"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="space-y-8"
-          >
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">목표 및 비전</h2>
-              <p className="text-gray-600">앞으로 이루고 싶은 목표와 비전입니다.</p>
-            </div>
+        {/* 목표 및 비전 섹션 */}
+        <motion.section
+          id="goals"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="space-y-8"
+        >
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">목표 및 비전</h2>
+            <p className="text-gray-600">앞으로 이루고 싶은 목표와 비전입니다.</p>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="glass-card rounded-2xl p-8">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                    <Target className="w-7 h-7 text-gray-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2 text-lg">{goals.futureVision[0].quote}</h3>
-                    <p className="text-sm text-gray-700 leading-relaxed">{goals.futureVision[0].description}</p>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="glass-card rounded-2xl p-8">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                  <Target className="w-7 h-7 text-gray-600" />
                 </div>
-              </div>
-
-              <div className="glass-card rounded-2xl p-8">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                    <Rocket className="w-7 h-7 text-gray-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2 text-lg">{goals.futureVision[1].quote}</h3>
-                    <p className="text-sm text-gray-700 leading-relaxed">{goals.futureVision[1].description}</p>
-                  </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2 text-lg">{goals.futureVision[0].quote}</h3>
+                  <p className="text-sm text-gray-700 leading-relaxed">{goals.futureVision[0].description}</p>
                 </div>
               </div>
             </div>
-          </motion.section>
-        )}
+
+            <div className="glass-card rounded-2xl p-8">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-white/60 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                  <Rocket className="w-7 h-7 text-gray-600" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2 text-lg">{goals.futureVision[1].quote}</h3>
+                  <p className="text-sm text-gray-700 leading-relaxed">{goals.futureVision[1].description}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
 
         {/* 우측 섹션 네비게이션 (스크롤 시 표시) */}
         {showSectionNav && (
