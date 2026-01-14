@@ -1,4 +1,4 @@
-import type { Project } from "../types";
+import type { Project } from "../types"
 
 export const projectsData: Project[] = [
   {
@@ -13,70 +13,40 @@ export const projectsData: Project[] = [
       "초기 설계부터 개발을 주도하며 모노레포 아키텍처, FSD 구조 도입, 실시간 성능 최적화 등 프론트엔드 전반의 기술적 의사결정을 경험했습니다. 특히 고객사별 요구사항과 VOC를 반영하면서 사용자 중심 개발의 중요성을 깊이 이해하게 되었고, 기술적 해결과 UX 개선을 균형 있게 달성하는 방법을 체득했습니다.",
     structuralContributions: [
       {
-        title:
-          "고객사별 앱을 통합 관리하기 위한 NX 기반 모노레포 아키텍처 구축",
+        title: "고객사별 앱을 통합 관리하기 위한 NX 기반 모노레포 아키텍처 구축",
         summary:
           "7개 고객사 앱의 공통 기능을 패키지화하고 확장 가능한 모노레포 구조를 구축해 POC부터 제품화까지 일관된 개발 체계를 마련했습니다.",
         category: "아키텍처",
         primaryCategory: "모노레포 아키텍처",
-        why: [
-          "고객사별로 공통 기능이 중복 구현되고 코드가 앱마다 분산되어 개발 리소스 낭비와 유지보수 어려움 발생",
-          "커스터마이징된 컴포넌트가 섞여 변경 추적과 운영 안정성이 떨어짐",
-        ],
-        how: [
-          "7개 고객사 앱을 NX Monorepo로 통합하고 공통 기능을 '@saige/vims' 패키지로 모듈화하여 신규 POC 생성 시간 약 40% 단축, 중복 코드 30~40% 감소및 기능 개선 반영 일관성 확보",
-          "API 응답 차이를 제네릭 타입으로 표준화하여 고객사별 API 대응 시간 단축 및 요구사항 변경 수용성 향상",
-          "공통 컴포넌트를 기본 레이어로 두고 고객사별 override 구조로 설계해 커스터마이징 작업량을 줄이고 제품화 단계에서 기능 추가·변경을 안정적으로 진행",
-          "고객사별 커스터마이징 컴포넌트·훅에 prefix 규칙을 도입해 변경 추적과 디버깅 효율을 높여 제품화 이후에도 확장 가능한 관리 체계를 구축",
-        ],
+        background:
+          "고객사별로 공통 기능이 중복 구현되고 코드가 앱마다 분산되어 개발 리소스가 낭비되고 유지보수가 어려웠습니다. 또한 커스터마이징된 컴포넌트가 섞여 변경 추적과 운영 안정성이 떨어지는 문제가 있었습니다.",
+        solution:
+          "7개 고객사 앱을 NX Monorepo로 통합하고 공통 기능을 '@saige/vims' 패키지로 모듈화했습니다. 이를 통해 신규 POC 생성 시간을 약 40% 단축하고 중복 코드를 30~40% 감소시켰으며, 기능 개선 반영의 일관성을 확보했습니다. API 응답 차이는 제네릭 타입으로 표준화하여 고객사별 API 대응 시간을 단축했고, 공통 컴포넌트를 기본 레이어로 두고 고객사별 override 구조로 설계해 커스터마이징 작업량을 줄였습니다. 또한 고객사별 커스터마이징 컴포넌트·훅에 prefix 규칙을 도입해 변경 추적과 디버깅 효율을 높여 제품화 이후에도 확장 가능한 관리 체계를 구축했습니다.",
         technologies: ["NX Monorepo", "@saige/vims 공통 패키지"],
       },
       {
-        title:
-          "비즈니스 도메인 혼재로 인한 복잡성을 Feature-Sliced Design 기반 재구조화로 개선",
-        summary:
-          "도메인 중심의 Feature-Sliced Design을 도입해 기능 간 경계를 명확히 하고 확장성을 향상시켰습니다.",
+        title: "비즈니스 도메인 혼재로 인한 복잡성을 Feature-Sliced Design 기반 재구조화로 개선",
+        summary: "도메인 중심의 Feature-Sliced Design을 도입해 기능 간 경계를 명확히 하고 확장성을 향상시켰습니다.",
         category: "아키텍처",
         primaryCategory: "도메인 구조화",
-        why: [
-          "기존 Feature 기반 구조에서 모니터링·알람·설정 등 도메인이 섞여 계층 경계가 흐려짐",
-          "기능 확장에 따라 컴포넌트·상태·API·유틸 간 책임 구분이 모호해지면서 유지보수 비용 증가",
-          "도메인 간 상호 참조가 누적되어 리팩토링 시 사이드 이펙트 발생 위험 증가",
-        ],
-        how: [
-          "Feature-Sliced Design(FSD) 도입으로 도메인 중심 계층 구조를 재정비해 기능 추가 시 수정 범위 축소와 리팩토링 리스크 감소",
-          "각 feature 내부에 UI·API·상태·모델을 응집도 있게 배치해 유지보수 속도 향상과 신규 기능 개발 시간 절감",
-          "FSD 의존성 규칙 적용으로 도메인 간 참조 흐름을 통제해 배포 안정성 향상",
-        ],
+        background:
+          "기존 Feature 기반 구조에서는 모니터링·알람·설정 등 도메인이 섞여 계층 경계가 흐려졌고, 기능 확장에 따라 컴포넌트·상태·API·유틸 간 책임 구분이 모호해지면서 유지보수 비용이 증가했습니다. 도메인 간 상호 참조가 누적되어 리팩토링 시 사이드 이펙트 발생 위험도 높아졌습니다.",
+        solution:
+          "Feature-Sliced Design(FSD)을 도입하여 도메인 중심 계층 구조를 재정비했습니다. 각 feature 내부에 UI·API·상태·모델을 응집도 있게 배치해 유지보수 속도를 향상시키고 신규 기능 개발 시간을 절감했습니다. FSD 의존성 규칙을 적용해 도메인 간 참조 흐름을 통제하여 배포 안정성을 높였습니다.",
         technologies: ["Feature-Sliced Design"],
       },
       {
-        title:
-          "경고 border 애니메이션의 과도한 Repaint를 GPU 합성 방식으로 개선",
+        title: "경고 border 애니메이션의 과도한 Repaint를 GPU 합성 방식으로 개선",
         summary:
           "스트리밍 카드의 경고 border 애니메이션이 background-position 기반으로 동작하며 매 프레임 Paint를 유발하던 문제를 GPU 합성 기반 방식으로 전환해 해결했습니다.",
         category: "성능 최적화",
         primaryCategory: "렌더링 최적화",
-        why: [
-          "실시간 WebSocket 스트리밍 환경에서 특정 카드의 경고 border 애니메이션이 background-position 기반으로 동작하며 매 프레임 Paint 강제 발생",
-          "Paint 부하가 스트리밍 프레임 갱신과 겹치며 CPU 과부하 및 GC 지연 발생",
-          "장시간 사용 시 메모리 누적으로 OOM(Out of Memory) 위험 증가",
-        ],
-        how: [
-          "애니메이션 방식을 Paint 발생 방식(background-position) → GPU 합성 기반(transform) 방식으로 전환",
-          "::before + conic-gradient로 테두리를 분리해 카드 본체 렌더링에 영향을 주지 않도록 구조 개선",
-          "Repaint 완전 제거 및 CPU 사용률 감소로 스트리밍 환경 안정성 확보",
-          "메모리 증가 및 GC 부하 해소로 장시간 사용 시에도 안정적인 성능 유지",
-          "스크롤·탭 전환 등 UI 반응성이 개선되어 다수 스트리밍 카드 동시 동작 환경에서도 끊김 없는 렌더링 실현",
-        ],
-        technologies: [
-          "Chrome DevTools Performance",
-          "GPU Compositing",
-          "CSS Transform",
-          "conic-gradient",
-        ],
-        articleUrl:
-          "https://www.notion.so/WebSocket-Repaint-2c54c99a0f8180d89b96d40c315de060?source=copy_link",
+        background:
+          "실시간 WebSocket 스트리밍 환경에서 특정 카드의 경고 border 애니메이션이 background-position 기반으로 동작하며 매 프레임 Paint를 강제로 발생시켰습니다. 이 Paint 부하가 스트리밍 프레임 갱신과 겹치며 CPU 과부하 및 GC 지연이 발생했고, 장시간 사용 시 메모리가 누적되어 OOM(Out of Memory) 위험이 증가했습니다.",
+        solution:
+          "애니메이션 방식을 Paint 발생 방식에서 GPU 합성 기반(transform) 방식으로 전환하고, ::before + conic-gradient로 테두리를 분리해 카드 본체 렌더링에 영향을 주지 않도록 구조를 개선했습니다. 그 결과 Repaint를 완전히 제거하고 CPU 사용률을 감소시켜 스트리밍 환경의 안정성을 확보했습니다. 메모리 증가 및 GC 부하도 해소되어 장시간 사용 시에도 안정적인 성능을 유지할 수 있게 되었고, 스크롤·탭 전환 등 UI 반응성이 개선되어 다수 스트리밍 카드가 동시에 동작하는 환경에서도 끊김 없는 렌더링을 실현했습니다.",
+        technologies: ["Chrome DevTools Performance", "GPU Compositing", "CSS Transform", "conic-gradient"],
+        articleUrl: "https://www.notion.so/WebSocket-Repaint-2c54c99a0f8180d89b96d40c315de060?source=copy_link",
         media: [
           {
             type: "video",
@@ -109,14 +79,8 @@ export const projectsData: Project[] = [
           "postMessage로 처리된 프레임을 메인 스레드에 전달하여 사용자 인터랙션 개선",
           "Worker 내부에서 메모리 관리를 독립적으로 처리하여 메인 스레드의 GC 빈도 감소 및 전체 앱 안정성 향상",
         ],
-        technologies: [
-          "Web Worker",
-          "postMessage",
-          "base64 Decoding",
-          "Blob API",
-        ],
-        articleUrl:
-          "https://www.notion.so/Web-Worker-CPU-2c54c99a0f81802aad55e05b2137a19f?source=copy_link",
+        technologies: ["Web Worker", "postMessage", "base64 Decoding", "Blob API"],
+        articleUrl: "https://www.notion.so/Web-Worker-CPU-2c54c99a0f81802aad55e05b2137a19f?source=copy_link",
         media: [
           {
             type: "image",
@@ -144,14 +108,8 @@ export const projectsData: Project[] = [
           "ROI/Contour 레이어를 분리하고 listening={false}를 적용해 redraw·이벤트 비용 최소화",
           "메모리 안정성 확보 및 고 FPS 실시간 렌더링 환경에서도 끊김 없는 성능 제공",
         ],
-        technologies: [
-          "Konva.js",
-          "Canvas API",
-          "Memory Management",
-          "Layer Optimization",
-        ],
-        articleUrl:
-          "https://www.notion.so/Konva-2c74c99a0f8180189089e0dd994fd0fa?source=copy_link",
+        technologies: ["Konva.js", "Canvas API", "Memory Management", "Layer Optimization"],
+        articleUrl: "https://www.notion.so/Konva-2c74c99a0f8180189089e0dd994fd0fa?source=copy_link",
       },
       {
         title: "실시간 스트리밍 환경 메모리 누수 해결 및 이미지 처리 구조 개선",
@@ -171,8 +129,7 @@ export const projectsData: Project[] = [
         technologies: ["WebSocket", "Chrome DevTools Memory Profiler"],
       },
       {
-        title:
-          "대용량 알람 데이터 렌더링 지연 문제를 커서 기반 무한 스크롤 구현으로 개선",
+        title: "대용량 알람 데이터 렌더링 지연 문제를 커서 기반 무한 스크롤 구현으로 개선",
         summary:
           "TanStack Query의 useInfiniteQuery와 가상 스크롤을 적용해 수십만 건의 알람 히스토리를 효율적으로 처리했습니다.",
         category: "성능 최적화",
@@ -188,19 +145,12 @@ export const projectsData: Project[] = [
           "react-window 가상 스크롤로 렌더링 범위를 제한해 DOM 부하를 줄이고 스크롤 반응성 향상",
           "신규 알람 도착 시 펄스 하이라이트 + '최신 알람으로 이동' CTA를 제공해 변화 인지 및 즉시 전환 UX 강화",
         ],
-        technologies: [
-          "TanStack Query",
-          "React.memo",
-          "useMemo",
-          "Custom Hooks",
-        ],
-        articleUrl:
-          "https://www.notion.so/2544c99a0f8180609451f8c41748755a?source=copy_link",
+        technologies: ["TanStack Query", "React.memo", "useMemo", "Custom Hooks"],
+        articleUrl: "https://www.notion.so/2544c99a0f8180609451f8c41748755a?source=copy_link",
       },
       {
         title: "결함 인지 경험 개선을 위한 이미지 검수 UX 재설계",
-        summary:
-          "이미지 컨트롤러와 '원클릭 결함 찾기' 기능을 제안·구현하여 검수 시간을 단축하고 정확도를 높였습니다.",
+        summary: "이미지 컨트롤러와 '원클릭 결함 찾기' 기능을 제안·구현하여 검수 시간을 단축하고 정확도를 높였습니다.",
         category: "UX 개선",
         primaryCategory: "검수 UX 개선",
         why: [
@@ -214,18 +164,11 @@ export const projectsData: Project[] = [
           "버튼 클릭 시 결함 좌표 자동 이동·하이라이트 UX 제공으로 식별 효율 증가",
           "VIMS에서 효과 검증 후 SAFETY 제품까지 기능 확장 적용으로 제품군 전체 UX 일관성 강화",
         ],
-        technologies: [
-          "Canvas API",
-          "Bounding Box",
-          "Image Zoom/Pan",
-          "Dialog UI",
-        ],
+        technologies: ["Canvas API", "Bounding Box", "Image Zoom/Pan", "Dialog UI"],
       },
       {
-        title:
-          "웹소켓 기반 오프라인 영상 검수 기능을 위한 커스텀 플레이어 및 Seek 시스템 구현",
-        summary:
-          "웹소켓 기반 프레임 스트림 구조에서 커스텀 영상 플레이어와 seek 시스템을 구현했습니다.",
+        title: "웹소켓 기반 오프라인 영상 검수 기능을 위한 커스텀 플레이어 및 Seek 시스템 구현",
+        summary: "웹소켓 기반 프레임 스트림 구조에서 커스텀 영상 플레이어와 seek 시스템을 구현했습니다.",
         category: "UX 개선",
         primaryCategory: "영상 플레이어 기능",
         why: [
@@ -243,14 +186,7 @@ export const projectsData: Project[] = [
     role: "프론트엔드 개발",
     totalFeDevelopers: 2,
     feContribution: 95,
-    technologies: [
-      "React",
-      "TypeScript",
-      "NX",
-      "Zustand",
-      "TanStack Query",
-      "WebSocket",
-    ],
+    technologies: ["React", "TypeScript", "NX", "Zustand", "TanStack Query", "WebSocket"],
   },
   {
     projectId: 2,
@@ -283,8 +219,7 @@ export const projectsData: Project[] = [
         technologies: ["X-view-model (MVVM)", "Material UI"],
       },
       {
-        title:
-          "GS 인증 1등급을 위한 유효성 검사 체계 구축 및 에러 핸들링 고도화",
+        title: "GS 인증 1등급을 위한 유효성 검사 체계 구축 및 에러 핸들링 고도화",
         summary:
           "react-hook-form과 zod 기반 유효성 검사 체계를 도입하고, Error Boundary로 에러 핸들링을 강화하여 GS 인증 1등급 취득에 기여했습니다.",
         category: "코드 품질",
@@ -305,8 +240,7 @@ export const projectsData: Project[] = [
         articleUrl: "https://www.notion.so/23d4c99a0f81809f9961f86932c67d03",
       },
       {
-        title:
-          "원본 좌표 기반 이벤트 바운딩 박스의 반응형 좌표 계산 시스템 구현",
+        title: "원본 좌표 기반 이벤트 바운딩 박스의 반응형 좌표 계산 시스템 구현",
         summary:
           "Konva.js로 바운딩 박스를 구현하고, 화면 비율에 맞는 동적 좌표 계산으로 리사이징 환경에서도 정확한 표시를 보장했습니다.",
         category: "UX 개선",
@@ -360,10 +294,8 @@ export const projectsData: Project[] = [
         technologies: ["ECharts", "Custom Legend Component", "Storybook"],
       },
       {
-        title:
-          "실시간 리소스 업데이트로 발생한 불필요한 렌더링을 커스텀 훅으로 최적화",
-        summary:
-          "리소스별 커스텀 훅과 렌더링 최적화 전략을 도입해 실시간 모니터링 페이지의 차트 성능을 개선",
+        title: "실시간 리소스 업데이트로 발생한 불필요한 렌더링을 커스텀 훅으로 최적화",
+        summary: "리소스별 커스텀 훅과 렌더링 최적화 전략을 도입해 실시간 모니터링 페이지의 차트 성능을 개선",
         category: "성능 최적화",
         primaryCategory: "렌더링 최적화",
         why: [
@@ -374,12 +306,7 @@ export const projectsData: Project[] = [
           "리소스별 커스텀 훅을 설계해 필요한 데이터만 구독하도록 분리하여 불필요한 렌더링 감소",
           "React.memo와 useMemo를 적용해 컴포넌트별 렌더링 부담을 낮추고 실시간 차트의 프레임 안정성 확보",
         ],
-        technologies: [
-          "TanStack Query",
-          "React.memo",
-          "useMemo",
-          "Custom Hooks",
-        ],
+        technologies: ["TanStack Query", "React.memo", "useMemo", "Custom Hooks"],
       },
     ],
     period: "2022.11 - 2023.01",
@@ -445,8 +372,7 @@ export const projectsData: Project[] = [
     projectId: 4,
     companyId: "media-corpus",
     title: "텍스트 윤리성 평가 시스템",
-    subtitle:
-      "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
+    subtitle: "국립 국어원 - 비윤리적 표현 말뭉치 연구 분석 및 시범 구축 사업 참여",
     image: "/media-logo-2.png",
     background:
       "100명 규모의 사용자 테스트를 주도하며 150,000건 이상의 윤리성 평가 데이터를 수집·운영한 웹 기반 평가 시스템입니다. 복잡한 텍스트 평가 업무를 문단·문장·평가 폼으로 구분하는 3단 UI 구조로 단순화하여 작업 효율을 개선했고, Redux Toolkit과 Feature 기반 모듈화를 적용하여 단독 개발 환경에서도 유지보수 가능한 구조를 확립했습니다. 또한 페이지네이션과 지연 로딩으로 대량 데이터 렌더링 성능을 최적화했습니다.",
@@ -455,8 +381,7 @@ export const projectsData: Project[] = [
     structuralContributions: [
       {
         title: "복잡한 텍스트 윤리성 평가 업무를 3단 UI 구조로 단순화",
-        summary:
-          "문단·문장·평가 폼을 단계별로 분리한 3단 UI 구조 설계로 작업 흐름을 명확히 분리",
+        summary: "문단·문장·평가 폼을 단계별로 분리한 3단 UI 구조 설계로 작업 흐름을 명확히 분리",
         category: "UX 개선",
         primaryCategory: "평가 플로우 UX",
         why: [
@@ -472,8 +397,7 @@ export const projectsData: Project[] = [
       },
       {
         title: "단독 개발 환경의 코드 복잡성을 Feature 기반 구조로 정리",
-        summary:
-          "Redux Toolkit과 Feature 단위 모듈화를 적용해 컴포넌트·상태·API를 분리하고 코드 응집도를 개선",
+        summary: "Redux Toolkit과 Feature 단위 모듈화를 적용해 컴포넌트·상태·API를 분리하고 코드 응집도를 개선",
         category: "아키텍처",
         primaryCategory: "Feature 모듈화",
         why: [
@@ -484,16 +408,11 @@ export const projectsData: Project[] = [
           "Redux Toolkit과 Duck Pattern을 적용해 상태 로직을 명확히 분리하고 관리 구조 단순화",
           "컴포넌트·상태·API를 Feature 단위로 모듈화해 기능별 응집도와 유지보수 편의성 향상",
         ],
-        technologies: [
-          "Redux Toolkit",
-          "Duck Pattern",
-          "Feature-based Architecture",
-        ],
+        technologies: ["Redux Toolkit", "Duck Pattern", "Feature-based Architecture"],
       },
       {
         title: "대량 평가 데이터의 성능 저하를 페이지네이션으로 개선",
-        summary:
-          "페이지네이션과 지연 로딩을 적용해 초기 로딩 부하를 줄이고 데이터 탐색 성능을 개선",
+        summary: "페이지네이션과 지연 로딩을 적용해 초기 로딩 부하를 줄이고 데이터 탐색 성능을 개선",
         category: "성능 최적화",
         primaryCategory: "데이터 로딩 최적화",
         why: [
@@ -526,27 +445,19 @@ export const projectsData: Project[] = [
     structuralContributions: [
       {
         title: "복잡한 텍스트 라벨링 작업을 드래그 기반 시스템으로 단순화",
-        summary:
-          "드래그 기반 라벨링 기능을 구현해 원하는 영역을 빠르게 지정하고 라벨링 정확도를 개선",
+        summary: "드래그 기반 라벨링 기능을 구현해 원하는 영역을 빠르게 지정하고 라벨링 정확도를 개선",
         category: "UX 개선",
         primaryCategory: "라벨링 UX 개선",
-        why: [
-          "사용자가 텍스트 내 특정 영역을 직접 선택해 라벨링할 수 있는 기능 필요",
-        ],
+        why: ["사용자가 텍스트 내 특정 영역을 직접 선택해 라벨링할 수 있는 기능 필요"],
         how: [
           "window.getSelection API로 드래그 영역을 감지하고 컨텍스트 메뉴를 통해 라벨링하도록 구현",
           "드래그 영역에 실시간 시각적 피드백을 제공해 라벨링 범위 오차 감소",
         ],
-        technologies: [
-          "window.getSelection API",
-          "Context Menu",
-          "Visual Feedback",
-        ],
+        technologies: ["window.getSelection API", "Context Menu", "Visual Feedback"],
       },
       {
         title: "400,000건 대용량 데이터 렌더링 성능을 가상 스크롤로 최적화",
-        summary:
-          "react-window 가상 스크롤 도입으로 대용량 라벨링 데이터의 렌더링 성능과 메모리 효율을 개선",
+        summary: "react-window 가상 스크롤 도입으로 대용량 라벨링 데이터의 렌더링 성능과 메모리 효율을 개선",
         category: "성능 최적화",
         primaryCategory: "무한 스크롤 최적화",
         why: [
@@ -562,8 +473,7 @@ export const projectsData: Project[] = [
       },
       {
         title: "라벨링 품질 관리 부재를 실시간 모니터링 대시보드로 개선",
-        summary:
-          "작업 진행률과 오류율을 확인할 수 있는 실시간 대시보드를 구축해 라벨링 품질 관리 효율 향상",
+        summary: "작업 진행률과 오류율을 확인할 수 있는 실시간 대시보드를 구축해 라벨링 품질 관리 효율 향상",
         primaryCategory: "품질 관리 대시보드",
         why: [
           "대규모 라벨링 작업에서 작업자별 진행 상황과 품질 상태를 한눈에 파악하기 어려움",
@@ -582,6 +492,6 @@ export const projectsData: Project[] = [
     feContribution: 100,
     technologies: ["React", "JavaScript", "Redux", "Ant Design"],
   },
-];
+]
 
-export default projectsData;
+export default projectsData

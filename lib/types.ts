@@ -95,8 +95,8 @@ export interface Solution {
 export interface StructuralContribution {
   title: string
   summary: string
-  why: string[] // Previously problemDescription
-  how: string[] // Previously solutionDescription
+  background: string // Previously why array - now single narrative paragraph
+  solution: string // Previously how array - now single narrative paragraph
   businessImpact?: string[]
   reflection?: string
   technologies: string[]
