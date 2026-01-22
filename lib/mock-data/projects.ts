@@ -104,7 +104,7 @@ export const projectsData: Project[] = [
           "모노레포 아키텍처를 통해 여러 제품을 효율적으로 관리하는 방법을 배웠고, 공통 로직과 커스터마이징의 균형점을 찾는 것의 중요성을 이해했습니다.",
       },
     ],
-    period: "2022.11 - 2025.01",
+    period: "2025.01 - 2026.01",
     role: "프론트엔드 개발",
     totalFeDevelopers: 2,
     backendDevelopers: 4,
