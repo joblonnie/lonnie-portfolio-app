@@ -1,5 +1,16 @@
 export const articlesData = [
   {
+    id: "clipboard-api-ux-strategy",
+    title: "보안 정책에 막힌 Clipboard API, UX로 우회한 이야기",
+    description:
+      "HTTP 배포 환경에서 Clipboard API가 차단되는 문제를 분석하고, 자동 복사를 포기하는 대신 UX 개선을 통해 사용성을 유지한 대응 사례입니다.",
+    date: "2026-01-28",
+    category: "UX 전략",
+    tags: ["Clipboard API", "Web Security", "HTTP", "UX"],
+    notionUrl:
+      "https://www.notion.so/HTTP-Clipboard-API-UX-2f54c99a0f8180ed9e49caa99d0cc1d8",
+  },
+  {
     id: "svg-dropshadow-report",
     title: "SVG filter: drop-shadow로 인한 실시간 화면 렌더링 병목 개선 리포트",
     description:
