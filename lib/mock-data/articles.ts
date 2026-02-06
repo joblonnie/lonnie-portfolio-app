@@ -1,18 +1,30 @@
 export const articlesData = [
   {
-    id: "clipboard-api-ux-strategy",
-    title: "보안 정책에 막힌 Clipboard API, UX로 우회한 이야기",
+    id: "claude-icons-cicd",
+    title: "Claude를 활용한 @saige/icons CI/CD 구축기",
     description:
-      "HTTP 배포 환경에서 Clipboard API가 차단되는 문제를 분석하고, 자동 복사를 포기하는 대신 UX 개선을 통해 사용성을 유지한 대응 사례입니다.",
-    date: "2026-01-28",
-    category: "UX 전략",
-    tags: ["Clipboard API", "Web Security", "HTTP", "UX"],
+      "Claude Code를 활용해 Figma API 기반 아이콘 자동 수집부터 React 컴포넌트 변환, Storybook 생성, Azure Artifacts 배포까지 자동화된 아이콘 운영 파이프라인을 구축한 경험을 공유합니다.",
+    date: "2026-02-05",
+    category: "개발 생산성",
+    tags: ["Claude Code", "CI/CD", "Figma API", "Azure DevOps", "Storybook"],
+    notionUrl:
+      "https://www.notion.so/Claude-saige-icons-CI-CD-2fe4c99a0f8180759ca3fb28a784541d?source=copy_link",
+  },
+  {
+    id: "clipboard-api-constraint-analysis",
+    title: "Clipboard API 제약 분석과 대체 전략 선택 과정",
+    description:
+      "HTTP 배포 환경에서 Clipboard API가 차단되는 문제를 분석하고, 자동 복사를 대체 전략 선택을 진행하는 사례입니다.",
+    date: "2026-01-27",
+    category: "문제 분석",
+    tags: ["Clipboard API", "Web Security", "HTTP", "대체 전략"],
     notionUrl:
       "https://www.notion.so/HTTP-Clipboard-API-UX-2f54c99a0f8180ed9e49caa99d0cc1d8",
   },
   {
     id: "svg-dropshadow-report",
-    title: "SVG filter: drop-shadow로 인한 실시간 화면 렌더링 병목 개선 리포트",
+    title:
+      "SVG → PNG → SVG 실시간 스트리밍 Marker 렌더링을 다시 설계한 과정 리포트",
     description:
       "실시간 스트리밍 환경에서 SVG filter: drop-shadow가 유발한 offscreen rendering 병목을 식별하고, 최적화한 사례입니다.",
     date: "2026-01-13",
