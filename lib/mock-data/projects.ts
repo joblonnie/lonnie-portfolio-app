@@ -186,7 +186,7 @@ export const projectsData: Project[] = [
         ],
       },
     ],
-    period: "2023.05 - 진행 중",
+    period: "2023 ~",
     role: "디자인 시스템 컨트리뷰터",
   },
   {

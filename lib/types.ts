@@ -118,6 +118,7 @@ export interface Project {
   projectId: number
   companyId: string
   title: string
+  summary?: string
   subtitle?: string
   image?: string
   background: string

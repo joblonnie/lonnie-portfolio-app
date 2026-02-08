@@ -1,22 +1,30 @@
 export const skillsData = [
   {
-    category: "Core",
-    items: ["React", "TypeScript", "Zustand", "Tanstack Query", "React Hook Form", "Zod"],
+    category: "Frontend",
+    items: ["React", "TypeScript", "JavaScript", "HTML", "CSS"],
   },
   {
-    category: "Architecture",
+    category: "State & Data Management",
+    items: ["TanStack Query", "Zustand", "Redux Toolkit"],
+  },
+  {
+    category: "UI & Visualization",
+    items: ["MUI", "Ant Design", "ECharts", "Konva"],
+  },
+  {
+    category: "Frontend Architecture",
     items: ["Nx Monorepo", "Feature-Sliced Design"],
   },
   {
-    category: "Rendering/Visualization",
-    items: ["Canvas", "Konva", "ECharts"],
+    category: "Realtime & Concurrency",
+    items: ["Web Worker", "WebSocket"],
   },
   {
-    category: "Concurrency/Network",
-    items: ["Web Worker", "Web Socket"],
+    category: "Collaboration & Tooling",
+    items: ["Git", "Jira", "Figma", "Notion", "Swagger", "Storybook", "Azure DevOps"],
   },
   {
-    category: "Collaboration",
-    items: ["Jira", "Figma", "Notion", "Swagger", "Storybook"],
+    category: "AI-assisted Development",
+    items: ["Claude", "Codex", "v0"],
   },
-]
+];

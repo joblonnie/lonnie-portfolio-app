@@ -146,26 +146,11 @@ export function IntroductionPage() {
   }, [])
 
   const getNavBtnClass = (id: string) =>
-    `px-3 py-1.5 rounded-full border text-xs shadow-sm transition-colors ` +
+    `px-3 py-1.5 rounded-full border text-xs shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none ` +
     (activeSection === id
       ? `bg-orange-100 text-gray-900 border-orange-400 font-medium`
       : `bg-white/90 text-gray-700 border-gray-200 hover:bg-gray-100`)
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedProjectId) return
-      const currentIndex = projects.findIndex((p) => p.projectId === selectedProjectId)
-      if (e.key === "ArrowLeft" && currentIndex > 0) {
-        setSelectedProjectId(projects[currentIndex - 1].projectId)
-        setExpandedIndex(null)
-      } else if (e.key === "ArrowRight" && currentIndex < projects.length - 1) {
-        setSelectedProjectId(projects[currentIndex + 1].projectId)
-        setExpandedIndex(null)
-      }
-    }
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [selectedProjectId])
 
   const handleProjectSelect = (projectId: number) => {
     if (selectedProjectId === projectId) {
@@ -226,7 +211,7 @@ export function IntroductionPage() {
   }, [updateScrollButtons, selectedCompanyId])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <div className="max-w-6xl mx-auto p-4 md:p-8 space-y-12">
         {/* 개인 정보 섹션 */}
         <motion.section
@@ -247,7 +232,7 @@ export function IntroductionPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl mt-4">
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="glass-card flex items-center gap-3 p-4 rounded-xl hover:scale-105 transition-all duration-200"
+                className="glass-card flex items-center gap-3 p-4 rounded-xl hover:scale-105 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none"
               >
                 <Mail className="w-5 h-5 text-gray-600" />
                 <div>
@@ -260,7 +245,7 @@ export function IntroductionPage() {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-card flex items-center gap-3 p-4 rounded-xl hover:scale-105 transition-all duration-200"
+                  className="glass-card flex items-center gap-3 p-4 rounded-xl hover:scale-105 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none"
                 >
                   <Github className="w-5 h-5 text-gray-600" />
                   <div>
@@ -274,7 +259,7 @@ export function IntroductionPage() {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-card flex items-center gap-3 p-4 rounded-xl hover:scale-105 transition-all duration-200"
+                  className="glass-card flex items-center gap-3 p-4 rounded-xl hover:scale-105 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none"
                 >
                   <Linkedin className="w-5 h-5 text-gray-600" />
                   <div>
@@ -288,7 +273,7 @@ export function IntroductionPage() {
                   href={personalInfo.tistory}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-card flex items-center gap-3 p-4 rounded-xl hover:scale-105 transition-all duration-200"
+                  className="glass-card flex items-center gap-3 p-4 rounded-xl hover:scale-105 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none"
                 >
                   <PlayCircle className="w-5 h-5 text-gray-600" />
                   <div>
@@ -339,7 +324,7 @@ export function IntroductionPage() {
                         setExpandedIndex(null)
                       }}
                       className={cn(
-                        "flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 hover:scale-[1.02]",
+                        "flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none",
                         selectedCompanyId === company.id
                           ? "bg-orange-100 border-2 border-orange-400 shadow-md"
                           : "bg-white/60 border border-gray-200/50 hover:bg-white/80",
@@ -347,7 +332,7 @@ export function IntroductionPage() {
                     >
                       <div className="text-left">
                         <h3 className="text-xs font-bold text-gray-900 leading-tight">{company.name}</h3>
-                        <p className="text-[10px] text-gray-500 leading-tight">
+                        <p className="text-[10px] text-gray-700 leading-tight">
                           {companyDurations[company.id]?.label || ""}
                         </p>
                       </div>
@@ -372,8 +357,10 @@ export function IntroductionPage() {
                               setExpandedIndex(null)
                             }}
                             className={cn(
-                              "glass-card rounded-xl p-5 text-left transition-all duration-200 hover:scale-[1.02] group",
-                              isSelected ? "ring-2 ring-lime-400 bg-lime-50/80" : "hover:bg-white/90",
+                              "rounded-xl p-5 text-left transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none",
+                              isSelected
+                                ? "glass-card-lime border-2 border-lime-400"
+                                : "glass-card hover:scale-[1.02]",
                             )}
                           >
                             <div className="flex gap-4">
@@ -400,11 +387,6 @@ export function IntroductionPage() {
                                   {project.period && (
                                     <span className="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">
                                       {project.period}
-                                    </span>
-                                  )}
-                                  {project.team?.frontendDevelopers && (
-                                    <span className="text-xs px-2 py-1 rounded-full bg-blue-50 text-blue-700">
-                                      FE {project.team.frontendDevelopers}명
                                     </span>
                                   )}
                                 </div>
@@ -481,7 +463,7 @@ export function IntroductionPage() {
                                       href={contribution.articleUrl}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1.5 text-sm text-lime-600 hover:text-lime-700 transition-colors font-medium"
+                                      className="inline-flex items-center gap-1.5 text-sm text-lime-600 hover:text-lime-700 transition-colors font-medium rounded focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none"
                                     >
                                       <ExternalLink className="w-4 h-4" />
                                       <span>→ 기술 아티클 읽기</span>
@@ -575,7 +557,7 @@ export function IntroductionPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="flex-shrink-0 text-lime-600 hover:text-lime-700 transition-colors"
+                    className="flex-shrink-0 text-lime-600 hover:text-lime-700 transition-colors rounded focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none"
                     title="아티클 읽기"
                   >
                     <ExternalLink className="w-5 h-5" />
@@ -768,12 +750,12 @@ export function IntroductionPage() {
             onClick={scrollToTop}
             title="맨 위로"
             aria-label="맨 위로 스크롤"
-            className="fixed bottom-8 right-8 z-40 glass-card p-3 rounded-full shadow-xl hover:scale-110 transition-transform duration-200"
+            className="fixed bottom-8 right-8 z-40 glass-card p-3 rounded-full shadow-xl hover:scale-110 transition-transform duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 outline-none"
           >
             <ArrowUp className="w-6 h-6 text-gray-700" />
           </button>
         )}
       </div>
-    </div>
+    </main>
   )
 }
