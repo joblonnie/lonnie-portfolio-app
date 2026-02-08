@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import {
   Mail,
@@ -215,11 +214,9 @@ export function IntroductionPage() {
     <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <div className="max-w-6xl mx-auto p-4 md:p-8 space-y-12">
         {/* 개인 정보 섹션 */}
-        <motion.section
+        <section
           id="profile"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative mb-12"
+          className="animate-fade-in-up relative mb-12"
         >
           <div className="flex flex-col items-center gap-4">
             <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
@@ -293,16 +290,14 @@ export function IntroductionPage() {
               )}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 경력 및 프로젝트 섹션 */}
         {selectedCompanyId && (
-          <motion.section
+          <section
             id="projects"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-            className="space-y-8"
+            className="animate-fade-in-up space-y-8"
+            style={{ animationDelay: "0.25s" }}
           >
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-6">
@@ -410,12 +405,9 @@ export function IntroductionPage() {
 
                     {/* 하단: 선택된 프로젝트 상세 (전체 width) */}
                     {selectedProject ? (
-                      <motion.div
+                      <div
                         key={selectedProjectId}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="glass-card rounded-2xl p-8"
+                        className="animate-fade-in-up glass-card rounded-2xl p-8"
                       >
                         {/* 프로젝트 헤더 */}
                         <div className="mb-8 pb-6 border-b-2 border-gray-200">
@@ -526,7 +518,7 @@ export function IntroductionPage() {
                             </article>
                           ))}
                         </div>
-                      </motion.div>
+                      </div>
                     ) : (
                       <div className="glass-card rounded-2xl p-8 flex items-center justify-center min-h-[400px]">
                         <p className="text-gray-500 text-sm">프로젝트를 선택해주세요</p>
@@ -536,16 +528,14 @@ export function IntroductionPage() {
                 )
               })()}
             </div>
-          </motion.section>
+          </section>
         )}
 
         {/* 기술 아티클 섹션 */}
-        <motion.section
+        <section
           id="articles"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="space-y-8"
+          className="animate-fade-in-up space-y-8"
+          style={{ animationDelay: "0.3s" }}
         >
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">기술 아티클</h2>
@@ -588,15 +578,13 @@ export function IntroductionPage() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </section>
 
         {/* 기술 스택 섹션 */}
-        <motion.section
+        <section
           id="skills"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="space-y-8"
+          className="animate-fade-in-up space-y-8"
+          style={{ animationDelay: "0.1s" }}
         >
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">기술 스택</h2>
@@ -624,15 +612,13 @@ export function IntroductionPage() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </section>
 
         {/* 학력 · 자격 · 활동 섹션 */}
-        <motion.section
+        <section
           id="education"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35 }}
-          className="space-y-8"
+          className="animate-fade-in-up space-y-8"
+          style={{ animationDelay: "0.35s" }}
         >
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">학력 · 자격 · 활동</h2>
@@ -674,15 +660,13 @@ export function IntroductionPage() {
               ))}
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 목표 및 비전 섹션 */}
-        <motion.section
+        <section
           id="goals"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="space-y-8"
+          className="animate-fade-in-up space-y-8"
+          style={{ animationDelay: "0.4s" }}
         >
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">목표 및 비전</h2>
@@ -714,7 +698,7 @@ export function IntroductionPage() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* 우측 섹션 네비게이션 (스크롤 시 표시) */}
         {showSectionNav && (
