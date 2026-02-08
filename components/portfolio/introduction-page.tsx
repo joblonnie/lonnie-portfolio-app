@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -222,7 +223,15 @@ export function IntroductionPage() {
         >
           <div className="flex flex-col items-center gap-4">
             <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
-              <img src="/profile.png" alt={personalInfo.name} className="w-full h-full object-cover" />
+              <Image
+                src="/profile.png"
+                alt={personalInfo.name}
+                width={128}
+                height={128}
+                priority
+                sizes="(max-width: 768px) 96px, 128px"
+                className="w-full h-full object-cover"
+              />
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900">{personalInfo.name}</h1>
             <p className="text-lg md:text-xl text-gray-600 font-medium">
@@ -366,9 +375,11 @@ export function IntroductionPage() {
                             <div className="flex gap-4">
                               {project.image && (
                                 <div className="flex-shrink-0">
-                                  <img
+                                  <Image
                                     src={project.image || "/placeholder.svg"}
                                     alt={project.title}
+                                    width={64}
+                                    height={64}
                                     className="w-16 h-16 rounded-lg object-contain bg-white p-2"
                                   />
                                 </div>
